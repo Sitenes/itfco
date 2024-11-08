@@ -4958,12 +4958,12 @@ header-style-seven .nav-toggler:hover{
 .service-block-two .image-box .image{
 	position: relative;
 	margin-bottom: 0;
-	background-color: #222222;
 	overflow: hidden;
 }
 
 .service-block-two .image-box .image img{
 	position: relative;
+	border-radius: 25px;
 	display: block;
 	width: 100%;
 	height: auto;
@@ -4987,6 +4987,7 @@ header-style-seven .nav-toggler:hover{
 .service-block-two .caption-box{
 	position: relative;
 	padding: 25px 0px;
+	border-radius: 20px;
 }
 
 .service-block-two .caption-box h3{
@@ -5613,6 +5614,7 @@ header-style-seven .nav-toggler:hover{
 	-ms-transition: all 300ms ease;
 	-o-transition: all 300ms ease;
 	transition: all 300ms ease;
+	border-radius: 20px;
 }
 
 .feature-block .inner-box:hover{
@@ -6082,6 +6084,7 @@ header-style-seven .nav-toggler:hover{
 .projects-section-two .upper-box .sec-title{
 	float: right;
 	margin-bottom: 50px;
+	width: 100%;
 }
 
 .projects-section-two .upper-box .link-box{
@@ -6463,6 +6466,7 @@ header-style-seven .nav-toggler:hover{
 	-ms-box-shadow: 0 0 16px rgba(0,0,0,0.07);
 	-o-box-shadow: 0 0 16px rgba(0,0,0,0.07);
 	box-shadow: 0 0 16px rgba(0,0,0,0.07);
+	border-radius: 20px;
 }
 
 .help-box-two .inner .title{
@@ -7352,6 +7356,7 @@ header-style-seven .nav-toggler:hover{
 	position: relative;
 	border:1px solid #e1e1e1;
 	transition: all 400ms ease;
+	border-radius: 20px;
 }
 
 .product-block .info-box{
@@ -8125,6 +8130,7 @@ header-style-seven .nav-toggler:hover{
 .news-block .caption-box .info{
 	position: relative;
 	display: block;
+	border-radius: 20px;
 }
 
 .news-block .caption-box .info li{
@@ -13254,4 +13260,12 @@ header-style-seven .nav-toggler:hover{
 	padding-left: 0;
 	margin-left: 35px;
 	display: none;
+}
+
+.top-zero{
+	padding-top: 10px;
+}
+
+.bottom-zero{
+padding-bottom: 10px;
 }
