@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace itfco.Entity.Enum
+{
+    public enum Coust
+    {
+            Free = 1,
+            Monetary = 2,
+            NotDefined = 3,
+            All = 4,
+    }
+
+    public enum OrderBy
+    {
+        None = 0,
+        PriceAsc = 1,
+        PriceDesc = 2,
+        TimeAsc = 3,
+        TimeDesc = 4,
+        CreateDateAsc = 5,
+        CreateDateDesc = 6,
+    }
+
+    public enum PermissionEnum
+    {
+        Management = 1,
+        UserManagement = 2,
+        AddUser = 3,
+        EditUser = 4,
+        RemoveUser = 5,
+        RoleManagement = 6,
+        EditRole = 7,
+        AddRole = 8,
+        RemoveRole = 9,
+        ProductManagement = 10,
+        AddProduct = 11,
+        EditProduct = 12,
+        RemoveProduct = 13,
+        ProductEpisodesManagement = 14,
+        AddEpisodeToProduct = 15,
+        EditProductEpisodes = 16,
+        RemoveProductEpisodes = 17,
+    }
+}

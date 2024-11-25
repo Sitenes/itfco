@@ -1,0 +1,25 @@
+﻿<script>
+	$(document).ready(function () {
+		setTimeout(function () { $('#exampleModal').modal('show'); setTimeout(function () { $('#exampleModal').modal('hide'); location.replace("/UserPanel"); }, 8000); }, 50);
+	});
+</script>
+<!-- Modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header alert-success">
+				<h5 class="modal-title" id="exampleModalLabel">تغییرات با موفقیت اعمال شد</h5>
+			</div>
+			<div class="modal-body">
+				<p class="h4">
+					کاربر عزیز<br /><br />اطلاعات شما با موفقیت تغییر و ثبت شد .<br /><br />
+				</p>
+			</div>
+			<div class="modal-footer">
+				<a href="/" class="btn btn-default">خانه</a>
+				<a href="/UserPanel" class="btn btn-primary" style="min-width:70px">پنل کاربری</a>
+
+			</div>
+		</div>
+	</div>
+</div>

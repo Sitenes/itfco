@@ -1,0 +1,156 @@
+﻿@{
+	ViewData["Title"] = "پرداخت";
+}
+
+<div class="container">
+	<nav aria-label="breadcrumb">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/">تاپ لرن</a></li>
+			<li class="breadcrumb-item"><a href="/UserPanel">پنل کاربری</a></li>
+			<li class="breadcrumb-item"><a href="/UserPanel/Wallet">کیف پول</a></li>
+			<li class="breadcrumb-item active" aria-current="page"> نتیجه پرداخت</li>
+		</ul>
+	</nav>
+</div>
+
+
+<main>
+	<div class="container">
+		<div class="user-account">
+			<div class="row">
+				<partial name="SideBarPartial" />
+				<div class="col-md-9 col-sm-8 col-xs-12">
+					<section class="user-account-content">
+						<header>
+							<div class="text-center h3 font-weight-bolder">جزییات پرداخت</div>
+						</header>
+						<div class="inner">
+							@if (ViewBag.RefId != 0)
+							{
+								<!-- Modal -->
+								<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header alert-success">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												<p class="modal-title h3" id="exampleModalLabel">پرداخت با موفقیت انجام شد</p>
+
+											</div>
+											<div class="modal-body">
+												<p class="h4"><strong>@(User.Identity.Name) عزیز</strong><br /><br /><br />پرداخت شما دریافت شد و کیف پول شما با موفقیت شارژ شد . <br /><br />اکنون به راحتی می توانید دوره های سایت را خریداری نمایید .</p>
+											</div>
+											<div class="modal-footer">
+												<a data-dismiss="modal" class="btn btn-primary" style="min-width:110px">جزییات پرداخت</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<script>
+									$(document).ready(function () {
+										setTimeout(function () { $('#exampleModal').modal('show'); setTimeout(function () { $('#exampleModal').modal('hide'); }, 10000); }, 500);
+									});
+								</script>
+						
+								<div class="card border-info mb-3" style="max-width:100%; align-self:center;text-align:center">
+									
+									<div class="card-body text-info">
+										<p class="card-title h4" style="margin:20px">
+											<strong>@(User.Identity.Name) عزیز</strong>
+											پرداخت شما به مبلغ @(ViewBag.Amount) <small class="font-weight-light"><sup>ریال</sup></small> با موفقیت انجام شد
+										</p>
+									</div>
+									<div class="h4 list-group">
+										<ul>
+											<li class="list-group-item">
+												قیمت : @(ViewBag.Amount) <small class="font-weight-light"><sup>ریال</sup></small>
+											</li>
+											<li class="list-group-item">
+												کد پیگیری تراکنش : @(ViewBag.RefId)
+
+											</li>
+											<li class="list-group-item">
+												کد پیگیری سبد خرید : @(ViewBag.CartId)
+											</li>
+										</ul>
+									</div>
+								</div>
+
+
+
+
+							}
+							else
+							{
+								<!-- Modal -->
+								<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header alert-danger">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												<h5 class="modal-title h2" id="exampleModalLabel">عملیات با شکست مواجه شد</h5>
+
+											</div>
+											<div class="modal-body">
+												<p class="h4">
+													عملیات پرداخت با شکست مواجه شد لطفا پس از چند دقیقه مجددا تلاش فرمایید <br /><br />
+													در صورت کسر شدن وجه تا حداکثر ۷۲ ساعت به حساب شما بازگردانده می شود
+												</p>
+											</div>
+											<div class="modal-footer">
+												<a href="/" class="btn btn-default">صفحه اصلی</a>
+												<button type="button" class="btn btn-primary" style="min-width:100px" data-dismiss="modal">جزییات</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<script>
+									$(document).ready(function () {
+										setTimeout(function () { $('#exampleModal').modal('show'); setTimeout(function () { $('#exampleModal').modal('hide'); }, 10000); }, 500);
+									});
+								</script>
+
+
+
+								<div class="card border-warning mb-3" style="max-width:100%; align-self:center;text-align:center">
+									<div class="card-body text-danger">
+										<h5 class="card-title" style="margin:20px">
+											<strong>@(User.Identity.Name) عزیز</strong>
+											فرآیند پرداخت با شکست مواجه شد لطفا دقایقی دیگر مجددا تلاش نمایید
+										</h5>
+									</div>
+									<p class="h5" style="margin:20px">
+										درصورت کسر شدن وجه از حساب شما حداکثر تا ۷۲ ساعت بازگردانده می شود<br />
+										درصورت بروز مشکل می توانید با پشتیبانی سایت تماس بگیرید<br />
+
+									</p>
+									<div class="h4 list-group" style="margin:20px">
+										<ul>
+											<li class="list-group-item" style="margin:5px 5px 0px 5px">
+												قیمت : @(ViewBag.Amount) <small class="font-weight-light"><sup>ریال</sup></small>
+											</li>
+											<li class="list-group-item" style="margin:0px 5px">
+												کد پیگیری تراکنش : @(ViewBag.RefId)
+
+											</li>
+											<li class="list-group-item" style="margin:0px 5px 5px 5px">
+												کد پیگیری سبد خرید : @(ViewBag.CartId)
+											</li>
+										</ul>
+									</div>
+								</div>
+
+							}
+
+						</div>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

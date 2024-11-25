@@ -1,0 +1,120 @@
+﻿@model EditProfileViewModel
+@{
+    ViewData["Title"] = "ویرایش پروفایل";
+}
+@if (ViewData["EmailChanged"] != null && (bool)ViewData["EmailChanged"] == true){
+    <partial name="Partials/_LoginAgainModalPartial" model="new EmailOnlyViewModel{Email = Model.Email}"/>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () { location.replace("/Logout"); }, 10000);
+        });
+    </script>
+}
+@if (ViewData["IsSucceed"] != null && (bool)ViewData["IsSucceed"] == true)
+{
+    <partial name="Partials/_ChangesAppliedModalPartial" model="new EmailOnlyViewModel{Email = Model.Email}"/>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () { location.replace("/UserPanel"); }, 6000);
+        });
+    </script>
+}
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">تاپ لرن</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> پنل کاربری </li>
+        </ul>
+    </nav>
+</div>
+
+
+<main>
+    <div class="container">
+        <div class="user-account">
+            <div class="row">
+                <partial name="SideBarPartial" model="@(new SideBarAvatarViewModel(){UserAvatar = Model.UserAvatar,UserName = Model.UserName})" />
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <section class="user-account-content">
+                        <header><h1> ویرایش حساب کاربری </h1></header>
+                        <div class="inner form-layer">
+                            <form action="Edit" method="Post" enctype="multipart/form-data">
+
+                                <div class="row">
+
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="username"><i class="zmdi zmdi-account"></i></span>
+                                            <input type="text" class="form-control" asp-for="UserName" placeholder="نام کاربری" aria-describedby="username">
+                                        </div>
+                                        <span asp-validation-for="UserName" class="text-danger"></span>
+                                    </div>
+                                    
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="email-address"><i class="zmdi zmdi-email"></i></span>
+                                            <input type="email" class="form-control" asp-for="Email" placeholder="ایمیل" aria-describedby="email-address">
+                                        </div>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="phone"><i class="zmdi zmdi-phone"></i></span>
+                                            <input type="number" class="form-control" asp-for="Phone" placeholder="شماره تلفن" aria-describedby="phone-number">
+                                        </div>
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="input-group">
+                                            <img id="imgAvatar" src="/UserAvatar/@(Model.UserAvatar)" style="max-width:100%" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="profile-avatar"><i class="zmdi zmdi-image"></i></span>
+                                            <input id="fileName" onchange="validateFileType()" accept=" .png, .jpg, .jpeg, .gif" asp-for="NewAvatar" class="form-control" >
+                                        </div>
+                                        <span asp-validation-for="NewAvatar" class="text-danger"></span>
+                                    </div>
+
+
+
+                                    <input type="hidden" class="form-control" asp-for="UserAvatar" placeholder="عکس پروفایل" aria-describedby="profile-avatar">
+
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <button class="btn btn-success"> ویرایش اطلاعات </button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@section Scripts {
+    <script type="text/javascript">
+		function validateFileType() {
+			var fileName = document.getElementById("fileName").value;
+			var idxDot = fileName.lastIndexOf(".") + 1;
+			var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+			if (extFile == "jpg" || extFile == "jpeg" || extFile == "png"|| extFile == "gif") {
+
+				var src = URL.createObjectURL(event.target.files[0]);
+				var preview = document.getElementById("imgAvatar");
+				preview.src = src;
+				preview.style.display = "block";
+
+			} else {
+				alert("شما فقط مجاز به انتخاب عکس با فرمت .jpg .jepg .gif .png هستید!");
+				document.getElementById("fileName").value = "";
+			}
+		}
+	</script>
+}
+	

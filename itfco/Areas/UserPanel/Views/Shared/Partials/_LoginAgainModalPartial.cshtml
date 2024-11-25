@@ -1,0 +1,29 @@
+﻿@model EmailOnlyViewModel
+<script>
+	$(document).ready(function () {
+		setTimeout(function () { $('#exampleModal').modal('show'); setTimeout(function () { $('#exampleModal').modal('hide'); location.replace("/Logout"); }, 20000); }, 500);
+	});
+</script>
+<!-- Modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header alert-success">
+				<h5 class="modal-title h2" id="exampleModalLabel">تغییرات با موفقیت اعمال شد</h5>
+			</div>
+			<div class="modal-body">
+				<p class="h3">کاربر عزیز<br /></p>
+				<p class="h4">
+				
+				<br />اطلاعات شما با موفقیت تغییر و ثبت شد جهت ادامه ابتدا باید ایمیل جدید وارد شده را تایید و سپس از قسمت ورود وارد حساب کاربری خود شوید.<br /><br /><br />
+				لطفا وارد ایمیل
+				<a href="https://accounts.google.com/b/1/AddMailService" target="_blank">@(Model.Email)</a>
+				شوید و روی لینک فعالسازی کلیک کنید.
+				</p>
+			</div>
+			<div class="modal-footer">
+				<a href="/Logout" class="btn btn-outline-primary">ورود</a>
+			</div>
+		</div>
+	</div>
+</div>
