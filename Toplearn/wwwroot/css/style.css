@@ -1311,7 +1311,7 @@ img{
 	margin-right: -230px;
 	right: 100%;
 	height: 100%;
-	width: 1000%;
+	width: 100%;
 	background-color: #ffffff;
 	content: "";
 	transform:skew(40deg);
@@ -2233,7 +2233,7 @@ header-style-seven .logo-box:before{
 	margin-right: -230px;
 	right: 100%;
 	height: 100%;
-	width: 1000%;
+	width: 100%;
 	background-color: #ffffff;
 	content: "";
 	transform:skew(40deg);
@@ -2997,7 +2997,7 @@ header-style-seven .nav-toggler:hover{
 	top: 0;
 	left: 100%;
 	height: 100%;
-	width: 1000%;
+	width: 100%;
 	background-color: rgba(0,0,0,0.80);
 	content: "";
 }
@@ -3308,7 +3308,7 @@ header-style-seven .nav-toggler:hover{
 	margin-left: -300px;
 	left: 100%;
 	height: 100%;
-	width: 1000%;
+	width: 100%;
 	background-color: #ffffff;
 	content: "";
 	transform:skew(40deg);
@@ -9697,18 +9697,17 @@ header-style-seven .nav-toggler:hover{
 	right: 100%;
 	top: 0;
 	height: 100%;
-	width: 1000%;
+	/*width: 100%;*/
 	background-color: #ff8a00;
 	content: "";
 }
 
-.main-footer .footer-bottom .copyright-text{
-	position: relative;
-	float: left;
-	padding:20px 0;
-	padding-right: 40px;
-	background-color: #ff8a00;
-}
+	.main-footer .footer-bottom .copyright-text {
+		position: relative;
+		float: left;
+		padding: 20px 40px;
+		background-color: #ff8a00;
+	}
 
 .main-footer .footer-bottom .copyright-text:before{
 	position: absolute;
