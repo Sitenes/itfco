@@ -1,0 +1,93 @@
+﻿@using Toplearn.Core.Convertors
+@model WalletViewModel
+@{
+	ViewData["Title"] = "WalletIndex";
+}
+
+
+<div class="container">
+	<nav aria-label="breadcrumb">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/">تاپ لرن</a></li>
+			<li class="breadcrumb-item"><a href="/UserPanel">پنل کاربری</a></li>
+			<li class="breadcrumb-item active" aria-current="page"> کیف پول</li>
+		</ul>
+	</nav>
+</div>
+
+
+<main>
+	<div class="container">
+		<div class="user-account">
+			<div class="row">
+				<partial name="SideBarPartial" />
+				<div class="col-md-9 col-sm-8 col-xs-12">
+
+					<section class="user-account-content">
+						<header class="text-center"><h1> کیف پول </h1></header>
+						<div class="inner form-layer">
+							<form asp-action="Index" method="Post">
+								<div class="row">
+
+									<div class="col-md-7 col-sm-8 col-xs-12">
+										<div class="input-group">
+											<span class="input-group-addon" id="username"><i class="zmdi zmdi-balance-wallet"></i></span>
+											<input type="number" class="form-control" asp-for="ChargeAmount" placeholder="مبلغ شارژ (ریال)" value="" aria-describedby="amount">
+										</div>
+										<span asp-validation-for="ChargeAmount" class="text-danger"></span>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<button class="btn btn-success btn-block"> شارژ کیف پول </button>
+									</div>
+								</div>
+
+							</form>
+						</div>
+
+						@if (Model.Wallets.Count != 0)
+						{
+							<table class="table table-striped">
+								<thead class="btn-success text-white">
+									<tr class="text-center">
+										<td>مبلغ <sup class="text-muted h6">(ریال)</sup></td>
+										<td>نوع تراکنش</td>
+										<td>تاریخ</td>
+										<td>شرح</td>
+									</tr>
+								</thead>
+								@foreach (var WalletItem in Model.Wallets)
+								{
+									<tr>
+										<td>
+											<p class="text-center h4">@(WalletItem.Amount.ToPrice())</p>
+										</td>
+										<td>
+											@if (@WalletItem.TypeId == 1)
+											{
+												<p class="h5 text-success text-center">واریز به حساب</p>
+
+											}
+											else
+											{
+												<p class=" h5 text-danger text-center">برداشت از حساب</p>
+											}
+										</td>
+										<td>
+											<p class="h5 text-dark text-center">@WalletItem.PayDate.ToShamsi()</p>
+										</td>
+										<td>
+											<p class="h6 text-center">@WalletItem.Description</p>
+										</td>
+									</tr>
+								}
+							</table>
+						}
+					</section>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</main>
+
+

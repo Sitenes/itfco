@@ -1,0 +1,230 @@
+﻿@page "{id}/{IsSucceed}"
+@model Toplearn.Web.Pages.Admin.Episodes.IndexModel
+
+@{
+	Guid _userId = Guid.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
+	ViewData["Title"] = "بخش های دوره";
+}
+
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+
+				<a class="btn btn-outline btn-success pull-left" href="/Admin/Episodes/Create/@(Model.Filters.CourseId)"> <strong> افزودن قسمت جدید </strong> </a>
+				<strong class="h3">لیست قسمت ها</strong>
+				
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<div class="table-responsive">
+					<form method="post">
+						<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+							<div class="row text-center">
+@*								<input type="hidden" asp-for="@(Model.Filters.CurrentPage)">*@
+								<input type="hidden" asp-for="@(Model.Filters.CourseId)">
+								<div class="col-xs-6 col-md-3">
+									<div class="form-group">
+
+										<input class="form-control btn-block" asp-for="@(Model.Filters.Title)" placeholder="عنوان قسمت">
+									</div>
+								</div>
+
+								<div class="col-xs-6 col-md-3">
+									<div class="form-group">
+										<input class="form-control btn-block" asp-for="Filters.EpisodeTimeFrom" value="@((Model.Filters.EpisodeTimeFrom==TimeSpan.Zero)?"":$"{Model.Filters.EpisodeTimeFrom}")" placeholder="زمان از">
+									</div>
+								</div>
+
+								
+								<div class="col-xs-6 col-md-3">
+									<div class="form-group">
+										@{
+											var timeOneDay = new TimeSpan(0, 23, 59, 59);
+										}
+										<input class="form-control btn-block" asp-for="Filters.EpisodeTimeTo" value="@((Model.Filters.EpisodeTimeTo==TimeSpan.Zero)?"":(Model.Filters.EpisodeTimeTo==timeOneDay)?"":$"{Model.Filters.EpisodeTimeTo}")" placeholder="زمان تا">
+									</div>
+								</div>
+
+								<div class="col-xs-6 col-md-4" style="margin:10px 0px;">
+									<div class="dataTables_length" id="dataTables-example_length">
+										<label>
+											قیمت
+											<div class="id_100">
+												<select asp-for="Filters.EpisodeStatus" class="form-control input-sm">
+													<option value="@(Toplearn.Core.Enum.Coust.All)">همه</option>
+													<option value="@(Toplearn.Core.Enum.Coust.Free)">رایگان</option>
+													<option value="@(Toplearn.Core.Enum.Coust.Monetary)">پولی</option>
+												</select>
+											</div>
+										</label>
+									</div>
+								</div>
+
+
+								<div class="col-xs-6 col-md-4" style="margin:10px 0px;">
+									<div class="dataTables_length" id="dataTables-example_length">
+										<label>
+											تعداد آیتم در صفحه
+											<div class="id_100">
+												<select asp-for="ItemPerPage" class="form-control input-sm">
+													<option value="10">10</option>
+													<option value="25">25</option>
+													<option value="50">50</option>
+													<option value="100">100</option>
+												</select>
+											</div>
+										</label>
+									</div>
+								</div>
+
+								<div class="col-xs-3 btn-group" style="margin:10px 0px;">
+									<button type="submit" class="btn btn-primary btn-outline btn-group" style="width:80%" asp-route-currentPage=1>
+										<i class="fa fa-search"></i> <strong> جستجو </strong>
+									</button>
+									<a href="/Admin/Episodes/Index/@(Model.Filters.CourseId)/null" class="btn btn-danger btn-outline btn-group">
+										<i class="zmdi zmdi-3d-rotation zmdi-close-circle"></i>
+									</a>
+								</div>
+							</div>
+
+							<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+								<thead>
+									<tr role="row" class="h4 text-center">
+										<th>عنوان قسمت</th>
+										<th>زمان دوره</th>
+										<th>هزینه</th>
+										<th>دستورات</th>
+									</tr>
+								</thead>
+								<tbody>
+									@if (Model.Episodes != null)
+										@foreach (var courseItem in Model.Episodes)
+										{
+											<tr class="gradeA odd">
+												<td class=" center h4">@courseItem.EpisodeTitle</td>
+												<td class=" center ">@courseItem.EpisodeTime</td>
+												@if (courseItem.IsFree==false){
+													<td class="center " style="background-color: rgb(255,245,245)">پولی</td>
+												}
+												else{
+													<td class="center " style="background-color: rgb(245,255,245)">رایگان</td>
+												}
+												
+												<td class="center ">
+													@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.EditCourseEpisodes, _userId).Result)
+													{
+														<a href="/Admin/Episodes/Edit/@courseItem.EpisodeId" class="btn btn-outline btn-warning "><i class="fa fa-edit"></i></a>
+													}
+
+													@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.RemoveCourseEpisodes, _userId).Result)
+													{
+														<a class="btn btn-outline btn-danger " data-toggle="modal" data-target="#DeleteModal@(courseItem.EpisodeId)">
+															<i class="zmdi zmdi-delete"></i>
+														</a>
+													}
+
+													<div class="modal fade" id="DeleteModal@(courseItem.EpisodeId)" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true" style="display: none;">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header alert-warning">
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																	<h5 class="modal-title h2" id="exampleModalLabel">آیا از حذف @(courseItem.EpisodeTitle) اطمینان دارید ؟</h5>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-default btn-outline" data-dismiss="modal" aria-label="Close">بیخیال</button>
+																	<a class="btn btn-danger" style="min-width:100px" href="/api/Episode/Delete/@(courseItem.EpisodeId)">حذف</a>
+																</div>
+															</div>
+															<!-- /.modal-content -->
+														</div>
+														<!-- /.modal-dialog -->
+													</div>
+
+												</td>
+											</tr>
+
+										}
+								</tbody>
+							</table>
+
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="dataTables_info" id="dataTables-example_info" role="alert" aria-live="polite" aria-relevant="all">
+										نمایش
+										<b>@((Model.Episodes.PageNumber - 1) * Model.Episodes.PageSize + 1)</b>
+										تا
+										<b>@((Model.Episodes.PageNumber) * Model.Episodes.PageSize + 1)</b>
+										از
+										<b>@(Model.Episodes.TotalItemCount)</b>
+										قسمت
+									</div>
+								</div>
+								@if (Model.Episodes.TotalItemCount / Model.Episodes.PageSize >= 1)
+								{
+									<div class="col-sm-6">
+										<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+											<div class="btn-group">
+												<ul class="pagination">
+													@if (!Model.Episodes.IsFirstPage)
+													{
+
+														<li>
+															<button asp-route-currentPage="@(Model.Episodes.PageNumber-1)" class="btn btn-outline btn-primary " type="submit">
+																<i class="zmdi zmdi-arrow-right"></i>
+															</button>
+														</li>
+													}
+													@for (int i = 1; i <= Model.Episodes.PageCount; i++)
+													{
+														<li>
+															<button class="btn btn-primary btn-sm @((i == Model.Episodes.PageNumber)?"":"btn-outline") " type="submit" asp-route-currentPage="@(i)">
+																@i
+															</button>
+														</li>
+
+													}
+													@if (!Model.Episodes.IsLastPage)
+													{
+
+														<li>
+															<button asp-route-currentPage="@(Model.Episodes.PageNumber+1)" class="btn btn-outline btn-primary" type="submit">
+																<i class="zmdi zmdi-arrow-left"></i>
+															</button>
+														</li>
+													}
+
+												</ul>
+											</div>
+										</div>
+									</div>
+								}
+
+
+
+
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- /.table-responsive -->
+	</div>
+	<!-- /.panel-body -->
+</div>
+<!-- Modal -->
+@section Scripts
+	{
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+	{
+		<partial name="_SucceedModalPartial" model="@("/Admin/Courses/Index")" />
+	}
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == false)
+	{
+		<partial name="_FailedModalPartial" model="@("/Admin/Courses/Index")" />
+	}
+}

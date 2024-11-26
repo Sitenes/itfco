@@ -1,0 +1,83 @@
+﻿@page "/Admin/ManageUser/Details/{UserId}"
+@model Toplearn.Web.Pages.Admin.ManageUsers.DetailsModel
+
+@{
+	ViewData["Title"] = "اطلاعات کاربر";
+}
+
+
+<div class="row">
+	<div class="col-md-8">
+
+		<div class="panel panel-primary">
+			<div class="panel-heading h4">
+				<b>افزودن نقش</b>
+			</div>
+			<div class="panel-body">
+				<div class="container client-page">
+
+					<div class="h4">
+						<p style="margin:20px 10px 40px 10px">
+							نام کاربری : 
+							@(Model.UserDetails.UserName)
+						</p>
+						<p style="margin:40px 10px">
+							ایمیل :
+							@(Model.UserDetails.Email)
+						</p>
+						<p style="margin:40px 10px">
+							شماره موبایل:
+							@(Model.UserDetails.Phone)
+						</p>
+						<p style="margin:40px 10px">
+							تاریخ ثبت نام:
+							@(Model.UserDetails.RegisterDate.ToShamsi())
+						</p>
+						<p style="margin:50px 10px">
+							حساب فعال :
+							@if (Model.UserDetails.IsActive){
+								<b class="alert alert-success">فعال</b>
+							}
+							else
+							{
+								<b class="alert alert-danger">غیر فعال</b>
+							}
+						</p>
+						<p style="margin:40px 10px">
+							کیف پول :
+							@(Model.UserDetails.Wallet.ToPrice())
+							<sup class="small text-muted">تومان</sup>
+						</p>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-4">
+		<div class="container client-page">
+
+			<div class="panel panel-default">
+				<div class="panel-heading h3 text-center">
+					آواتار
+				</div>
+				<div class="panel-body">
+					<div class="container client-page">
+						<div class="form-group">
+
+							<div class="thumbnail">
+								<img id="imgAvatar" src="/UserAvatar/@(Model.UserDetails.UserAvatar)" />
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>

@@ -1,0 +1,258 @@
+﻿@page
+@model Toplearn.Web.Pages.Admin.Courses.IndexModel
+
+@{
+	Guid _userId = Guid.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
+	ViewData["Title"] = "لیست دوره ها";
+}
+
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				لیست دوره ها
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<div class="table-responsive">
+					<form method="post">
+						<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+							<div class="row text-center">
+								<input type="hidden" asp-for="@(Model.Filters.CurrentPage)">
+								<input type="hidden" asp-for="@(Model.Filters.ItemPerPage)">
+								<div class="col-xs-6 col-md-3">
+									<div class="form-group">
+
+										<input class="form-control btn-block" asp-for="@(Model.Filters.TeacherOrCourseId)" placeholder="آیدی استاد یا دوره">
+									</div>
+								</div>
+								<div class="col-xs-6 col-md-3">
+									<div class="form-group">
+
+										<input class="form-control btn-block" value="@Model.Filters.Title" asp-for="@Model.Filters.Title" placeholder="عنوان دوره">
+									</div>
+								</div>
+
+								<div class="col-xs-6 col-md-3">
+									<div class="form-group">
+
+										<input class="form-control btn-block" value="@Model.Filters.Description" asp-for="@Model.Filters.Description" placeholder="توضیحات دوره">
+									</div>
+								</div>
+
+								<div class="col-xs-6 col-md-3">
+									<div class="form-group">
+
+										<input class="form-control btn-block" value="@Model.Filters.Tags" asp-for="@Model.Filters.Tags" placeholder="تگ ها">
+									</div>
+								</div>
+
+
+								<div class="col-xs-6 col-md-3">
+									<div class="form-group">
+										<input class="form-control btn-block" asp-for="@Model.Filters.PriceFrom" value="@((Model.Filters.PriceFrom==0)?"":$"{Model.Filters.PriceFrom}")" placeholder="قیمت از">
+									</div>
+								</div>
+
+								<div class="col-xs-6 col-md-3">
+									<div class="form-group">
+										<input class="form-control btn-block" asp-for="@Model.Filters.PriceTo" value="@((Model.Filters.PriceTo==0)?"":$"{Model.Filters.PriceTo}")" placeholder="قیمت تا">
+									</div>
+								</div>
+
+
+								<div class="col-xs-6 col-md-3">
+									<div class="form-group">
+										<input class="form-control btn-block" asp-for="@Model.Filters.StudentsCountFrom" value="@((Model.Filters.StudentsCountFrom==0)?"":$"{Model.Filters.StudentsCountFrom}")" placeholder="دانشجو از">
+									</div>
+								</div>
+
+								<div class="col-xs-6 col-md-3">
+									<div class="form-group">
+										<input class="form-control btn-block" asp-for="@Model.Filters.StudentsCountTo" value="@((Model.Filters.StudentsCountTo==0)?"":$"{Model.Filters.StudentsCountTo}")" placeholder="دانشجو تا">
+									</div>
+								</div>
+
+								<div class="col-xs-6 col-md-4" style="margin:10px 0px;">
+									<div class="dataTables_length" id="dataTables-example_length">
+										<label>
+											تعداد آیتم در صفحه
+											<div class="id_100">
+												<select asp-for="ItemPerPage" class="form-control input-sm">
+													<option value="10">10</option>
+													<option value="25">25</option>
+													<option value="50">50</option>
+													<option value="100">100</option>
+												</select>
+											</div>
+										</label>
+									</div>
+								</div>
+
+								<div class="col-xs-3 btn-group" style="margin:10px 0px;">
+									<button type="submit" class="btn btn-primary btn-outline btn-group" style="width:80%" asp-route-currentPage=1>
+										<i class="fa fa-search"></i> <strong> جستجو </strong>
+									</button>
+									<a href="/Admin/Courses/Index" class="btn btn-danger btn-outline btn-group">
+										<i class="zmdi zmdi-close-circle"></i>
+									</a>
+								</div>
+							</div>
+
+							<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+								<thead>
+									<tr role="row" class="h4 text-center">
+										<th>تصویر</th>
+										<th>عنوان دوره</th>
+										<th>دانشجو</th>
+										<th>استاد</th>
+										<th>قیمت</th>
+										<th>دستورات</th>
+									</tr>
+								</thead>
+								<tbody>
+									@if (Model.Courses != null)
+										@foreach (var courseItem in Model.Courses)
+										{
+											<tr class="gradeA odd">
+												<td class="center ">
+													<img src="/CourseRoot/ThumbImage/@courseItem.Image" width="60" />
+												</td>
+												<td class=" center ">@courseItem.CourseTitle</td>
+												<td class=" center ">@courseItem.NumberOfStudents</td>
+												<td class="center ">@courseItem.TeacherName</td>
+												<td class="center ">@courseItem.Price</td>
+												<td class="center tooltip-demo">
+													@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.CourseEpisodesManagement, _userId).Result)
+													{
+														
+															<a href="/Admin/Episodes/Index/@courseItem.CourseId/null" data-toggle="tooltip" data-placement="top" title="" data-original-title="لیست قسمت ها" class="btn btn-outline btn-primary "><i class="zmdi zmdi-videocam"></i></a>
+														
+													}
+													@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.EditCourse, _userId).Result)
+													{
+														<a href="/Admin/Courses/Edit/@courseItem.CourseId" class="btn btn-outline btn-warning "><i class="fa fa-edit"></i></a>
+													}
+
+													@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.RemoveCourse, _userId).Result)
+													{
+														<a class="btn btn-outline btn-danger " data-toggle="modal" data-target="#DeleteModal@(courseItem.CourseId)">
+															<i class="zmdi zmdi-delete"></i>
+														</a>
+													}
+
+													<div class="modal fade" id="DeleteModal@(courseItem.CourseId)" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true" style="display: none;">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header alert-warning">
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																	<h5 class="modal-title h2" id="exampleModalLabel">آیا از حذف @(courseItem.CourseTitle) اطمینان دارید ؟</h5>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-default btn-outline" data-dismiss="modal" aria-label="Close">بیخیال</button>
+																	<a class="btn btn-danger" style="min-width:100px" href="/api/Episodes/Delete/@(courseItem.CourseId)">حذف</a>
+																</div>
+															</div>
+															<!-- /.modal-content -->
+														</div>
+														<!-- /.modal-dialog -->
+													</div>
+
+												</td>
+											</tr>
+
+										}
+								</tbody>
+							</table>
+
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="dataTables_info" id="dataTables-example_info" role="alert" aria-live="polite" aria-relevant="all">
+										نمایش
+										<b>@((Model.Filters.CurrentPage - 1) * Model.Filters.ItemPerPage + 1)</b>
+										تا
+										<b>@((Model.Filters.CurrentPage) * Model.Filters.ItemPerPage + 1)</b>
+										از
+										<b>@(Model.Filters.CoursesCount)</b>
+										دوره
+									</div>
+								</div>
+								@if (Model.Filters.CoursesCount / Model.Filters.ItemPerPage > 1)
+								{
+									<div class="col-sm-6">
+										<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+											<div class="btn-group">
+												<ul class="pagination">
+													@if (Model.Filters.CurrentPage > 1)
+													{
+
+														<li>
+															<button asp-route-currentPage="@(Model.Filters.CurrentPage-1)" class="btn btn-outline btn-primary " type="submit">
+																<i class="zmdi zmdi-arrow-right"></i>
+															</button>
+														</li>
+													}
+													@for (int i = 1; i <= Model.Filters.CoursesCount / Model.Filters.ItemPerPage + ((Model.Filters.CoursesCount % Model.Filters.ItemPerPage == 0) ? 0 : 1); i++)
+													{
+														<li>
+															<button class="btn btn-primary btn-sm @((i == Model.Filters.CurrentPage)?"":"btn-outline") " type="submit" asp-route-CurrentPage="@(i)">
+																@i
+															</button>
+														</li>
+
+													}
+													@if (Model.Filters.CurrentPage < Model.Filters.CoursesCount / Model.Filters.ItemPerPage + ((Model.Filters.CoursesCount % Model.Filters.ItemPerPage==0)?0:1))
+													{
+
+														<li>
+															<button asp-route-CurrentPage="@(Model.Filters.CurrentPage+1)" class="btn btn-outline btn-primary" type="submit">
+																<i class="zmdi zmdi-arrow-left"></i>
+															</button>
+														</li>
+													}
+
+												</ul>
+											</div>
+										</div>
+									</div>
+								}
+
+
+
+
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- /.table-responsive -->
+	</div>
+	<!-- /.panel-body -->
+</div>
+<!-- Modal -->
+@section Scripts
+	{
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+	{
+		<partial name="_SucceedModalPartial" model="@("/Admin/Courses/Index")" />
+	}
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == false)
+	{
+		<partial name="_FailedModalPartial" model="@("/Admin/Courses/Index")" />
+	}
+	<script>
+		// tooltip demo
+		$('.tooltip-demo').tooltip({
+			selector: "[data-toggle=tooltip]",
+			container: "body"
+		})
+
+		// popover demo
+		$("[data-toggle=popover]")
+			.popover()
+	</script>
+}

@@ -1,0 +1,31 @@
+﻿@using System.Security.Claims
+@inject Toplearn.Core.Services.IUserService _userService
+@{
+	var userAvatar = _userService.GetAvaterByUserName(User.Identity.Name);
+}
+<div class="col-md-3 col-sm-4 col-xs-12">
+	<aside>
+
+		<div class="avatar-layer">
+			<div class="img-layer">
+				<img src="/UserAvatar/@(userAvatar)" style="max-width:100%" />
+				</div>
+			<div class="detail">
+				<span> @User.Identity.Name</span>
+			</div>
+		</div>
+
+		<section>
+			<header><h3> میز کار </h3></header>
+			<div class="inner">
+				<ul>
+					<li><a href="/UserPanel/@(User.Identity.Name)"> مشاهده حساب کابری </a></li>
+					<li><a href="/UserPanel/Edit"> ویرایش حساب کابری </a></li>
+					<li><a href="/UserPanel/Wallet"> کیف پول</a></li>
+					<li><a href="/UserPanel/ChangePassword"> تغییر رمز عبور </a></li>
+					<li><a href="/Logout"> خروج از حساب کاربری </a></li>
+				</ul>
+			</div>
+		</section>
+	</aside>
+</div>

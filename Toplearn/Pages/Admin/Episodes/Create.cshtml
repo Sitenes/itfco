@@ -1,0 +1,106 @@
+﻿@page "{CourseId}"
+@inject ICourseService _courseService
+@using Toplearn.Core.DTOs.TeacherVM
+@using Toplearn.Core.Services.Interfaces
+@using Toplearn.DataLayer.Entities.Courses
+@model Toplearn.Web.Pages.Admin.Episodes.CreateModel
+@{
+	ViewData["Title"] =  "افزودن قسمت";
+}
+
+<div class="row">
+	<form method="post" enctype="multipart/form-data">
+		<input type="hidden" asp-for="Episode.CourseId" />
+		<div class="col-md-12">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading h3">
+					افزودن قسمت جدید به دوره
+				</div>
+				<div class="panel-body">
+					<div class="container client-page">
+						<div class="form-group">
+							<div class="row">
+
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-card"></i>
+									</span>
+									<input asp-for="Episode.EpisodeTitle" class="form-control" placeholder="عنوان قسمت">
+									<span asp-validation-for="Episode.EpisodeTitle" class="text-danger"></span>
+								</div>
+
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-card"></i>
+									</span>
+									<input asp-for="Episode.EpisodeTime" class="form-control" placeholder="زمان دوره">
+									<span asp-validation-for="Episode.EpisodeTime" class="text-danger"></span>
+								</div>
+
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-money-off"></i>
+									</span>
+									<label>آیا این قسمت برای همه رایگان است ؟</label>
+									<input asp-for="Episode.IsFree" class="">
+									<span asp-validation-for="Episode.IsFree" class="text-danger"></span>
+								</div>
+
+								<div class="col-md-12 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-movie"></i>
+										<label>فیلم دمو</label>
+									</span>
+									<input type="file" id="demofile" name="Video" accept=".avi,.flv,.mov,.wmv,.mkv,.mp4" onchange="validateDemoType()" class="form-control" />
+									<span asp-validation-for="Episode.EpisodeFileName" class="text-danger"></span>
+								</div>
+
+
+								
+
+							</div>
+							<div class="col-md-6">
+								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-plus-circle"></i> <strong> افزودن قسمت </strong> </button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+
+	</form>
+</div>
+
+@section Scripts
+	{
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+	{
+		<partial name="_SucceedModalPartial" model="@("/Admin/Episodes/Index/"+Model.Episode.CourseId+"/null")" />
+	}
+	else if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == false)
+	{
+		<partial name="_FailedModalPartial" />
+	}
+	<script type="text/javascript">
+		function validateDemoType() {
+			var fileName = document.getElementById("demofile").value;
+			var idxDot = fileName.lastIndexOf(".") + 1;
+			var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+			if (extFile == "mp4" || extFile == "mkv" || extFile == "wmv" || extFile == "mov" || extFile == "flv" || extFile == "avi") {
+
+				var src = URL.createObjectURL(event.target.files[0]);
+				var preview = document.getElementById("DemoFilm");
+				preview.src = src;
+				preview.style.display = "block";
+
+			} else {
+				alert("شما فقط مجاز به انتخاب عکس با فرمت .mp4 .mkv .wmv .mov .flv .avi هستید!");
+				document.getElementById("demofile").value = "";
+			}
+		}
+	</script>
+}

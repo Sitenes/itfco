@@ -1,0 +1,32 @@
+﻿@model Toplearn.Core.DTOs.UserVM.EmailViewModel
+@{
+    ViewData["Title"] = "تایید ایمیل";
+}
+    <partial name="Partials/_SuccessfulActivateModalPartial" model="Model" />
+
+
+<nav aria-label="breadcrumb" style="margin-bottom:0px">
+	<ul class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/">تاپ لرن</a></li>
+		<li class="breadcrumb-item active" aria-current="page">تایید ایمیل</li>
+	</ul>
+</nav>
+
+<main class="client-page">
+	<div class="container-content" style="width:60%">
+		<div class="">
+			<div class="row">
+				<div class="col-md-4">
+					<img src="/images/resource/Verified.jpg" alt="Verify">
+				</div>
+				<div class="col-md-8">
+					<div class="">
+						<h2 class="alert alert-success h3">ایمیل شما با موفقیت تایید شد</h2>
+						<hr /><p class="h4">برای ادامه ابتدا وارد شوید .</p>
+						<a href="/Login" class="btn btn-success h3">ورود</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

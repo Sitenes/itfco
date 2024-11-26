@@ -1,0 +1,34 @@
+﻿@model Toplearn.Core.DTOs.UserVM.ActivateEmailViewModel
+<script>
+	$(document).ready(function () {
+		setTimeout(function () { $('#exampleModal').modal('show'); setTimeout(function () { $('#exampleModal').modal('hide'); }, 10000); }, 500);
+	});
+</script>
+<!-- Modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header alert-success">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h5 class="modal-title h3" id="exampleModalLabel">ثبت نام با موفقیت انجام شد</h5>
+			</div>
+			<div class="modal-body">
+				<p class="h3">
+					سلام <strong>@(Model.UserName)</strong><br />
+					</p>
+					<p class="h4">
+						ایمیلی حاوی لینک فعال سازی برای 
+						@(Model.Email)
+					ارسال شد . 
+					<br />
+					لطفا وارد ایمیل خود شوید و روی لینک کلیک کنید .
+					</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">فهمیدم</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,34 @@
+﻿@model Toplearn.Core.DTOs.UserVM.ActivateUserViewModel
+<script>
+	$(document).ready(function () {
+		setTimeout(function () { $('#exampleModal').modal('show'); setTimeout(function () { $('#exampleModal').modal('hide'); }, 8000); }, 500);
+	});
+</script>
+<!-- Modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header alert-success">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h5 class="modal-title" id="exampleModalLabel">اطلاعات با موفقیت ثبت شد</h5>
+			</div>
+			<div class="modal-body">
+				<p class="h4">
+					سلام <strong>@(Model.UserName)</strong><br />
+				</p>
+				<p class="h5">
+					کد فعال سازی به شماره تلفن @(Model.Phone) ارسال شد .
+
+				</p>
+				<form method="post" action="Register">
+					<input type="submit" value="ویرایش شماره" class="btn btn-sm btn-default">
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">فهمیدم</button>
+			</div>
+		</div>
+	</div>
+</div>

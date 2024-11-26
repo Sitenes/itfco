@@ -1,0 +1,111 @@
+﻿@page "{id}"
+@using Toplearn.DataLayer.Entities.Permissions
+@using Toplearn.DataLayer.Entities.User
+@model Toplearn.Web.Pages.Admin.ManageRoles.EditModel
+
+
+@{
+	ViewData["Title"] = "ویرایش نقش " + Model.Role.Title;
+	List<Permission> Permissions = ViewData["Permissions"] as List<Permission>;
+	List<int> selectedPermissions = ViewData["SelectedPermissions"] as List<int>;
+}
+
+<div class="row">
+	<form method="post">
+		<div class="col-md-8">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading h4">
+					ویرایش نقش
+				</div>
+				<div class="panel-body">
+					<div class="container client-page">
+						<div class="form-group">
+							<div class="row">
+								<input asp-for="Role.RoleId" type="hidden">
+
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon"><i class="zmdi zmdi-folder-person"></i></span>
+									<input asp-for="Role.Title" class="form-control" placeholder="نام نقش">
+									<span asp-validation-for="Role.Title" class="text-danger"></span>
+								</div>
+
+							</div>
+							<div class="col-md-4">
+								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-edit"></i>  ویرایش نقش </button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="container client-page">
+
+				<div class="panel panel-default">
+					<div class="panel-heading h3 text-center">
+						دسترسی های  @(Model.Role.Title)
+					</div>
+					<div class="panel-body">
+						<div class="container client-page">
+							<div class="form-group">
+								<div class="form-group">
+
+									@if (ViewData["Permissions"] != null)
+									{
+										<ul>
+											@foreach (Permission permissionItem in Permissions.Where(n=>n.ParentID == null))
+											{
+											<li>
+													<div class="checkbox"><label><input name="SelectedPermissions" type="checkbox" value="@(permissionItem.PermissionId)" @((selectedPermissions.Any(n=>permissionItem.PermissionId == n))?"checked":"")> @(permissionItem.PermissionTitle)</label></div>
+											</li>
+												<ul>
+													@foreach (var perItem2 in Permissions.Where(n=>n.ParentID == permissionItem.PermissionId))
+													{
+													<li>
+															<div class="checkbox"><label><input name="SelectedPermissions" type="checkbox" value="@(perItem2.PermissionId)" @((selectedPermissions.Any(n=>perItem2.PermissionId == n))?"checked":"")> @(perItem2.PermissionTitle)</label></div>
+													</li>
+												
+														<ul>
+															@foreach (var perItem3 in Permissions.Where(n => n.ParentID == perItem2.PermissionId))
+															{
+															<li>
+																	<div class="checkbox"><label><input name="SelectedPermissions" type="checkbox" value="@(perItem3.PermissionId)" @((selectedPermissions.Any(n=>perItem3.PermissionId == n))?"checked":"")> @(perItem3.PermissionTitle)</label></div>
+															</li>
+															}
+														</ul>
+													}
+												</ul>
+											}
+										</ul>
+									}
+
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</form>
+</div>
+
+@section Scripts
+	{
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+	{
+		<partial name="_SucceedModalPartial" model="@("/Admin/ManageRoles/Index")" />
+		<script>
+			$(document).ready(function () {
+				setTimeout(function () { location.replace("/Admin/ManageRoles/Index"); }, 10000);
+			});
+		</script>
+
+	}
+	<script>await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	</script>
+}

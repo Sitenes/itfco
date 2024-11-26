@@ -1,0 +1,35 @@
+﻿@model Toplearn.Core.DTOs.UserVM.ActivateEmailViewModel
+@{ 
+    ViewData["Title"] = "تایید ایمیل";
+}
+<partial name="Partials/_activateEmailModalPartial" model="Model" />
+
+<nav aria-label="breadcrumb" style="margin-bottom:0px">
+	<ul class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/">تاپ لرن</a></li>
+		<li class="breadcrumb-item active" aria-current="page">تایید ایمیل</li>
+	</ul>
+</nav>
+
+<main class="client-page" style="margin-top:0px">
+	<div class="container-content" style="width:70%">
+		<div class="row">
+			<div class="col-md-4"><img src="/images/resource/EmailLink.jpg" /></div>
+			<div class="col-md-8">
+				<p class="h2 text-success">ثبت نام با موفقیت انجام شد</p>
+				<p class="h3" style="margin:8px">
+					سلام <strong>@(Model.UserName)</strong><br />
+				</p>
+				<p class="h4">
+					ایمیلی حاوی لینک فعال سازی برای 
+					<a href="https://accounts.google.com/b/0/AddMailService" target="_blank">@(Model.Email)</a>
+					ارسال شد.
+					<br />
+				</p>
+				<p class="h4">
+					جهت ادامه ثبت نام وارد ایمیل خود شوید و روی لینک کلیک کنید.
+				</p>
+			</div>
+		</div>
+	</div>
+</main>

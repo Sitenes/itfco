@@ -1,0 +1,60 @@
+﻿@model UserPanelViewModel
+@using System.Security.Claims
+@using Toplearn.Core.Convertors
+@{
+    ViewData["Title"] = "پنل کاربری "+Model.UserName;
+}
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">تاپ لرن</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> پنل کاربری </li>
+        </ul>
+    </nav>
+</div>
+
+
+<main>
+    <div class="container">
+        <div class="user-account">
+            <div class="row">
+                <partial name="SideBarPartial" model="@(new SideBarAvatarViewModel(){UserAvatar = Model.UserAvatar,UserName = Model.UserName})"/>
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <section class="user-account-content">
+                        <header><h1> داشبورد </h1></header>
+                        <div class="inner">
+                            <div class="account-information">
+                                <h3> اطلاعات کاربری </h3>
+                                <ul>
+                                    <li> <i class="zmdi zmdi-assignment-account"></i> نام کاربری :  <strong id="UserName"></strong> </li>
+                                    <li> <i class="zmdi zmdi-email"></i> ایمیل : <strong id="UserEmail"></strong>  </li>
+                                    <li> <i class="zmdi zmdi-calendar-check"></i> تاریخ عضویت : @(Model.RegisterDate.ToShamsi()) </li>
+                                    <li> <i class="zmdi zmdi-smartphone-android"></i> شماره تماس : <strong id="Phone"></strong> </li>
+                                    <li> <i class="zmdi zmdi-balance-wallet"></i> موجودی کیف پول : <strong id="Wallet"></strong> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts{
+    <script>
+        $(document).ready(
+            function(){
+                $.ajax({
+                    url: "/api/User/GetUser/" + "C2F3EEF3-5907-4452-9888-F30AA31FEABC",
+                    type: "Get"
+                }).done(function(result){
+                    $('#UserName').html(result.userName);
+                    $('#UserEmail').html(result.email);
+                    $('#Wallet').html(result.wallet);
+                    $('#Phone').html(result.phone);
+                });
+            }
+        );
+    </script>
+}

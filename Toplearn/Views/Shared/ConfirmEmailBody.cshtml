@@ -1,0 +1,34 @@
+﻿@model Toplearn.Core.DTOs.UserVM.EmailtxtViewModel
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html class="no-js" dir="rtl" lang="fa-IR">
+<head>
+	<partial name="Layouts/_MetaTags" />
+	<partial name="Layouts/_Styles" />
+
+	<script src="/js/jquery.min.js"></script>
+</head>
+<body>
+
+	<div style="margin:10%;padding:3%;background-color:#2aaf27">
+		<div style="padding:5%;background-color:white">
+			<a href="http://localhost:52532/">
+				<h1>تاپ لرن | Toplearn.com</h1>
+			</a>
+			<h1>@(Model.UserName) عزیز !</h1>
+			<h2>
+				با تشکر از ثبت نام شما در سایت تاپ لرن <br /><br />
+				جهت ادامه ثبت نام و تایید حساب کاربری خود روی لینک زیر کلیک کنید.<br /><br /><br />
+				<a href="http://localhost:52532/VerifyLink/@(Model.UserId)/@(Model.EmailLink)">
+					تایید ایمیل
+				</a><br />
+				<br /><br />
+				در صورتی که شما این درخواست را نکرده اید می توانید این ایمیل را نادیده بگیرید .
+			</h2>
+		</div>
+	</div>
+
+</body>
+</html>

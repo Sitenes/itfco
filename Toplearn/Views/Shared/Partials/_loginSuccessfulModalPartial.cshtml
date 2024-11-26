@@ -1,0 +1,31 @@
+﻿
+<script>
+	$(document).ready(function () {
+		setTimeout(function () { $('#exampleModal').modal('show'); setTimeout(function () { $('#exampleModal').modal('hide'); }, 5000); }, 500);
+	});
+</script>
+<!-- Modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header alert-success">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" href="/">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h5 class="modal-title h2" id="exampleModalLabel">ورود با موفقیت انجام شد</h5>
+			</div>
+			<div class="modal-body">
+				<p class="h3" style="margin:7px 0px">
+					سلام <strong>@(User.Identity.Name)</strong><br />
+				</p>
+				<p class="h4">
+					بازگشتت رو خوش آمد میگیم<br /> <br />
+					امیدوارم لحظات خوبی را در کنار ما سپری کنید 🤍
+				</p>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-primary" data-dismiss="modal">فهمیدم</a>
+			</div>
+		</div>
+	</div>
+</div>

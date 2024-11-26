@@ -1,0 +1,280 @@
+﻿@page "{id}"
+@inject ICourseService _courseService
+@using Toplearn.Core.DTOs.TeacherVM
+@using Toplearn.Core.Services.Interfaces
+@using Toplearn.DataLayer.Entities.Courses
+@model Toplearn.Web.Pages.Admin.Courses.EditModel
+@{
+	ViewData["Title"] =  "ویرایش دوره";
+}
+
+<div class="row">
+	<form method="post" enctype="multipart/form-data">
+		<div class="col-md-8">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading h3">
+					ویرایش دوره 
+				</div>
+				<div class="panel-body">
+					<div class="container client-page">
+						<div class="form-group">
+							<div class="row">
+
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-card"></i>
+									</span>
+									<input asp-for="Course.Title" class="form-control" placeholder="عنوان دوره">
+									<span asp-validation-for="Course.Title" class="text-danger"></span>
+								</div>
+
+
+
+								@if (ViewData["Teachers"] != null)
+								{
+									<div class="col-md-6 input-group" style="margin:20px auto">
+										<span class="input-group-addon">
+											<i class="zmdi zmdi-account"></i>
+											<label>مدرس</label>
+										</span>
+										
+										<div class="form-group" id="subGroup">
+											<select class="form-control" asp-for="Course.TeacherId">
+												@foreach (var groupItem in (ViewData["Teachers"] as List<TeacherForCourseViewModel>))
+												{
+													<option value="@(groupItem.TeacherId)">
+														@(groupItem.TeacherName)
+													</option>
+												}
+											</select>
+										</div>
+									</div>
+								}
+								<div class="col-sm-12 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-file-text"></i>
+									</span>
+									<textarea id="mainGroup" asp-for="Course.Description" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات دوره"></textarea>
+									<span asp-validation-for="Course.Description" class="text-danger"></span>
+								</div>
+								
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-movie"></i>
+										<label>فیلم دمو</label>
+									</span>
+									<input type="file" id="demofile" name="DemoFile" accept=".avi,.flv,.mov,.wmv,.mkv,.mp4" onchange="validateDemoType()" class="form-control" />
+									<span asp-validation-for="Course.DemoFileName" class="text-danger"></span>
+								</div>
+
+
+								@if (ViewData["Statuses"] != null)
+								{
+									<div class="col-md-6 input-group" style="margin:20px auto">
+										<span class="input-group-addon">
+											<label>وضعیت</label>
+										</span>
+
+										<div class="form-group" id="subGroup">
+											<select class="form-control" asp-for="Course.CourseStatusId">
+												@foreach (var groupItem in (ViewData["Statuses"] as List<CourseStatus>))
+												{
+													<option value="@(groupItem.StatusId)">
+														@(groupItem.StatusTitle)
+													</option>
+												}
+											</select>
+										</div>
+									</div>
+								}
+
+
+								@if (ViewData["Levels"] != null)
+								{
+									<div class="col-md-6 input-group" style="margin:20px auto">
+										<span class="input-group-addon">
+											<label>سطح</label>
+										</span>
+
+										<div class="form-group" id="subGroup">
+											<select class="form-control" asp-for="Course.LevelId">
+												@foreach (var groupItem in (ViewData["Levels"] as List<CourseLevel>))
+												{
+													<option value="@(groupItem.CourseLevelId)">
+														@(groupItem.LevelTitle)
+													</option>
+												}
+											</select>
+										</div>
+									</div>
+								}
+										
+								<div class="col-md-6" style="margin:20px auto">
+								<div class="input-group" >
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-card"></i>
+									</span>
+										<textarea asp-for="Course.Tags" style="resize:vertical;max-height:100px;min-height:30px;height:33px;" class="form-control" placeholder="تگ های دوره"></textarea>
+									<span asp-validation-for="Course.Tags" class="text-danger"></span>
+								</div>
+									<small class="help-block text-muted">تگ ها را با - جدا نمایید</small>
+								</div>
+
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-money"></i>
+									</span>
+									<input asp-for="Course.Price" min="0" max="10000000"  class="form-control" placeholder="مبلغ دوره">
+									<span asp-validation-for="Course.Price" class="text-danger"></span>
+								</div>
+
+
+							</div>
+							<div class="col-md-4">
+								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-plus-circle"></i> <strong> ویرایش دوره </strong> </button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col-md-4">
+			<div class="container client-page">
+
+				<div class="panel panel-default">
+					<div class="panel-heading h3 text-center">
+						آواتار
+					</div>
+					<div class="panel-body">
+						<div class="container client-page">
+							<div class="form-group">
+								<div class="form-group">
+
+									<div class="thumbnail">
+										@if(Model.Course == null || Model.Course.Image == null){
+											<img id="imgAvatar" src="/CourseRoot/Image/Default.png" />
+
+										}
+										else{
+											<img id="imgAvatar" src="/CourseRoot/Image/@(Model.Course.Image)" />
+									
+										}
+										</div>
+									<input type="file" id="fileName" name="ImageFile" accept=".jpg,.jpeg,.png,.gif" onchange="validateFileType()" class="form-control" />
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="container client-page">
+
+				<div class="panel panel-default">
+					<div class="panel-heading h3 text-center">
+						دسته بندی
+					</div>
+					<div class="panel-body">
+						<div class="container client-page">
+							<div class="form-group">
+
+								<div class="form-group">
+
+									@if (ViewData["Groups"] != null)
+									{
+										<ul>
+											@foreach (var groupItem in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == null))
+											{
+												<li>
+													<div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem.GroupId)"> @(groupItem.GroupTitle)</label></div>
+												</li>
+												<ul>
+													@foreach (var groupItem2 in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == groupItem.GroupId))
+													{
+														<li>
+															<div class="radio"><label><input asp-for="Course.SubGroupId" type="radio" value="@(groupItem2.GroupId)"> @(groupItem2.GroupTitle)</label></div>
+														</li>
+													}
+												</ul>
+											}
+										</ul>
+									}
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<input type="hidden" asp-for="Course.CourseId" />
+		<input type="hidden" asp-for="Course.DemoFileName" />
+		<input type="hidden" asp-for="Course.Image" />
+		<input type="hidden" asp-for="Course.RegistrationDate" />
+
+	</form>
+</div>
+
+@section Scripts
+	{
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+	{
+		<partial name="_SucceedModalPartial" model="@("/Admin/Courses/Index")" />
+	}
+	else if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == false)
+	{
+		<partial name="_FailedModalPartial" />
+	}
+	<script type="text/javascript">
+		function validateFileType() {
+			var fileName = document.getElementById("fileName").value;
+			var idxDot = fileName.lastIndexOf(".") + 1;
+			var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+			if (extFile == "jpg" || extFile == "jpeg" || extFile == "png" || extFile == "gif") {
+
+				var src = URL.createObjectURL(event.target.files[0]);
+				var preview = document.getElementById("imgAvatar");
+				preview.src = src;
+				preview.style.display = "block";
+
+			} else {
+				alert("شما فقط مجاز به انتخاب عکس با فرمت .jpg .jepg .gif .png هستید!");
+				document.getElementById("fileName").value = "";
+			}
+		}
+		function validateDemoType() {
+			var fileName = document.getElementById("demofile").value;
+			var idxDot = fileName.lastIndexOf(".") + 1;
+			var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+			if (extFile == "mp4" || extFile == "mkv" || extFile == "wmv" || extFile == "mov" || extFile == "flv" || extFile == "avi") {
+
+				var src = URL.createObjectURL(event.target.files[0]);
+				var preview = document.getElementById("DemoFilm");
+				preview.src = src;
+				preview.style.display = "block";
+
+			} else {
+				alert("شما فقط مجاز به انتخاب عکس با فرمت .mp4 .mkv .wmv .mov .flv .avi هستید!");
+				document.getElementById("demofile").value = "";
+			}
+		}
+	</script>
+
+	<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+	<script>
+
+		CKEDITOR.replace('Course_Description', {
+			customConfig: '/js/Config.js'
+		});
+
+	</script>
+}

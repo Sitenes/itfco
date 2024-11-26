@@ -1,0 +1,151 @@
+﻿@page
+@model Toplearn.Web.Pages.Admin.ManageUsers.AddUserModel
+@using Toplearn.DataLayer.Entities.User
+@{
+	ViewData["Title"] = "افزودن کاربر جدید";
+
+}
+
+<div class="row">
+	<form method="post" enctype="multipart/form-data">
+		<div class="col-md-8">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading h4">
+					افزودن کاربر
+				</div>
+				<div class="panel-body">
+					<div class="container client-page">
+						<div class="form-group">
+							<div class="row">
+
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon"><i class="zmdi zmdi-folder-person"></i></span>
+									<input asp-for="addUser.UserName" class="form-control" placeholder="نام کاربری">
+									<span asp-validation-for="addUser.UserName" class="text-danger"></span>
+								</div>
+
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-email"></i>
+									</span>
+									<input asp-for="addUser.Email" class="form-control" placeholder="ایمیل">
+									<span asp-validation-for="addUser.Email" class="text-danger"></span>
+								</div>
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-lock"></i>
+									</span>
+									<input asp-for="addUser.Password" class="form-control" placeholder="رمز">
+									<span asp-validation-for="addUser.Password" class="text-danger"></span>
+								</div>
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-phone"></i>
+									</span>
+									<input asp-for="addUser.Phone" min="1000000000" max="9999999999" value="" class="form-control" placeholder="شماره موبایل">
+									<span asp-validation-for="addUser.Phone" class="text-danger"></span>
+								</div>
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-balance-wallet"></i>
+									</span>
+									<input asp-for="addUser.Wallet" min="0" max="999999999" value="" class="form-control" placeholder="کیف پول">
+									<span asp-validation-for="addUser.Wallet" class="text-danger"></span>
+								</div>
+
+							</div>
+							<div class="col-md-4">
+								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-edit"></i>  افزودن کاربر </button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-4">
+			<div class="container client-page">
+
+				<div class="panel panel-default">
+					<div class="panel-heading h3 text-center">
+						نقش ها
+					</div>
+					<div class="panel-body">
+						<div class="container client-page">
+							<div class="form-group">
+								<div class="form-group">
+
+									@foreach (var roleItem in ViewData["Roles"] as List<Role>)
+									{
+										<div class="checkbox">
+											<label>
+												<input name="Roles" type="checkbox" value="@(roleItem.RoleId)"> @(roleItem.Title)
+											</label>
+										</div>
+
+									}
+
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-4">
+			<div class="container client-page">
+				<div class="panel panel-default">
+					<div class="panel-heading h3 text-center">
+						آواتار
+					</div>
+					<div class="panel-body">
+						<div class="container client-page">
+							<div class="form-group">
+								<div class="form-group">
+
+									<div class="thumbnail">
+										<img id="imgAvatar" src="/UserAvatar/Default.png" />
+									</div>
+									<input asp-for="addUser.UserAvatar" type="file" id="fileName" accept=".jpg,.jpeg,.png,.gif" onchange="validateFileType()" class="form-control" />
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+@section Scripts
+	{
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+	{
+		<partial name="_SucceedModalPartial" model="@("/Admin/ManageUser/UserList")" />
+	}
+	<script type="text/javascript">
+		function validateFileType() {
+			var fileName = document.getElementById("fileName").value;
+			var idxDot = fileName.lastIndexOf(".") + 1;
+			var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+			if (extFile == "jpg" || extFile == "jpeg" || extFile == "png" || extFile == "gif") {
+
+				var src = URL.createObjectURL(event.target.files[0]);
+				var preview = document.getElementById("imgAvatar");
+				preview.src = src;
+				preview.style.display = "block";
+
+			} else {
+				alert("شما فقط مجاز به انتخاب عکس با فرمت .jpg .jepg .gif .png هستید!");
+				document.getElementById("fileName").value = "";
+			}
+		}
+	</script>
+}

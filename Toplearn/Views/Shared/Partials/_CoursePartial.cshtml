@@ -1,0 +1,28 @@
+﻿@model Toplearn.Core.DTOs.CourseVM.CourseItemListViewModel
+
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 term-col">
+    <article>
+        <a href="" class="img-layer">
+            @if(string.IsNullOrEmpty(Model.Image)){
+                <img src="/CourseRoot/ThumbImage/Default.png">
+
+            }else{
+                <img style="height:150px" src="/CourseRoot/ThumbImage/@(Model.Image)">
+
+            }
+        </a>
+        <h2>
+            <a href="">
+                @(Model.Title)
+            </a>
+        </h2>
+        @if(Model.Price == 0){
+                <span> رایگان </span>
+            }
+            else{
+            <span> @(Model.Price.ToString("#,0")) تومان </span>
+        }
+             <i>@(Model.Time)</i>
+        
+    </article>
+</div>

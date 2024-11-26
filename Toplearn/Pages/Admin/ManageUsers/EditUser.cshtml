@@ -1,0 +1,177 @@
+﻿@page "/Admin/ManageUser/Edit/{UserId}"
+@using Toplearn.DataLayer.Entities.User
+@model Toplearn.Web.Pages.Admin.ManageUsers.EditUserModel
+
+@{
+	ViewData["Title"] = "ویرایش کاربر";
+}
+
+<div class="row">
+	<form method="post" enctype="multipart/form-data">
+		<div class="col-md-8">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading h4">
+					ویرایش کاربر
+				</div>
+				<div class="panel-body">
+					<div class="container client-page">
+						<div class="form-group">
+							<div class="row">
+								<input asp-for="EditUser.UserId" type="hidden">
+								<input asp-for="EditUser.OldAvatar" type="hidden">
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon"><i class="zmdi zmdi-folder-person"></i></span>
+									<input asp-for="EditUser.UserName" class="form-control" placeholder="نام کاربری">
+									<span asp-validation-for="EditUser.UserName" class="text-danger"></span>
+								</div>
+
+
+
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-email"></i>
+									</span>
+									<input asp-for="EditUser.Email" class="form-control" placeholder="ایمیل">
+									<span asp-validation-for="EditUser.Email" class="text-danger"></span>
+								</div>
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-lock"></i>
+									</span>
+									<input asp-for="EditUser.Password" class="form-control" placeholder="رمز">
+									<span asp-validation-for="EditUser.Password" class="text-danger"></span>
+								</div>
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-phone"></i>
+									</span>
+									<input asp-for="EditUser.Phone" min="0" max="9999999999" class="form-control" placeholder="شماره موبایل">
+									<span asp-validation-for="EditUser.Phone" class="text-danger"></span>
+								</div>
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-balance-wallet"></i>
+									</span>
+									<input asp-for="EditUser.Wallet" min="0" max="999999999" class="form-control" placeholder="کیف پول">
+									<span asp-validation-for="EditUser.Wallet" class="text-danger"></span>
+								</div>
+
+
+
+
+								<div class="col-md-6 input-group" style="margin:20px auto">
+									<input asp-for="EditUser.RegisterDate" class="form-control">
+								</div>
+
+								<div class="col-md-4 input-group" style="margin:20px auto">
+									<div class="checkbox">
+										<label>
+											<input asp-for="EditUser.IsActive" style="max-width:20px" class="form-control input-sm"><h4 class="text-right">اکانت فعال</h4>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-edit"></i>  ویرایش کاربر </button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<div class="col-md-4">
+			<div class="container client-page">
+
+				<div class="panel panel-default">
+					<div class="panel-heading h3 text-center">
+						نقش ها
+					</div>
+					<div class="panel-body">
+						<div class="container client-page">
+							<div class="form-group">
+								<div class="form-group">
+
+									@foreach (var roleItem in ViewData["Roles"] as List<Role>)
+									{
+										<div class="checkbox">
+											<label>
+												<input name="Roles" type="checkbox" @((Model.EditUser.RolesId.Any(n=> n == roleItem.RoleId))?"checked":"") value="@(roleItem.RoleId)"> @(roleItem.Title)
+											</label>
+										</div>
+
+									}
+
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-4">
+			<div class="container client-page">
+
+				<div class="panel panel-default">
+					<div class="panel-heading h3 text-center">
+						آواتار
+					</div>
+					<div class="panel-body">
+						<div class="container client-page">
+							<div class="form-group">
+								<div class="form-group">
+
+									<div class="thumbnail">
+										<img id="imgAvatar" src="/UserAvatar/@(Model.EditUser.OldAvatar)" />
+									</div>
+									<input asp-for="EditUser.NewAvatar" type="file" id="fileName" accept=".jpg,.jpeg,.png,.gif" onchange="validateFileType()" class="form-control" />
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</form>
+</div>
+
+@section Scripts
+	{
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+	{
+		<partial name="_SucceedModalPartial" model="@("/Admin/ManageUser/UserList")" />
+		<script>
+			$(document).ready(function () {
+				setTimeout(function () { location.replace("/Admin/ManageUser/UserList"); }, 10000);
+			});
+		</script>
+	}
+	<script type="text/javascript">
+		function validateFileType() {
+			var fileName = document.getElementById("fileName").value;
+			var idxDot = fileName.lastIndexOf(".") + 1;
+			var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+			if (extFile == "jpg" || extFile == "jpeg" || extFile == "png" || extFile == "gif") {
+
+				var src = URL.createObjectURL(event.target.files[0]);
+				var preview = document.getElementById("imgAvatar");
+				preview.src = src;
+				preview.style.display = "block";
+
+			} else {
+				alert("شما فقط مجاز به انتخاب عکس با فرمت .jpg .jepg .gif .png هستید!");
+				document.getElementById("fileName").value = "";
+			}
+		}
+	</script>
+}

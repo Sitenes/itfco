@@ -1,0 +1,96 @@
+﻿@page
+@model Toplearn.Web.Pages.Admin.ManageRoles.IndexModel
+@{
+	ViewData["Title"] = "لیست نقش ها";
+	Guid _userId = Guid.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
+}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				لیست نقش ها
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<div class="table-responsive">
+					<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+						<div class="row text-center">
+							<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+								<thead>
+									<tr role="row" class="h4 text-center">
+										<th>نام نقش </th>
+										<th>دسترسی</th>
+										<th>دستورات</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var roleItem in Model.Role)
+									{
+
+										<tr class="gradeA odd">
+											<td class=" center ">
+												@Html.DisplayFor(modelItem => roleItem.Title)
+											</td>
+											<td class=" center ">
+												
+												@foreach (var perItem in roleItem.RolePermissions)
+												{
+													<div class="badge">@(perItem.Permission.PermissionTitle)</div>
+												}
+
+
+											</td>
+											<td class="center ">
+												
+												<a href="/Admin/ManageRoles/Details/@roleItem.RoleId" class="btn btn-outline btn-info"><i class="fa fa-info"></i></a>
+
+												@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.EditRole	, _userId).Result)
+												{
+												<a href="/Admin/ManageRoles/Edit/@roleItem.RoleId" class="btn btn-outline btn-warning"><i class="fa fa-edit"></i></a>
+												}
+
+												@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.RemoveRole	, _userId).Result)
+													{
+												<a class="btn btn-outline btn-danger" data-toggle="modal" data-target="#DeleteModal@(roleItem.RoleId)">
+													<i class="zmdi zmdi-delete"></i>
+												</a>
+													}							
+
+												<div class="modal fade" id="DeleteModal@(roleItem.RoleId)" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true" style="display: none;">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header alert-warning">
+																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+																<h5 class="modal-title h2" id="exampleModalLabel">آیا از حذف @(roleItem.Title) اطمینان دارید ؟</h5>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-default btn-outline" data-dismiss="modal" aria-label="Close">بیخیال</button>
+																<a class="btn btn-danger" style="min-width:100px" href="/Admin/ManageRoles/Delete?roleId=@(roleItem.RoleId)">حذف</a>
+															</div>
+														</div>
+														<!-- /.modal-content -->
+													</div>
+													<!-- /.modal-dialog -->
+												</div>
+											</td>
+										</tr>
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts
+{
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+	{
+		<partial name="_SucceedModalPartial" model="@("/Admin/ManageRoles/Index")" />
+	}
+}
