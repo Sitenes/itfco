@@ -55,7 +55,7 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-file-text"></i>
 									</span>
-									<textarea id="mainGroup" asp-for="Course.Description" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات دوره"></textarea>
+									<textarea id="mainGroup" asp-for="Course.Description" name="Course.Description" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات دوره"></textarea>
 									<span asp-validation-for="Course.Description" class="text-danger"></span>
 								</div>
 								
@@ -272,9 +272,11 @@
 	<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
 	<script>
 
-		CKEDITOR.replace('Course_Description', {
-			customConfig: '/js/Config.js'
+		CKEDITOR.replace('mainGroup',{customConfig:'/js/Config.js'});
+		document.querySelector('form').addEventListener('submit', function () {
+			for (var instance in CKEDITOR.instances) {
+				CKEDITOR.instances[instance].updateElement();
+			}
 		});
-
 	</script>
 }

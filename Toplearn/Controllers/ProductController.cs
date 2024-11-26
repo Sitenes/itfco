@@ -25,5 +25,12 @@ namespace Toplearn.Web.Controllers
 
             return View(products);
         }
+        [Route("/product/{id}")]
+        public async Task<IActionResult> Index(int id)
+        {
+            var product = await _courseService.GetCourse(id);
+
+            return View("product",product);
+        }
     }
 }

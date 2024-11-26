@@ -34,14 +34,15 @@ namespace Toplearn.Web.Pages.Admin.Courses
             if (Course == null)
                 BadRequest();
         }
-        public async Task<IActionResult> OnPostAsync(IFormFile ImageFile, IFormFile DemoFile)
+        public async Task<IActionResult> OnPostAsync(IFormFile? ImageFile, IFormFile? DemoFile)
         {
             ViewData["Groups"] = _courseService.GetGroups() as List<CourseGroup>;
             ViewData["Teachers"] = _courseService.GetTeachersName();
             ViewData["Statuses"] = _courseService.GetStatuses();
             ViewData["Levels"] = _courseService.GetLevels();
-            if (!ModelState.IsValid)
-                return Page();
+            
+            //if (!ModelState.IsValid)
+            //    return Page();
             Course = await _courseService.SetGroup(Course);
 
             bool IsSucceed = await _courseService.Update(Course,ImageFile,DemoFile);
