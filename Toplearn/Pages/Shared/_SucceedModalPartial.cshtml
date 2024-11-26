@@ -2,15 +2,20 @@
 <script>
 	$(document).ready(function () {
 		setTimeout(function () {
-			$('#exampleModal').modal('show'); setTimeout(
-				function () {
-					$('#exampleModal').modal('hide');
-				}, 7000);
+			$('#exampleModal').modal({
+				backdrop: 'static',  // جلوگیری از تار شدن پس‌زمینه
+				keyboard: false       // جلوگیری از بسته شدن مودال با کلید ESC
+			}).modal('show');
+
+			setTimeout(function () {
+				$('#exampleModal').modal('hide');
+			}, 7000);
 		}, 50);
 	});
 </script>
+
 <!-- Modal -->
-<div class="modal fade modal-sm " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header alert-success">
@@ -20,7 +25,7 @@
 				<h5 class="modal-title h2" id="exampleModalLabel">تغییرات با موفقیت اعمال شد</h5>
 			</div>
 			<div class="modal-footer">
-				<a class="btn btn-primary" href="@((Model == null)?"#": $"{Model}")">فهمیدم</a>
+				<a class="btn btn-primary" href="@((Model == null) ? "#" : $"{Model}")">فهمیدم</a>
 			</div>
 		</div>
 	</div>

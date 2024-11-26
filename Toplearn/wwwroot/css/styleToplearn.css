@@ -134,7 +134,7 @@ a,i,input[type="submit"], form button{ -webkit-transition : all 0.2s linear 0s; 
 .landing-layer .search-form form button:hover{
    background-color: #2C373B
 }
-.main-menu{
+/*.main-menu{
   background-color: #2aaf27;
   position: relative;
 }
@@ -188,7 +188,7 @@ a,i,input[type="submit"], form button{ -webkit-transition : all 0.2s linear 0s; 
 .main-menu nav > ul > li > ul > li > a:hover{
   color: #0c740a
 }
-
+*/
 
 
 footer .top-footer{
@@ -331,7 +331,7 @@ footer .top-footer{
 }
 
 main{
-    padding: 35px 0 45px
+    /*padding: 35px 0 45px;*/
 }
 main#home-page{
     background-color: #fff
@@ -569,7 +569,7 @@ main .terms-items .term-col article i{
 
 
 @media screen and (max-width : 991px){
-  .main-menu nav > span{
+ /* .main-menu nav > span{
     display: block;
   }
   .main-menu nav > ul{
@@ -624,7 +624,7 @@ main .terms-items .term-col article i{
   .main-menu nav > ul > li > ul > li > a{
     display: block;
     width: 100%
-  }
+  }*/
   .client-page{
     padding: 50px 0
   }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Toplearn.Web.Controllers
 {
+    //[Route("/{language}/")]
     public class HomeController : Controller
     {
         private readonly ICourseService _courseService;
@@ -26,11 +27,7 @@ namespace Toplearn.Web.Controllers
                     ViewData["Logout"] = true;
                     break;
             }
-            HomePageViewModel model = new HomePageViewModel() {
-            Courses = await _courseService.GetCoursesList(new CourseFilterListViewModel())
-            };
-            
-            return View(model);
+            return View();
         }
 
         [HttpPost]

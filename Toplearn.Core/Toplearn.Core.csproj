@@ -486,6 +486,7 @@
     <Compile Include="Convertors\ImageConvertor.cs" />
     <Compile Include="Convertors\RenderViewToString.cs" />
     <Compile Include="DTOs\AdminVM\UserForAdminViewModel.cs" />
+    <Compile Include="DTOs\CommonVM\ListViewModel.cs" />
     <Compile Include="DTOs\CourseVM\CourseViewModel.cs" />
     <Compile Include="DTOs\CourseVM\EpisodeViewModel.cs" />
     <Compile Include="DTOs\TeacherVM\TeacherForAdmin.cs" />

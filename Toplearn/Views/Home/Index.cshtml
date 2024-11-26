@@ -1,7 +1,15 @@
 ﻿@{
     ViewData["Title"] = "خانه";
 }
+@if (ViewData["Login"] != null && (bool)ViewData["Login"] == true)
+{
+    <partial name="Partials/_loginSuccessfulModalPartial" />
+}
 
+@if (ViewData["Logout"] != null && (bool)ViewData["Logout"] == true)
+{
+    <partial name="Partials/_LogoutModalPartial" />
+}
 <!-- Bnner Section -->
 <section class="banner-section-two">
     <div class="banner-carousel owl-carousel owl-theme">
@@ -10,6 +18,7 @@
             <div class="auto-container">
                 <div class="content-box">
                     <span class="title">ایده طرح فرزانگان</span>
+                    
                     <h2>پیشرو در صنعت <br>خودرو و لوازم یدکی</h2>
                     @*<div class="video-link">
                          <a href="#" data-fancybox="gallery"

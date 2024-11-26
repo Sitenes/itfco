@@ -1,4 +1,4 @@
-/* Contra - Interior Creator HTML Template */
+﻿/* Contra - Interior Creator HTML Template */
 
 /************ TABLE OF CONTENTS ***************
 1. Fonts
@@ -9784,7 +9784,7 @@ header-style-seven .nav-toggler:hover{
 .sidebar-page-container{
 	position: relative;
 	overflow: hidden;
-	padding: 100px 0 50px; 
+	/*padding: 100px 0 50px;*/ 
 }
 
 .sidebar-page-container .sidebar-side,
@@ -13267,4 +13267,28 @@ header-style-seven .nav-toggler:hover{
 
 .bottom-zero{
 padding-bottom: 10px;
+}
+
+/*Custom Css*/
+.container {
+	margin-top: 120px;
+}
+
+.logo {
+	width: 100%;
+	height: auto;
+	animation: rotateLogo 20s linear infinite;
+	animation-delay: 5s;
+}
+
+@keyframes rotateLogo {
+	0% {
+		transform: rotate(0deg);
+	}
+	7% {
+		transform: rotate(360deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
