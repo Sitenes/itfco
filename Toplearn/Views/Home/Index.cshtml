@@ -13,182 +13,87 @@
 <!-- Bnner Section -->
 <section class="banner-section-two">
     <div class="banner-carousel owl-carousel owl-theme">
-        <!-- Slide Item -->
-        <div class="slide-item" style="background-image: url('/images/main-slider/truck 1.webp');">
-            <div class="auto-container">
-                <div class="content-box">
-                    <span class="title">ایده طرح فرزانگان</span>
-                    
-                    <h2>پیشرو در صنعت <br>خودرو و لوازم یدکی</h2>
-                    <div class="video-link">
-                        <button asp-controller="product" asp-action="index" class="theme-btn btn-style-one" >
-                            <i class="icon fa fa-shopping-basket" aria-hidden="true"> <h6 style="display:inline-block"> مشاهده محصولات </h6> </i>
-                        </button>
-                    </div>
-                    @*<div class="video-link">
-                         <a href="#" data-fancybox="gallery"
-                        data-caption=""><i class="icon fa fa-play" aria-hidden="true"></i></a>
-                    </div>*@
-                </div>
-            </div>
-        </div>
+        @{
+            var imageUrls = new List<string>
+        {
+        "/images/main-slider/truck 1.webp",
+        "/images/main-slider/3.jpg",
+        "/images/main-slider/image-3.jpg",
+        "/images/main-slider/clothing 2.jpg"
+        };
 
-        <!-- Slide Item -->
-        <div class="slide-item" style="background-image: url('/images/main-slider/brick 1.webp');">
-            <div class="auto-container">
-                <div class="content-box">
-                    <span class="title">ایده طرح فرزانگان</span>
-                    <h2>پیشرو در صنعت <br>لوازم ساختمانی</h2>
-                    <div class="video-link">
-                        <button asp-controller="product" asp-action="index" class="theme-btn btn-style-one">
-                            <i class="icon fa fa-shopping-basket" aria-hidden="true"> <h6 style="display:inline-block"> مشاهده محصولات </h6> </i>
-                        </button>
-                    </div>
-                   @*  <div class="video-link">
-                        <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" data-fancybox="gallery"
-                           data-caption=""><i class="icon fa fa-play" aria-hidden="true"></i></a>
-                    </div> *@
-                </div>
-            </div>
-        </div>
+            var slideTitles = new List<string>
+        {
+        "پیشرو در صنعت <br>خودرو و لوازم یدکی",
+        "پیشرو در صنعت <br>لوازم ساختمانی",
+        "پیشرو در <br>طراحی و ساخت ماشین آلات صنعتی",
+        "پیشرو در صنعت <br>پوشاک و مدلینگ"
+        };
+        }
 
-        <!-- Slide Item -->
-        <div class="slide-item" style="background-image: url(/images/main-slider/image-3.jpg);">
-            <div class="auto-container">
-                <div class="content-box">
-                    <span class="title">ایده طرح فرزانگان</span>
-                    <h2>پیشرو در <br>طراحی و ساخت ماشین آلات صنعتی</h2>
-                    <div class="video-link">
-                        <button asp-controller="product" asp-action="index" class="theme-btn btn-style-one">
-                            <i class="icon fa fa-shopping-basket" aria-hidden="true"> <h6 style="display:inline-block"> مشاهده محصولات </h6> </i>
-                        </button>
-                    </div>
-                    @* <div class="video-link">
-                        <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" data-fancybox="gallery"
-                           data-caption=""><i class="icon fa fa-play" aria-hidden="true"></i></a>
-                    </div> *@
-                </div>
-            </div>
-        </div>
+        @for (int i = 0; i < imageUrls.Count; i++)
+        {
+            <div class="slide-item" style="background-image: url('@imageUrls[i]');">
+                <div class="auto-container">
+                    <div class="content-box">
+                        <span class="title">ایده طرح فرزانگان</span>
 
-        <!-- Slide Item -->
-        <div class="slide-item" style="background-image: url('/images/main-slider/clothing 2.jpg');">
-            <div class="auto-container">
-                <div class="content-box">
-                    <span class="title">ایده طرح فرزانگان</span>
-                    <h2>پیشرو در صنعت <br>پوشاک و مدلینگ</h2>
-                    <div class="video-link">
-                        <button asp-controller="product" asp-action="index" class="theme-btn btn-style-one">
-                            <i class="icon fa fa-shopping-basket" aria-hidden="true"> <h6 style="display:inline-block"> مشاهده محصولات </h6> </i>
-                        </button>
+                        <h2>@Html.Raw(slideTitles[i])</h2>
+                        <div class="visit-product">
+                            <a asp-controller="product" asp-action="index" class="theme-btn btn-style-one">
+                                <i class="icon fa fa-shopping-basket" aria-hidden="true">
+                                    <h6 style="display:inline-block">مشاهده محصولات</h6>
+                                </i>
+                            </a>
+                        </div>
                     </div>
-                    @* <div class="video-link">
-                    <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" data-fancybox="gallery"
-                    data-caption=""><i class="icon fa fa-play" aria-hidden="true"></i></a>
-                    </div> *@
                 </div>
             </div>
-        </div>
+        }
+
     </div>
 </section>
 <!-- End Bnner Section -->
 <!-- Specialize Section -->
+@{
+    var services = new List<dynamic>
+    {
+        new { ImageUrl = "/images/main-slider/truck 1.webp", Title = "خودرو و لوازم یدکی", ServiceLink = "/userpanel", DetailLink = "/userpanel" },
+        new { ImageUrl = "/images/main-slider/brick 1.webp", Title = "لوازم ساختمانی", ServiceLink = "/userpanel", DetailLink = "/userpanel" },
+        new { ImageUrl = "/images/resource/service-6.jpg", Title = "ماشین آلات صنعتی", ServiceLink = "/userpanel", DetailLink = "/userpanel" },
+        new { ImageUrl = "/images/main-slider/clothing 2.jpg", Title = "پوشاک و مدلینگ", ServiceLink = "/userpanel", DetailLink = "/userpanel" }
+    };
+}
+
 <section class="specialize-section bottom-zero">
     <div class="auto-container">
         <div class="sec-title">
-            @* <span class="float-text">دسته بندی ها</span> *@
             <h2>دسته بندی ها</h2>
         </div>
 
         <div class="services-carousel-two owl-carousel owl-carousel1 owl-theme">
-            <!-- Service Block -->
-            <div class="service-block-two">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image">
-                            <a href="/services.html">
-                                <img src="/images/main-slider/truck 1.webp"
-                                     alt="">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="caption-box">
-                        <h3><a href="/services.html">خودرو و لوازم یدکی</a></h3>
-                        <div class="link-box">
-                            <a href="/service-detail.html">
-                                مشاهده محصولات<i class="fa fa-angle-double-left"></i>
-                            </a>
+            @for (int i = 0; i < services.Count; i++)
+            {
+                <div class="service-block-two">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image">
+                                <a href="@services[i].ServiceLink">
+                                    <img src="@services[i].ImageUrl" alt="">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="caption-box">
+                            <h3><a href="@services[i].ServiceLink">@services[i].Title</a></h3>
+                            <div class="link-box">
+                                <a href="@services[i].DetailLink">
+                                    مشاهده محصولات<i class="fa fa-angle-double-left"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Service Block -->
-            <div class="service-block-two">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image">
-                            <a href="/services.html">
-                                <img src="/images/main-slider/brick 1.webp"
-                                     alt="">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="caption-box">
-                        <h3><a href="/services.html">لوازم ساختمانی</a></h3>
-                        <div class="link-box">
-                            <a href="/service-detail.html">
-                                مشاهده محصولات<i class="fa fa-angle-double-left"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service Block -->
-            <div class="service-block-two">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image">
-                            <a href="services.html">
-                                <img src="/images/resource/service-6.jpg"
-                                     alt="">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="caption-box">
-                        <h3><a href="services.html">ماشین آلات صنعتی</a></h3>
-                        <div class="link-box">
-                            <a href="service-detail.html">
-                                مشاهده محصولات<i class="fa fa-angle-double-left"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service Block -->
-            <div class="service-block-two">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image">
-                            <a href="services.html">
-                                <img src="/images/main-slider/clothing 2.jpg"
-                                     alt="">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="caption-box">
-                        <h3><a href="services.html">پوشاک و مدلینگ</a></h3>
-                        <div class="link-box">
-                            <a href="service-detail.html">
-                                مشاهده محصولات<i class="fa fa-angle-double-left"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            }
         </div>
     </div>
 </section>
@@ -249,63 +154,11 @@
                 </div>
             </div>
 
-            <!-- Features -->
-            <div class="features">
-                <div class="row">
-                    <!-- Feature Block -->
-                    <div class="feature-block col-lg-3 col-sm-6">
-                        <div class="inner-box">
-                            <div class="icon-box"><span class="icon flaticon-decorating"></span></div>
-                            <h3><a href="service-detail.html">تولید حرفه ایی</a></h3>
-                            <div class="text">
-                                تولید محصولات در کلاس جهانی به واسطه کادرعلمی مجرب
-                            </div>
-@*                            <div class="link-box"><a href="service-detail.html">بیشتر بخوانید</a></div>*@
-                        </div>
-                    </div>
 
-                    <!-- Feature Block -->
-                    <div class="feature-block col-lg-3 col-sm-6">
-                        <div class="inner-box">
-                            <div class="icon-box"><span class="icon flaticon-plan"></span></div>
-                            <h3><a href="service-detail.html">کیفیت محصول</a></h3>
-                            <div class="text">
-                                محصولات بادوام به سبب استفاده از متریال درجه یک در تولید
-                            </div>
-@*                            <div class="link-box"><a href="service-detail.html">بیشتر بخوانید</a></div>*@
-                        </div>
-                    </div>
-
-                    <!-- Feature Block -->
-                    <div class="feature-block col-lg-3 col-sm-6">
-                        <div class="inner-box">
-                            <div class="icon-box"><span class="icon flaticon-plan"></span></div>
-                            <h3><a href="service-detail.html">تحویل به موقع</a></h3>
-                            <div class="text">
-                                تجربه بالا در زمینه ترانزیت کالا
-                            </div>
-@*                            <div class="link-box"><a href="service-detail.html">بیشتر بخوانید</a></div>*@
-                        </div>
-                    </div>
-
-                    <!-- Feature Block -->
-                    <div class="feature-block col-lg-3 col-sm-6">
-                        <div class="inner-box">
-                            <div class="icon-box"><span class="icon flaticon-sketch-3"></span></div>
-                            <h3><a href="service-detail.html">تنوع تولید</a></h3>
-                            <div class="text">
-                                درخواست محصولات گوناگون ورضایت مندی مشتریان
-                            </div>
-@*                            <div class="link-box"><a href="service-detail.html">بیشتر بخوانید</a></div>*@
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
 <!--End Fun Fact Section -->
-
 <!-- Projects Section Two -->
 @* <section class="projects-section-two">
     <div class="auto-container">

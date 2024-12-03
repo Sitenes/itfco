@@ -15,7 +15,7 @@
 	<script src="/js/jquery.validate.unobtrusive.min.js"></script>
 	  <div class="page-wrapper">
         <!-- Preloader -->
-        @* <div class="preloader"></div> *@
+        <div class="preloader"></div>
 
         <!-- Main Header-->
         <header class="main-header header-style-two">
@@ -68,14 +68,14 @@
                                             <a href="/">خانه</a>
                                         </li>
 
-                                        <li class="dropdown">
+                                        <li class="">
                                             <a href="#">وبلاگ</a>
                                             @* <ul>
                                             <li><a href="blog.html">همه بلاگ ها</a></li>
                                             <li><a href="blog-classic.html">بلاگ یک</a></li>
                                             </ul> *@
                                         </li>
-                                        <li class="dropdown">
+                                        <li class="">
                                             <a href="#">درباره ما</a>
                                            @*  <ul>
                                                 <li><a href="/about.html">ارتباط با ما</a></li>
@@ -101,10 +101,10 @@
                                             </ul>
                                         </li> *@
 
-                                        <li><a href="contact.html">ارتباط با ما</a></li>
+                                        <li><a href="#">ارتباط با ما</a></li>
 
-                                        <li class="dropdown">
-                                            <a href="/Userpanel">ورود / ثبت نام</a>
+                                        <li class="">
+                                            <a asp-controller="Userpanel" asp-action="Index" >ورود / ثبت نام</a>
                                         </li>
                                     </ul>
                                 </div>
