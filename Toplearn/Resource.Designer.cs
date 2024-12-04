@@ -61,6 +61,222 @@ namespace Toplearn.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گلستانه.
+        /// </summary>
+        public static string Author1 {
+            get {
+                return ResourceManager.GetString("Author1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نویسنده دوم.
+        /// </summary>
+        public static string Author2 {
+            get {
+                return ResourceManager.GetString("Author2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نویسنده سوم.
+        /// </summary>
+        public static string Author3 {
+            get {
+                return ResourceManager.GetString("Author3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نویسنده چهارم.
+        /// </summary>
+        public static string Author4 {
+            get {
+                return ResourceManager.GetString("Author4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to وبلاگ.
+        /// </summary>
+        public static string Blog {
+            get {
+                return ResourceManager.GetString("Blog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ساخت ماشین صنعتی برای فولاد مبارکه اصفهان به همت طرح ایده پژوهان..
+        /// </summary>
+        public static string BlogTitle1 {
+            get {
+                return ResourceManager.GetString("BlogTitle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان مقاله دوم.
+        /// </summary>
+        public static string BlogTitle2 {
+            get {
+                return ResourceManager.GetString("BlogTitle2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان مقاله سوم.
+        /// </summary>
+        public static string BlogTitle3 {
+            get {
+                return ResourceManager.GetString("BlogTitle3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان مقاله چهارم.
+        /// </summary>
+        public static string BlogTitle4 {
+            get {
+                return ResourceManager.GetString("BlogTitle4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دسته‌بندی‌ها.
+        /// </summary>
+        public static string Categories {
+            get {
+                return ResourceManager.GetString("Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 06 June 2018.
+        /// </summary>
+        public static string Date1 {
+            get {
+                return ResourceManager.GetString("Date1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 07 July 2019.
+        /// </summary>
+        public static string Date2 {
+            get {
+                return ResourceManager.GetString("Date2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 08 August 2020.
+        /// </summary>
+        public static string Date3 {
+            get {
+                return ResourceManager.GetString("Date3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 09 September 2021.
+        /// </summary>
+        public static string Date4 {
+            get {
+                return ResourceManager.GetString("Date4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ایده طراحی فرزانگان.
+        /// </summary>
+        public static string FarzaneganDesignIdea {
+            get {
+                return ResourceManager.GetString("FarzaneganDesignIdea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پیشرو در صنعت خودرو و قطعات یدکی.
+        /// </summary>
+        public static string FarzaneganDesignIdea_Slide1 {
+            get {
+                return ResourceManager.GetString("FarzaneganDesignIdea_Slide1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پیشرو در صنعت مصالح ساختمانی.
+        /// </summary>
+        public static string FarzaneganDesignIdea_Slide2 {
+            get {
+                return ResourceManager.GetString("FarzaneganDesignIdea_Slide2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پیشرو در طراحی و تولید ماشین‌آلات صنعتی.
+        /// </summary>
+        public static string FarzaneganDesignIdea_Slide3 {
+            get {
+                return ResourceManager.GetString("FarzaneganDesignIdea_Slide3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پیشرو در صنعت مد و مدلینگ.
+        /// </summary>
+        public static string FarzaneganDesignIdea_Slide4 {
+            get {
+                return ResourceManager.GetString("FarzaneganDesignIdea_Slide4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مشاهده محصولات.
+        /// </summary>
+        public static string FarzaneganDesignIdea_ViewProducts {
+            get {
+                return ResourceManager.GetString("FarzaneganDesignIdea_ViewProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to آخرین اخبار و مقالات.
+        /// </summary>
+        public static string LatestNewsAndArticles {
+            get {
+                return ResourceManager.GetString("LatestNewsAndArticles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تعداد مشتریان.
+        /// </summary>
+        public static string NumberOfCustomers {
+            get {
+                return ResourceManager.GetString("NumberOfCustomers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تعداد کارکنان.
+        /// </summary>
+        public static string NumberOfEmployees {
+            get {
+                return ResourceManager.GetString("NumberOfEmployees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تعداد محصولات.
+        /// </summary>
+        public static string NumberOfProducts {
+            get {
+                return ResourceManager.GetString("NumberOfProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         public static string String1 {
@@ -70,11 +286,29 @@ namespace Toplearn.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مشاهده محصولات.
+        /// </summary>
+        public static string ViewProducts {
+            get {
+                return ResourceManager.GetString("ViewProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 123.
         /// </summary>
         public static string welcome {
             get {
                 return ResourceManager.GetString("welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سال تجربه.
+        /// </summary>
+        public static string YearsOfExperience {
+            get {
+                return ResourceManager.GetString("YearsOfExperience", resourceCulture);
             }
         }
     }
