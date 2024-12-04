@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Toplearn.Core.Services.Interfaces;
 using Toplearn.Core.DTOs.CourseVM;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
+using Toplearn.Web;
+using TopLearn.Web;
 
 namespace Toplearn.Web.Controllers
 {
@@ -12,21 +15,25 @@ namespace Toplearn.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ICourseService _courseService;
-        public HomeController(ICourseService courseService)
+        private readonly IStringLocalizer<Resource> _localizer;
+        public HomeController(ICourseService courseService, IStringLocalizer<Resource> localizer)
         {
             _courseService = courseService;
+            _localizer = localizer;
         }
+
         public async Task<IActionResult> Index(int Id)
         {
             switch (Id)
             {
-                    case 1:
-                    ViewData["Login"] = true ;
+                case 1:
+                    ViewData["Login"] = true;
                     break;
                 case 2:
                     ViewData["Logout"] = true;
                     break;
             }
+
             return View();
         }
 
@@ -41,7 +48,7 @@ namespace Toplearn.Web.Controllers
 
 
             var path = Path.Combine(
-                Directory.GetCurrentDirectory(), "wwwroot","CourseRoot","DescriptionImg",
+                Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "DescriptionImg",
                 fileName);
 
             using (var stream = new FileStream(path, FileMode.Create))
