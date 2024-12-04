@@ -489,6 +489,7 @@
     <Compile Include="DTOs\CommonVM\ListViewModel.cs" />
     <Compile Include="DTOs\CourseVM\CourseViewModel.cs" />
     <Compile Include="DTOs\CourseVM\EpisodeViewModel.cs" />
+    <Compile Include="DTOs\Resource.cs" />
     <Compile Include="DTOs\TeacherVM\TeacherForAdmin.cs" />
     <Compile Include="DTOs\UserVM\UserPanelViewModel.cs" />
     <Compile Include="DTOs\WalletVM\WalletViewModel.cs" />

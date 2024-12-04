@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -34,7 +37,26 @@ namespace Toplearn
             {
                 options.EnableEndpointRouting = false;
             });
-            services.AddRazorPages();
+
+            // تنظیم مسیر فایل‌های منبع
+            services.AddLocalization(/*options => options.ResourcesPath = "Resources"*/);
+            services.AddMvc()
+                    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                    .AddDataAnnotationsLocalization();
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new List<CultureInfo>
+                {
+            new CultureInfo("fa"),
+            new CultureInfo("ar")
+                };
+                options.DefaultRequestCulture = new RequestCulture("fa");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+
+            // services.AddRazorPages();
             #endregion
             #region Caching
             services.AddResponseCaching();
@@ -100,6 +122,25 @@ namespace Toplearn
             app.UseRouting();
             app.UseResponseCaching();
 
+
+            var supportedCultures = new List<CultureInfo>
+            {
+                new CultureInfo("fa"),
+                new CultureInfo("ar"),
+                new CultureInfo("en")
+            };
+
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("fa"), // زبان پیش‌فرض
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            };
+
+            // اضافه کردن QueryStringRequestCultureProvider برای تغییر زبان از طریق Query String
+            localizationOptions.RequestCultureProviders.Insert(0, new QueryStringRequestCultureProvider());
+
+            app.UseRequestLocalization(localizationOptions);
             #region Swagger
             app.UseSwagger();
             app.UseSwaggerUI(n => n.SwaggerEndpoint("/swagger/v1/swagger.json", "API"));
