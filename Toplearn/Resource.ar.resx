@@ -117,14 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="String1" xml:space="preserve">
-    <value>بی</value>
-  </data>
-  <data name="welcome" xml:space="preserve">
-    <value>a</value>
-  </data>
-   <data name="FarzaneganDesignIdea" xml:space="preserve">
-    <value>فكرة تصميم فرزانغان</value>
+  <data name="FarzaneganDesignIdea" xml:space="preserve">
+    <value>ایده طرح فرزانگان</value>
   </data>
   <data name="FarzaneganDesignIdea_Slide1" xml:space="preserve">
     <value>الرائد في صناعة السيارات وقطع الغيار</value>
@@ -141,13 +135,13 @@
   <data name="FarzaneganDesignIdea_ViewProducts" xml:space="preserve">
     <value>عرض المنتجات</value>
   </data>
-   <data name="Categories" xml:space="preserve">
+  <data name="Categories" xml:space="preserve">
     <value>الفئات</value>
   </data>
   <data name="ViewProducts" xml:space="preserve">
     <value>عرض المنتجات</value>
   </data>
-   <data name="YearsOfExperience" xml:space="preserve">
+  <data name="YearsOfExperience" xml:space="preserve">
     <value>سنوات الخبرة</value>
   </data>
   <data name="NumberOfProducts" xml:space="preserve">
@@ -161,44 +155,44 @@
   </data>
   <data name="Blog" xml:space="preserve">
     <value>المدونة</value>
-</data>
-<data name="LatestNewsAndArticles" xml:space="preserve">
+  </data>
+  <data name="LatestNewsAndArticles" xml:space="preserve">
     <value>آخر الأخبار والمقالات</value>
-</data>
-<data name="BlogTitle1" xml:space="preserve">
+  </data>
+  <data name="BlogTitle1" xml:space="preserve">
     <value>بناء آلة صناعية لفولاد مباركة أصفهان بجهود فريق طرح إیده پویان.</value>
-</data>
-<data name="Date1" xml:space="preserve">
+  </data>
+  <data name="Date1" xml:space="preserve">
     <value>06 يونيو 2018</value>
-</data>
-<data name="Author1" xml:space="preserve">
-    <value>جولستانه</value>
-</data>
-<data name="BlogTitle2" xml:space="preserve">
+  </data>
+  <data name="Author1" xml:space="preserve">
+    <value>گلستانه</value>
+  </data>
+  <data name="BlogTitle2" xml:space="preserve">
     <value>عنوان المقالة الثانية</value>
-</data>
-<data name="Date2" xml:space="preserve">
+  </data>
+  <data name="Date2" xml:space="preserve">
     <value>07 يوليو 2019</value>
-</data>
-<data name="Author2" xml:space="preserve">
+  </data>
+  <data name="Author2" xml:space="preserve">
     <value>المؤلف الثاني</value>
-</data>
-<data name="BlogTitle3" xml:space="preserve">
+  </data>
+  <data name="BlogTitle3" xml:space="preserve">
     <value>عنوان المقالة الثالثة</value>
-</data>
-<data name="Date3" xml:space="preserve">
+  </data>
+  <data name="Date3" xml:space="preserve">
     <value>08 أغسطس 2020</value>
-</data>
-<data name="Author3" xml:space="preserve">
+  </data>
+  <data name="Author3" xml:space="preserve">
     <value>المؤلف الثالث</value>
-</data>
-<data name="BlogTitle4" xml:space="preserve">
+  </data>
+  <data name="BlogTitle4" xml:space="preserve">
     <value>عنوان المقالة الرابعة</value>
-</data>
-<data name="Date4" xml:space="preserve">
+  </data>
+  <data name="Date4" xml:space="preserve">
     <value>09 سبتمبر 2021</value>
-</data>
-<data name="Author4" xml:space="preserve">
+  </data>
+  <data name="Author4" xml:space="preserve">
     <value>المؤلف الرابع</value>
-</data>
+  </data>
 </root>

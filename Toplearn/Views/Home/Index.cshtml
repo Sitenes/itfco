@@ -19,20 +19,20 @@
     <div class="banner-carousel owl-carousel owl-theme">
         @{
             var imageUrls = new List<string>
-            {
-                "/images/main-slider/truck 1.webp",
-                "/images/main-slider/3.jpg",
-                "/images/main-slider/image-3.jpg",
-                "/images/main-slider/clothing 2.jpg"
-            };
+        {
+        "/images/main-slider/truck 1.webp",
+        "/images/main-slider/3.jpg",
+        "/images/main-slider/image-3.jpg",
+        "/images/main-slider/clothing 2.jpg"
+        };
 
             var slideTitles = new List<string>
-            {
-                Localizer["FarzaneganDesignIdea_Slide1"],
-                Localizer["FarzaneganDesignIdea_Slide2"],
-                Localizer["FarzaneganDesignIdea_Slide3"],
-                Localizer["FarzaneganDesignIdea_Slide4"]
-            };
+        {
+        Localizer["FarzaneganDesignIdea_Slide1"],
+        Localizer["FarzaneganDesignIdea_Slide2"],
+        Localizer["FarzaneganDesignIdea_Slide3"],
+        Localizer["FarzaneganDesignIdea_Slide4"]
+        };
         }
 
         @for (int i = 0; i < imageUrls.Count; i++)
@@ -57,15 +57,14 @@
 </section>
 
 <!-- End Bnner Section -->
-
 <!-- Specialize Section -->
 @{
     var services = new List<dynamic>
     {
-        new { ImageUrl = "/images/main-slider/truck 1.webp", Title = Localizer["Car and Spare Parts"], ServiceLink = "/product", DetailLink = "/product" },
-        new { ImageUrl = "/images/main-slider/brick 1.webp", Title = Localizer["Construction Materials"], ServiceLink = "/product", DetailLink = "/product" },
-        new { ImageUrl = "/images/resource/service-6.jpg", Title = Localizer["Industrial Machinery"], ServiceLink = "/product", DetailLink = "/product" },
-        new { ImageUrl = "/images/main-slider/clothing 2.jpg", Title = Localizer["Fashion and Modeling"], ServiceLink = "/product", DetailLink = "/product" }
+        new { ImageUrl = "/images/main-slider/truck 1.webp", Title = Localizer["Car and Spare Parts"], ServiceLink = "/userpanel", DetailLink = "/userpanel" },
+        new { ImageUrl = "/images/main-slider/brick 1.webp", Title = Localizer["Construction Materials"], ServiceLink = "/userpanel", DetailLink = "/userpanel" },
+        new { ImageUrl = "/images/resource/service-6.jpg", Title = Localizer["Industrial Machinery"], ServiceLink = "/userpanel", DetailLink = "/userpanel" },
+        new { ImageUrl = "/images/main-slider/clothing 2.jpg", Title = Localizer["Fashion and Modeling"], ServiceLink = "/userpanel", DetailLink = "/userpanel" }
     };
 }
 
@@ -130,8 +129,7 @@
                     <div class="counter-column col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
                         <div class="count-box">
                             <div class="count">
-                                <span class="count-text" data-speed="5000"
-                                      data-stop="237">10</span>
+                                <span class="count-text" data-speed="5000" data-stop="237">100</span>
                             </div>
                             <h4 class="counter-title">@Localizer["NumberOfProducts"]</h4>
                         </div>
@@ -161,92 +159,10 @@
         </div>
     </div>
 </section>
-<!--End Fun Fact Section -->
-<!-- Projects Section Two -->
-@* <section class="projects-section-two">
-    <div class="auto-container">
-        <div class="upper-box clearfix">
-            <div class="sec-title">
-                <span class="float-text">پروژه </span>
-                <h2>تجربیات ما</h2>
-            </div>
-            <div class="link-box">
-                <a href="projects.html">
-                    بررسی همه پروژه ها <i class="fa fa-long-arrow-left"></i>
-                </a>
-            </div>
-        </div>
-        <div class="projects-carousel-two owl-carousel owl-theme">
-            <!-- Project Block -->
-            <div class="project-block-two">
-                <div class="image-box">
-                    <figure class="image"><img src="/images/resource/project-1.jpg" alt=""></figure>
-                </div>
-                <div class="info-box">
-                    <div class="inner-box">
-                        <span class="title">ایده طرح پژوهان - فولاد مبارکه</span>
-                        <h3>کوره صنعتی</h3>
-                        <div class="text">طراحی کوره صنعتی متناسب برای ذوب انواع آهن الات صنعتی </div>
-                        <div class="link-box"><a href="project-detail.html">View Project</a></div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Project Block -->
-            <div class="project-block-two">
-                <div class="image-box">
-                    <figure class="image"><img src="/images/resource/project-2.jpg" alt=""></figure>
-                </div>
-                <div class="info-box">
-                    <div class="inner-box">
-                        <span class="title">ایده طرح پژوهان - فولاد مبارکه</span>
-                        <h3>کوره صنعتی</h3>
-                        <div class="text">طراحی کوره صنعتی متناسب برای ذوب انواع آهن الات صنعتی .</div>
-                        <div class="link-box"><a href="project-detail.html">View Project</a></div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Project Block -->
-            <div class="project-block-two">
-                <div class="image-box">
-                    <figure class="image"><img src="/images/resource/project-3.jpg" alt=""></figure>
-                </div>
-                <div class="info-box">
-                    <div class="inner-box">
-                        <span class="title">ایده طرح پژوهان - فولاد مبارکه</span>
-                        <h3>کوره صنعتی</h3>
-                        <div class="text">طراحی کوره صنعتی متناسب برای ذوب انواع آهن الات صنعتی .</div>
-                        <div class="link-box"><a href="project-detail.html">View Project</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> *@
-<!--End Projects Section Two -->
-<!-- Offer Section -->
-<section class="offer-section" style="background-image: url(/images/background/6.jpg);">
-    <div class="auto-container">
-        <div class="row">
-            <div class="content-column col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-column">
-                    <span class="title">از تخفیفات ما اگاه شوید</span>
-                    <h2><span>افزایش بهروری</span> <br>و کاهش هزینه ها</h2>
-                    <span class="discount">50%</span>
-                    <div class="text">تا 50 درصد از <br> ایده طرح پژوهان تخفیف بگیرید</div>
-                </div>
-            </div>
 
-            <div class="form-column order-last col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-column">
-                    <div class="discount-form">
-                        <!--Comment Form-->
-                        <form method="post" action="blog.html">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <input type="text" name="username" placeholder="نام" required>
-                                </div>
+
 
 
 

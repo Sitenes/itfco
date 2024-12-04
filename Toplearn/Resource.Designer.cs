@@ -277,29 +277,11 @@ namespace Toplearn.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to مشاهده محصولات.
         /// </summary>
         public static string ViewProducts {
             get {
                 return ResourceManager.GetString("ViewProducts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 123.
-        /// </summary>
-        public static string welcome {
-            get {
-                return ResourceManager.GetString("welcome", resourceCulture);
             }
         }
         

@@ -117,13 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="welcome" xml:space="preserve">
-    <value>123</value>
-    <comment>345</comment>
-  </data>
   <data name="FarzaneganDesignIdea" xml:space="preserve">
     <value>ایده طراحی فرزانگان</value>
   </data>
@@ -148,7 +141,7 @@
   <data name="ViewProducts" xml:space="preserve">
     <value>مشاهده محصولات</value>
   </data>
-   <data name="YearsOfExperience" xml:space="preserve">
+  <data name="YearsOfExperience" xml:space="preserve">
     <value>سال تجربه</value>
   </data>
   <data name="NumberOfProducts" xml:space="preserve">
@@ -162,44 +155,44 @@
   </data>
   <data name="Blog" xml:space="preserve">
     <value>وبلاگ</value>
-</data>
-<data name="LatestNewsAndArticles" xml:space="preserve">
+  </data>
+  <data name="LatestNewsAndArticles" xml:space="preserve">
     <value>آخرین اخبار و مقالات</value>
-</data>
-<data name="BlogTitle1" xml:space="preserve">
+  </data>
+  <data name="BlogTitle1" xml:space="preserve">
     <value>ساخت ماشین صنعتی برای فولاد مبارکه اصفهان به همت طرح ایده پژوهان.</value>
-</data>
-<data name="Date1" xml:space="preserve">
+  </data>
+  <data name="Date1" xml:space="preserve">
     <value>06 June 2018</value>
-</data>
-<data name="Author1" xml:space="preserve">
+  </data>
+  <data name="Author1" xml:space="preserve">
     <value>گلستانه</value>
-</data>
-<data name="BlogTitle2" xml:space="preserve">
+  </data>
+  <data name="BlogTitle2" xml:space="preserve">
     <value>عنوان مقاله دوم</value>
-</data>
-<data name="Date2" xml:space="preserve">
+  </data>
+  <data name="Date2" xml:space="preserve">
     <value>07 July 2019</value>
-</data>
-<data name="Author2" xml:space="preserve">
+  </data>
+  <data name="Author2" xml:space="preserve">
     <value>نویسنده دوم</value>
-</data>
-<data name="BlogTitle3" xml:space="preserve">
+  </data>
+  <data name="BlogTitle3" xml:space="preserve">
     <value>عنوان مقاله سوم</value>
-</data>
-<data name="Date3" xml:space="preserve">
+  </data>
+  <data name="Date3" xml:space="preserve">
     <value>08 August 2020</value>
-</data>
-<data name="Author3" xml:space="preserve">
+  </data>
+  <data name="Author3" xml:space="preserve">
     <value>نویسنده سوم</value>
-</data>
-<data name="BlogTitle4" xml:space="preserve">
+  </data>
+  <data name="BlogTitle4" xml:space="preserve">
     <value>عنوان مقاله چهارم</value>
-</data>
-<data name="Date4" xml:space="preserve">
+  </data>
+  <data name="Date4" xml:space="preserve">
     <value>09 September 2021</value>
-</data>
-<data name="Author4" xml:space="preserve">
+  </data>
+  <data name="Author4" xml:space="preserve">
     <value>نویسنده چهارم</value>
-</data>
+  </data>
 </root>
