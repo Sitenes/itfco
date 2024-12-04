@@ -9,7 +9,7 @@ using Toplearn.Core.Services;
 
 namespace Toplearn.Web.Pages.Admin.ManageUsers
 {
-    [PermissionChecker(Core.Enum.Permission.UserManagement)]
+    [PermissionChecker(Core.AllEnums.PermissionEnum.UserManagement)]
     public class List : PageModel
     {
         private readonly IUserService _userService;

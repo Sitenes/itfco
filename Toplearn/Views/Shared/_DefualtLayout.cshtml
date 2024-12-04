@@ -18,7 +18,7 @@
         <div class="preloader"></div>
 
         <!-- Main Header-->
-        <header class="main-header header-style-two">
+        <header class="main-header header-style-two fixed-header">
             <!--Header Top-->
             <div class="header-top">
                 <div class="auto-container">
@@ -41,12 +41,12 @@
             </div>
             <!-- End Header Top -->
 
-            <div class="header-lower">
+            <div id="header" class="header-lower" style="min-width: 80%;">
                 <div class="auto-container">
                     <div class="main-box clearfix">
                         <div class="logo-box">
                             <div class="logo">
-                                <a href="index.html"><img src="/images/logo-2.png" alt="" title=""></a>
+                                <a href="/"><img src="/images/logo-2.png" alt="" title=""></a>
                             </div>
                         </div>
 
@@ -64,7 +64,7 @@
 
                                 <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
                                     <ul class="navigation clearfix">
-                                        <li class="current dropdown">
+                                        <li class="current">
                                             <a href="/">خانه</a>
                                         </li>
 
@@ -150,7 +150,7 @@
                 </div>
             </div>
 
-            <!-- Sticky Header  -->
+@*             <!-- Sticky Header  -->
             <div class="sticky-header">
                 <div class="auto-container clearfix">
                     <!--Logo-->
@@ -216,7 +216,7 @@
                         </nav><!-- Main Menu End-->
                     </div>
                 </div>
-            </div><!-- End Sticky Menu -->
+            </div><!-- End Sticky Menu --> *@
         </header>
         <!--End Main Header -->
     <div class="">
@@ -249,6 +249,8 @@
     <script src="/js/script.js"></script>
     <!-- Color Setting -->
     <script src="/js/color-settings.js"></script>
+
+    <script src="/js/site.js"></script>
 	@RenderSection("Scripts",false)
 </body>
 </html>

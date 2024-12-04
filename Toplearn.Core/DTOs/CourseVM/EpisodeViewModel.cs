@@ -20,6 +20,6 @@ namespace Toplearn.Core.DTOs.CourseVM
         public string Title { get; set; }
         public TimeSpan EpisodeTimeFrom { get; set; }
         public TimeSpan EpisodeTimeTo { get; set; }
-        public Enum.Coust EpisodeStatus { get; set; }
+        public AllEnums.Coust EpisodeStatus { get; set; }
     }
 }

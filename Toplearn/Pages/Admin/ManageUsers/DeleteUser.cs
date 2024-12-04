@@ -5,7 +5,7 @@ using Toplearn.Core.Services;
 
 namespace Toplearn.Web.Pages.Admin.ManageUsers
 {
-    [PermissionChecker(Core.Enum.Permission.RemoveUser)]
+    [PermissionChecker(Core.AllEnums.PermissionEnum.RemoveUser)]
     public class DeleteUser:Controller
 	{
         private readonly IUserService _userService;

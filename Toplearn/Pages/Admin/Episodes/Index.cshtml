@@ -53,9 +53,9 @@
 											قیمت
 											<div class="id_100">
 												<select asp-for="Filters.EpisodeStatus" class="form-control input-sm">
-													<option value="@(Toplearn.Core.Enum.Coust.All)">همه</option>
-													<option value="@(Toplearn.Core.Enum.Coust.Free)">رایگان</option>
-													<option value="@(Toplearn.Core.Enum.Coust.Monetary)">پولی</option>
+													<option value="@(Toplearn.Core.AllEnums.Coust.All)">همه</option>
+													<option value="@(Toplearn.Core.AllEnums.Coust.Free)">رایگان</option>
+													<option value="@(Toplearn.Core.AllEnums.Coust.Monetary)">پولی</option>
 												</select>
 											</div>
 										</label>
@@ -113,12 +113,12 @@
 												}
 												
 												<td class="center ">
-													@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.EditCourseEpisodes, _userId).Result)
+													@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.EditCourseEpisodes, _userId).Result)
 													{
 														<a href="/Admin/Episodes/Edit/@courseItem.EpisodeId" class="btn btn-outline btn-warning "><i class="fa fa-edit"></i></a>
 													}
 
-													@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.RemoveCourseEpisodes, _userId).Result)
+													@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.RemoveCourseEpisodes, _userId).Result)
 													{
 														<a class="btn btn-outline btn-danger " data-toggle="modal" data-target="#DeleteModal@(courseItem.EpisodeId)">
 															<i class="zmdi zmdi-delete"></i>

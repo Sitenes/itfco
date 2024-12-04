@@ -13,7 +13,7 @@ using Toplearn.DataLayer.Entities.User;
 
 namespace Toplearn.Web.Pages.Admin.ManageRoles
 {
-    [PermissionChecker(Core.Enum.Permission.EditRole)]
+    [PermissionChecker(Core.AllEnums.PermissionEnum.EditRole)]
     public class EditModel : PageModel
     {
         private readonly IPermissionService _permissionService;

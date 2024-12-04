@@ -37,10 +37,10 @@ namespace Toplearn.Core.DTOs.CourseVM
     public class CourseFilterListViewModel
     {
         public string Title { get; set; }
-        public Enum.Coust Coust{ get; set; }
+        public AllEnums.Coust Coust{ get; set; }
         public long StartPrice { get; set; }
         public long EndPrice { get; set; }
-        public Enum.OrderBy OrderBy { get; set; }
+        public AllEnums.OrderBy OrderBy { get; set; }
         public List<int> Groups { get; set; }
     }
 	public class CourseFilterAdminViewModel

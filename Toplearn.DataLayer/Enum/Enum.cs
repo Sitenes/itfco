@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Toplearn.Core.Enum
+namespace Toplearn.Core.AllEnums
 {
     public enum Coust
     {
@@ -25,7 +25,7 @@ namespace Toplearn.Core.Enum
         CreateDateDesc = 6,
     }
 
-    public enum Permission
+    public enum PermissionEnum
     {
         Management = 1,
         UserManagement = 2,

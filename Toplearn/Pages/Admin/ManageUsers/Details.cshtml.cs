@@ -8,7 +8,7 @@ using Toplearn.DataLayer.Entities.User;
 
 namespace Toplearn.Web.Pages.Admin.ManageUsers
 {
-    [PermissionChecker(Core.Enum.Permission.UserManagement)]
+    [PermissionChecker(Core.AllEnums.PermissionEnum.UserManagement)]
     public class DetailsModel : PageModel
     {
         private readonly IUserService _userService;

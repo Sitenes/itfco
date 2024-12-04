@@ -239,40 +239,6 @@ namespace Toplearn.Web.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Permissions",
-                columns: new[] { "PermissionId", "ParentID", "PermissionTitle" },
-                values: new object[] { 1, null, "مدیریت" });
-
-            migrationBuilder.InsertData(
-                table: "Roles",
-                columns: new[] { "RoleId", "IsDeleted", "Title" },
-                values: new object[] { 1, false, "مدیر" });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "UserId", "Email", "EmailLink", "ExpireEmailLink", "IsActive", "IsDeleted", "Password", "Phone", "RegisterDate", "UserAvatar", "UserName", "Wallet" },
-                values: new object[] { new Guid("8ffeccab-4e84-4111-8072-f606e4574235"), "", new Guid("de612af7-02b2-4c1f-8942-5c6d0057db93"), new DateTime(2022, 9, 1, 19, 25, 36, 462, DateTimeKind.Local).AddTicks(9145), true, false, "E1-0A-DC-39-49-BA-59-AB-BE-56-E0-57-F2-0F-88-3E", 0L, new DateTime(2022, 9, 1, 19, 25, 36, 465, DateTimeKind.Local).AddTicks(6236), "Default.png", "Admin", 999999999L });
-
-            migrationBuilder.InsertData(
-                table: "WalletType",
-                columns: new[] { "TypeId", "Title" },
-                values: new object[,]
-                {
-                    { 1, "واریز" },
-                    { 2, "برداشت" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "RolePermissions",
-                columns: new[] { "RP_Id", "PermissionId", "RoleId" },
-                values: new object[] { 1, 1, 1 });
-
-            migrationBuilder.InsertData(
-                table: "UserRoles",
-                columns: new[] { "UR_Id", "RoleId", "UserId" },
-                values: new object[] { 1, 1, new Guid("8ffeccab-4e84-4111-8072-f606e4574235") });
-
             migrationBuilder.CreateIndex(
                 name: "IX_CourseGroups_ParentId",
                 table: "CourseGroups",

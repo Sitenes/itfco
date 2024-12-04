@@ -56,110 +56,79 @@ namespace Toplearn.DataLayer.Context
         #region ModelBuilder
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Guid _adminUserId = Guid.NewGuid();
-            //modelBuilder.Entity<User>().HasQueryFilter(n => n.IsDeleted==false).HasData(new User()
-            //{
-            //    Email="Admin@gmail.com",
-            //    EmailLink=Guid.NewGuid(),
-            //    ExpireEmailLink=DateTime.Now,
-            //    RegisterDate=DateTime.Now,
-            //    IsActive=true,
-            //    IsDeleted=false,
-            //    Password= EncodePasswordMd5("admin123456"),
-            //    Phone=09013348988,
-            //    UserAvatar="Default.png",
-            //    UserId= _adminUserId,
-            //    UserName="Admin",
-            //    Wallet=9999999999,
-                
-            //});
+            // Adding Permissions
+            var permissions = Enum.GetValues(typeof(Core.AllEnums.PermissionEnum))
+                                  .Cast<Core.AllEnums.PermissionEnum>()
+                                  .Select(permission => new
+                                  {
+                                      PermissionId = (int)permission,
+                                      ParentID = (int?)null, // اگر Parent نیاز است، مقدار مناسب قرار دهید
+                                      PermissionTitle = permission.ToString()
+                                  })
+                                  .ToList();
 
-            //modelBuilder.Entity<Role>().HasQueryFilter(n => n.IsDeleted==false).HasData(new Role()
-            //{
-            //    IsDeleted=false,
-            //    RoleId=1,
-            //    Title = "مدیر"
-            //});
+            modelBuilder.Entity<Permission>().HasData(permissions);
 
-            //modelBuilder.Entity<UserRole>().HasData(new UserRole()
-            //{
-            //    RoleId = 1,
-            //    UserId = _adminUserId,
-            //    UR_Id=1,
-            //});
+            // Example of Admin User
+            Guid _adminUserId = Guid.NewGuid();
+            modelBuilder.Entity<User>().HasQueryFilter(n => n.IsDeleted == false).HasData(new User()
+            {
+                Email = "Admin@gmail.com",
+                EmailLink = Guid.NewGuid(),
+                ExpireEmailLink = DateTime.Now,
+                RegisterDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false,
+                Password = EncodePasswordMd5("admin123456"),
+                Phone = 09013348988,
+                UserAvatar = "",
+                UserId = _adminUserId,
+                UserName = "Admin",
+                Wallet = 9999999999,
+            });
 
-            ////modelBuilder.Entity<RolePermission>().HasData(new RolePermission()
-            ////{
-            ////    RoleId = 1,
-            ////    PermissionId=1,
-            ////},new RolePermission()
-            ////{
-            ////    RoleId = 1,
-            ////    PermissionId=2,
-            ////},new RolePermission()
-            ////{
-            ////    RoleId = 1,
-            ////    PermissionId=3,
-            ////},new RolePermission()
-            ////{
-            ////    RoleId = 1,
-            ////    PermissionId=4,
-            ////},new RolePermission()
-            ////{
-            ////    RoleId = 1,
-            ////    PermissionId=5,
-            ////},new RolePermission()
-            ////{
-            ////    RoleId = 1,
-            ////    PermissionId=6,
-            ////},new RolePermission()
-            ////{
-            ////    RoleId = 1,
-            ////    PermissionId=7,
-            ////},new RolePermission()
-            ////{
-            ////    RoleId = 1,
-            ////    PermissionId=8,
-            ////},new RolePermission()
-            ////{
-            ////    RoleId = 1,
-            ////    PermissionId=9,
-            ////});
-            //modelBuilder.Entity<Permission>().HasData(new Permission()
-            //{
-            //    PermissionId = 1,
-            //    ParentID = null,
-            //    PermissionTitle = "مدیریت",
-                
-            //}) ;
+            // Adding Role and assigning all permissions to it
+            modelBuilder.Entity<Role>().HasQueryFilter(n => n.IsDeleted == false).HasData(new Role()
+            {
+                IsDeleted = false,
+                RoleId = 1,
+                Title = "مدیر"
+            });
 
+            modelBuilder.Entity<UserRole>().HasData(new UserRole()
+            {
+                RoleId = 1,
+                UserId = _adminUserId,
+                UR_Id = 1,
+            });
 
-            //modelBuilder.Entity<WalletType>().HasData(new WalletType()
-            //{
-            //    Title = "واریز"
-            //    , TypeId = 1,
-            //},new WalletType
-            //{
-            //    Title = "برداشت",
-            //    TypeId = 2
-            //}
-            //);
+            // Adding Role Permissions
+            var rolePermissions = permissions.Select(permission => new
+            {
+                RoleId = 1,
+                PermissionId = permission.PermissionId,
+                RP_Id = permission.PermissionId // مقدار منحصر به فرد برای هر Permission
+            }).ToList();
+
+            modelBuilder.Entity<RolePermission>().HasData(rolePermissions);
+
             base.OnModelCreating(modelBuilder);
         }
+
         #endregion
         #region Password Encode
-        //public static string EncodePasswordMd5(string pass) //Encrypt using MD5   
-        //{
-        //    Byte[] originalBytes;
-        //    Byte[] encodedBytes;
-        //    MD5 md5;
-        //    //Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)   
-        //    md5 = new MD5CryptoServiceProvider();
-        //    originalBytes = ASCIIEncoding.Default.GetBytes(pass);
-        //    encodedBytes = md5.ComputeHash(originalBytes);
-        //    //Convert encoded bytes back to a 'readable' string   
-        //    return BitConverter.ToString(encodedBytes);
-        //}
+        public static string EncodePasswordMd5(string pass) //Encrypt using MD5   
+        {
+            Byte[] originalBytes;
+            Byte[] encodedBytes;
+            MD5 md5;
+            //Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)   
+            md5 = new MD5CryptoServiceProvider();
+            originalBytes = ASCIIEncoding.Default.GetBytes(pass);
+            encodedBytes = md5.ComputeHash(originalBytes);
+            //Convert encoded bytes back to a 'readable' string   
+            return BitConverter.ToString(encodedBytes);
+        }
         #endregion
     }
 

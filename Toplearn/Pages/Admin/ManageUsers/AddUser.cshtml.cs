@@ -12,7 +12,7 @@ using TopLearn.Core.Security;
 
 namespace Toplearn.Web.Pages.Admin.ManageUsers
 {
-    [PermissionChecker(Core.Enum.Permission.AddUser)]
+    [PermissionChecker(Core.AllEnums.PermissionEnum.AddUser)]
     public class AddUserModel : PageModel
     {
         private readonly IUserService _userService;

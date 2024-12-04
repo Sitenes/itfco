@@ -535,18 +535,24 @@ img{
 
 ***/
 
-.main-header{
+.main-header {
 	position: relative;
 	left: 0;
 	top: 0;
-	width:100%;
+	width: 100%;
 	z-index: 9999;
+	display: flex;
+	flex-direction: column;
+	align-content: space-around;
+	justify-content: center;
+	align-items: center;
 }
 
 
 .main-header .header-top{
 	position: relative;
 	background-color: #ffa900;
+	width : 100% ;
 }
 
 .main-header .top-left{
@@ -990,7 +996,7 @@ img{
 }
 
 .header-style-one .header-lower{
-	position: relative;
+/*	position: relative;*/
 	background-color: rgba(0,0,0,0.80);
 	margin: 0 30px;
 	padding: 0 40px;
@@ -1191,7 +1197,9 @@ img{
 
 
 .header-style-two .header-lower{
-	position: relative;
+	/*position: relative;*/
+	display:flex;
+
 }
 
 .header-style-two .header-lower .auto-container{
@@ -1201,9 +1209,9 @@ img{
 
 
 .header-style-two .header-lower .main-box{
-	position: absolute;
+	/*position: absolute;*/
     left: 0;
-    top: 0;
+    top: 70px;
     width: 100%;
     padding: 0 40px;
 	background-color: rgba(0,0,0,0.90);
@@ -1422,10 +1430,11 @@ img{
 	color: #ff8a00;
 }
 
-.header-style-four .header-lower{
-	position: relative;
-	background-color: rgba(0,0,0,0.40);
-}
+	.header-style-four .header-lower {
+		position: relative;
+		background-color: rgba(0,0,0,0.40);
+		min-width: 80%;
+	}
 
 .header-style-four .nav-outer{
 	float: right;
@@ -13283,7 +13292,7 @@ padding-bottom: 10px;
 .logo {
 	width: 100%;
 	height: auto;
-	animation: rotateLogo 20s linear infinite;
+	animation: rotateLogo 10s ease-in-out infinite;
 	animation-delay: 5s;
 }
 
@@ -13291,7 +13300,7 @@ padding-bottom: 10px;
 	0% {
 		transform: rotate(0deg);
 	}
-	7% {
+	15% {
 		transform: rotate(360deg);
 	}
 	100% {

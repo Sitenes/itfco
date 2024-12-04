@@ -98,12 +98,12 @@
 													<a href="/Admin/ManageUser/Details/@userItem.UserId" class="btn btn-outline btn-info ">
 														<i class="fa fa-info"></i>
 														</a>
-													@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.EditUser, _userId).Result)
+													@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.EditUser, _userId).Result)
 													{
 													<a href="/Admin/ManageUser/Edit/@userItem.UserId" class="btn btn-outline btn-warning "><i class="fa fa-edit"></i></a>
 													}
 
-													@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.RemoveUser, _userId).Result)
+													@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.RemoveUser, _userId).Result)
 													{
 													<a class="btn btn-outline btn-danger " data-toggle="modal" data-target="#DeleteModal@(userItem.UserId)">
 														<i class="zmdi zmdi-delete"></i>

@@ -166,7 +166,7 @@ namespace Toplearn.Core.Services
                 return false ;
             }
         }
-        public async Task<bool> CheckPermission(Enum.Permission permission, Guid userId)
+        public async Task<bool> CheckPermission(AllEnums.PermissionEnum permission, Guid userId)
         {
             User logedUser = await _userService.GetUserAsync(userId);
             if (logedUser == null)

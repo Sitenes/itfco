@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Toplearn.DataLayer.Entities.Courses;
 using Toplearn.Core.DTOs.UserVM;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Toplearn.Web.Controllers
 {
     //[Route("/{language}/")]
+    [AllowAnonymous]
     public class ProductController : Controller
     {
         private readonly ICourseService _courseService;

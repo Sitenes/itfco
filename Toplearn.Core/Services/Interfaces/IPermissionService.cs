@@ -27,7 +27,7 @@ namespace Toplearn.Core.Services
         List<int> PermissionsRole(int roleId);
         Task<bool> AddPermissionToRoleAsync(int permission,int role);
         bool ResetPermissionsOfRole(int roleId);
-        Task<bool> CheckPermission(Enum.Permission permission, Guid userId);
+        Task<bool> CheckPermission(AllEnums.PermissionEnum permission, Guid userId);
         #endregion
     }
 }

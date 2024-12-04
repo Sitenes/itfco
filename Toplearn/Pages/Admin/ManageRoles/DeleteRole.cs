@@ -5,7 +5,7 @@ using Toplearn.Core.Services;
 
 namespace Toplearn.Web.Pages.Admin.ManageRoles
 {
-    [PermissionChecker(Core.Enum.Permission.RemoveRole)]
+    [PermissionChecker(Core.AllEnums.PermissionEnum.RemoveRole)]
     public class DeleteRole : Controller
     {
         private readonly IPermissionService _permissionService;

@@ -15,7 +15,7 @@ using Toplearn.Core.Security;
 
 namespace Toplearn.Web.Pages.Admin.ManageUsers
 {
-    [PermissionChecker(Core.Enum.Permission.EditUser)]
+    [PermissionChecker(Core.AllEnums.PermissionEnum.EditUser)]
     public class EditUserModel : PageModel
     {
         private readonly IUserService _userService;

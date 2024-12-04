@@ -493,7 +493,6 @@
     <Compile Include="DTOs\UserVM\UserPanelViewModel.cs" />
     <Compile Include="DTOs\WalletVM\WalletViewModel.cs" />
     <Compile Include="DTOs\WalletVM\ZarinPalViewModel.cs" />
-    <Compile Include="Enum\Enum.cs" />
     <Compile Include="Security\Authorization.cs" />
     <Compile Include="Senders\SendEmail.cs" />
     <Compile Include="DTOs\UserVM\AuthenticationViewModel.cs" />

@@ -46,7 +46,7 @@
 
 			} else {
 
-				siteHeader.removeClass('fixed-header');
+			//	siteHeader.removeClass('fixed-header');
 
 				sticky_header.removeClass("animated slideInDown");
 

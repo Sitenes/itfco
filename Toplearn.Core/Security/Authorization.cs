@@ -15,8 +15,8 @@ namespace Toplearn.Core.Security
 
 	public class PermissionCheckerAttribute : AuthorizeAttribute, IAuthorizationFilter
 	{
-		private Enum.Permission _permission;
-		public PermissionCheckerAttribute(Enum.Permission permssion)
+		private AllEnums.PermissionEnum _permission;
+		public PermissionCheckerAttribute(AllEnums.PermissionEnum permssion)
 		{
             _permission = permssion;
 		}

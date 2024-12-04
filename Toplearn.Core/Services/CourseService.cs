@@ -234,9 +234,9 @@ namespace Toplearn.Core.Services
         public async Task<IEnumerable<CourseItemListViewModel>> GetCoursesList(CourseFilterListViewModel filter)
         {
             IQueryable<Course> coursesList = _context.Courses.Include(n=>n.CourseEpisode);
-            if (filter.Coust == Enum.Coust.Monetary)
+            if (filter.Coust == AllEnums.Coust.Monetary)
                 coursesList = coursesList.Where(n => n.Price != 0);
-            if (filter.Coust == Enum.Coust.Free)
+            if (filter.Coust == AllEnums.Coust.Free)
                 coursesList = coursesList.Where(n => n.Price == 0);
             if (filter.EndPrice != 0)
                 coursesList = coursesList.Where(n => n.Price <= filter.EndPrice);
@@ -273,24 +273,24 @@ namespace Toplearn.Core.Services
             }
             switch (filter.OrderBy)
             {
-                case Enum.OrderBy.None:
+                case AllEnums.OrderBy.None:
                     break;
-                case Enum.OrderBy.PriceAsc:
+                case AllEnums.OrderBy.PriceAsc:
                     courses = courses.OrderBy(n => n.Price).ToList();
                     break;
-                case Enum.OrderBy.PriceDesc:
+                case AllEnums.OrderBy.PriceDesc:
                     courses = courses.OrderByDescending(n => n.Price).ToList();
                     break;
-                case Enum.OrderBy.TimeAsc:
+                case AllEnums.OrderBy.TimeAsc:
                     courses = courses.OrderBy(n => n.CourseEpisode.Sum(m=>m.EpisodeTime.Ticks)).ToList();
                     break;
-                case Enum.OrderBy.TimeDesc:
+                case AllEnums.OrderBy.TimeDesc:
                     courses = courses.OrderByDescending(n => n.CourseEpisode.Sum(m => m.EpisodeTime.Ticks)).ToList();
                     break;
-                case Enum.OrderBy.CreateDateAsc:
+                case AllEnums.OrderBy.CreateDateAsc:
                     courses = courses.OrderBy(n => n.RegistrationDate).ToList();
                     break;
-                case Enum.OrderBy.CreateDateDesc:
+                case AllEnums.OrderBy.CreateDateDesc:
                     courses = courses.OrderByDescending(n => n.RegistrationDate).ToList();
                     break;
                 default:
@@ -322,10 +322,10 @@ namespace Toplearn.Core.Services
                 episodes = episodes.Where(n => n.EpisodeTitle.Contains(filters.Title));
             episodes = episodes.Where(n => n.EpisodeTime >= filters.EpisodeTimeFrom);
             episodes = episodes.Where(n => n.EpisodeTime <= filters.EpisodeTimeTo);
-            if (filters.EpisodeStatus == Enum.Coust.Free)
+            if (filters.EpisodeStatus == AllEnums.Coust.Free)
                 episodes = episodes.Where(n => n.IsFree == true);
 
-            if (filters.EpisodeStatus == Enum.Coust.Monetary)
+            if (filters.EpisodeStatus == AllEnums.Coust.Monetary)
                 episodes = episodes.Where(n => n.IsFree == false);
 
             IEnumerable<EpisodeListViewModel> episodesResult = episodes.Select(n => new EpisodeListViewModel()

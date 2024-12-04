@@ -44,12 +44,12 @@
 												
 												<a href="/Admin/ManageRoles/Details/@roleItem.RoleId" class="btn btn-outline btn-info"><i class="fa fa-info"></i></a>
 
-												@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.EditRole	, _userId).Result)
+												@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.EditRole	, _userId).Result)
 												{
 												<a href="/Admin/ManageRoles/Edit/@roleItem.RoleId" class="btn btn-outline btn-warning"><i class="fa fa-edit"></i></a>
 												}
 
-												@if (_permission.CheckPermission(Toplearn.Core.Enum.Permission.RemoveRole	, _userId).Result)
+												@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.RemoveRole	, _userId).Result)
 													{
 												<a class="btn btn-outline btn-danger" data-toggle="modal" data-target="#DeleteModal@(roleItem.RoleId)">
 													<i class="zmdi zmdi-delete"></i>

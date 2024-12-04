@@ -4,7 +4,7 @@ using Toplearn.Core.Security;
 
 namespace Toplearn.Web.Pages.Admin
 {
-    [PermissionChecker(Core.Enum.Permission.Management)]
+    [PermissionChecker(Core.AllEnums.PermissionEnum.Management)]
     public class IndexModel : PageModel
     {
         public void OnGet()

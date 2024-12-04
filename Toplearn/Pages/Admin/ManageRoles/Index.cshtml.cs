@@ -12,7 +12,7 @@ using Toplearn.DataLayer.Entities.User;
 
 namespace Toplearn.Web.Pages.Admin.ManageRoles
 {
-    [PermissionChecker(Core.Enum.Permission.RoleManagement)]
+    [PermissionChecker(Core.AllEnums.PermissionEnum.RoleManagement)]
     public class IndexModel : PageModel
     {
         private readonly IPermissionService _permissionService;
