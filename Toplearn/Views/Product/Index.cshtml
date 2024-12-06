@@ -1,24 +1,26 @@
 ﻿@using Toplearn.Core.DTOs.CourseVM
 @model IEnumerable<CourseListAdminViewModel>
+@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+
 @{
     ViewData["Title"] = "محصولات";
 }
+
 <div class="container">
-
-
     <div class="sidebar-page-container">
         <div class="auto-container">
             <div class="row clearfix" style="flex-direction: row-reverse;">
 
-                <!--Content Side-->
+                <!-- Content Side -->
                 <div class="content-side col-xl-9 col-lg-8 col-md-12">
                     <div class="our-shop">
                         <div class="row clearfix">
 
-                            <!--Shop Items-->
+                            <!-- Shop Items -->
                             @foreach (var product in Model)
                             {
-                                <!--Shop Item-->
+                                <!-- Shop Item -->
                                 <div class="shop-item col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                     <div class="inner-box">
                                         <div class="image">
@@ -31,47 +33,43 @@
                                         </div>
                                         <div class="lower-content">
                                             <h3><a href="shop-single.html">@(product.CourseTitle)</a></h3>
-                                            <div class="price">@* <span class="discount">$15.00</span> *@ @(product.Price) <span> تومان </span> </div>
+                                            <div class="price">@* <span class="discount">$15.00</span> *@ @(product.Price) <span>تومان</span></div>
                                             <div class="clearfix">
                                                 <div class="pull-left">
-                                                    <a class="add-cart" href="#"><span class="fa fa-cart-plus"></span>افزودن به سبد</a>
+                                                    <a class="add-cart" href="#"><span class="fa fa-cart-plus"></span>@Localizer["AddToCart"]</a>
                                                 </div>
                                                 <div class="pull-right">
-                                                    <!--Rating-->
+                                                    <!-- Rating -->
                                                     <div class="rating">
                                                         <span class="fa fa-star"></span>
                                                         <span class="fa fa-star"></span>
                                                         <span class="fa fa-star"></span>
                                                         <span class="fa fa-star"></span>
                                                         <span class="fa fa-star"></span>
-                                                        @* <span class="fa fa-star-o"></span> *@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                             }
-                            
 
-                           
                         </div>
 
-                        <!--Post Share Options-->
+                        <!-- Pagination -->
                         <div class="styled-pagination">
                             <ul class="clearfix">
-                                <li class="prev-post"><a href="#"><span class="fa fa-long-arrow-left"></span> Prev</a></li>
+                                <li class="prev-post"><a href="#"><span class="fa fa-long-arrow-left"></span> @Localizer["Prev"]</a></li>
                                 <li><a href="#">1</a></li>
                                 <li class="active"><a href="#">2</a></li>
                                 <li><a href="#">3</a></li>
-                                <li class="next-post"><a href="#"> Next <span class="fa fa-long-arrow-right"></span> </a></li>
+                                <li class="next-post"><a href="#"> @Localizer["Next"] <span class="fa fa-long-arrow-right"></span> </a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!--Sidebar Side-->
+                <!-- Sidebar Side -->
                 <div class="sidebar-side col-xl-3 col-lg-4 col-md-12">
                     <aside class="sidebar">
 
@@ -79,76 +77,15 @@
                         <div class="sidebar-widget search-box">
                             <form asp-controller="product" asp-action="index">
                                 <div class="form-group">
-                                    <input type="search" name="Title" placeholder="جستوجو ..." required>
+                                    <input type="search" name="Title" placeholder="@Localizer["SearchPlaceholder"]" required>
                                     <button type="submit"><span class="icon fa fa-search"></span></button>
                                 </div>
                             </form>
                         </div>
 
-                        @* <!--Blog Category Widget-->
-                        <div class="sidebar-widget sidebar-blog-category">
-                            <div class="sidebar-title">
-                                <h3>دسته بندی ها</h3>
-                                <div class="separater"></div>
-                            </div>
-                            <ul class="cat-list">
-                                <li class="clearfix"><a href="#">Chemical <span>15</span></a></li>
-                                <li class="clearfix"><a href="#">Energy <span>23</span></a></li>
-                                <li class="clearfix active"><a href="#">Industry <span>49</span></a></li>
-                                <li class="clearfix"><a href="#">Manufacturing <span>32</span></a></li>
-                                <li class="clearfix"><a href="#">Materials <span>44</span></a></li>
-                                <li class="clearfix"><a href="#">Uncategorized <span>05</span></a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Price Filters -->
-                        <div class="sidebar-widget price-filters rangeslider-widget">
-                            <div class="sidebar-title">
-                                <h3>Filter By Price</h3>
-                                <div class="separater"></div>
-                            </div>
-                            <div class="range-slider-one clearfix">
-                                <div class="price-range-slider"></div>
-                                <div class="clearfix">
-                                    <div class="pull-left">
-                                        <a href="#" class="theme-btn btn-style-one">Filtter</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <div class="title">Price:</div>
-                                        <div class="input"><input type="text" class="property-amount" name="field-name" readonly></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Top Related Posts -->
-                        <div class="sidebar-widget related-posts">
-                            <div class="sidebar-title">
-                                <h3>Popular Products</h3>
-                                <div class="separater"></div>
-                            </div>
-                            <div class="post">
-                                <figure class="post-thumb"><a href="shop-single.html"><img src="images/resource/products/prod-thumb-1.jpg" alt=""></a></figure>
-                                <h4><a href="shop-single.html">Woo Album #4</a></h4>
-                                <div class="rating"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
-                                <div class="price">$9.00</div>
-                            </div>
-                            <div class="post">
-                                <figure class="post-thumb"><a href="shop-single.html"><img src="images/resource/products/prod-thumb-2.jpg" alt=""></a></figure>
-                                <h4><a href="shop-single.html">Happy Ninja</a></h4>
-                                <div class="rating"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
-                                <div class="price">$ 18.00</div>
-                            </div>
-                            <div class="post">
-                                <figure class="post-thumb"><a href="shop-single.html"><img src="images/resource/products/prod-thumb-3.jpg" alt=""></a></figure>
-                                <h4><a href="shop-single.html">Ninja Silhouette</a></h4>
-                                <div class="rating"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
-                                <div class="price">$20.00</div>
-                            </div>
-                        </div>
-                        *@
                     </aside>
                 </div>
+
             </div>
         </div>
     </div>

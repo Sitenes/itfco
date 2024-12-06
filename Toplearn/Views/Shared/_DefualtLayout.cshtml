@@ -1,23 +1,28 @@
-﻿<!DOCTYPE html>
+﻿@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>@ViewData["Title"] | ایده طرح فرزانگان</title>
-	
-	<partial name="Layouts/_MetaTags" />
-	<partial name="Layouts/_Styles" />
+    <title>@ViewData["Title"] | @Localizer["FarzanganIdeaTitle"]</title>
 
-	<script src="/js/jquery.min.js"></script>
+    <partial name="Layouts/_MetaTags" />
+    <partial name="Layouts/_Styles" />
+
+    <script src="/js/jquery.min.js"></script>
 </head>
+
 <body>
-	<script src="/js/modernizr-custom.js"></script>
-	<script src="/js/jquery.validate.min.js"></script>
-	<script src="/js/jquery.validate.unobtrusive.min.js"></script>
-	  <div class="page-wrapper">
+    <script src="/js/modernizr-custom.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script src="/js/jquery.validate.unobtrusive.min.js"></script>
+    <div class="page-wrapper">
         <!-- Preloader -->
         <div class="preloader"></div>
 
         <!-- Main Header-->
+        <div id="header"></div>
         <header class="main-header header-style-two fixed-header">
             <!--Header Top-->
             <div class="header-top">
@@ -25,15 +30,36 @@
                     <div class="inner-container clearfix">
                         <div class="top-left">
                             <ul class="contact-list clearfix">
-                                <li><i class="fa fa-volume-control-phone"></i><a href="tel:+989133073417" style="font-family:sans-serif,'Franklin Gothic Medium', 'Arial Narrow', Arial">9133073417(98+)</a></li>
-                                <li><i class="fa fa-envelope"></i><a href="mailto:golastani@gmail.com" >golastani@gmail.com</a></li>
+                                <li>
+                                    <i class="fa fa-volume-control-phone"></i>
+                                    <a href="tel:+989133073417"
+                                       style="font-family:sans-serif,'Franklin Gothic Medium', 'Arial Narrow', Arial">
+                                        @Localizer["Phone"]
+                                    </a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <a href="mailto:golastani@gmail.com">@Localizer["Email"]</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="top-right">
                             <ul class="social-icon-four clearfix">
-                                <li><a href="https://wa.me/+989939910301/?text=" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
-                                <li><a href="https://www.facebook.com/share/17r9qoRfvv/" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
-                                <li><a href="https://instagram.com/itfco7" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                <li>
+                                    <a href="https://wa.me/+989939910301/?text=" target="_blank">
+                                        <i class="fa fa-whatsapp"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.facebook.com/share/17r9qoRfvv/" target="_blank">
+                                        <i class="fa fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://instagram.com/itfco7" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -41,7 +67,7 @@
             </div>
             <!-- End Header Top -->
 
-            <div id="header" class="header-lower" style="min-width: 80%;">
+            <div class="header-lower" style="min-width: 80%;position: absolute;">
                 <div class="auto-container">
                     <div class="main-box clearfix">
                         <div class="logo-box">
@@ -64,48 +90,28 @@
 
                                 <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
                                     <ul class="navigation clearfix">
-                                        <li class="current">
-                                            <a href="/">خانه</a>
-                                        </li>
+                                        <li class="current"><a href="/">@Localizer["Home"]</a></li>
+                                        <li><a href="#">@Localizer["Blog"]</a></li>
+                                        <li><a href="#">@Localizer["AboutUs"]</a></li>
+                                        <li><a href="#">@Localizer["ContactUs"]</a></li>
 
-                                        <li class="">
-                                            <a href="#">وبلاگ</a>
-                                            @* <ul>
-                                            <li><a href="blog.html">همه بلاگ ها</a></li>
-                                            <li><a href="blog-classic.html">بلاگ یک</a></li>
-                                            </ul> *@
-                                        </li>
-                                        <li class="">
-                                            <a href="#">درباره ما</a>
-                                           @*  <ul>
-                                                <li><a href="/about.html">ارتباط با ما</a></li>
-                                                <li><a href="/team.html">درباره ما</a></li>
-                                            </ul> *@
-                                        </li>
-                                       @*  <li class="dropdown">
-                                            <a href="#">خدمات</a>
-                                            <ul>
-                                                <li><a href="/services.html">همه خدمات</a></li>
-                                                <li><a href="/service-detail.html">خدمت یک</a></li>
-                                                <li><a href="/service-detail.html">خدمت دو</a></li>
-                                                <li><a href="/service-detail.html">خدمت سه</a></li>
-                                                <li><a href="/service-detail.html">خدمت چهار</a></li>
-                                            </ul>
-                                        </li> *@
-
-                                        @* <li class="dropdown">
-                                            <a href="#">خرید ها</a>
-                                            <ul>
-                                                <li><a href="shop.html">همه خرید ها</a></li>
-                                                <li><a href="shop-single.html">خرید یک</a></li>
-                                            </ul>
-                                        </li> *@
-
-                                        <li><a href="#">ارتباط با ما</a></li>
-
-                                        <li class="">
-                                            <a asp-controller="Userpanel" asp-action="Index" >ورود / ثبت نام</a>
-                                        </li>
+                                        <div id="div1">
+                                            <div id="diva1">
+                                                <div id="divaa1">
+                                                    <a asp-action="chengeEn" asp-controller="Home" id="btna1" type="button" value="">English</a>
+                                                    <a asp-action="chengeFa" asp-controller="Home" id="btna2" type="button" value="فارسی">فارسی</a>
+                                                    <a asp-action="chengeAr" asp-controller="Home" id="btna3" type="button" value="العربیه">العربیه</a>
+                                                    <img id="img2"
+                                                         src="~/images/background/Windows_Settings_app_icon.png">
+                                                </div>
+                                                <div id="divaa2">
+                                                    <img id="img3"
+                                                         src="~/images/background/Person_icon_(the_Noun_Project_2817719).svg.png">
+                                                    <a asp-action="Index" asp-controller="Userpanel" id="btnb1" type="button" value=@Localizer["login"]>@Localizer["login"]</a>
+                                                    <a asp-action="Index" asp-controller="Userpanel" id="btnb2" type="button" value=@Localizer["signin"]>@Localizer["signin"]</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </ul>
                                 </div>
                             </nav><!-- Main Menu End-->
@@ -133,7 +139,7 @@
                                                     <form method="post" action="blog.html">
                                                         <div class="form-group">
                                                             <input type="search" name="field-name" value=""
-                                                                   placeholder="Search Here" required>
+                                                                   placeholder=@Localizer["SearchHere"] required>
                                                             <button type="submit" class="search-btn">
                                                                 <span class="fa fa-search"></span>
                                                             </button>
@@ -150,107 +156,34 @@
                 </div>
             </div>
 
-@*             <!-- Sticky Header  -->
-            <div class="sticky-header">
-                <div class="auto-container clearfix">
-                    <!--Logo-->
-                    <div class="pull-left">
-                        <a href="/" class="logo" title="ایده طرح فرزانگان"><img src="/images/logo-small.png" alt="" title=""></a>
-                    </div>
-                    <!--Right Col-->
-                    <div class="pull-right">
-                        <!-- Main Menu -->
-                        <nav class="main-menu">
-
-                            <div class="navbar-header">
-                                <!-- Toggle Button -->
-                                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                        aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="icon flaticon-menu-button"></span>
-                                </button>
-                            </div>
-
-                            <div class="navbar-collapse show
-
-                        collapse" id="navbarSupportedContent">
-                                <ul class="navigation clearfix">
-                                    <li class="current dropdown">
-                                        <a href="#">خانه</a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#">درباره ما</a>
-                                        <ul>
-                                            <li><a href="about.html">ارتباط با ما</a></li>
-                                            <li><a href="team.html">درباره ما</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#">خدمات</a>
-                                        <ul>
-                                            <li><a href="services.html">همه خدمات</a></li>
-                                            <li><a href="service-detail.html">خدمت یک</a></li>
-                                            <li><a href="service-detail.html">خدمت دو</a></li>
-                                            <li><a href="service-detail.html">خدمت سه</a></li>
-                                            <li><a href="service-detail.html">خدمت چهار</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#">وبلاگ</a>
-                                        <ul>
-                                            <li><a href="blog.html">همه بلاگ ها</a></li>
-                                            <li><a href="blog-classic.html">بلاگ یک</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#">خرید ها</a>
-                                        <ul>
-                                            <li><a href="shop.html">همه خرید ها</a></li>
-                                            <li><a href="shop-single.html">خرید یک</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">ارتباط با ما</a></li>
-
-                                </ul>
-                            </div>
-                        </nav><!-- Main Menu End-->
-                    </div>
-                </div>
-            </div><!-- End Sticky Menu --> *@
         </header>
         <!--End Main Header -->
-    <div class="">
-       @*  <main role="" class=""> *@
-                <!-- /content -->
+
+        <div class="">
             @RenderBody()
-        @* </main> *@
+        </div>
+
+        <partial name="Layouts/_Footer" />
+
+        <partial name="Layouts/_ValidationScriptsPartial" />
+        <div class="scroll-to-top scroll-to-target" data-target="html">
+            <span class="fa fa-arrow-circle-o-up"></span>
+        </div>
+        <script src="/js/jquery.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.fancybox.js"></script>
+        <script src="/js/owl.js"></script>
+        <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/js/wow.js"></script>
+        <script src="/js/appear.js"></script>
+        <script src="/js/mixitup.js"></script>
+        <script src="/js/script.js"></script>
+        <script src="/js/color-settings.js"></script>
+        <script src="/js/site.js"></script>
+        @RenderSection("Scripts", false)
     </div>
-
-    
-    </div>
-@* 
-	@await Component.InvokeAsync("GroupsCourseComponent")
-    *@
-	<!-- footer -->
-	<partial name="Layouts/_Footer" />
-
-	<partial name="Layouts/_ValidationScriptsPartial" />
-    <!--Scroll to top-->
-    <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-circle-o-up"></span></div>
-    <script src="/js/jquery.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.fancybox.js"></script>
-    <script src="/js/owl.js"></script>
-    <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="/js/wow.js"></script>
-    <script src="/js/appear.js"></script>
-    <script src="/js/mixitup.js"></script>
-    <script src="/js/script.js"></script>
-    <!-- Color Setting -->
-    <script src="/js/color-settings.js"></script>
-
-    <script src="/js/site.js"></script>
-	@RenderSection("Scripts",false)
 </body>
+
+
 </html>

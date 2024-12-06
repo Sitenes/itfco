@@ -61,6 +61,51 @@ namespace Toplearn.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to درباره ما.
+        /// </summary>
+        public static string AboutUs {
+            get {
+                return ResourceManager.GetString("AboutUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کد فعال سازی به شماره تلفن .
+        /// </summary>
+        public static string ActivationCodeSent {
+            get {
+                return ResourceManager.GetString("ActivationCodeSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کد فعال سازی به شماره تلفن ارسال شد.
+        /// </summary>
+        public static string ActivationCodeSentTo {
+            get {
+                return ResourceManager.GetString("ActivationCodeSentTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to افزودن به سبد.
+        /// </summary>
+        public static string AddToCart {
+            get {
+                return ResourceManager.GetString("AddToCart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to گلستانه.
         /// </summary>
         public static string Author1 {
@@ -151,6 +196,87 @@ namespace Toplearn.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تغییر رمز عبور.
+        /// </summary>
+        public static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تغییر رمز عبور حساب کاربری.
+        /// </summary>
+        public static string ChangePasswordHeader {
+            get {
+                return ResourceManager.GetString("ChangePasswordHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ثبت تغییرات با موفقیت انجام شد.
+        /// </summary>
+        public static string ChangesSavedTitle {
+            get {
+                return ResourceManager.GetString("ChangesSavedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جهت ادامه ثبت نام وارد ایمیل خود شوید و روی لینک کلیک کنید..
+        /// </summary>
+        public static string CheckEmailForActivation {
+            get {
+                return ResourceManager.GetString("CheckEmailForActivation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارتباط با ما.
+        /// </summary>
+        public static string ContactUs {
+            get {
+                return ResourceManager.GetString("ContactUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Currency {
+            get {
+                return ResourceManager.GetString("Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اطلاعات با موفقیت ثبت شد.
+        /// </summary>
+        public static string DataSuccessfullyRegistered {
+            get {
+                return ResourceManager.GetString("DataSuccessfullyRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 06 June 2018.
         /// </summary>
         public static string Date1 {
@@ -183,6 +309,141 @@ namespace Toplearn.Web {
         public static string Date4 {
             get {
                 return ResourceManager.GetString("Date4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عزیز.
+        /// </summary>
+        public static string Dear {
+            get {
+                return ResourceManager.GetString("Dear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کاربر عزیز.
+        /// </summary>
+        public static string DearUser {
+            get {
+                return ResourceManager.GetString("DearUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string DefaultImageAlt {
+            get {
+                return ResourceManager.GetString("DefaultImageAlt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ویرایش شماره.
+        /// </summary>
+        public static string EditPhoneNumber {
+            get {
+                return ResourceManager.GetString("EditPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to golastani@gmail.com.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ایمیلی حاوی لینک فعال سازی برای .
+        /// </summary>
+        public static string EmailActivationMessage {
+            get {
+                return ResourceManager.GetString("EmailActivationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تایید ایمیل.
+        /// </summary>
+        public static string EmailConfirmation {
+            get {
+                return ResourceManager.GetString("EmailConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفا وارد ایمیل خود شوید و روی لینک کلیک کنید..
+        /// </summary>
+        public static string EmailInstructions {
+            get {
+                return ResourceManager.GetString("EmailInstructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ایمیلی حاوی لینک فعال سازی برای.
+        /// </summary>
+        public static string EmailSentTo {
+            get {
+                return ResourceManager.GetString("EmailSentTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string EmailVerification {
+            get {
+                return ResourceManager.GetString("EmailVerification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ایمیل شما با موفقیت تایید شد.
+        /// </summary>
+        public static string EmailVerifiedSuccess {
+            get {
+                return ResourceManager.GetString("EmailVerifiedSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string EnjoyYourTimeMessage {
+            get {
+                return ResourceManager.GetString("EnjoyYourTimeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * کد پیامک شده.
+        /// </summary>
+        public static string EnterReceivedCode {
+            get {
+                return ResourceManager.GetString("EnterReceivedCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ErrorMessage {
+            get {
+                return ResourceManager.GetString("ErrorMessage", resourceCulture);
             }
         }
         
@@ -241,11 +502,191 @@ namespace Toplearn.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ایده طرح فرزانگان.
+        /// </summary>
+        public static string FarzanganIdeaTitle {
+            get {
+                return ResourceManager.GetString("FarzanganIdeaTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فراموشی رمز عبور.
+        /// </summary>
+        public static string ForgotPassword {
+            get {
+                return ResourceManager.GetString("ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Free {
+            get {
+                return ResourceManager.GetString("Free", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سلام.
+        /// </summary>
+        public static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خانه.
+        /// </summary>
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اطلاعات با موفقیت ثبت شد.
+        /// </summary>
+        public static string InformationSaved {
+            get {
+                return ResourceManager.GetString("InformationSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آخرین اخبار و مقالات.
         /// </summary>
         public static string LatestNewsAndArticles {
             get {
                 return ResourceManager.GetString("LatestNewsAndArticles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ورود.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ورود به سایت.
+        /// </summary>
+        public static string LoginButton {
+            get {
+                return ResourceManager.GetString("LoginButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to صفحه ورود.
+        /// </summary>
+        public static string LoginPage {
+            get {
+                return ResourceManager.GetString("LoginPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ورود / ثبت نام.
+        /// </summary>
+        public static string LoginRegister {
+            get {
+                return ResourceManager.GetString("LoginRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string LoginSuccessMessage {
+            get {
+                return ResourceManager.GetString("LoginSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string LoginSuccessTitle {
+            get {
+                return ResourceManager.GetString("LoginSuccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to برای ادامه ابتدا وارد شوید ..
+        /// </summary>
+        public static string LoginToContinue {
+            get {
+                return ResourceManager.GetString("LoginToContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ورود به سایت.
+        /// </summary>
+        public static string LoginToSite {
+            get {
+                return ResourceManager.GetString("LoginToSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string LogoutMessage {
+            get {
+                return ResourceManager.GetString("LogoutMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to با موفقیت از حساب کاربری خود خارج شدید.
+        /// </summary>
+        public static string LogoutSuccessMessage {
+            get {
+                return ResourceManager.GetString("LogoutSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to با موفقیت خارج شدید.
+        /// </summary>
+        public static string LogoutSuccessTitle {
+            get {
+                return ResourceManager.GetString("LogoutSuccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تایید شماره موبایل.
+        /// </summary>
+        public static string MobileVerification {
+            get {
+                return ResourceManager.GetString("MobileVerification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بعدی.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
             }
         }
         
@@ -277,11 +718,353 @@ namespace Toplearn.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مشاهده محصولات.
+        ///   Looks up a localized string similar to رمز عبور.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رمز عبور شما با موفقیت تغییر و ثبت شد.
+        /// </summary>
+        public static string PasswordChangedMessage {
+            get {
+                return ResourceManager.GetString("PasswordChangedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اکنون به راحتی می توانید با رمز عبور جدید خود وارد حسابتان بشوید.
+        /// </summary>
+        public static string PasswordLoginInstruction {
+            get {
+                return ResourceManager.GetString("PasswordLoginInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * رمز عبور.
+        /// </summary>
+        public static string PasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("PasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ۹۱۳۳۰۷۳۴۱۷ (۹۸+).
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * شماره موبایل.
+        /// </summary>
+        public static string PhonePlaceholder {
+            get {
+                return ResourceManager.GetString("PhonePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to قبلی.
+        /// </summary>
+        public static string Prev {
+            get {
+                return ResourceManager.GetString("Prev", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ProductImageAlt {
+            get {
+                return ResourceManager.GetString("ProductImageAlt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارسال شد.
+        /// </summary>
+        public static string RecoveryEmailInstruction {
+            get {
+                return ResourceManager.GetString("RecoveryEmailInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفا وارد ایمیل خود شوید و روی لینک کلیک کنید.
+        /// </summary>
+        public static string RecoveryEmailNextStep {
+            get {
+                return ResourceManager.GetString("RecoveryEmailNextStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ایمیل بازیابی رمز عبور برای.
+        /// </summary>
+        public static string RecoveryEmailSentMessage {
+            get {
+                return ResourceManager.GetString("RecoveryEmailSentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ایمیل بازیابی با موفقیت ارسال شد.
+        /// </summary>
+        public static string RecoveryEmailSentTitle {
+            get {
+                return ResourceManager.GetString("RecoveryEmailSentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عضویت در سایت.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ثبت نام با موفقیت انجام شد.
+        /// </summary>
+        public static string RegistrationSuccessful {
+            get {
+                return ResourceManager.GetString("RegistrationSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ثبت نام با موفقیت انجام شد.
+        /// </summary>
+        public static string RegistrationSuccessTitle {
+            get {
+                return ResourceManager.GetString("RegistrationSuccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مرا به خاطر بسپار.
+        /// </summary>
+        public static string RememberMe {
+            get {
+                return ResourceManager.GetString("RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تکرار رمز عبور.
+        /// </summary>
+        public static string RePassword {
+            get {
+                return ResourceManager.GetString("RePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * تکرار رمز عبور.
+        /// </summary>
+        public static string RePasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("RePasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارسال مجدد کد فعال سازی.
+        /// </summary>
+        public static string ResendActivationCode {
+            get {
+                return ResourceManager.GetString("ResendActivationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جستجو کنید.
+        /// </summary>
+        public static string SearchHere {
+            get {
+                return ResourceManager.GetString("SearchHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جستوجو ....
+        /// </summary>
+        public static string SearchPlaceholder {
+            get {
+                return ResourceManager.GetString("SearchPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارسال ایمیل.
+        /// </summary>
+        public static string SendEmail {
+            get {
+                return ResourceManager.GetString("SendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارسال ایمیل تغییر رمز عبور.
+        /// </summary>
+        public static string SendResetEmail {
+            get {
+                return ResourceManager.GetString("SendResetEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ورود.
+        /// </summary>
+        public static string signin {
+            get {
+                return ResourceManager.GetString("signin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to چیزی اشتباه است، دوباره امتحان کنید..
+        /// </summary>
+        public static string SomethingWentWrong {
+            get {
+                return ResourceManager.GetString("SomethingWentWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string State {
+            get {
+                return ResourceManager.GetString("State", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Street {
+            get {
+                return ResourceManager.GetString("Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ثبت تغییرات.
+        /// </summary>
+        public static string SubmitChanges {
+            get {
+                return ResourceManager.GetString("SubmitChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رمز عبور با موفقیت تغییر یافت.
+        /// </summary>
+        public static string SuccessfullyResetPassword {
+            get {
+                return ResourceManager.GetString("SuccessfullyResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string SuccessMessage {
+            get {
+                return ResourceManager.GetString("SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ThankYou {
+            get {
+                return ResourceManager.GetString("ThankYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فهمیدم.
+        /// </summary>
+        public static string Understood {
+            get {
+                return ResourceManager.GetString("Understood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * نام کاربری.
+        /// </summary>
+        public static string UserNamePlaceholder {
+            get {
+                return ResourceManager.GetString("UserNamePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ViewProducts {
             get {
                 return ResourceManager.GetString("ViewProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string welcome {
+            get {
+                return ResourceManager.GetString("welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string WelcomeBackMessage {
+            get {
+                return ResourceManager.GetString("WelcomeBackMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string WelcomeMessage {
+            get {
+                return ResourceManager.GetString("WelcomeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string WelcomeToSite {
+            get {
+                return ResourceManager.GetString("WelcomeToSite", resourceCulture);
             }
         }
         
@@ -291,6 +1074,15 @@ namespace Toplearn.Web {
         public static string YearsOfExperience {
             get {
                 return ResourceManager.GetString("YearsOfExperience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ZipCode {
+            get {
+                return ResourceManager.GetString("ZipCode", resourceCulture);
             }
         }
     }

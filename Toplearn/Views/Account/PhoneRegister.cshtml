@@ -1,4 +1,7 @@
 ﻿@model Toplearn.Core.DTOs.UserVM.ActivateUserViewModel
+@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+
 @{
 	ViewData["Title"] = "ثبت نام";
 }
@@ -9,32 +12,33 @@ if(ViewData["IsAvtivated"] != null && ViewData["IsAvtivated"] == true){
 <partial name="Partials/_activatePhoneModalPartial" model="Model" />
 }
 
-
 <nav aria-label="breadcrumb" style="margin-bottom:0px">
-	<ul class="breadcrumb">
-		<li class="breadcrumb-item"><a href="/">خانه </a></li>
-		<li class="breadcrumb-item active" aria-current="page">تایید شماره موبایل</li>
-	</ul>
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">@Localizer["Home"]</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">@Localizer["MobileVerification"]</li>
+    </ul>
 </nav>
 
 <main class="client-page">
-	<div class="container-content" style="margin-top:0px">
-		<p class="h2 text-success">اطلاعات با موفقیت ثبت شد</p>
-		<p class="h4" style="margin:8px 0px">
-			<strong>@(Model.UserName)</strong> عزیز<br />
-		</p>
-		<p class="h5">
-			کد فعال سازی به شماره تلفن @(Model.Phone) ارسال شد .
+    <div class="container-content" style="margin-top:0px">
+        <p class="h2 text-success">@Localizer["DataSuccessfullyRegistered"]</p>
+        <p class="h4" style="margin:8px 0px">
+            <strong>@(Model.UserName)</strong> @Localizer["Dear"]<br />
+        </p>
+        <p class="h5">
+            @Localizer["ActivationCodeSentTo"] @(Model.Phone)
+        </p>
+        @if (ViewData["IsActivated"] == null || (bool)ViewData["IsActivated"] == false)
+        {
+            <form method="post" action="Register">
+                <input type="submit" value="@Localizer["EditPhoneNumber"]" class="btn btn-sm btn-default">
+            </form>
 
-		</p>
-		if(ViewData["IsAvtivated"] == null || ViewData["IsAvtivated"] == false){
-		<form method="post" action="Register">
-			<input type="submit" value="ویرایش شماره" class="btn btn-sm btn-default">
-		</form>
-
-		<form method="post" action="ActivateCodeRegister">
-			<input type="text" asp-for="ReceivedActivateCode" placeholder="* کد پیامک شده">
-		</form>
-		}
-	</div>
+            <form method="post" action="ActivateCodeRegister">
+                <input type="text" asp-for="ReceivedActivateCode" placeholder="@Localizer["EnterReceivedCode"]">
+            </form>
+        }
+    </div>
 </main>

@@ -138,9 +138,6 @@
   <data name="Categories" xml:space="preserve">
     <value>الفئات</value>
   </data>
-  <data name="ViewProducts" xml:space="preserve">
-    <value>عرض المنتجات</value>
-  </data>
   <data name="YearsOfExperience" xml:space="preserve">
     <value>سنوات الخبرة</value>
   </data>
@@ -194,5 +191,209 @@
   </data>
   <data name="Author4" xml:space="preserve">
     <value>المؤلف الرابع</value>
+  </data>
+  <data name="LoginToSite" xml:space="preserve">
+    <value>تسجيل الدخول إلى الموقع</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>golastani@gmail.com</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>تذكرني</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>نسيت كلمة المرور!</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>التسجيل في الموقع</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="EmailConfirmation" xml:space="preserve">
+    <value>تأكيد البريد الإلكتروني</value>
+  </data>
+  <data name="RegistrationSuccessful" xml:space="preserve">
+    <value>تم التسجيل بنجاح</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>مرحباً</value>
+  </data>
+  <data name="EmailSentTo" xml:space="preserve">
+    <value>تم إرسال بريد يحتوي على رابط التفعيل إلى</value>
+  </data>
+  <data name="CheckEmailForActivation" xml:space="preserve">
+    <value>لإتمام عملية التسجيل، الرجاء الدخول إلى بريدك الإلكتروني والضغط على الرابط.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="SendResetEmail" xml:space="preserve">
+    <value>إرسال بريد إلكتروني لإعادة تعيين كلمة المرور</value>
+  </data>
+  <data name="MobileVerification" xml:space="preserve">
+    <value>تأكيد رقم الهاتف</value>
+  </data>
+  <data name="DataSuccessfullyRegistered" xml:space="preserve">
+    <value>تم تسجيل البيانات بنجاح</value>
+  </data>
+  <data name="Dear" xml:space="preserve">
+    <value>العزيز</value>
+  </data>
+  <data name="ActivationCodeSentTo" xml:space="preserve">
+    <value>تم إرسال رمز التفعيل إلى الرقم</value>
+  </data>
+  <data name="EditPhoneNumber" xml:space="preserve">
+    <value>تعديل الرقم</value>
+  </data>
+  <data name="EnterReceivedCode" xml:space="preserve">
+    <value>* أدخل الرمز المستلم</value>
+  </data>
+  <data name="UserNamePlaceholder" xml:space="preserve">
+    <value>* اسم المستخدم</value>
+  </data>
+  <data name="PhonePlaceholder" xml:space="preserve">
+    <value>* رقم الهاتف</value>
+  </data>
+  <data name="PasswordPlaceholder" xml:space="preserve">
+    <value>* كلمة المرور</value>
+  </data>
+  <data name="RePasswordPlaceholder" xml:space="preserve">
+    <value>* تأكيد كلمة المرور</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>تغيير كلمة المرور</value>
+  </data>
+  <data name="ChangePasswordHeader" xml:space="preserve">
+    <value>تغيير كلمة المرور لحساب المستخدم</value>
+  </data>
+  <data name="RePassword" xml:space="preserve">
+    <value>تأكيد كلمة المرور</value>
+  </data>
+  <data name="SubmitChanges" xml:space="preserve">
+    <value>تسجيل التغييرات</value>
+  </data>
+  <data name="EmailVerifiedSuccess" xml:space="preserve">
+    <value>تم تأكيد بريدك الإلكتروني بنجاح</value>
+  </data>
+  <data name="LoginToContinue" xml:space="preserve">
+    <value>للمتابعة، يرجى تسجيل الدخول أولاً.</value>
+  </data>
+  <data name="SearchPlaceholder" xml:space="preserve">
+    <value>البحث ...</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>السابق</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="AddToCart" xml:space="preserve">
+    <value>إضافة إلى السلة</value>
+  </data>
+  <data name="RegistrationSuccessTitle" xml:space="preserve">
+    <value>تم التسجيل بنجاح</value>
+  </data>
+  <data name="EmailActivationMessage" xml:space="preserve">
+    <value>تم إرسال بريد إلكتروني يحتوي على رابط التفعيل لـ </value>
+  </data>
+  <data name="EmailInstructions" xml:space="preserve">
+    <value>يرجى الدخول إلى بريدك الإلكتروني والنقر على الرابط.</value>
+  </data>
+  <data name="Understood" xml:space="preserve">
+    <value>فهمت</value>
+  </data>
+  <data name="InformationSaved" xml:space="preserve">
+    <value>تم تسجيل المعلومات بنجاح</value>
+  </data>
+  <data name="ActivationCodeSent" xml:space="preserve">
+    <value>تم إرسال رمز التفعيل إلى رقم الهاتف </value>
+  </data>
+  <data name="LogoutSuccessTitle" xml:space="preserve">
+    <value>تم تسجيل الخروج بنجاح</value>
+  </data>
+  <data name="DearUser" xml:space="preserve">
+    <value>عزيزي المستخدم</value>
+  </data>
+  <data name="LogoutSuccessMessage" xml:space="preserve">
+    <value>تم تسجيل خروجك بنجاح</value>
+  </data>
+  <data name="RecoveryEmailSentTitle" xml:space="preserve">
+    <value>تم إرسال البريد الإلكتروني للاسترداد بنجاح</value>
+  </data>
+  <data name="RecoveryEmailSentMessage" xml:space="preserve">
+    <value>تم إرسال البريد الإلكتروني لاستعادة كلمة المرور إلى</value>
+  </data>
+  <data name="RecoveryEmailInstruction" xml:space="preserve">
+    <value>تم الإرسال</value>
+  </data>
+  <data name="RecoveryEmailNextStep" xml:space="preserve">
+    <value>يرجى تسجيل الدخول إلى بريدك الإلكتروني والنقر على الرابط</value>
+  </data>
+  <data name="ChangesSavedTitle" xml:space="preserve">
+    <value>تم حفظ التغييرات بنجاح</value>
+  </data>
+  <data name="PasswordChangedMessage" xml:space="preserve">
+    <value>تم تغيير كلمة المرور وحفظها بنجاح</value>
+  </data>
+  <data name="PasswordLoginInstruction" xml:space="preserve">
+    <value>يمكنك الآن بسهولة تسجيل الدخول إلى حسابك باستخدام كلمة المرور الجديدة</value>
+  </data>
+  <data name="FarzanganIdeaTitle" xml:space="preserve">
+    <value>فكرة مشروع الفرزنجان</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>+٩٨٩١٣٣٠٧٣٤١٧</value>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>من نحن</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>تواصل معنا</value>
+  </data>
+  <data name="LoginRegister" xml:space="preserve">
+    <value>تسجيل الدخول / التسجيل</value>
+  </data>
+  <data name="SearchHere" xml:space="preserve">
+    <value>ابحث هنا</value>
+  </data>
+  <data name="ViewProducts" xml:space="preserve">
+    <value>عرض المنتجات</value>
+  </data>
+  <data name="DefaultImageAlt" xml:space="preserve">
+    <value>صورة المنتج الافتراضية</value>
+  </data>
+  <data name="ProductImageAlt" xml:space="preserve">
+    <value>صورة المنتج</value>
+  </data>
+  <data name="Free" xml:space="preserve">
+    <value>مجاناً</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>ريال</value>
+  </data>
+  <data name="LoginSuccessTitle" xml:space="preserve">
+    <value>تم تسجيل الدخول بنجاح</value>
+  </data>
+  <data name="LoginSuccessMessage" xml:space="preserve">
+    <value>أنت الآن مسجل الدخول بنجاح.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>خطأ</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>حدث خطأ أثناء عملية التسجيل.</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>شكراً</value>
+  </data>
+  <data name="signin" xml:space="preserve">
+    <value>تسجيل الدخول</value>
   </data>
 </root>

@@ -1,4 +1,7 @@
 ﻿@model Toplearn.Core.DTOs.UserVM.RegisterViewModel
+@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+
 @{
     ViewData["Title"] = "ثبت نام";
 }
@@ -10,10 +13,11 @@
     </ul>
 </nav>
 </div> *@
+
 <main class="client-page" style="padding-top:0px">
     <div class="container-content" style="margin-top:0px">
 
-        <header><h2> عضویت در سایت </h2></header>
+        <header><h2>@Localizer["Register"]</h2></header>
 
         <div class="form-layer">
 
@@ -21,40 +25,39 @@
               
                 <div class="input-group">
                     <span class="input-group-addon" id="username"><i class="zmdi zmdi-account"></i></span>
-                    <input asp-for="UserName" type="text" class="form-control" placeholder="* نام کاربری" aria-describedby="username">
+                    <input asp-for="UserName" type="text" class="form-control" placeholder="@Localizer["UserNamePlaceholder"]" aria-describedby="username">
                 </div>
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                <span asp-validation-for="UserName" class="text-danger"></span>
 
                 <div class="input-group">
                     <span class="input-group-addon" id="email-address"><i class="zmdi zmdi-email"></i></span>
-                    <input asp-for="Email" type="email" class="form-control" placeholder="ایمیل" aria-describedby="email-address">
+                    <input asp-for="Email" type="email" class="form-control" placeholder="@Localizer["Email"]" aria-describedby="email-address">
                 </div>
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                <span asp-validation-for="Email" class="text-danger"></span>
 
                 <div class="input-group">
-                    <span class="input-group-addon" id="email-address"><i class="zmdi zmdi-phone"></i></span>
-                    <input asp-for="Phone" type="number" class="form-control" placeholder="* شماره موبایل" aria-describedby="email-address">
-                
+                    <span class="input-group-addon" id="phone"><i class="zmdi zmdi-phone"></i></span>
+                    <input asp-for="Phone" type="number" class="form-control" placeholder="@Localizer["PhonePlaceholder"]" aria-describedby="phone">
                 </div>
-                    <span asp-validation-for="Phone" class="text-danger"></span>
+                <span asp-validation-for="Phone" class="text-danger"></span>
 
                 <div class="input-group">
                     <span class="input-group-addon" id="password"><i class="zmdi zmdi-lock"></i></span>
-                    <input asp-for="Password" type="password" class="form-control" placeholder="* رمز عبور" aria-describedby="password">
-            </div>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="@Localizer["PasswordPlaceholder"]" aria-describedby="password">
+                </div>
                 <span asp-validation-for="Password" class="text-danger"></span>
 
                 <div class="input-group">
-                    <span class="input-group-addon" id="password"><i class="zmdi zmdi-lock"></i></span>
-                    <input asp-for="RePassword" type="password" class="form-control" placeholder="* تکرار رمز عبور" aria-describedby="password">
+                    <span class="input-group-addon" id="repassword"><i class="zmdi zmdi-lock"></i></span>
+                    <input asp-for="RePassword" type="password" class="form-control" placeholder="@Localizer["RePasswordPlaceholder"]" aria-describedby="repassword">
                 </div>
-                    <span asp-validation-for="RePassword" class="text-danger"></span>
+                <span asp-validation-for="RePassword" class="text-danger"></span>
 
                 <div class="link">
-                    <a href="/Login"> <i class="zmdi zmdi-account"></i> ورود به سایت </a>
+                    <a href="/Login"> <i class="zmdi zmdi-account"></i> @Localizer["Login"] </a>
                 </div>
 
-                <button class="theme-btn btn-style-one"> عضویت در سایت </button>
+                <button class="theme-btn btn-style-one">@Localizer["Register"]</button>
 
             </form>
         </div>

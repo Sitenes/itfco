@@ -357,7 +357,8 @@
 
     .header-style-two .header-lower .main-box {
         border-radius: 0;
-        position: relative;
+        position: fixed;
+        top: 0;
     }
 
     .banner-section-two .slide-item .content-box {
@@ -706,6 +707,13 @@
 }
 
 @media only screen and (max-width: 767px) {
+
+    #div1 {
+        top: -33px !important;
+        left: -52px;
+        position: absolute;
+    }
+
     .fixed-header .sticky-header .pull-right {
         float: none;
     }

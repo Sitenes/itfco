@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using Toplearn.Web;
 using TopLearn.Web;
+using Microsoft.AspNetCore.Http.Extensions;
+using System.Web;
 
 namespace Toplearn.Web.Controllers
 {
@@ -35,6 +37,73 @@ namespace Toplearn.Web.Controllers
             }
 
             return View();
+        }
+
+        public IActionResult chengeAr()
+        {
+            var url = HttpContext.Request.GetEncodedUrl();
+            url = url.Replace("chengeAr", "");
+            var uriBuilder = new UriBuilder(url);
+            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+
+            if (string.IsNullOrEmpty(query["culture"]))
+            {
+                query["culture"] = "ar";
+            }
+            else
+            {
+                query.Set("culture", "ar");
+            }
+
+            uriBuilder.Query = query.ToString();
+            var newUrl = uriBuilder.ToString();
+
+            return Redirect(newUrl);
+
+        }
+        public IActionResult chengeEn()
+        {
+
+            var url = HttpContext.Request.GetEncodedUrl();
+            url = url.Replace("chengeEn", "");
+            var uriBuilder = new UriBuilder(url);
+            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+
+            if (string.IsNullOrEmpty(query["culture"]))
+            {
+                query["culture"] = "en";
+            }
+            else
+            {
+                query.Set("culture", "en");
+            }
+
+            uriBuilder.Query = query.ToString();
+            var newUrl = uriBuilder.ToString();
+
+            return Redirect(newUrl);
+        }
+        public IActionResult chengeFa()
+        {
+            var url = HttpContext.Request.GetEncodedUrl();
+            url = url.Replace("chengeFa", "");
+
+            var uriBuilder = new UriBuilder(url);
+            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+
+            if (string.IsNullOrEmpty(query["culture"]))
+            {
+                query["culture"] = "fa";
+            }
+            else
+            {
+                query.Set("culture", "fa");
+            }
+
+            uriBuilder.Query = query.ToString();
+            var newUrl = uriBuilder.ToString();
+
+            return Redirect(newUrl);
         }
 
         [HttpPost]

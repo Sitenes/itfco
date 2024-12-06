@@ -1,4 +1,7 @@
 ﻿@model Toplearn.Core.DTOs.UserVM.LoginViewModel
+@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+
 @{
     ViewData["Title"] = "ورود";
 }
@@ -13,41 +16,53 @@
     </nav>
 </div> *@
 
-<main class="client-page">
+<main class="client-page" style="margin-top: 35px;">
     <div class="container-content">
 
-        <header><h2> ورود به سایت </h2></header>
+        <header>
+            <h2>@Localizer["LoginToSite"]</h2>
+        </header>
 
         <div class="form-layer">
-
             <form action="Login" method="post">
                 <input type="hidden" asp-for="ReturnUrl">
 
                 <div class="input-group">
-                    <span class="input-group-addon" id="email-address"><i class="zmdi zmdi-email"></i></span>
-                    <input type="email" asp-for="Email" class="form-control"  placeholder="ایمیل" aria-describedby="email-address">
+                    <span class="input-group-addon" id="email-address">
+                        <i class="zmdi zmdi-email"></i>
+                    </span>
+                    <input type="email" asp-for="Email" class="form-control" placeholder="@Localizer["Email"]" aria-describedby="email-address">
                 </div>
                 <span asp-validation-for="Email" class="text-danger"></span>
 
                 <div class="input-group">
-                    <span class="input-group-addon" id="password"><i class="zmdi zmdi-lock"></i></span>
-                    <input type="password" asp-for="Password" class="form-control" placeholder="رمز عبور " aria-describedby="password">
+                    <span class="input-group-addon" id="password">
+                        <i class="zmdi zmdi-lock"></i>
+                    </span>
+                    <input type="password" asp-for="Password" class="form-control" placeholder="@Localizer["Password"]" aria-describedby="password">
                 </div>
                 <span asp-validation-for="Password" class="text-danger"></span>
 
                 <div class="remember-me">
-                    <label><input type="checkbox" asp-for="RememberMe">  مرا بخاطر بسپار </label>
+                    <label>
+                        <input type="checkbox" asp-for="RememberMe">
+                        @Localizer["RememberMe"]
+                    </label>
                 </div>
 
                 <div class="link">
-                    <a href="/ForgotPassword"> <i class="zmdi zmdi-lock"></i> رمز عبور خود را فراموش کرده ام !</a>
-                    <a href="/Register"> <i class="zmdi zmdi-account"></i> عضویت در سایت </a>
+                    <a href="/ForgotPassword">
+                        <i class="zmdi zmdi-lock"></i> @Localizer["ForgotPassword"]
+                    </a>
+                    <a href="/Register">
+                        <i class="zmdi zmdi-account"></i> @Localizer["Register"]
+                    </a>
                 </div>
 
-                <button class="theme-btn btn-style-one"> ورود به سایت </button>
-
+                <button class="theme-btn btn-style-one">
+                    @Localizer["LoginButton"]
+                </button>
             </form>
         </div>
-
     </div>
 </main>
