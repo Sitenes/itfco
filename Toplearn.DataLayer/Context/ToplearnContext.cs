@@ -70,7 +70,7 @@ namespace Toplearn.DataLayer.Context
             modelBuilder.Entity<Permission>().HasData(permissions);
 
             // Example of Admin User
-            Guid _adminUserId = Guid.NewGuid();
+            Guid _adminUserId = new Guid("1eb79e08-e5ce-486d-9909-65997e781c53");
             modelBuilder.Entity<User>().HasQueryFilter(n => n.IsDeleted == false).HasData(new User()
             {
                 Email = "Admin@gmail.com",

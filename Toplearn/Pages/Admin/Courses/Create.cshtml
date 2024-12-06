@@ -5,7 +5,7 @@
 @using Toplearn.DataLayer.Entities.Courses
 @model Toplearn.Web.Pages.Admin.Courses.CreateModel
 @{
-	ViewData["Title"] =  "افزودن دوره";
+	ViewData["Title"] =  "افزودن محصول";
 }
 
 <div class="row">
@@ -14,7 +14,7 @@
 
 			<div class="panel panel-primary">
 				<div class="panel-heading h3">
-					افزودن دوره جدید
+					افزودن محصول جدید
 				</div>
 				<div class="panel-body">
 					<div class="container client-page">
@@ -25,13 +25,20 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-card"></i>
 									</span>
-									<input asp-for="Course.Title" class="form-control" placeholder="عنوان دوره">
+									<input asp-for="Course.Title" class="form-control" placeholder="عنوان محصول">
 									<span asp-validation-for="Course.Title" class="text-danger"></span>
 								</div>
 
+								
+								<div class="col-sm-12 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-file-text"></i>
+									</span>
+									<textarea asp-for="Course.ShortDescription" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" class="form-control" placeholder="توضیحات مختصر"></textarea>
+									<span asp-validation-for="Course.ShortDescription" class="text-danger"></span>
+								</div>
 
-
-								@if (ViewData["Teachers"] != null)
+								@* @if (ViewData["Teachers"] != null)
 								{
 									<div class="col-md-6 input-group" style="margin:20px auto">
 										<span class="input-group-addon">
@@ -50,25 +57,25 @@
 											</select>
 										</div>
 									</div>
-								}
+								} *@
 								<div class="col-sm-12 input-group" style="margin:20px auto">
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-file-text"></i>
 									</span>
-									<textarea id="mainGroup" asp-for="Course.Description" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات دوره"></textarea>
+									<textarea id="mainGroup" asp-for="Course.Description" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
 									<span asp-validation-for="Course.Description" class="text-danger"></span>
 								</div>
 								
-								<div class="col-md-6 input-group" style="margin:20px auto">
+								@* <div class="col-md-6 input-group" style="margin:20px auto">
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-movie"></i>
 										<label>فیلم دمو</label>
 									</span>
 									<input type="file" id="demofile" name="DemoFile" accept=".avi,.flv,.mov,.wmv,.mkv,.mp4" onchange="validateDemoType()" class="form-control" />
 									<span asp-validation-for="Course.DemoFileName" class="text-danger"></span>
-								</div>
+								</div> *@
 
-
+@* 
 								@if (ViewData["Statuses"] != null)
 								{
 									<div class="col-md-6 input-group" style="margin:20px auto">
@@ -108,14 +115,14 @@
 											</select>
 										</div>
 									</div>
-								}
+								} *@
 										
 								<div class="col-md-6" style="margin:20px auto">
 								<div class="input-group" >
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-card"></i>
 									</span>
-										<textarea asp-for="Course.Tags" style="resize:vertical;max-height:100px;min-height:30px;height:33px;" class="form-control" placeholder="تگ های دوره"></textarea>
+										<textarea asp-for="Course.Tags" style="resize:vertical;max-height:100px;min-height:30px;height:33px;" class="form-control" placeholder="تگ های محصول"></textarea>
 									<span asp-validation-for="Course.Tags" class="text-danger"></span>
 								</div>
 									<small class="help-block text-muted">تگ ها را با - جدا نمایید</small>
@@ -125,14 +132,14 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-money"></i>
 									</span>
-									<input asp-for="Course.Price" min="0" max="10000000" value="" class="form-control" placeholder="مبلغ دوره">
+									<input asp-for="Course.Price" min="0" max="10000000" value="" class="form-control" placeholder="مبلغ محصول">
 									<span asp-validation-for="Course.Price" class="text-danger"></span>
 								</div>
 
 
 							</div>
 							<div class="col-md-4">
-								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-plus-circle"></i> <strong> افزودن دوره </strong> </button>
+								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-plus-circle"></i> <strong> افزودن محصول </strong> </button>
 							</div>
 						</div>
 
@@ -147,7 +154,7 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading h3 text-center">
-						آواتار
+						عکس اصلی محصول
 					</div>
 					<div class="panel-body">
 						<div class="container client-page">

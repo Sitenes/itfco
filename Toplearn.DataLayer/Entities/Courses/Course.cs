@@ -25,8 +25,11 @@ namespace Toplearn.DataLayer.Entities.Courses
         [MaxLength(50,ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
         public string DemoFileName { get; set; }
 
- 
-        [Display(Name = "توضیحات کامل دوره")]
+		[Display(Name = "توضیحات مختصر دوره")]
+		public string ShortDescription { get; set; }//توضیحات کامل دوره        
+
+
+		[Display(Name = "توضیحات کامل دوره")]
         public string Description { get; set; }//توضیحات کامل دوره        
 
         public int NumberOfStudents { get; set; }//تعداد دانجو هایی که در این دوره ثبت نام کرده اند

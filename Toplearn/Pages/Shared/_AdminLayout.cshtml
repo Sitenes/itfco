@@ -308,15 +308,15 @@
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CourseManagement, _userId))
 						{
 							<li>
-								<a href="/Admin/ManageRoles/Index"><i class="fa fa-bar-chart-o fa-fw"></i>دوره ها<span class="fa arrow"></span></a>
+								<a href="/Admin/ManageRoles/Index"><i class="fa fa-bar-chart-o fa-fw"></i>محصولات<span class="fa arrow"></span></a>
 								<ul class="nav nav-third-level">
 									<li>
-										<a href="/Admin/Courses/Index">لیست دوره ها</a>
+										<a href="/Admin/Courses/Index">لیست محصولات</a>
 									</li>
 									@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddCourse, _userId))
 									{
 										<li>
-											<a href="/Admin/Courses/Create">افزودن دوره جدید</a>
+											<a href="/Admin/Courses/Create">افزودن محصول جدید</a>
 										</li>
 									}
 								</ul>
