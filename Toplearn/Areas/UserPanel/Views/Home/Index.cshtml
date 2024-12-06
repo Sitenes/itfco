@@ -26,11 +26,11 @@
                             <div class="account-information">
                                 <h3> اطلاعات کاربری </h3>
                                 <ul>
-                                    <li> <i class="zmdi zmdi-assignment-account"></i> نام کاربری :  <strong id="UserName"></strong> </li>
-                                    <li> <i class="zmdi zmdi-email"></i> ایمیل : <strong id="UserEmail"></strong>  </li>
+                                    <li> <i class="zmdi zmdi-assignment-account"></i> نام کاربری : @(Model.UserName)  <strong id="UserName"></strong> </li>
+                                    <li> <i class="zmdi zmdi-email"></i> ایمیل : <strong id="UserEmail"></strong> @(Model.Email)  </li>
                                     <li> <i class="zmdi zmdi-calendar-check"></i> تاریخ عضویت : @(Model.RegisterDate.ToShamsi()) </li>
-                                    <li> <i class="zmdi zmdi-smartphone-android"></i> شماره تماس : <strong id="Phone"></strong> </li>
-                                    <li> <i class="zmdi zmdi-balance-wallet"></i> موجودی کیف پول : <strong id="Wallet"></strong> </li>
+                                    <li> <i class="zmdi zmdi-smartphone-android"></i> شماره تماس : <strong id="Phone"></strong> @(Model.Phone)  </li>
+                                    <li> <i class="zmdi zmdi-balance-wallet"></i> موجودی کیف پول : <strong id="Wallet"></strong> @(Model.Wallet)  </li>
                                 </ul>
                             </div>
                         </div>
