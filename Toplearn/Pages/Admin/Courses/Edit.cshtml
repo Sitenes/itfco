@@ -5,7 +5,7 @@
 @using Toplearn.DataLayer.Entities.Courses
 @model Toplearn.Web.Pages.Admin.Courses.EditModel
 @{
-	ViewData["Title"] =  "ویرایش دوره";
+	ViewData["Title"] =  "ویرایش محصول";
 }
 
 <div class="row">
@@ -14,7 +14,7 @@
 
 			<div class="panel panel-primary">
 				<div class="panel-heading h3">
-					ویرایش دوره 
+					ویرایش محصول 
 				</div>
 				<div class="panel-body">
 					<div class="container client-page">
@@ -25,7 +25,7 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-card"></i>
 									</span>
-									<input asp-for="Course.Title" class="form-control" placeholder="عنوان دوره">
+									<input asp-for="Course.Title" class="form-control" placeholder="عنوان محصول">
 									<span asp-validation-for="Course.Title" class="text-danger"></span>
 								</div>
 
@@ -55,7 +55,7 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-file-text"></i>
 									</span>
-									<textarea id="mainGroup" asp-for="Course.Description" name="Course.Description" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات دوره"></textarea>
+									<textarea id="mainGroup" asp-for="Course.Description" name="Course.Description" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
 									<span asp-validation-for="Course.Description" class="text-danger"></span>
 								</div>
 								
@@ -115,7 +115,7 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-card"></i>
 									</span>
-										<textarea asp-for="Course.Tags" style="resize:vertical;max-height:100px;min-height:30px;height:33px;" class="form-control" placeholder="تگ های دوره"></textarea>
+										<textarea asp-for="Course.Tags" style="resize:vertical;max-height:100px;min-height:30px;height:33px;" class="form-control" placeholder="تگ های محصول"></textarea>
 									<span asp-validation-for="Course.Tags" class="text-danger"></span>
 								</div>
 									<small class="help-block text-muted">تگ ها را با - جدا نمایید</small>
@@ -125,14 +125,14 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-money"></i>
 									</span>
-									<input asp-for="Course.Price" min="0" max="10000000"  class="form-control" placeholder="مبلغ دوره">
+									<input asp-for="Course.Price" min="0" max="10000000"  class="form-control" placeholder="مبلغ محصول">
 									<span asp-validation-for="Course.Price" class="text-danger"></span>
 								</div>
 
 
 							</div>
 							<div class="col-md-4">
-								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-plus-circle"></i> <strong> ویرایش دوره </strong> </button>
+								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-plus-circle"></i> <strong> ویرایش محصول </strong> </button>
 							</div>
 						</div>
 

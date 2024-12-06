@@ -3,7 +3,7 @@
 
 @{
 	Guid _userId = Guid.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
-	ViewData["Title"] = "بخش های دوره";
+	ViewData["Title"] = "بخش های محصول";
 }
 
 
@@ -93,7 +93,7 @@
 								<thead>
 									<tr role="row" class="h4 text-center">
 										<th>عنوان قسمت</th>
-										<th>زمان دوره</th>
+										<th>زمان محصول</th>
 										<th>هزینه</th>
 										<th>دستورات</th>
 									</tr>
