@@ -12,6 +12,7 @@ namespace Toplearn.Core.Convertors
 
         public static string ToShamsi(this DateTime value)
         {
+            if(value == null || value < new DateTime(2000,1,1) || value > new DateTime(3000, 1, 1)) return "";
             PersianCalendar pCalender = new PersianCalendar();
             string shamsiDate = pCalender.GetYear(value).ToString() + '/' +
                 pCalender.GetMonth(value).ToString("00") + '/' +

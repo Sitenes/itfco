@@ -162,7 +162,7 @@
 								<div class="form-group">
 
 									<div class="thumbnail">
-										<img id="imgAvatar" src="/CourseRoot/Image/Default.png" />
+										<img id="imgAvatar" src="/CourseRoot/Image/Default.jpg" />
 									</div>
 									<input type="file" id="fileName" name="ImageFile" accept=".jpg,.jpeg,.png,.gif" onchange="validateFileType()" class="form-control" />
 								</div>
@@ -194,13 +194,13 @@
 											@foreach (var groupItem in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == null))
 											{
 												<li>
-													<div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem.GroupId)"> @(groupItem.GroupTitle)</label></div>
+													<div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem.GroupId)"> @(groupItem.NamePersian)</label></div>
 												</li>
 												<ul>
 													@foreach (var groupItem2 in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == groupItem.GroupId))
 													{
 														<li>
-															<div class="radio"><label><input asp-for="Course.SubGroupId" type="radio" value="@(groupItem2.GroupId)"> @(groupItem2.GroupTitle)</label></div>
+															<div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem2.GroupId)"> @(groupItem2.NamePersian)</label></div>
 														</li>
 													}
 												</ul>

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Toplearn.DataLayer.Entities.Courses;
-using Toplearn.DataLayer.Entities.Permissions;
 using Toplearn.DataLayer.Entities.User;
 using Toplearn.DataLayer.Entities.Wallet;
+using Toplearn.DataLayer.Entities.Permissions;
 
 namespace Toplearn.DataLayer.Context
 {
@@ -36,7 +36,7 @@ namespace Toplearn.DataLayer.Context
 
 
 
-        #region Permissions Roles
+        #region Permission Roles
 
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<RolePermission> RolePermissions { get; set; }
@@ -50,18 +50,17 @@ namespace Toplearn.DataLayer.Context
         public DbSet<CourseGroup> CourseGroups { get; set; }
         public DbSet<Episode> Episode { get; set; }
         #endregion
-
         #endregion
 
         #region ModelBuilder
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Adding Permissions
+            // Adding Categories
             var permissions = Enum.GetValues(typeof(Core.AllEnums.PermissionEnum))
                                   .Cast<Core.AllEnums.PermissionEnum>()
                                   .Select(permission => new
                                   {
-                                      PermissionId = (int)permission,
+                                      PermissionId = (int)permission, // اضافه کردن مقدار یکتا
                                       ParentID = (int?)null, // اگر Parent نیاز است، مقدار مناسب قرار دهید
                                       PermissionTitle = permission.ToString()
                                   })
@@ -69,18 +68,19 @@ namespace Toplearn.DataLayer.Context
 
             modelBuilder.Entity<Permission>().HasData(permissions);
 
+
             // Example of Admin User
             Guid _adminUserId = new Guid("1eb79e08-e5ce-486d-9909-65997e781c53");
             modelBuilder.Entity<User>().HasQueryFilter(n => n.IsDeleted == false).HasData(new User()
             {
-                Email = "Admin@gmail.com",
-                EmailLink = Guid.NewGuid(),
-                ExpireEmailLink = DateTime.Now,
-                RegisterDate = DateTime.Now,
+                Email = "admin@gmail.com",
+                EmailLink = _adminUserId,
+                ExpireEmailLink = DateTime.MinValue,
+                RegisterDate = DateTime.MinValue,
                 IsActive = true,
                 IsDeleted = false,
                 Password = EncodePasswordMd5("admin123456"),
-                Phone = 09013348988,
+                Phone = 9999999999,
                 UserAvatar = "",
                 UserId = _adminUserId,
                 UserName = "Admin",
@@ -102,17 +102,22 @@ namespace Toplearn.DataLayer.Context
                 UR_Id = 1,
             });
 
-            // Adding Role Permissions
+            // Adding Role Categories
             var rolePermissions = permissions.Select(permission => new
             {
                 RoleId = 1,
                 PermissionId = permission.PermissionId,
-                RP_Id = permission.PermissionId // مقدار منحصر به فرد برای هر Permission
+                RP_Id = permission.PermissionId // مقدار منحصر به فرد برای هر Category
             }).ToList();
 
             modelBuilder.Entity<RolePermission>().HasData(rolePermissions);
 
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<RolePermission>().HasQueryFilter(rp => !rp.Role.IsDeleted);
+            modelBuilder.Entity<UserRole>().HasQueryFilter(ur => !ur.Role.IsDeleted && !ur.User.IsDeleted);
+
+			modelBuilder.Entity<CourseGroup>().HasQueryFilter(x => !x.IsDeleted);
+
+			base.OnModelCreating(modelBuilder);
         }
 
         #endregion

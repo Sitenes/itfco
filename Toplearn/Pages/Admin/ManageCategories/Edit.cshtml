@@ -1,0 +1,125 @@
+﻿@page "{id}"
+@using Toplearn.Core.DTOs.CourseVM
+@using Toplearn.DataLayer.Entities.Courses
+@using Toplearn.DataLayer.Entities.User
+@model Toplearn.Web.Pages.Admin.ManageCategories.EditModel
+
+
+@{
+    ViewData["Title"] = "ویرایش دسته بندی " + Model.Category.NamePersian;
+    var Categories = ViewData["Categories"] as List<CategoryDto>;
+    // List<int> selectedCategories = ViewData["SelectedCategories"] as List<int>;
+}
+<div class="row">
+	<form method="post" enctype="multipart/form-data">
+		<input type="hidden" asp-for="Category.Id" />
+		<div class="col-md-8">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading h4">
+					افزودن دسته بندی
+				</div>
+				<div class="panel-body">
+					<div class="container client-page">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-6 ">
+									<div class="input-group" style="margin-top:20px">
+										<span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+										<input asp-for="Category.NamePersian" class="form-control" placeholder="نام فارسی دسته بندی">
+									</div>
+									<span asp-validation-for="Category.NamePersian" class="text-danger"></span>
+								</div>
+								<div class="col-md-6 ">
+									<div class="input-group" style="margin-top:20px">
+										<span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+										<input asp-for="Category.NameEnglish" class="form-control" placeholder="نام انگلیسی دسته بندی">
+									</div>
+									<span asp-validation-for="Category.NameEnglish" class="text-danger"></span>
+								</div>
+								<div class="col-md-6 ">
+									<div class="input-group" style="margin-top:20px">
+										<span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+										<input asp-for="Category.NameArabic" class="form-control" placeholder="نام عربی دسته بندی">
+									</div>
+									<span asp-validation-for="Category.NameArabic" class="text-danger"></span>
+								</div>
+
+							</div>
+							<div class="col-md-4" style="margin:30px">
+								<button type="submit" class="form-control btn btn-success btn-block"> <i class="zmdi zmdi-plus-circle"> </i>افزودن دسته بندی</button>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-4">
+			<div class="container client-page">
+
+				<div class="panel panel-default">
+					<div class="panel-heading h3 text-center">
+						انتخاب دسته بندی پدر
+					</div>
+					<div class="panel-body">
+						<div class="container client-page">
+							<div class="form-group">
+								<div class="form-group">
+									@if (ViewData["Categories"] != null)
+									{
+										<ul>
+											@foreach (var permissionItem in Categories?.Where(n => n.ParentId == null) ?? new List<CategoryDto>())
+											{
+												<li>
+													<div class="checkbox"><label><input asp-for="Category.ParentId" type="radio" value="@(permissionItem.Id)"> @(permissionItem.NamePersian)</label></div>
+												</li>
+												<ul>
+													@foreach (var perItem2 in Categories.Where(n => n.ParentId == permissionItem.Id))
+													{
+														<li>
+															<div class="checkbox"><label><input asp-for="Category.ParentId" type="radio" value="@(perItem2.Id)"> @(perItem2.NamePersian)</label></div>
+														</li>
+
+														<ul>
+															@foreach (var perItem3 in Categories.Where(n => n.ParentId == perItem2.Id))
+															{
+																<li>
+																	<div class="checkbox"><label><input asp-for="Category.ParentId" type="radio" value="@(perItem3.Id)"> @(perItem3.NamePersian)</label></div>
+																</li>
+															}
+														</ul>
+													}
+												</ul>
+											}
+										</ul>
+									}
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+@section Scripts
+{
+    @if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+    {
+        <partial name="_SucceedModalPartial" model="@("/Admin/ManageCategories/Index")" />
+        <script>
+            $(document).ready(function () {
+                setTimeout(function () { location.replace("/Admin/ManageCategories/Index"); }, 10000);
+            });
+        </script>
+
+    }
+    <script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    </script>
+}

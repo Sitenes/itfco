@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Toplearn.DataLayer.Context;
 
 namespace Toplearn.Web.Migrations
 {
     [DbContext(typeof(ToplearnContext))]
-    partial class ToplearnContextModelSnapshot : ModelSnapshot
+    [Migration("20241206214207_addNewPermissions")]
+    partial class addNewPermissions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,7 @@ namespace Toplearn.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CourseStatusId")
+                    b.Property<int>("CourseStatusId")
                         .HasColumnType("int");
 
                     b.Property<string>("DemoFileName")
@@ -36,7 +38,7 @@ namespace Toplearn.Web.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("GroupId")
+                    b.Property<int>("GroupId")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -45,7 +47,7 @@ namespace Toplearn.Web.Migrations
                     b.Property<DateTime>("LastUpdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("LevelId")
+                    b.Property<int>("LevelId")
                         .HasColumnType("int");
 
                     b.Property<int>("NumberOfStudents")
@@ -654,15 +656,21 @@ namespace Toplearn.Web.Migrations
                 {
                     b.HasOne("Toplearn.DataLayer.Entities.Courses.CourseStatus", "CourseStatus")
                         .WithMany("Courses")
-                        .HasForeignKey("CourseStatusId");
+                        .HasForeignKey("CourseStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Toplearn.DataLayer.Entities.Courses.CourseGroup", "Group")
                         .WithMany("CourseGroups")
-                        .HasForeignKey("GroupId");
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Toplearn.DataLayer.Entities.Courses.CourseLevel", "CourseLevel")
                         .WithMany("Courses")
-                        .HasForeignKey("LevelId");
+                        .HasForeignKey("LevelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Toplearn.DataLayer.Entities.Courses.CourseGroup", "SubGroup")
                         .WithMany()

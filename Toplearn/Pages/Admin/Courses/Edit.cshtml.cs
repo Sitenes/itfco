@@ -40,10 +40,15 @@ namespace Toplearn.Web.Pages.Admin.Courses
             ViewData["Teachers"] = _courseService.GetTeachersName();
             ViewData["Statuses"] = _courseService.GetStatuses();
             ViewData["Levels"] = _courseService.GetLevels();
-            
-            //if (!ModelState.IsValid)
-            //    return Page();
-            Course = await _courseService.SetGroup(Course);
+
+            if (!ModelState.IsValid)
+                return Page();
+
+			var userClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+			if (userClaim != null)
+				Course.UserCreatorId = Guid.Parse(userClaim.Value);
+
+			//Course = await _courseService.SetGroup(Course);
 
             bool IsSucceed = await _courseService.Update(Course,ImageFile,DemoFile);
             if (IsSucceed)

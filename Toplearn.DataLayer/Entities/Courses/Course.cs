@@ -15,46 +15,46 @@ namespace Toplearn.DataLayer.Entities.Courses
 
         [MaxLength(200, ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
-        [Display(Name = "عنوان دوره")]
-        public string Title { get; set; }//عنوان دوره
+        [Display(Name = "عنوان محصول")]
+        public string Title { get; set; }//عنوان محصول
 
 
         [Column(TypeName = "varchar(50)")]
-        public string Image { get; set; }//عکس دوره
+        public string Image { get; set; }//عکس محصول
 
         [MaxLength(50,ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
         public string DemoFileName { get; set; }
 
-		[Display(Name = "توضیحات مختصر دوره")]
-		public string ShortDescription { get; set; }//توضیحات کامل دوره        
+		[Display(Name = "توضیحات مختصر محصول")]
+		public string ShortDescription { get; set; }//توضیحات کامل محصول        
 
 
-		[Display(Name = "توضیحات کامل دوره")]
-        public string Description { get; set; }//توضیحات کامل دوره        
+		[Display(Name = "توضیحات کامل محصول")]
+        public string Description { get; set; }//توضیحات کامل محصول        
 
-        public int NumberOfStudents { get; set; }//تعداد دانجو هایی که در این دوره ثبت نام کرده اند
-
-        [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
-        public long Price { get; set; }//ملغ دوره
+        public int NumberOfStudents { get; set; }//تعداد دانجو هایی که در این محصول ثبت نام کرده اند
 
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
-        public DateTime RegistrationDate { get; set; }//تاریخ ایجاد کردن این دوره و آپلود اولین فیلم آموزشی
+        public long Price { get; set; }//ملغ محصول
 
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
-        public DateTime LastUpdate { get; set; }//آخرین بروزرسانی این دوره
+        public DateTime RegistrationDate { get; set; }//تاریخ ایجاد کردن این محصول و آپلود اولین فیلم آموزشی
+
+        [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
+        public DateTime LastUpdate { get; set; }//آخرین بروزرسانی این محصول
 
         [MaxLength(500,ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
         public string Tags { get; set; }
 
         public int? SubGroupId { get; set; }
         
-        public int LevelId { get; set; }
+        public int? LevelId { get; set; }
 
-        public int CourseStatusId { get; set; }
+        public int? CourseStatusId { get; set; }
 
-        public Guid TeacherId { get; set; }
+        public Guid? UserCreatorId { get; set; }
 
-        public int GroupId { get; set; }
+        public int? GroupId { get; set; }
 
 
         #region Relations
@@ -65,8 +65,8 @@ namespace Toplearn.DataLayer.Entities.Courses
         [ForeignKey("CourseStatusId")]
         public CourseStatus CourseStatus { get; set; }
 
-        [ForeignKey("TeacherId")]
-        public User.User Teacher { get; set; }
+        [ForeignKey("UserCreatorId")]
+        public User.User UserCreator { get; set; }
 
         [ForeignKey("GroupId")]
         public CourseGroup Group { get; set; }

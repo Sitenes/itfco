@@ -125,7 +125,11 @@ namespace Toplearn.Core.Services
 
         public User GetUser(Guid UserId)
         {
-            return _context.Users.Find(UserId);
+            var user = _context.Users.Find(UserId);
+            if (string.IsNullOrEmpty(user.UserAvatar))
+                user.UserAvatar = "\\UserAvatar\\Default.png";
+
+			return user;
         }
 
         public User GetUser(User User)
@@ -139,7 +143,8 @@ namespace Toplearn.Core.Services
 
         public UserDetailViewModel GetUserDetails(Guid UserId)
         {
-            return _context.Users.Where(n => n.UserId == UserId).Select(n => new UserDetailViewModel()
+
+			var user =  _context.Users.Where(n => n.UserId == UserId).Select(n => new UserDetailViewModel()
             {
                 RegisterDate = n.RegisterDate,
                 Email = n.Email,
@@ -150,7 +155,13 @@ namespace Toplearn.Core.Services
                 UserName = n.UserName,
                 Phone = n.Phone
             }).SingleOrDefault();
-        }
+
+			if (string.IsNullOrEmpty(user.UserAvatar))
+				user.UserAvatar = "\\UserAvatar\\Default.png";
+			
+            return user;
+
+		}
         #endregion
 
         public void SaveChanges()
@@ -203,16 +214,22 @@ namespace Toplearn.Core.Services
 
         public User GetUserByName(string UserName)
         {
-            return _context.Users.
+            var user = _context.Users.
                 SingleOrDefault(n => n.UserName == UserName);
-        }
+			if (string.IsNullOrEmpty(user.UserAvatar))
+				user.UserAvatar = "\\UserAvatar\\Default.png";
+            return user;
+		}
 
         public string GetAvaterByUserName(string UserName)
         {
-            return _context.Users.
+            var userAvatar = _context.Users.
                 Where(n => n.UserName == UserName).
                 Select(n => n.UserAvatar).SingleOrDefault();
-        }
+			if (string.IsNullOrEmpty(userAvatar))
+				userAvatar = "\\UserAvatar\\Default.png";
+            return userAvatar;
+		}
 
         public UsersForAdminViewModel FilterUser(UsersForAdminViewModel filters)
         {
@@ -286,8 +303,8 @@ namespace Toplearn.Core.Services
         public IEnumerable<User> GetUsers()
         {
             List<User> users = _context.Users.ToList();
-               
-            return users;
+            users.ForEach(x => x.UserAvatar = string.IsNullOrEmpty(x.UserAvatar) ? "\\UserAvatar\\Default.png" : x.UserAvatar);
+			return users;
         }
 
 

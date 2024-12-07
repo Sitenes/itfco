@@ -44,5 +44,9 @@ namespace Toplearn.Core.AllEnums
         AddEpisodeToCourse = 15,
         EditCourseEpisodes = 16,
         RemoveCourseEpisodes = 17,
+        CategoryManagement = 18,
+        AddCategory = 19,
+        EditCategory = 20,
+        RemoveCategory = 21,
     }
 }

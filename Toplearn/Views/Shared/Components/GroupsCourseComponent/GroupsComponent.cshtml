@@ -10,11 +10,11 @@
                 @foreach (var groupItem in Model.Where(n=>n.ParentId==null).ToList())
                 {
                     <li>
-                        <a href=""> @(groupItem.GroupTitle)</a>
+                        <a href=""> @(groupItem.NamePersian)</a>
                         <ul>
                             @foreach (var subGroupItem in Model.Where(n=>n.ParentId == groupItem.GroupId).ToList())
                             {
-                                <li><a href=""> @(subGroupItem.GroupTitle) </a></li>
+                                <li><a href=""> @(subGroupItem.NamePersian) </a></li>
                             }
 
                         </ul>

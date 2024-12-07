@@ -16,7 +16,15 @@ namespace Toplearn.DataLayer.Entities.Courses
         [MaxLength(100, ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
         [Display(Name = "عنوان گروه")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
-        public string GroupTitle { get; set; }
+        public string NamePersian { get; set; }
+        [MaxLength(100, ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
+        [Display(Name = "عنوان گروه")]
+        [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
+        public string NameEnglish { get; set; }
+        [MaxLength(100, ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
+        [Display(Name = "عنوان گروه")]
+        [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
+        public string NameArabic { get; set; }
 
         [Display(Name = "حذف شده ؟")]
         public bool IsDeleted { get; set; }
@@ -30,8 +38,8 @@ namespace Toplearn.DataLayer.Entities.Courses
         [InverseProperty("Group")]
         public List<Course> CourseGroups { get; set; }
 
-        [InverseProperty("SubGroup")]
-        public List<Course> SubGroups { get; set; }
+        [InverseProperty("Parent")]
+        public List<CourseGroup> SubGroups { get; set; }
 
         #endregion
     }

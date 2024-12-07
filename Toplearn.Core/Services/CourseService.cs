@@ -33,11 +33,7 @@ namespace Toplearn.Core.Services
             if (course.GroupId == 0 && course.SubGroupId != 0)
                 await SetGroup(course);
 
-            if (ImageFile == null)
-            {
-                course.Image = "Default.png";
-            }
-            else
+            if (ImageFile != null)
             {
                 string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
                 string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", newAvatarURL);
@@ -147,20 +143,20 @@ namespace Toplearn.Core.Services
 
         public async Task<IEnumerable<CourseListAdminViewModel>> GetCoursesList()
         {
-            return await _context.Courses.Include(n => n.Teacher).Select(n => new CourseListAdminViewModel()
+            return await _context.Courses.Include(n => n.UserCreator).Select(n => new CourseListAdminViewModel()
             {
                 CourseId = n.CourseId,
                 CourseTitle = n.Title,
                 Image = n.Image,
                 NumberOfStudents = n.NumberOfStudents,
                 Price = n.Price,
-                TeacherName = n.Teacher.UserName,
+                TeacherName = n.UserCreator.UserName,
             }).ToListAsync();
         }
 
         public async Task<IEnumerable<CourseListAdminViewModel>> GetCoursesList(CourseFilterAdminViewModel Filter)
         {
-            IEnumerable<Course> Courses = await _context.Courses.Include(n => n.Teacher).ToListAsync();
+            IEnumerable<Course> Courses = await _context.Courses.Include(n => n.UserCreator).ToListAsync();
             if (Filter.CourseStatusId != 0)
             {
                 Courses = Courses.Where(n => n.CourseStatusId == Filter.CourseStatusId);
@@ -207,7 +203,7 @@ namespace Toplearn.Core.Services
 
             if (!string.IsNullOrWhiteSpace(Filter.TeacherOrCourseId))
             {
-                Courses = Courses.Where(n => n.TeacherId.ToString() == Filter.TeacherOrCourseId || n.CourseId.ToString() == Filter.TeacherOrCourseId);
+                Courses = Courses.Where(n => n.UserCreatorId.ToString() == Filter.TeacherOrCourseId || n.CourseId.ToString() == Filter.TeacherOrCourseId);
             }
 
             if (!string.IsNullOrWhiteSpace(Filter.Title))
@@ -227,7 +223,7 @@ namespace Toplearn.Core.Services
                 Image = n.Image,
                 NumberOfStudents = n.NumberOfStudents,
                 Price = n.Price,
-                TeacherName = n.Teacher.UserName
+                TeacherName = n.UserCreator?.UserName ?? ""
             }).ToList();
         }
 
@@ -513,6 +509,73 @@ namespace Toplearn.Core.Services
                 return false;
             }
             return true;
+        }
+
+        public async Task AddCategory(CategoryDto categoryDto)
+        {
+            var category = new CourseGroup
+            {
+                NamePersian = categoryDto.NamePersian,
+                NameEnglish = categoryDto.NameEnglish,
+                NameArabic = categoryDto.NameArabic,
+                ParentId = categoryDto.ParentId,
+            };
+
+            await _context.CourseGroups.AddAsync(category);
+        }
+
+        public async Task<List<CategoryDto>> GetAllCourseGroups()
+        {
+            var categories = await _context.CourseGroups.Include(x => x.Parent).Include(x => x.SubGroups).Include(x => x.CourseGroups).ToListAsync();
+            return categories.Select(c => new CategoryDto
+            {
+                Id = c.GroupId,
+                NamePersian = c.NamePersian,
+                NameEnglish = c.NameEnglish,
+                NameArabic = c.NameArabic,
+                Parent = c.Parent,
+				ParentId = c.ParentId,
+				Childs = c.SubGroups
+            }).ToList();
+        }
+
+        public async Task<CategoryDto> GetCategoryById(int id)
+        {
+            var category = await _context.CourseGroups.FindAsync(id);
+            if (category == null) return null;
+
+            return new CategoryDto
+            {
+                Id = category.GroupId,
+                NamePersian = category.NamePersian,
+                NameEnglish = category.NameEnglish,
+                NameArabic = category.NameArabic,
+                Parent = category.Parent,
+				ParentId = category.ParentId,
+				Childs = category.SubGroups
+            };
+        }
+
+        public async Task UpdateCategory(CategoryDto categoryDto)
+        {
+            var category = await _context.CourseGroups.FindAsync(categoryDto.Id);
+            if (category == null) return;
+
+            category.NamePersian = categoryDto.NamePersian;
+            category.NameEnglish = categoryDto.NameEnglish;
+            category.NameArabic = categoryDto.NameArabic;
+            category.ParentId = categoryDto.ParentId;
+
+        }
+
+        public async Task DeleteCategory(int id)
+        {
+            var category = await _context.CourseGroups.Include(x=>x.SubGroups).FirstOrDefaultAsync(x=>x.GroupId == id);
+            if (category != null)
+            {
+                category.IsDeleted = true;
+                category.SubGroups.ForEach(x=>x.IsDeleted = true);
+            }
         }
     }
 }

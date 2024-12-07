@@ -30,94 +30,101 @@
 								</div>
 
 
-
-								@if (ViewData["Teachers"] != null)
-								{
-									<div class="col-md-6 input-group" style="margin:20px auto">
-										<span class="input-group-addon">
-											<i class="zmdi zmdi-account"></i>
-											<label>مدرس</label>
-										</span>
-										
-										<div class="form-group" id="subGroup">
-											<select class="form-control" asp-for="Course.TeacherId">
-												@foreach (var groupItem in (ViewData["Teachers"] as List<TeacherForCourseViewModel>))
-												{
-													<option value="@(groupItem.TeacherId)">
-														@(groupItem.TeacherName)
-													</option>
-												}
-											</select>
-										</div>
-									</div>
-								}
 								<div class="col-sm-12 input-group" style="margin:20px auto">
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-file-text"></i>
 									</span>
-									<textarea id="mainGroup" asp-for="Course.Description" name="Course.Description" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
+									<textarea asp-for="Course.ShortDescription" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" class="form-control" placeholder="توضیحات مختصر"></textarea>
+									<span asp-validation-for="Course.ShortDescription" class="text-danger"></span>
+								</div>
+
+								@* @if (ViewData["Teachers"] != null)
+								{
+								<div class="col-md-6 input-group" style="margin:20px auto">
+								<span class="input-group-addon">
+								<i class="zmdi zmdi-account"></i>
+								<label>مدرس</label>
+								</span>
+
+								<div class="form-group" id="subGroup">
+								<select class="form-control" asp-for="Course.TeacherId">
+								@foreach (var groupItem in (ViewData["Teachers"] as List<TeacherForCourseViewModel>))
+								{
+								<option value="@(groupItem.TeacherId)">
+								@(groupItem.TeacherName)
+								</option>
+								}
+								</select>
+								</div>
+								</div>
+								} *@
+								<div class="col-sm-12 input-group" style="margin:20px auto">
+									<span class="input-group-addon">
+										<i class="zmdi zmdi-file-text"></i>
+									</span>
+									<textarea id="mainGroup" asp-for="Course.Description" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
 									<span asp-validation-for="Course.Description" class="text-danger"></span>
 								</div>
-								
-								<div class="col-md-6 input-group" style="margin:20px auto">
-									<span class="input-group-addon">
-										<i class="zmdi zmdi-movie"></i>
-										<label>فیلم دمو</label>
-									</span>
-									<input type="file" id="demofile" name="DemoFile" accept=".avi,.flv,.mov,.wmv,.mkv,.mp4" onchange="validateDemoType()" class="form-control" />
-									<span asp-validation-for="Course.DemoFileName" class="text-danger"></span>
-								</div>
 
+								@* <div class="col-md-6 input-group" style="margin:20px auto">
+								<span class="input-group-addon">
+								<i class="zmdi zmdi-movie"></i>
+								<label>فیلم دمو</label>
+								</span>
+								<input type="file" id="demofile" name="DemoFile" accept=".avi,.flv,.mov,.wmv,.mkv,.mp4" onchange="validateDemoType()" class="form-control" />
+								<span asp-validation-for="Course.DemoFileName" class="text-danger"></span>
+								</div> *@
 
+								@*
 								@if (ViewData["Statuses"] != null)
 								{
-									<div class="col-md-6 input-group" style="margin:20px auto">
-										<span class="input-group-addon">
-											<label>وضعیت</label>
-										</span>
+								<div class="col-md-6 input-group" style="margin:20px auto">
+								<span class="input-group-addon">
+								<label>وضعیت</label>
+								</span>
 
-										<div class="form-group" id="subGroup">
-											<select class="form-control" asp-for="Course.CourseStatusId">
-												@foreach (var groupItem in (ViewData["Statuses"] as List<CourseStatus>))
-												{
-													<option value="@(groupItem.StatusId)">
-														@(groupItem.StatusTitle)
-													</option>
-												}
-											</select>
-										</div>
-									</div>
+								<div class="form-group" id="subGroup">
+								<select class="form-control" asp-for="Course.CourseStatusId">
+								@foreach (var groupItem in (ViewData["Statuses"] as List<CourseStatus>))
+								{
+								<option value="@(groupItem.StatusId)">
+								@(groupItem.StatusTitle)
+								</option>
+								}
+								</select>
+								</div>
+								</div>
 								}
 
 
 								@if (ViewData["Levels"] != null)
 								{
-									<div class="col-md-6 input-group" style="margin:20px auto">
-										<span class="input-group-addon">
-											<label>سطح</label>
-										</span>
+								<div class="col-md-6 input-group" style="margin:20px auto">
+								<span class="input-group-addon">
+								<label>سطح</label>
+								</span>
 
-										<div class="form-group" id="subGroup">
-											<select class="form-control" asp-for="Course.LevelId">
-												@foreach (var groupItem in (ViewData["Levels"] as List<CourseLevel>))
-												{
-													<option value="@(groupItem.CourseLevelId)">
-														@(groupItem.LevelTitle)
-													</option>
-												}
-											</select>
-										</div>
-									</div>
+								<div class="form-group" id="subGroup">
+								<select class="form-control" asp-for="Course.LevelId">
+								@foreach (var groupItem in (ViewData["Levels"] as List<CourseLevel>))
+								{
+								<option value="@(groupItem.CourseLevelId)">
+								@(groupItem.LevelTitle)
+								</option>
 								}
-										
-								<div class="col-md-6" style="margin:20px auto">
-								<div class="input-group" >
-									<span class="input-group-addon">
-										<i class="zmdi zmdi-card"></i>
-									</span>
-										<textarea asp-for="Course.Tags" style="resize:vertical;max-height:100px;min-height:30px;height:33px;" class="form-control" placeholder="تگ های محصول"></textarea>
-									<span asp-validation-for="Course.Tags" class="text-danger"></span>
+								</select>
 								</div>
+								</div>
+								} *@
+
+								<div class="col-md-6" style="margin:20px auto">
+									<div class="input-group">
+										<span class="input-group-addon">
+											<i class="zmdi zmdi-card"></i>
+										</span>
+										<textarea asp-for="Course.Tags" style="resize:vertical;max-height:100px;min-height:30px;height:33px;" class="form-control" placeholder="تگ های محصول"></textarea>
+										<span asp-validation-for="Course.Tags" class="text-danger"></span>
+									</div>
 									<small class="help-block text-muted">تگ ها را با - جدا نمایید</small>
 								</div>
 
@@ -125,14 +132,14 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-money"></i>
 									</span>
-									<input asp-for="Course.Price" min="0" max="10000000"  class="form-control" placeholder="مبلغ محصول">
+									<input asp-for="Course.Price" min="0" max="10000000" value="" class="form-control" placeholder="مبلغ محصول">
 									<span asp-validation-for="Course.Price" class="text-danger"></span>
 								</div>
 
 
 							</div>
 							<div class="col-md-4">
-								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-plus-circle"></i> <strong> ویرایش محصول </strong> </button>
+								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-plus-circle"></i> <strong> افزودن محصول </strong> </button>
 							</div>
 						</div>
 
@@ -147,7 +154,7 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading h3 text-center">
-						آواتار
+						عکس اصلی محصول
 					</div>
 					<div class="panel-body">
 						<div class="container client-page">
@@ -155,15 +162,8 @@
 								<div class="form-group">
 
 									<div class="thumbnail">
-										@if(Model.Course == null || Model.Course.Image == null){
-											<img id="imgAvatar" src="/CourseRoot/Image/Default.png" />
-
-										}
-										else{
-											<img id="imgAvatar" src="/CourseRoot/Image/@(Model.Course.Image)" />
-									
-										}
-										</div>
+										<img id="imgAvatar" src="/CourseRoot/Image/Default.jpg" />
+									</div>
 									<input type="file" id="fileName" name="ImageFile" accept=".jpg,.jpeg,.png,.gif" onchange="validateFileType()" class="form-control" />
 								</div>
 
@@ -194,13 +194,13 @@
 											@foreach (var groupItem in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == null))
 											{
 												<li>
-													<div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem.GroupId)"> @(groupItem.GroupTitle)</label></div>
+													<div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem.GroupId)"> @(groupItem.NamePersian)</label></div>
 												</li>
 												<ul>
 													@foreach (var groupItem2 in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == groupItem.GroupId))
 													{
 														<li>
-															<div class="radio"><label><input asp-for="Course.SubGroupId" type="radio" value="@(groupItem2.GroupId)"> @(groupItem2.GroupTitle)</label></div>
+															<div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem2.GroupId)"> @(groupItem2.NamePersian)</label></div>
 														</li>
 													}
 												</ul>
@@ -216,13 +216,11 @@
 			</div>
 		</div>
 
-		<input type="hidden" asp-for="Course.CourseId" />
-		<input type="hidden" asp-for="Course.DemoFileName" />
-		<input type="hidden" asp-for="Course.Image" />
-		<input type="hidden" asp-for="Course.RegistrationDate" />
+
 
 	</form>
 </div>
+
 
 @section Scripts
 	{

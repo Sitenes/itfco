@@ -33,7 +33,7 @@ body {
         position: inherit;
         margin: 0 250px 0 0;
         padding: 0 30px;
-        min-height: 1300px;
+        /*min-height: 1300px;*/
         border-left: 1px solid #e7e7e7;
     }
 }
@@ -339,4 +339,11 @@ table.dataTable thead .sorting:after {
 
 .admin-panel {
     font-family: 'BYekan', Arial, sans-serif;
+}
+body{
+    font-size:16px;
+}
+
+.center{
+    text-align:center;
 }

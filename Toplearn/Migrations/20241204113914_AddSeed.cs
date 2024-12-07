@@ -39,7 +39,8 @@ namespace Toplearn.Web.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "Email", "EmailLink", "ExpireEmailLink", "IsActive", "IsDeleted", "IsTeacher", "Password", "Phone", "RegisterDate", "UserAvatar", "UserName", "Wallet" },
-                values: new object[] { new Guid("1eb79e08-e5ce-486d-9909-65997e781c53"), "Admin@gmail.com", new Guid("1afd70bc-d76a-4b33-82da-5bfd63763039"), new DateTime(2024, 12, 4, 15, 9, 13, 599, DateTimeKind.Local).AddTicks(9285), true, false, false, "A6-6A-BB-56-84-C4-59-62-D8-87-56-4F-08-34-6E-8D", 9013348988L, new DateTime(2024, 12, 4, 15, 9, 13, 601, DateTimeKind.Local).AddTicks(6394), "", "Admin", 9999999999L });
+                values: new object[] { new Guid("1eb79e08-e5ce-486d-9909-65997e781c53"), "admin@gmail.com", new Guid("1eb79e08-e5ce-486d-9909-65997e781c53"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, false, false, "A6-6A-BB-56-84-C4-59-62-D8-87-56-4F-08-34-6E-8D", 9999999999L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "Admin", 9999999999L });
+
 
             migrationBuilder.InsertData(
                 table: "RolePermissions",

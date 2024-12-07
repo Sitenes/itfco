@@ -38,7 +38,7 @@
 			<!-- /.navbar-header -->
 
 			<ul class="nav navbar-top-links navbar-left">
-				<li class="dropdown">
+				@* <li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 						<i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
 					</a>
@@ -226,7 +226,7 @@
 						</li>
 					</ul>
 					<!-- /.dropdown-alerts -->
-				</li>
+				</li> *@
 				<!-- /.dropdown -->
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -322,6 +322,23 @@
 								</ul>
 							</li>
 						}
+						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CategoryManagement, _userId))
+						{
+							<li>
+								<a href="/Admin/ManageRoles/Index"><i class="fa fa-bar-chart-o fa-fw"></i>دسته بندی ها<span class="fa arrow"></span></a>
+								<ul class="nav nav-third-level">
+									<li>
+										<a href="/Admin/ManageCategories/Index">لیست دسته بندی ها</a>
+									</li>
+									@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddCategory, _userId))
+									{
+										<li>
+											<a href="/Admin/ManageCategories/Create">افزودن دسته بندی جدید</a>
+										</li>
+									}
+								</ul>
+							</li>
+						}
 					</ul>
 					<!-- /#side-menu -->
 				</div>
@@ -331,7 +348,7 @@
 		</nav>
 
 
-		<div id="page-wrapper" class="container">
+		<div id="page-wrapper" class="">
 
 			@RenderBody()
 			<!-- /.row -->

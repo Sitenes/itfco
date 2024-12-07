@@ -7,10 +7,6 @@ namespace Toplearn.Web.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DeleteData(
-                table: "Users",
-                keyColumn: "UserId",
-                keyValue: new Guid("8ffeccab-4e84-4111-8072-f606e4574235"));
 
             migrationBuilder.RenameColumn(
                 name: "CourseStatusId",
@@ -71,13 +67,6 @@ namespace Toplearn.Web.Migrations
                         principalColumn: "CourseId",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.UpdateData(
-                table: "UserRoles",
-                keyColumn: "UR_Id",
-                keyValue: 1,
-                column: "UserId",
-                value: new Guid("00ac29bb-ea32-4fb2-b4b2-58291dc459b7"));
 
             migrationBuilder.CreateIndex(
                 name: "IX_Courses_GroupId",
@@ -153,11 +142,6 @@ namespace Toplearn.Web.Migrations
                 name: "IX_Courses_TeacherId",
                 table: "Courses");
 
-            migrationBuilder.DeleteData(
-                table: "Users",
-                keyColumn: "UserId",
-                keyValue: new Guid("00ac29bb-ea32-4fb2-b4b2-58291dc459b7"));
-
             migrationBuilder.DropColumn(
                 name: "DemoFileName",
                 table: "Courses");
@@ -184,12 +168,6 @@ namespace Toplearn.Web.Migrations
                 table: "CourseLevels",
                 newName: "Title");
 
-            migrationBuilder.UpdateData(
-                table: "UserRoles",
-                keyColumn: "UR_Id",
-                keyValue: 1,
-                column: "UserId",
-                value: new Guid("8ffeccab-4e84-4111-8072-f606e4574235"));
         }
     }
 }

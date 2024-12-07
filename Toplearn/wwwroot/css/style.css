@@ -1219,7 +1219,6 @@ img {
         .header-style-two .header-lower .main-box {
             /*position: absolute;*/
             left: 0;
-            top: 70px;
             width: 100%;
             padding: 0 40px;
             background-color: rgba(0,0,0,0.90);
@@ -13474,7 +13473,7 @@ header-style-seven {
 }
 
 #div1 {
-    margin-right : 0px;
+    margin-right: 0px;
     margin-inline: 20px;
     margin-top: 15px;
     width: 140px;
@@ -13485,7 +13484,7 @@ header-style-seven {
 
 #diva1 {
     top: 25px;
-    left:130px;
+    left: 130px;
     position: absolute;
     width: 140px;
     height: 50px;
@@ -13807,4 +13806,8 @@ header-style-seven {
     color: black;
     background: dimgrey;
     padding-bottom: 5px;
+}
+
+.header-lower {
+    top: 40px;
 }

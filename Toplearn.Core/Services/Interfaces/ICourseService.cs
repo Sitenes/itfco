@@ -24,6 +24,11 @@ namespace Toplearn.Core.Services.Interfaces
         Task<IEnumerable<CourseListAdminViewModel>> GetCoursesList();
         Task<IEnumerable<CourseListAdminViewModel>> GetCoursesList(CourseFilterAdminViewModel Filter);
 		Task<Course> SetGroup(Course course);
+        Task AddCategory(CategoryDto categoryDto);
+        Task<List<CategoryDto>> GetAllCourseGroups();
+        Task<CategoryDto> GetCategoryById(int id);
+        Task UpdateCategory(CategoryDto categoryDto);
+        Task DeleteCategory(int id);
 
         #endregion
 
