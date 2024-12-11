@@ -138,7 +138,7 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
                         EmailLink = user.EmailLink,
                         UserName = user.UserName
                     });
-                    SendEmail.Send(user.Email, "فعالسازی حساب کاربری تاپ لرن", EmailBodyRender);
+                    SendEmail.Send(user.Email, "فعالسازی حساب کاربری ایده طرح فرزانگان", EmailBodyRender);
 
                     ViewData["EmailChanged"] = true;
                     _userService.UpdateUser(user);

@@ -126,7 +126,7 @@ namespace Toplearn.Core.Services
         public User GetUser(Guid UserId)
         {
             var user = _context.Users.Find(UserId);
-            if (string.IsNullOrEmpty(user.UserAvatar))
+            if (string.IsNullOrEmpty(user?.UserAvatar))
                 user.UserAvatar = "\\UserAvatar\\Default.jpg";
 
 			return user;
@@ -156,7 +156,7 @@ namespace Toplearn.Core.Services
                 Phone = n.Phone
             }).SingleOrDefault();
 
-			if (string.IsNullOrEmpty(user.UserAvatar))
+			if (string.IsNullOrEmpty(user?.UserAvatar))
 				user.UserAvatar = "\\UserAvatar\\Default.jpg";
 			
             return user;
@@ -216,7 +216,9 @@ namespace Toplearn.Core.Services
         {
             var user = _context.Users.
                 SingleOrDefault(n => n.UserName == UserName);
-			if (string.IsNullOrEmpty(user.UserAvatar))
+            if (user == null)
+                return new User();
+			if (string.IsNullOrEmpty(user?.UserAvatar))
 				user.UserAvatar = "\\UserAvatar\\Default.jpg";
             return user;
 		}

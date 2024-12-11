@@ -129,7 +129,7 @@
 								<div class="form-group">
 
 									<div class="thumbnail">
-										<img id="imgAvatar" src="@(Model.EditUser.OldAvatar)" />
+										<img id="imgAvatar" src="/UserAvatar/@(Model.EditUser.OldAvatar)" />
 									</div>
 									<input asp-for="EditUser.NewAvatar" type="file" id="fileName" accept=".jpg,.jpeg,.png,.gif" onchange="validateFileType()" class="form-control" />
 								</div>

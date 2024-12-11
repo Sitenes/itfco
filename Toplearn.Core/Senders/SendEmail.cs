@@ -14,7 +14,7 @@ namespace Toplearn.Core.Senders
         {
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-            mail.From = new MailAddress("a.aghakabiri@gmail.com","تاپ لرن");
+            mail.From = new MailAddress("a.aghakabiri@gmail.com","ایده طرح فرزانگان");
             mail.To.Add(To);
             mail.Subject = Subject;
 

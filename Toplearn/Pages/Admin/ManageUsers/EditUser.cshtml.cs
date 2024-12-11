@@ -103,7 +103,7 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
                         EmailLink = user.EmailLink,
                         UserName = user.UserName
                     });
-                    SendEmail.Send(EditUser.Email, "فعالسازی حساب کاربری تاپ لرن", EmailBodyRender);
+                    SendEmail.Send(EditUser.Email, "فعالسازی حساب کاربری ایده طرح فرزانگان", EmailBodyRender);
                 }
             }
             if (!_userService.UpdateUser(user))

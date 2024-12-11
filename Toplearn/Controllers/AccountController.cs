@@ -24,6 +24,7 @@ using System.Text.Unicode;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using Toplearn.Web;
+using System.Security.Principal;
 
 namespace Toplearn.Web.Controllers
 {
@@ -99,6 +100,7 @@ namespace Toplearn.Web.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            user.Email = FixText.FixEmail(user.Email);
             user.ExpireEmailLink = DateTime.Now.AddDays(1);
             user.EmailLink = Guid.NewGuid();
             var accountEmail = new ActivateEmailViewModel()
@@ -118,7 +120,7 @@ namespace Toplearn.Web.Controllers
                 EmailLink = user.EmailLink,
                 UserName = user.UserName
             });
-            SendEmail.Send(user.Email, "فعالسازی حساب کاربری تاپ لرن", EmailBodyRender);
+            SendEmail.Send(user.Email, "فعالسازی حساب کاربری ایده طرح فرزانگان", EmailBodyRender);
 
             _user.UpdateUser(user);
             _user.SaveChanges();
@@ -202,7 +204,8 @@ namespace Toplearn.Web.Controllers
             {
                 return View(account);
             }
-            var user = _user.GetUser(FixText.FixEmail(account.Email));
+            account.Email = FixText.FixEmail(account.Email);
+            var user = _user.GetUser(account.Email);
             string pass = PasswordHelper.EncodePasswordMd5(account.Password);
             if (user == null || pass != user.Password)
             {
@@ -272,6 +275,8 @@ namespace Toplearn.Web.Controllers
                 ModelState.AddModelError("Email", "ایمیل وارد شده در سیستم ثبت نشده است لطفا ابتدا ثبت نام کنید");
                 return View(userEmail);
             }
+
+            userEmail.Email = FixText.FixEmail(userEmail.Email);
             user.EmailLink = Guid.NewGuid();
             user.ExpireEmailLink = DateTime.Now.AddDays(1);
 
@@ -283,7 +288,7 @@ namespace Toplearn.Web.Controllers
                 EmailLink = user.EmailLink,
                 UserName = user.UserName
             });
-            SendEmail.Send(user.Email, "تغییر رمز عبور تاپ لرن", EmailBodyRender);
+            SendEmail.Send(user.Email, "تغییر رمز عبور ایده طرح فرزانگان", EmailBodyRender);
 
 
             _user.UpdateUser(user);

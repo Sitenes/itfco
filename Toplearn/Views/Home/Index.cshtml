@@ -6,7 +6,7 @@
 @{
     ViewData["Title"] = "خانه";
     var Categories = ViewData["Category"] as List<CategoryDto>;
-    
+
 }
 @if (ViewData["Login"] != null && (bool)ViewData["Login"] == true)
 {
@@ -21,34 +21,31 @@
 <!-- Bnner Section -->
 <section class="banner-section-two">
     <div class="banner-carousel owl-carousel owl-theme">
-        @{
-            var imageUrls = new List<string>
-        {
-        "/images/main-slider/truck 1.webp",
-        "/images/main-slider/3.jpg",
-        "/images/main-slider/image-3.jpg",
-        "/images/main-slider/clothing 2.jpg"
-        };
 
-            var slideTitles = new List<string>
+        @for (int i = 0; i < Categories?.Count; i++)
         {
-        Localizer["FarzaneganDesignIdea_Slide1"],
-        Localizer["FarzaneganDesignIdea_Slide2"],
-        Localizer["FarzaneganDesignIdea_Slide3"],
-        Localizer["FarzaneganDesignIdea_Slide4"]
-        };
-        }
+            @{
+                var title = Categories[i].NamePersian;
+                switch (ViewData["Culture"] as string)
+                {
+                    case "en":
+                        title = Categories[i].NameEnglish;
+                        break;
+                    case "ar":
+                        title = Categories[i].NameArabic;
+                        break;
+                }
+            }
 
-        @for (int i = 0; i < imageUrls.Count; i++)
-        {
-            <div class="slide-item" style="background-image: url('@imageUrls[i]');">
+
+            <div class="slide-item" style="background-image: url('/CourseRoot/Image/@Categories[i].Image');">
                 <div class="auto-container">
                     <div class="content-box">
                         <span class="title">@Localizer["FarzaneganDesignIdea"]</span>
 
                         <h2>@Html.Raw(slideTitles[i])</h2>
                         <div class="visit-product">
-                            <a asp-controller="product" asp-action="index" class="theme-btn btn-style-one">
+                            <a href="/product?GroupId=@Categories[i].Id" class="theme-btn btn-style-one">
                                 <i class="icon fa fa-shopping-basket" aria-hidden="true"></i>
                                 <h6 style="display:inline-block">@Localizer["FarzaneganDesignIdea_ViewProducts"]</h6>
                             </a>
@@ -56,6 +53,7 @@
                     </div>
                 </div>
             </div>
+
         }
     </div>
 </section>
@@ -86,7 +84,7 @@
                 {
                     case "en":
                         title = Categories[i].NameEnglish;
-                break;
+                        break;
                     case "ar":
                         title = Categories[i].NameArabic;
                         break;
