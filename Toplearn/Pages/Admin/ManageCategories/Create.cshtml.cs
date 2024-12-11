@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -35,9 +36,11 @@ namespace Toplearn.Web.Pages.Admin.ManageCategories
         public CourseGroup? Category { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPost(int? ParentId)
-        {
-            if (!ModelState.IsValid)
+        public async Task<IActionResult> OnPost(int? ParentId,IFormFile? ImageFile)
+		{
+			var categories = await _courseService.GetAllCourseGroups();
+			ViewData["Categories"] = categories;
+			if (!ModelState.IsValid)
             {
                 return Page();
             }
@@ -49,7 +52,7 @@ namespace Toplearn.Web.Pages.Admin.ManageCategories
                 NameArabic = Category.NameArabic,
                 NameEnglish = Category.NameEnglish,
                 NamePersian = Category.NamePersian,
-                
+				ImageFile = ImageFile
 			});
 
             await _courseService.SaveChanges();

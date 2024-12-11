@@ -97,6 +97,9 @@ namespace Toplearn.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Image")
+                        .HasColumnType("varchar(50)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 

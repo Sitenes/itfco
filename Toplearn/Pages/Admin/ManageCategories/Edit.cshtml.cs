@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -43,9 +44,12 @@ namespace Toplearn.Web.Pages.Admin.ManageCategories
             return Page();
 		}
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(IFormFile? ImageFile)
         {
-            if (!ModelState.IsValid)
+            Category.ImageFile = ImageFile;
+			var categories = await _courseService.GetAllCourseGroups();
+			ViewData["Categories"] = categories;
+			if (!ModelState.IsValid)
             {
                 return Page();
             }

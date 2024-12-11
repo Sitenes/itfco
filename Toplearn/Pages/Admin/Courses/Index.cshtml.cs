@@ -32,7 +32,9 @@ namespace Toplearn.Web.Pages.Admin.Courses
             ItemPerPage = 10;
             Filters.CurrentPage = 1;
             Courses = _courseService.GetCoursesList(Filters).Result as List<CourseListAdminViewModel>;
-        }
+            Courses?.ForEach(x => x.Image = string.IsNullOrEmpty(x.Image) ? "Default.jpg" : x.Image);
+
+		}
         public async Task<IActionResult> OnPostAsync(int currentPage)
         {
             Filters.ItemPerPage = ItemPerPage;

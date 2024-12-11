@@ -31,7 +31,10 @@ namespace Toplearn.Web.Pages.Admin.Courses
             ViewData["Statuses"] = _courseService.GetStatuses();
             ViewData["Levels"] = _courseService.GetLevels();
             Course = _courseService.GetCourse(id).Result;
-            if (Course == null)
+            if (string.IsNullOrEmpty(Course.Image))
+                Course.Image = "Default.jpg";
+
+			if (Course == null)
                 BadRequest();
         }
         public async Task<IActionResult> OnPostAsync(IFormFile? ImageFile, IFormFile? DemoFile)

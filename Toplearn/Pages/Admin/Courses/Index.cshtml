@@ -124,12 +124,12 @@
 												<td class="center ">@courseItem.TeacherName</td>
 												<td class="center ">@courseItem.Price</td>
 												<td class="center tooltip-demo">
-													@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CourseEpisodesManagement, _userId).Result)
+												@* 	@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CourseEpisodesManagement, _userId).Result)
 													{
 														
 															<a href="/Admin/Episodes/Index/@courseItem.CourseId/null" data-toggle="tooltip" data-placement="top" title="" data-original-title="لیست قسمت ها" class="btn btn-outline btn-primary "><i class="zmdi zmdi-videocam"></i></a>
 														
-													}
+													} *@
 													@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.EditCourse, _userId).Result)
 													{
 														<a href="/Admin/Courses/Edit/@courseItem.CourseId" class="btn btn-outline btn-warning "><i class="fa fa-edit"></i></a>

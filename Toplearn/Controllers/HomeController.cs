@@ -35,7 +35,8 @@ namespace Toplearn.Web.Controllers
                     ViewData["Logout"] = true;
                     break;
             }
-
+            ViewData["Culture"] = Request.Query["Culture"].ToString();
+            ViewData["Category"] = await _courseService.GetParentCourseGroups();
             return View();
         }
 

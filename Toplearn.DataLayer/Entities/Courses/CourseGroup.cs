@@ -25,6 +25,8 @@ namespace Toplearn.DataLayer.Entities.Courses
         [Display(Name = "عنوان گروه")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
         public string NameArabic { get; set; }
+        [Column(TypeName = "varchar(50)")]
+        public string Image { get; set; }//عکس 
 
         [Display(Name = "حذف شده ؟")]
         public bool IsDeleted { get; set; }

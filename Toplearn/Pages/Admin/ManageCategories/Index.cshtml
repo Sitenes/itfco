@@ -38,8 +38,6 @@
 											<td class="center ">@(category.Parent == null?"ندارد":category.Parent.NamePersian)</td>
 											<td class="center ">
 
-												<a href="/Admin/ManageCategories/Details/@category.Id" class="btn btn-outline btn-info"><i class="fa fa-info"></i></a>
-
 												@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.EditCategory, _userId).Result)
 												{
 													<a href="/Admin/ManageCategories/Edit/@category.Id" class="btn btn-outline btn-warning"><i class="fa fa-edit"></i></a>

@@ -12,8 +12,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Toplearn.Web.Controllers
 {
-    //[Route("/{language}/")]
-    [AllowAnonymous]
     public class ProductController : Controller
     {
         private readonly ICourseService _courseService;
@@ -32,7 +30,7 @@ namespace Toplearn.Web.Controllers
         {
             var product = await _courseService.GetCourse(id);
 
-            return View("product",product);
+			return View("product",product);
         }
     }
 }

@@ -62,6 +62,29 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading h3 text-center">
+						عکس بنر دسته بندی
+					</div>
+					<div class="panel-body">
+						<div class="container client-page">
+							<div class="form-group">
+								<div class="form-group">
+
+									<div class="thumbnail">
+										<img id="imgAvatar" srcset="/CourseRoot/Image/@(Model.Category.Image)" />
+									</div>
+									<input type="file" id="fileName" name="ImageFile" accept=".jpg,.jpeg,.png,.gif" onchange="validateFileType()" class="form-control" />
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="container client-page">
+
+				<div class="panel panel-default">
+					<div class="panel-heading h3 text-center">
 						انتخاب دسته بندی پدر
 					</div>
 					<div class="panel-body">
@@ -106,20 +129,3 @@
 		</div>
 	</form>
 </div>
-
-@section Scripts
-{
-    @if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
-    {
-        <partial name="_SucceedModalPartial" model="@("/Admin/ManageCategories/Index")" />
-        <script>
-            $(document).ready(function () {
-                setTimeout(function () { location.replace("/Admin/ManageCategories/Index"); }, 10000);
-            });
-        </script>
-
-    }
-    <script>
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    </script>
-}

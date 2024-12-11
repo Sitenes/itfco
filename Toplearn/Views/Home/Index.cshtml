@@ -1,8 +1,12 @@
-﻿@using Toplearn.Web
+﻿@using System.Web;
+@using Toplearn.Core.DTOs.CourseVM
+@using Toplearn.Web
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
 
 @{
     ViewData["Title"] = "خانه";
+    var Categories = ViewData["Category"] as List<CategoryDto>;
+    
 }
 @if (ViewData["Login"] != null && (bool)ViewData["Login"] == true)
 {
@@ -59,13 +63,13 @@
 <!-- End Bnner Section -->
 <!-- Specialize Section -->
 @{
-    var services = new List<dynamic>
-    {
-        new { ImageUrl = "/images/main-slider/truck 1.webp", Title = Localizer["Car and Spare Parts"], ServiceLink = "/userpanel", DetailLink = "/userpanel" },
-        new { ImageUrl = "/images/main-slider/brick 1.webp", Title = Localizer["Construction Materials"], ServiceLink = "/userpanel", DetailLink = "/userpanel" },
-        new { ImageUrl = "/images/resource/service-6.jpg", Title = Localizer["Industrial Machinery"], ServiceLink = "/userpanel", DetailLink = "/userpanel" },
-        new { ImageUrl = "/images/main-slider/clothing 2.jpg", Title = Localizer["Fashion and Modeling"], ServiceLink = "/userpanel", DetailLink = "/userpanel" }
-    };
+    // var services = new List<dynamic>
+    // {
+    //     new { ImageUrl = "/images/main-slider/truck 1.webp", Title = Localizer["Car and Spare Parts"], ServiceLink = "/userpanel", DetailLink = "/userpanel" },
+    //     new { ImageUrl = "/images/main-slider/brick 1.webp", Title = Localizer["Construction Materials"], ServiceLink = "/userpanel", DetailLink = "/userpanel" },
+    //     new { ImageUrl = "/images/resource/service-6.jpg", Title = Localizer["Industrial Machinery"], ServiceLink = "/userpanel", DetailLink = "/userpanel" },
+    //     new { ImageUrl = "/images/main-slider/clothing 2.jpg", Title = Localizer["Fashion and Modeling"], ServiceLink = "/userpanel", DetailLink = "/userpanel" }
+    // };
 }
 
 <section class="specialize-section bottom-zero">
@@ -75,21 +79,31 @@
         </div>
 
         <div class="services-carousel-two owl-carousel owl-carousel1 owl-theme">
-            @for (int i = 0; i < services.Count; i++)
+            @for (int i = 0; i < Categories?.Count; i++)
             {
+                var title = Categories[i].NamePersian;
+                switch (ViewData["Culture"] as string)
+                {
+                    case "en":
+                        title = Categories[i].NameEnglish;
+                break;
+                    case "ar":
+                        title = Categories[i].NameArabic;
+                        break;
+                }
                 <div class="service-block-two">
                     <div class="inner-box">
                         <div class="image-box">
                             <figure class="image">
-                                <a href="@services[i].ServiceLink">
-                                    <img src="@services[i].ImageUrl" alt="">
+                                <a href="/product?goupId=@Categories[i].Id">
+                                    <img src="/CourseRoot/Image/@Categories[i].Image" alt="">
                                 </a>
                             </figure>
                         </div>
                         <div class="caption-box">
-                            <h3><a href="@services[i].ServiceLink">@services[i].Title</a></h3>
+                            <h3><a href="/product?goupId=@Categories[i].Id">@title</a></h3>
                             <div class="link-box">
-                                <a href="@services[i].DetailLink">
+                                <a href="/product?goupId=@Categories[i].Id">
                                     @Localizer["ViewProducts"]<i class="fa fa-angle-double-left"></i>
                                 </a>
                             </div>

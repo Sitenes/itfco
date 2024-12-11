@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Toplearn.Core.AllEnums;
 using Toplearn.Core.DTOs.CourseVM;
 using Toplearn.Core.DTOs.TeacherVM;
 using Toplearn.Core.Services.Interfaces;
@@ -14,568 +15,626 @@ using TopLearn.Core.Convertors;
 
 namespace Toplearn.Core.Services
 {
-    public class CourseService : ICourseService
-    {
-        private readonly ToplearnContext _context;
-        public CourseService(ToplearnContext context)
-        {
-            _context = context;
-        }
-
-        public async Task<int> AddCourse(Course course, IFormFile ImageFile, IFormFile DemoFile)
-        {
-            if (course.RegistrationDate == DateTime.MinValue)
-                course.RegistrationDate = DateTime.Now;
-
-            if (course.Description == null)
-                course.Description = "";
-
-            if (course.GroupId == 0 && course.SubGroupId != 0)
-                await SetGroup(course);
-
-            if (ImageFile != null)
-            {
-                string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
-                string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", newAvatarURL);
-                using (var stream = new FileStream(newPath, FileMode.Create))
-                {
-                    ImageFile.CopyTo(stream);
-                }
-                course.Image = newAvatarURL;
-                ImageConvertor imageResize = new ImageConvertor();
-                string thumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", newAvatarURL);
-                string ImageCurrentPath = newPath;
-                imageResize.Image_resize(ImageCurrentPath, thumbPath, 5000);
-            }
-            if (DemoFile == null)
-            {
-                course.DemoFileName = "";
-            }
-            else
-            {
-                string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(DemoFile.FileName);
-                string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Demo", newAvatarURL);
-                using (var stream = new FileStream(newPath, FileMode.Create))
-                {
-                    await DemoFile.CopyToAsync(stream);
-                }
-                course.DemoFileName = newAvatarURL;
-            }
-            await _context.AddAsync(course);
-            await _context.SaveChangesAsync();
-            return course.CourseId;
-
-        }
-
-        public async Task<int> AddEpisode(Episode episode, IFormFile video)
-        {
-            if (video == null || episode == null)
-                return 0;
-
-            try
-            {
-                string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(video.FileName);
-                string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Episode", newAvatarURL);
-                using (var stream = new FileStream(newPath, FileMode.Create))
-                {
-                    await video.CopyToAsync(stream);
-                }
-                episode.EpisodeFileName = newAvatarURL;
-
-
-                await _context.AddAsync(episode);
-                await _context.SaveChangesAsync();
-                return episode.EpisodeId;
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-
-        }
-
-        public async Task<bool> EditEpisode(Episode episode, IFormFile video)
-        {
-            if (episode == null || episode.EpisodeId == 0)
-                return false;
-            try
-            {
-                #region Edit Video
-
-                if (video != null)
-                {
-                    if (string.IsNullOrEmpty(episode.EpisodeFileName))
-                    {
-                        string oldPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Episode", episode.EpisodeFileName);
-                        if (System.IO.File.Exists(oldPath))
-                            System.IO.File.Delete(oldPath);
-                    }
-                    string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(video.FileName);
-                    string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Episode", newAvatarURL);
-                    using (var stream = new FileStream(newPath, FileMode.Create))
-                    {
-                        await video.CopyToAsync(stream);
-                    }
-                    episode.EpisodeFileName = newAvatarURL;
-
-                }
-
-                #endregion
-
-
-
-                _context.Update(episode);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception)
-            {
-
-                return false;
-            }
-
-            return true;
-        }
-
-        public async Task<Course> GetCourse(int Id)
-        {
-            return await _context.Courses.FindAsync(Id);
-        }
-
-        public async Task<IEnumerable<CourseListAdminViewModel>> GetCoursesList()
-        {
-            return await _context.Courses.Include(n => n.UserCreator).Select(n => new CourseListAdminViewModel()
-            {
-                CourseId = n.CourseId,
-                CourseTitle = n.Title,
-                Image = n.Image,
-                NumberOfStudents = n.NumberOfStudents,
-                Price = n.Price,
-                TeacherName = n.UserCreator.UserName,
-            }).ToListAsync();
-        }
-
-        public async Task<IEnumerable<CourseListAdminViewModel>> GetCoursesList(CourseFilterAdminViewModel Filter)
-        {
-            IEnumerable<Course> Courses = await _context.Courses.Include(n => n.UserCreator).ToListAsync();
-            if (Filter.CourseStatusId != 0)
-            {
-                Courses = Courses.Where(n => n.CourseStatusId == Filter.CourseStatusId);
-            }
-            if (!string.IsNullOrWhiteSpace(Filter.Description))
-            {
-                Courses = Courses.Where(n => n.Description.Contains(Filter.Description));
-            }
-
-            if (Filter.GroupId != 0)
-            {
-                Courses = Courses.Where(n => n.GroupId == Filter.GroupId);
-            }
-
-            if (Filter.LevelId != 0)
-            {
-                Courses = Courses.Where(n => n.LevelId == Filter.LevelId);
-            }
-
-            if (Filter.PriceFrom != 0)
-            {
-                Courses = Courses.Where(n => n.Price >= Filter.PriceFrom);
-            }
-
-            if (Filter.PriceTo != 0)
-            {
-                Courses = Courses.Where(n => n.Price <= Filter.PriceTo);
-            }
-
-            if (Filter.StudentsCountFrom != 0)
-            {
-                Courses = Courses.Where(n => n.NumberOfStudents >= Filter.StudentsCountFrom);
-            }
-
-            if (Filter.StudentsCountTo != 0)
-            {
-                Courses = Courses.Where(n => n.NumberOfStudents <= Filter.StudentsCountTo);
-            }
-
-            if (!string.IsNullOrWhiteSpace(Filter.Tags))
-            {
-                Courses = Courses.Where(n => n.Tags.Contains(Filter.Tags));
-            }
-
-            if (!string.IsNullOrWhiteSpace(Filter.TeacherOrCourseId))
-            {
-                Courses = Courses.Where(n => n.UserCreatorId.ToString() == Filter.TeacherOrCourseId || n.CourseId.ToString() == Filter.TeacherOrCourseId);
-            }
-
-            if (!string.IsNullOrWhiteSpace(Filter.Title))
-            {
-                Courses = Courses.Where(n => n.Title.Contains(Filter.Title));
-            }
-            Filter.CoursesCount = Courses.Count();
-            if (Filter.CurrentPage != 0)
-                Courses = Courses.Skip((Filter.CurrentPage - 1) * Filter.ItemPerPage);
-            if (Filter.ItemPerPage != 0)
-                Courses = Courses.Take(Filter.ItemPerPage);
-
-            return Courses.Select(n => new CourseListAdminViewModel()
-            {
-                CourseId = n.CourseId,
-                CourseTitle = n.Title,
-                Image = n.Image,
-                NumberOfStudents = n.NumberOfStudents,
-                Price = n.Price,
-                TeacherName = n.UserCreator?.UserName ?? ""
-            }).ToList();
-        }
-
-        public async Task<IEnumerable<CourseItemListViewModel>> GetCoursesList(CourseFilterListViewModel filter)
-        {
-            IQueryable<Course> coursesList = _context.Courses.Include(n=>n.CourseEpisode);
-            if (filter.Coust == AllEnums.Coust.Monetary)
-                coursesList = coursesList.Where(n => n.Price != 0);
-            if (filter.Coust == AllEnums.Coust.Free)
-                coursesList = coursesList.Where(n => n.Price == 0);
-            if (filter.EndPrice != 0)
-                coursesList = coursesList.Where(n => n.Price <= filter.EndPrice);
-
-            if (filter.StartPrice != 0)
-                coursesList = coursesList.Where(n => n.Price >= filter.EndPrice);
-
-            List<Course> courses = await coursesList.ToListAsync();
-            if (filter.Groups != null && filter.Groups.Count() != 0)
-            {
-                List<Course> coursesGroupFilter = new List<Course>();
-                foreach (var groupId in filter.Groups)
-                {
-                    coursesGroupFilter.AddRange(courses.Where(n => n.GroupId == groupId));
-                }
-                courses = coursesGroupFilter;
-            }
-            if (!string.IsNullOrWhiteSpace(filter.Title))
-            {
-                var titles = filter.Title.Split(' ');
-
-                List<Course> coursesTitleFilterd = new List<Course>();
-                foreach (var titleWord in titles)
-                {
-                    var titleWordTrim = titleWord.Trim();
-                    if (titleWordTrim == "و")
-                        titleWordTrim.Replace("و", "");
-                    if (!string.IsNullOrWhiteSpace(titleWordTrim))
-                    {
-                        coursesTitleFilterd.AddRange(coursesList.Where(n => n.Title.Contains(titleWord)));
-                    }
-                }
-                courses = coursesTitleFilterd;
-            }
-            switch (filter.OrderBy)
-            {
-                case AllEnums.OrderBy.None:
-                    break;
-                case AllEnums.OrderBy.PriceAsc:
-                    courses = courses.OrderBy(n => n.Price).ToList();
-                    break;
-                case AllEnums.OrderBy.PriceDesc:
-                    courses = courses.OrderByDescending(n => n.Price).ToList();
-                    break;
-                case AllEnums.OrderBy.TimeAsc:
-                    courses = courses.OrderBy(n => n.CourseEpisode.Sum(m=>m.EpisodeTime.Ticks)).ToList();
-                    break;
-                case AllEnums.OrderBy.TimeDesc:
-                    courses = courses.OrderByDescending(n => n.CourseEpisode.Sum(m => m.EpisodeTime.Ticks)).ToList();
-                    break;
-                case AllEnums.OrderBy.CreateDateAsc:
-                    courses = courses.OrderBy(n => n.RegistrationDate).ToList();
-                    break;
-                case AllEnums.OrderBy.CreateDateDesc:
-                    courses = courses.OrderByDescending(n => n.RegistrationDate).ToList();
-                    break;
-                default:
-                    break;
-            }
-            return courses.Select(n => new CourseItemListViewModel
-            {
-                Id = n.CourseId,
-                Image = n.Image,
-                Price = n.Price,
-                Time = new TimeSpan(n.CourseEpisode.Sum(m => m.EpisodeTime.Ticks)),
-                Title = n.Title
-            });
-
-        }
-
-        public async Task<Episode> GetEpisode(int Id)
-        {
-            var episode = await _context.Episode.FindAsync(Id);
-            return episode;
-        }
-
-        public IEnumerable<EpisodeListViewModel> GetEpisodesList(FilterEpisodeListViewModel filters)
-        {
-            if (filters.EpisodeTimeTo == TimeSpan.Zero)
-                filters.EpisodeTimeTo = new TimeSpan(0, 23, 59, 59);
-            IQueryable<Episode> episodes = _context.Episode.Where(n => n.CourseId == filters.CourseId);
-            if (filters.Title != null)
-                episodes = episodes.Where(n => n.EpisodeTitle.Contains(filters.Title));
-            episodes = episodes.Where(n => n.EpisodeTime >= filters.EpisodeTimeFrom);
-            episodes = episodes.Where(n => n.EpisodeTime <= filters.EpisodeTimeTo);
-            if (filters.EpisodeStatus == AllEnums.Coust.Free)
-                episodes = episodes.Where(n => n.IsFree == true);
-
-            if (filters.EpisodeStatus == AllEnums.Coust.Monetary)
-                episodes = episodes.Where(n => n.IsFree == false);
-
-            IEnumerable<EpisodeListViewModel> episodesResult = episodes.Select(n => new EpisodeListViewModel()
-            {
-                EpisodeId = n.EpisodeId,
-                EpisodeTime = n.EpisodeTime,
-                EpisodeTitle = n.EpisodeTitle,
-                IsFree = n.IsFree
-            });
-            return episodesResult;
-        }
-
-        public IEnumerable<CourseGroup> GetGroups()
-        {
-            return _context.CourseGroups.ToList();
-        }
-
-        public IEnumerable<CourseLevel> GetLevels()
-        {
-
-            return _context.CourseLevels.ToList();
-        }
-
-        public IEnumerable<CourseStatus> GetStatuses()
-        {
-
-            return _context.CourseStatuses.ToList();
-        }
-
-        public IEnumerable<TeacherForCourseViewModel> GetTeachersName()
-        {
-            return _context.Users.Where(n => n.IsTeacher == true).Select(n =>
-
-                new TeacherForCourseViewModel()
-                {
-                    TeacherId = n.UserId,
-                    TeacherName = n.UserName
-                }).ToList();
-
-        }
-
-        public async Task<bool> IsCourseExsit(int Id)
-        {
-            return await _context.Courses.AnyAsync(n => n.CourseId == Id);
-        }
-
-        public async Task<bool> RemoveCourse(int Id)
-        {
-            var course = await GetCourse(Id);
-            if (course == null)
-                return false;
-            try
-            {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Demo", course.DemoFileName);
-                if (System.IO.File.Exists(path))
-                {
-                    System.IO.File.Delete(path);
-                }
-
-                if (course.Image != "course.Image")
-                {
-                    string imgPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", course.Image);
-                    if (System.IO.File.Exists(imgPath))
-                    {
-                        System.IO.File.Delete(imgPath);
-                    }
-                }
-
-                string thumbImgPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", course.Image);
-                if (System.IO.File.Exists(thumbImgPath))
-                {
-                    System.IO.File.Delete(thumbImgPath);
-                }
-                if (course.CourseEpisode != null)
-                    foreach (var episodeItem in course.CourseEpisode)
-                    {
-                        string episodePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Episode", episodeItem.EpisodeId.ToString());
-                        if (Directory.Exists(episodePath))
-                            Directory.Delete(episodePath, true);
-                        _context.Remove(episodeItem);
-                    }
-
-                _context.Courses.Remove(await GetCourse(Id));
-
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public async Task<bool> RemoveEpisode(int Id)
-        {
-            try
-            {
-                var episode = await GetEpisode(Id);
-                if (episode == null)
-                    return false;
-                _context.Episode.Remove(episode);
-                await SaveChanges();
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public async Task SaveChanges()
-        {
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<Course> SetGroup(Course course)
-        {
-
-            if (course.GroupId == 0)
-            {
-                var group = await _context.CourseGroups.SingleOrDefaultAsync(n => n.GroupId == course.SubGroupId);
-                course.GroupId = (int)group.ParentId;
-            }
-
-
-            return course;
-        }
-
-        public async Task<bool> Update(Course course, IFormFile ImageFile, IFormFile DemoFile)
-        {
-            if (!await _context.Courses.AnyAsync(n => n.CourseId == course.CourseId))
-                return false;
-            try
-            {
-                if (ImageFile != null)
-                {
-                    if (course.Image != "Default.png" && !string.IsNullOrEmpty(course.Image))
-                    {
-                        string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", course.Image);
-                        if (System.IO.File.Exists(path))
-                        {
-                            System.IO.File.Delete(path);
-                        }
-
-                        string thumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", course.Image);
-                        if (System.IO.File.Exists(thumbPath))
-                        {
-                            System.IO.File.Delete(thumbPath);
-                        }
-                    }
-                    string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
-                    string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", newAvatarURL);
-                    using (var stream = new FileStream(newPath, FileMode.Create))
-                    {
-                        ImageFile.CopyTo(stream);
-                    }
-                    course.Image = newAvatarURL;
-                    ImageConvertor imageResize = new ImageConvertor();
-                    string ThumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", newAvatarURL);
-                    string ImageCurrentPath = newPath;
-                    imageResize.Image_resize(ImageCurrentPath, ThumbPath, 5000);
-                }
-
-                if (DemoFile != null)
-                {
-                    if (course.DemoFileName != null)
-                    {
-                        string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Demo", course.DemoFileName);
-                        if (System.IO.File.Exists(path))
-                        {
-                            System.IO.File.Delete(path);
-                        }
-                    }
-                    string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(DemoFile.FileName ?? "");
-                    string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Demo", newAvatarURL);
-                    using (var stream = new FileStream(newPath, FileMode.Create))
-                    {
-                        DemoFile.CopyTo(stream);
-                    }
-                    course.DemoFileName = newAvatarURL;
-                }
-                _context.Courses.Update(course);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public async Task AddCategory(CategoryDto categoryDto)
-        {
-            var category = new CourseGroup
-            {
-                NamePersian = categoryDto.NamePersian,
-                NameEnglish = categoryDto.NameEnglish,
-                NameArabic = categoryDto.NameArabic,
-                ParentId = categoryDto.ParentId,
-            };
-
-            await _context.CourseGroups.AddAsync(category);
-        }
-
-        public async Task<List<CategoryDto>> GetAllCourseGroups()
-        {
-            var categories = await _context.CourseGroups.Include(x => x.Parent).Include(x => x.SubGroups).Include(x => x.CourseGroups).ToListAsync();
-            return categories.Select(c => new CategoryDto
-            {
-                Id = c.GroupId,
-                NamePersian = c.NamePersian,
-                NameEnglish = c.NameEnglish,
-                NameArabic = c.NameArabic,
-                Parent = c.Parent,
+	public class CourseService : ICourseService
+	{
+		private readonly ToplearnContext _context;
+		public CourseService(ToplearnContext context)
+		{
+			_context = context;
+		}
+
+		public async Task<int> AddCourse(Course course, IFormFile ImageFile, IFormFile DemoFile)
+		{
+			if (course.RegistrationDate == DateTime.MinValue)
+				course.RegistrationDate = DateTime.Now;
+
+			if (course.Description == null)
+				course.Description = "";
+
+			if (course.GroupId == 0 && course.SubGroupId != 0)
+				await SetGroup(course);
+
+			if (ImageFile != null)
+			{
+				string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
+				string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", newAvatarURL);
+				using (var stream = new FileStream(newPath, FileMode.Create))
+				{
+					ImageFile.CopyTo(stream);
+				}
+				course.Image = newAvatarURL;
+				ImageConvertor imageResize = new ImageConvertor();
+				string thumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", newAvatarURL);
+				string ImageCurrentPath = newPath;
+				imageResize.Image_resize(ImageCurrentPath, thumbPath, 5000);
+			}
+			if (DemoFile == null)
+			{
+				course.DemoFileName = "";
+			}
+			else
+			{
+				string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(DemoFile.FileName);
+				string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Demo", newAvatarURL);
+				using (var stream = new FileStream(newPath, FileMode.Create))
+				{
+					await DemoFile.CopyToAsync(stream);
+				}
+				course.DemoFileName = newAvatarURL;
+			}
+			await _context.AddAsync(course);
+			await _context.SaveChangesAsync();
+			return course.CourseId;
+
+		}
+
+		public async Task<int> AddEpisode(Episode episode, IFormFile video)
+		{
+			if (video == null || episode == null)
+				return 0;
+
+			try
+			{
+				string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(video.FileName);
+				string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Episode", newAvatarURL);
+				using (var stream = new FileStream(newPath, FileMode.Create))
+				{
+					await video.CopyToAsync(stream);
+				}
+				episode.EpisodeFileName = newAvatarURL;
+
+
+				await _context.AddAsync(episode);
+				await _context.SaveChangesAsync();
+				return episode.EpisodeId;
+			}
+			catch (Exception)
+			{
+				return 0;
+			}
+
+		}
+
+		public async Task<bool> EditEpisode(Episode episode, IFormFile video)
+		{
+			if (episode == null || episode.EpisodeId == 0)
+				return false;
+			try
+			{
+				#region Edit Video
+
+				if (video != null)
+				{
+					if (string.IsNullOrEmpty(episode.EpisodeFileName))
+					{
+						string oldPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Episode", episode.EpisodeFileName);
+						if (System.IO.File.Exists(oldPath))
+							System.IO.File.Delete(oldPath);
+					}
+					string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(video.FileName);
+					string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Episode", newAvatarURL);
+					using (var stream = new FileStream(newPath, FileMode.Create))
+					{
+						await video.CopyToAsync(stream);
+					}
+					episode.EpisodeFileName = newAvatarURL;
+
+				}
+
+				#endregion
+
+
+
+				_context.Update(episode);
+				await _context.SaveChangesAsync();
+			}
+			catch (Exception)
+			{
+
+				return false;
+			}
+
+			return true;
+		}
+
+		public async Task<Course> GetCourse(int Id)
+		{
+			return await _context.Courses.FindAsync(Id);
+		}
+
+		public async Task<IEnumerable<CourseListAdminViewModel>> GetCoursesList()
+		{
+			return await _context.Courses.Include(n => n.UserCreator).Select(n => new CourseListAdminViewModel()
+			{
+				CourseId = n.CourseId,
+				CourseTitle = n.Title,
+				Image = n.Image,
+				NumberOfStudents = n.NumberOfStudents,
+				Price = n.Price,
+				TeacherName = n.UserCreator.UserName,
+			}).ToListAsync();
+		}
+
+		public async Task<IEnumerable<CourseListAdminViewModel>> GetCoursesList(CourseFilterAdminViewModel Filter)
+		{
+			IEnumerable<Course> Courses = await _context.Courses.Include(n => n.UserCreator).Include(n => n.Group).ToListAsync();
+			if (Filter.CourseStatusId != 0)
+			{
+				Courses = Courses.Where(n => n.CourseStatusId == Filter.CourseStatusId);
+			}
+			if (!string.IsNullOrWhiteSpace(Filter.Description))
+			{
+				Courses = Courses.Where(n => n.Description.Contains(Filter.Description));
+			}
+
+			if (Filter.GroupId != 0)
+			{
+				Courses = Courses.Where(n => n.GroupId == Filter.GroupId || n.Group.ParentId == Filter.GroupId);
+			}
+
+			if (Filter.LevelId != 0)
+			{
+				Courses = Courses.Where(n => n.LevelId == Filter.LevelId);
+			}
+
+			if (Filter.PriceFrom != 0)
+			{
+				Courses = Courses.Where(n => n.Price >= Filter.PriceFrom);
+			}
+
+			if (Filter.PriceTo != 0)
+			{
+				Courses = Courses.Where(n => n.Price <= Filter.PriceTo);
+			}
+
+			if (Filter.StudentsCountFrom != 0)
+			{
+				Courses = Courses.Where(n => n.NumberOfStudents >= Filter.StudentsCountFrom);
+			}
+
+			if (Filter.StudentsCountTo != 0)
+			{
+				Courses = Courses.Where(n => n.NumberOfStudents <= Filter.StudentsCountTo);
+			}
+
+			if (!string.IsNullOrWhiteSpace(Filter.Tags))
+			{
+				Courses = Courses.Where(n => n.Tags.Contains(Filter.Tags));
+			}
+
+			if (!string.IsNullOrWhiteSpace(Filter.TeacherOrCourseId))
+			{
+				Courses = Courses.Where(n => n.UserCreatorId.ToString() == Filter.TeacherOrCourseId || n.CourseId.ToString() == Filter.TeacherOrCourseId);
+			}
+
+			if (!string.IsNullOrWhiteSpace(Filter.Title))
+			{
+				Courses = Courses.Where(n => n.Title.Contains(Filter.Title));
+			}
+			Filter.CoursesCount = Courses.Count();
+			if (Filter.CurrentPage != 0)
+				Courses = Courses.Skip((Filter.CurrentPage - 1) * Filter.ItemPerPage);
+			if (Filter.ItemPerPage != 0)
+				Courses = Courses.Take(Filter.ItemPerPage);
+
+			return Courses.Select(n => new CourseListAdminViewModel()
+			{
+				CourseId = n.CourseId,
+				CourseTitle = n.Title,
+				Image = n.Image,
+				NumberOfStudents = n.NumberOfStudents,
+				Price = n.Price,
+				TeacherName = n.UserCreator?.UserName ?? ""
+			}).ToList();
+		}
+
+		public async Task<IEnumerable<CourseItemListViewModel>> GetCoursesList(CourseFilterListViewModel filter)
+		{
+			IQueryable<Course> coursesList = _context.Courses.Include(n => n.CourseEpisode);
+			if (filter.Coust == AllEnums.Coust.Monetary)
+				coursesList = coursesList.Where(n => n.Price != 0);
+			if (filter.Coust == AllEnums.Coust.Free)
+				coursesList = coursesList.Where(n => n.Price == 0);
+			if (filter.EndPrice != 0)
+				coursesList = coursesList.Where(n => n.Price <= filter.EndPrice);
+
+			if (filter.StartPrice != 0)
+				coursesList = coursesList.Where(n => n.Price >= filter.EndPrice);
+
+			List<Course> courses = await coursesList.ToListAsync();
+			if (filter.Groups != null && filter.Groups.Count() != 0)
+			{
+				List<Course> coursesGroupFilter = new List<Course>();
+				foreach (var groupId in filter.Groups)
+				{
+					coursesGroupFilter.AddRange(courses.Where(n => n.GroupId == groupId));
+				}
+				courses = coursesGroupFilter;
+			}
+			if (!string.IsNullOrWhiteSpace(filter.Title))
+			{
+				var titles = filter.Title.Split(' ');
+
+				List<Course> coursesTitleFilterd = new List<Course>();
+				foreach (var titleWord in titles)
+				{
+					var titleWordTrim = titleWord.Trim();
+					if (titleWordTrim == "و")
+						titleWordTrim.Replace("و", "");
+					if (!string.IsNullOrWhiteSpace(titleWordTrim))
+					{
+						coursesTitleFilterd.AddRange(coursesList.Where(n => n.Title.Contains(titleWord)));
+					}
+				}
+				courses = coursesTitleFilterd;
+			}
+			switch (filter.OrderBy)
+			{
+				case AllEnums.OrderBy.None:
+					break;
+				case AllEnums.OrderBy.PriceAsc:
+					courses = courses.OrderBy(n => n.Price).ToList();
+					break;
+				case AllEnums.OrderBy.PriceDesc:
+					courses = courses.OrderByDescending(n => n.Price).ToList();
+					break;
+				case AllEnums.OrderBy.TimeAsc:
+					courses = courses.OrderBy(n => n.CourseEpisode.Sum(m => m.EpisodeTime.Ticks)).ToList();
+					break;
+				case AllEnums.OrderBy.TimeDesc:
+					courses = courses.OrderByDescending(n => n.CourseEpisode.Sum(m => m.EpisodeTime.Ticks)).ToList();
+					break;
+				case AllEnums.OrderBy.CreateDateAsc:
+					courses = courses.OrderBy(n => n.RegistrationDate).ToList();
+					break;
+				case AllEnums.OrderBy.CreateDateDesc:
+					courses = courses.OrderByDescending(n => n.RegistrationDate).ToList();
+					break;
+				default:
+					break;
+			}
+			return courses.Select(n => new CourseItemListViewModel
+			{
+				Id = n.CourseId,
+				Image = n.Image,
+				Price = n.Price,
+				Time = new TimeSpan(n.CourseEpisode.Sum(m => m.EpisodeTime.Ticks)),
+				Title = n.Title
+			});
+
+		}
+
+		public async Task<Episode> GetEpisode(int Id)
+		{
+			var episode = await _context.Episode.FindAsync(Id);
+			return episode;
+		}
+
+		public IEnumerable<EpisodeListViewModel> GetEpisodesList(FilterEpisodeListViewModel filters)
+		{
+			if (filters.EpisodeTimeTo == TimeSpan.Zero)
+				filters.EpisodeTimeTo = new TimeSpan(0, 23, 59, 59);
+			IQueryable<Episode> episodes = _context.Episode.Where(n => n.CourseId == filters.CourseId);
+			if (filters.Title != null)
+				episodes = episodes.Where(n => n.EpisodeTitle.Contains(filters.Title));
+			episodes = episodes.Where(n => n.EpisodeTime >= filters.EpisodeTimeFrom);
+			episodes = episodes.Where(n => n.EpisodeTime <= filters.EpisodeTimeTo);
+			if (filters.EpisodeStatus == AllEnums.Coust.Free)
+				episodes = episodes.Where(n => n.IsFree == true);
+
+			if (filters.EpisodeStatus == AllEnums.Coust.Monetary)
+				episodes = episodes.Where(n => n.IsFree == false);
+
+			IEnumerable<EpisodeListViewModel> episodesResult = episodes.Select(n => new EpisodeListViewModel()
+			{
+				EpisodeId = n.EpisodeId,
+				EpisodeTime = n.EpisodeTime,
+				EpisodeTitle = n.EpisodeTitle,
+				IsFree = n.IsFree
+			});
+			return episodesResult;
+		}
+
+		public IEnumerable<CourseGroup> GetGroups()
+		{
+			return _context.CourseGroups.ToList();
+		}
+
+		public IEnumerable<CourseLevel> GetLevels()
+		{
+
+			return _context.CourseLevels.ToList();
+		}
+
+		public IEnumerable<CourseStatus> GetStatuses()
+		{
+
+			return _context.CourseStatuses.ToList();
+		}
+
+		public IEnumerable<TeacherForCourseViewModel> GetTeachersName()
+		{
+			return _context.Users.Where(n => n.IsTeacher == true).Select(n =>
+
+				new TeacherForCourseViewModel()
+				{
+					TeacherId = n.UserId,
+					TeacherName = n.UserName
+				}).ToList();
+
+		}
+
+		public async Task<bool> IsCourseExsit(int Id)
+		{
+			return await _context.Courses.AnyAsync(n => n.CourseId == Id);
+		}
+
+		public async Task<bool> RemoveCourse(int Id)
+		{
+			var course = await GetCourse(Id);
+			if (course == null)
+				return false;
+			try
+			{
+				string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Demo", course.DemoFileName);
+				if (System.IO.File.Exists(path))
+				{
+					System.IO.File.Delete(path);
+				}
+
+				if (course.Image != "course.Image")
+				{
+					string imgPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", course.Image);
+					if (System.IO.File.Exists(imgPath))
+					{
+						System.IO.File.Delete(imgPath);
+					}
+				}
+
+				string thumbImgPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", course.Image);
+				if (System.IO.File.Exists(thumbImgPath))
+				{
+					System.IO.File.Delete(thumbImgPath);
+				}
+				if (course.CourseEpisode != null)
+					foreach (var episodeItem in course.CourseEpisode)
+					{
+						string episodePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Episode", episodeItem.EpisodeId.ToString());
+						if (Directory.Exists(episodePath))
+							Directory.Delete(episodePath, true);
+						_context.Remove(episodeItem);
+					}
+
+				_context.Courses.Remove(await GetCourse(Id));
+
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+			return true;
+		}
+
+		public async Task<bool> RemoveEpisode(int Id)
+		{
+			try
+			{
+				var episode = await GetEpisode(Id);
+				if (episode == null)
+					return false;
+				_context.Episode.Remove(episode);
+				await SaveChanges();
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+			return true;
+		}
+
+		public async Task SaveChanges()
+		{
+			await _context.SaveChangesAsync();
+		}
+
+		public async Task<Course> SetGroup(Course course)
+		{
+
+			if (course.GroupId == 0)
+			{
+				var group = await _context.CourseGroups.SingleOrDefaultAsync(n => n.GroupId == course.SubGroupId);
+				course.GroupId = (int)group.ParentId;
+			}
+
+
+			return course;
+		}
+
+		public async Task<bool> Update(Course course, IFormFile ImageFile, IFormFile DemoFile)
+		{
+			if (!await _context.Courses.AnyAsync(n => n.CourseId == course.CourseId))
+				return false;
+			try
+			{
+				if (ImageFile != null)
+				{
+					if (course.Image != "Default.jpg" && !string.IsNullOrEmpty(course.Image))
+					{
+						string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", course.Image);
+						if (System.IO.File.Exists(path))
+						{
+							System.IO.File.Delete(path);
+						}
+
+						string thumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", course.Image);
+						if (System.IO.File.Exists(thumbPath))
+						{
+							System.IO.File.Delete(thumbPath);
+						}
+					}
+					string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
+					string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", newAvatarURL);
+					using (var stream = new FileStream(newPath, FileMode.Create))
+					{
+						ImageFile.CopyTo(stream);
+					}
+					course.Image = newAvatarURL;
+					ImageConvertor imageResize = new ImageConvertor();
+					string ThumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", newAvatarURL);
+					string ImageCurrentPath = newPath;
+					imageResize.Image_resize(ImageCurrentPath, ThumbPath, 5000);
+				}
+
+				if (DemoFile != null)
+				{
+					if (course.DemoFileName != null)
+					{
+						string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Demo", course.DemoFileName);
+						if (System.IO.File.Exists(path))
+						{
+							System.IO.File.Delete(path);
+						}
+					}
+					string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(DemoFile.FileName ?? "");
+					string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Demo", newAvatarURL);
+					using (var stream = new FileStream(newPath, FileMode.Create))
+					{
+						DemoFile.CopyTo(stream);
+					}
+					course.DemoFileName = newAvatarURL;
+				}
+				_context.Courses.Update(course);
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+			return true;
+		}
+
+		public async Task AddCategory(CategoryDto categoryDto)
+		{
+			if (categoryDto.ImageFile != null)
+			{
+				string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(categoryDto.ImageFile.FileName);
+				string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", newAvatarURL);
+				using (var stream = new FileStream(newPath, FileMode.Create))
+				{
+					categoryDto.ImageFile.CopyTo(stream);
+				}
+				categoryDto.Image = newAvatarURL;
+				ImageConvertor imageResize = new ImageConvertor();
+				string ThumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", newAvatarURL);
+				string ImageCurrentPath = newPath;
+				imageResize.Image_resize(ImageCurrentPath, ThumbPath, 5000);
+			}
+			var category = new CourseGroup
+			{
+				NamePersian = categoryDto.NamePersian,
+				NameEnglish = categoryDto.NameEnglish,
+				NameArabic = categoryDto.NameArabic,
+				ParentId = categoryDto.ParentId,
+				Image = categoryDto.Image,
+			};
+
+			await _context.CourseGroups.AddAsync(category);
+		}
+		public async Task<List<CategoryDto>> GetParentCourseGroups()
+		{
+			var categories = await _context.CourseGroups.Where(x=>x.ParentId == null).ToListAsync();
+			return categories.Select(c => new CategoryDto
+			{
+				Id = c.GroupId,
+				NamePersian = c.NamePersian,
+				NameEnglish = c.NameEnglish,
+				NameArabic = c.NameArabic,
+				Parent = c.Parent,
 				ParentId = c.ParentId,
+				Image = string.IsNullOrEmpty(c.Image) ? "Default.jpg" : c.Image,
 				Childs = c.SubGroups
-            }).ToList();
-        }
+			}).ToList();
+		}
+		public async Task<List<CategoryDto>> GetAllCourseGroups()
+		{
+			var categories = await _context.CourseGroups.Include(x => x.Parent).Include(x => x.SubGroups).Include(x => x.CourseGroups).ToListAsync();
+			return categories.Select(c => new CategoryDto
+			{
+				Id = c.GroupId,
+				NamePersian = c.NamePersian,
+				NameEnglish = c.NameEnglish,
+				NameArabic = c.NameArabic,
+				Parent = c.Parent,
+				ParentId = c.ParentId,
+				Image = string.IsNullOrEmpty(c.Image) ? "Default.jpg" : c.Image,
+				Childs = c.SubGroups
+			}).ToList();
+		}
 
-        public async Task<CategoryDto> GetCategoryById(int id)
-        {
-            var category = await _context.CourseGroups.FindAsync(id);
-            if (category == null) return null;
+		public async Task<CategoryDto> GetCategoryById(int id)
+		{
+			var category = await _context.CourseGroups.FindAsync(id);
+			if (category == null) return null;
 
-            return new CategoryDto
-            {
-                Id = category.GroupId,
-                NamePersian = category.NamePersian,
-                NameEnglish = category.NameEnglish,
-                NameArabic = category.NameArabic,
-                Parent = category.Parent,
+			return new CategoryDto
+			{
+				Id = category.GroupId,
+				NamePersian = category.NamePersian,
+				NameEnglish = category.NameEnglish,
+				NameArabic = category.NameArabic,
+				Parent = category.Parent,
 				ParentId = category.ParentId,
+				Image = string.IsNullOrEmpty(category.Image) ? "Default.jpg" : category.Image,
 				Childs = category.SubGroups
-            };
-        }
+			};
+		}
 
-        public async Task UpdateCategory(CategoryDto categoryDto)
-        {
-            var category = await _context.CourseGroups.FindAsync(categoryDto.Id);
-            if (category == null) return;
+		public async Task UpdateCategory(CategoryDto categoryDto)
+		{
+			var category = await _context.CourseGroups.FindAsync(categoryDto.Id);
+			if (category == null) return;
+			if (categoryDto.ImageFile != null)
+			{
+				if (category.Image != "Default.jpg" && !string.IsNullOrEmpty(category.Image))
+				{
+					string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", category.Image);
+					if (System.IO.File.Exists(path))
+					{
+						System.IO.File.Delete(path);
+					}
 
-            category.NamePersian = categoryDto.NamePersian;
-            category.NameEnglish = categoryDto.NameEnglish;
-            category.NameArabic = categoryDto.NameArabic;
-            category.ParentId = categoryDto.ParentId;
+					string thumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", category.Image);
+					if (System.IO.File.Exists(thumbPath))
+					{
+						System.IO.File.Delete(thumbPath);
+					}
+				}
+				string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(categoryDto.ImageFile.FileName);
+				string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", newAvatarURL);
+				using (var stream = new FileStream(newPath, FileMode.Create))
+				{
+					categoryDto.ImageFile.CopyTo(stream);
+				}
+				category.Image = newAvatarURL;
+				ImageConvertor imageResize = new ImageConvertor();
+				string ThumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", newAvatarURL);
+				string ImageCurrentPath = newPath;
+				imageResize.Image_resize(ImageCurrentPath, ThumbPath, 5000);
+			}
+			category.NamePersian = categoryDto.NamePersian;
+			category.NameEnglish = categoryDto.NameEnglish;
+			category.NameArabic = categoryDto.NameArabic;
+			category.ParentId = categoryDto.ParentId;
 
-        }
+		}
 
-        public async Task DeleteCategory(int id)
-        {
-            var category = await _context.CourseGroups.Include(x=>x.SubGroups).FirstOrDefaultAsync(x=>x.GroupId == id);
-            if (category != null)
-            {
-                category.IsDeleted = true;
-                category.SubGroups.ForEach(x=>x.IsDeleted = true);
-            }
-        }
-    }
+		public async Task DeleteCategory(int id)
+		{
+			var category = await _context.CourseGroups.Include(x => x.SubGroups).FirstOrDefaultAsync(x => x.GroupId == id);
+			if (category != null)
+			{
+				category.IsDeleted = true;
+				category.SubGroups.ForEach(x => x.IsDeleted = true);
+			}
+		}
+	}
 }

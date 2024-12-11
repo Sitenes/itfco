@@ -29,11 +29,11 @@ namespace Toplearn.Core.Services.Interfaces
         Task<CategoryDto> GetCategoryById(int id);
         Task UpdateCategory(CategoryDto categoryDto);
         Task DeleteCategory(int id);
+        Task<List<CategoryDto>> GetParentCourseGroups();
+		#endregion
 
-        #endregion
-
-        #region Courses
-        Task<int> AddCourse(Course course, IFormFile ImageFile, IFormFile DemoFile);
+		#region Courses
+		Task<int> AddCourse(Course course, IFormFile ImageFile, IFormFile DemoFile);
 		Task<bool> IsCourseExsit(int Id);
         Task<Course> GetCourse(int Id);
         Task<bool> RemoveCourse(int Id);

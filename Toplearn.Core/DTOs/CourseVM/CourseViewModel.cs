@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -80,6 +81,8 @@ namespace Toplearn.Core.DTOs.CourseVM
         public string NamePersian { get; set; }
         public string NameEnglish { get; set; }
         public string NameArabic { get; set; }
+		public string Image { get; set; }
+		public IFormFile ImageFile { get; set; }
 		public int? ParentId { get; set; }
 		public CourseGroup Parent { get; set; }
         public List<CourseGroup> Childs { get; set; }

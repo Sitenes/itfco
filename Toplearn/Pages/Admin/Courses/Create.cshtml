@@ -220,57 +220,10 @@
 
 	</form>
 </div>
-
 @section Scripts
-	{
-	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
-	{
-		<partial name="_SucceedModalPartial" model="@("/Admin/Courses/Index")" />
-	}
-	else if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == false)
-	{
-		<partial name="FailedModalPartial" />
-	}
-
-	<script type="text/javascript">
-		function validateFileType() {
-			var fileName = document.getElementById("fileName").value;
-			var idxDot = fileName.lastIndexOf(".") + 1;
-			var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-			if (extFile == "jpg" || extFile == "jpeg" || extFile == "png" || extFile == "gif") {
-
-				var src = URL.createObjectURL(event.target.files[0]);
-				var preview = document.getElementById("imgAvatar");
-				preview.src = src;
-				preview.style.display = "block";
-
-			} else {
-				alert("شما فقط مجاز به انتخاب عکس با فرمت .jpg .jepg .gif .png هستید!");
-				document.getElementById("fileName").value = "";
-			}
-		}
-		function validateDemoType() {
-			var fileName = document.getElementById("demofile").value;
-			var idxDot = fileName.lastIndexOf(".") + 1;
-			var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-			if (extFile == "mp4" || extFile == "mkv" || extFile == "wmv" || extFile == "mov" || extFile == "flv" || extFile == "avi") {
-
-				var src = URL.createObjectURL(event.target.files[0]);
-				var preview = document.getElementById("DemoFilm");
-				preview.src = src;
-				preview.style.display = "block";
-
-			} else {
-				alert("شما فقط مجاز به انتخاب عکس با فرمت .mp4 .mkv .wmv .mov .flv .avi هستید!");
-				document.getElementById("demofile").value = "";
-			}
-		}
-	</script>
-
+{
 	<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
 	<script>
-
-		CKEDITOR.replace('mainGroup',{customConfig:'/js/Config.js'});
-
+		CKEDITOR.replace('mainGroup', { customConfig: '/js/Config.js' });
 	</script>
 }

@@ -1232,47 +1232,35 @@
 
 	//Price Range Slider
 
-	if($('.price-range-slider').length){
+	$(document).ready(function() {
+    if($('.price-range-slider').length) {
+        $(".price-range-slider").slider({
+            range: true,
+            min: 0,
+            max: 90,
+            values: [8, 85],
+            slide: function(event, ui) {
+                $("input.property-amount").val(ui.values[0] + " - " + ui.values[1]);
+            }
+        });
 
-		$( ".price-range-slider" ).slider({
-
-			range: true,
-
-			min: 0,
-
-			max: 90,
-
-			values: [ 8, 85 ],
-
-			slide: function( event, ui ) {
-
-			$( "input.property-amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-
-			}
-
-		});
-
-		
-
-		$( "input.property-amount" ).val( $( ".price-range-slider" ).slider( "values", 0 ) + " - $" + $( ".price-range-slider" ).slider( "values", 1 ) );	
-
-	}
+        $("input.property-amount").val($(".price-range-slider").slider("values", 0) + " - $" + $(".price-range-slider").slider("values", 1));
+    }
+});
 
 	
 
 	
 
 	//Jquery Spinner / Quantity Spinner
+	$(document).ready(function () {
+		if ($('.quantity-spinner').length) {
+			$("input.quantity-spinner").TouchSpin({
+				verticalbuttons: true
+			});
+		}
+	});
 
-	if($('.quantity-spinner').length){
-
-		$("input.quantity-spinner").TouchSpin({
-
-		  verticalbuttons: true
-
-		});
-
-	}	
 
 	
 
