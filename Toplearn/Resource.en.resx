@@ -426,4 +426,10 @@
   <data name="signin" xml:space="preserve">
     <value>Ssignin</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ViewProducts" xml:space="preserve">
+    <value>View More</value>
+  </data>
 </root>

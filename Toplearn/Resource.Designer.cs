@@ -29,7 +29,7 @@ namespace Toplearn.Web {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resource() {
+        public Resource() {
         }
         
         /// <summary>
@@ -192,6 +192,15 @@ namespace Toplearn.Web {
         public static string Categories {
             get {
                 return ResourceManager.GetString("Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دسته بندی.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
             }
         }
         
@@ -448,7 +457,7 @@ namespace Toplearn.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ایده طراحی فرزانگان.
+        ///   Looks up a localized string similar to ایده طراح فرزانگان.
         /// </summary>
         public static string FarzaneganDesignIdea {
             get {
@@ -525,15 +534,6 @@ namespace Toplearn.Web {
         public static string Free {
             get {
                 return ResourceManager.GetString("Free", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to سلام.
-        /// </summary>
-        public static string Hello {
-            get {
-                return ResourceManager.GetString("Hello", resourceCulture);
             }
         }
         
@@ -1024,7 +1024,7 @@ namespace Toplearn.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to مشاهده بیشتر.
         /// </summary>
         public static string ViewProducts {
             get {

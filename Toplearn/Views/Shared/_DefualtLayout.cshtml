@@ -1,6 +1,11 @@
-﻿@using Toplearn.Web
+﻿@inject ICourseService _courseService
+@using Toplearn.Core.Services.Interfaces
+@using Toplearn.Web
+@using Toplearn.Web.Controllers
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
-
+@{
+    var groups = await _courseService.GetParentCourseGroups();
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,6 +96,25 @@
                                 <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
                                     <ul class="navigation clearfix">
                                         <li class="current"><a href="/">@Localizer["Home"]</a></li>
+
+                                        <li class="dropdown">
+                                            <a href="#">@Localizer["Category"]</a>
+                                            <ul>
+                                                @foreach (var category in groups)
+                                                {
+                                                    <li><a href="/product?GroupId=@(category.Id)">@(category.NamePersian)</a></li>
+                                                }
+                                              
+                                                <li><a href="faq.html">FAQ's</a></li>
+                                                <li><a href="team.html">Our Team</a></li>
+                                                <li><a href="coming-soon.html">Coming Soon</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                
+                                            </a>
+                                        </li>
                                         <li><a href="#">@Localizer["Blog"]</a></li>
                                         <li><a href="#">@Localizer["AboutUs"]</a></li>
                                         <li><a href="#">@Localizer["ContactUs"]</a></li>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FarzaneganDesignIdea" xml:space="preserve">
-    <value>ایده طراحی فرزانگان</value>
+    <value>ایده طراح فرزانگان</value>
   </data>
   <data name="FarzaneganDesignIdea_Slide1" xml:space="preserve">
     <value>پیشرو در صنعت خودرو و قطعات یدکی</value>
@@ -221,9 +221,6 @@
   </data>
   <data name="RegistrationSuccessful" xml:space="preserve">
     <value>ثبت نام با موفقیت انجام شد</value>
-  </data>
-  <data name="Hello" xml:space="preserve">
-    <value>سلام</value>
   </data>
   <data name="EmailSentTo" xml:space="preserve">
     <value>ایمیلی حاوی لینک فعال سازی برای</value>
@@ -379,7 +376,7 @@
     <value>جستجو کنید</value>
   </data>
   <data name="ViewProducts" xml:space="preserve">
-    <value />
+    <value>مشاهده بیشتر</value>
   </data>
   <data name="DefaultImageAlt" xml:space="preserve">
     <value />
@@ -458,5 +455,8 @@
   </data>
   <data name="signin" xml:space="preserve">
     <value>ورود</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>دسته بندی</value>
   </data>
 </root>

@@ -39,8 +39,11 @@ namespace Toplearn.Web.Controllers
             ViewData["Category"] = await _courseService.GetParentCourseGroups();
             return View();
         }
-
-        public IActionResult chengeAr()
+        public IActionResult Culture()
+        {
+            return Ok(Request.Query["Culture"].ToString());
+        }
+            public IActionResult chengeAr()
         {
             var url = HttpContext.Request.GetEncodedUrl();
             url = url.Replace("chengeAr", "");

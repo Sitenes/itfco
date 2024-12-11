@@ -87,7 +87,14 @@ namespace Toplearn.Core.DTOs.CourseVM
 		public CourseGroup Parent { get; set; }
         public List<CourseGroup> Childs { get; set; }
     }
-	public class CategoryInputDto
+    public class CategoryListDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Count { get; set; }
+        public List<CategoryListDto> SubCategories { get; set; }
+    }
+    public class CategoryInputDto
 	{
 		public int Id { get; set; }
 

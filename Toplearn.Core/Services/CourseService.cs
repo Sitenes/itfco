@@ -169,7 +169,7 @@ namespace Toplearn.Core.Services
 
 			if (Filter.GroupId != 0)
 			{
-				Courses = Courses.Where(n => n.GroupId == Filter.GroupId || n.Group.ParentId == Filter.GroupId);
+				Courses = Courses.Where(n => n.GroupId == Filter.GroupId || n.Group?.ParentId == Filter.GroupId);
 			}
 
 			if (Filter.LevelId != 0)
@@ -541,7 +541,7 @@ namespace Toplearn.Core.Services
 		}
 		public async Task<List<CategoryDto>> GetParentCourseGroups()
 		{
-			var categories = await _context.CourseGroups.Where(x=>x.ParentId == null).ToListAsync();
+			var categories = await _context.CourseGroups.Where(x=>x.ParentId == null).Include(x=>x.SubGroups).ToListAsync();
 			return categories.Select(c => new CategoryDto
 			{
 				Id = c.GroupId,
@@ -554,7 +554,12 @@ namespace Toplearn.Core.Services
 				Childs = c.SubGroups
 			}).ToList();
 		}
-		public async Task<List<CategoryDto>> GetAllCourseGroups()
+        public async Task<int> CountCategoryProducts(int groupId)
+        {
+            var categories = await _context.Courses.Include(x=>x.Group.Parent).CountAsync(x=>x.GroupId == groupId || (x.Group != null && x.Group.ParentId == groupId) || (x.Group != null && x.Group.Parent != null && x.Group.Parent.ParentId == groupId));
+            return categories;
+        }
+        public async Task<List<CategoryDto>> GetAllCourseGroups()
 		{
 			var categories = await _context.CourseGroups.Include(x => x.Parent).Include(x => x.SubGroups).Include(x => x.CourseGroups).ToListAsync();
 			return categories.Select(c => new CategoryDto

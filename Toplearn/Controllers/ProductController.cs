@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using Toplearn.DataLayer.Entities.Courses;
 using Toplearn.Core.DTOs.UserVM;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
+using ZarinpalSandbox;
 
 namespace Toplearn.Web.Controllers
 {
@@ -21,8 +23,36 @@ namespace Toplearn.Web.Controllers
         }
         public async Task<IActionResult> Index(CourseFilterAdminViewModel input)
         {
-            var products = await _courseService.GetCoursesList(input);
+            var lang = Request.Query["Culture"].ToString();
 
+            var products = await _courseService.GetCoursesList(input);
+            var parents = (await _courseService.GetParentCourseGroups());
+            var subCategories = new List<CategoryListDto>();
+            var categoryList = new List<CategoryListDto>();
+            foreach (var parent in parents)
+            {
+                foreach (var child in parent.Childs)
+                {
+                    var subCategory = new CategoryListDto
+                    {
+                        Id = child.GroupId,
+                        Count = await _courseService.CountCategoryProducts(child.GroupId),
+                        Name = lang == "en" ? child.NameEnglish : lang == "ar" ? child.NameArabic : parent.NamePersian,
+                    };
+
+                    subCategories.Add(subCategory);
+                }
+
+                var category = new CategoryListDto
+                {
+                    Id = parent.Id,
+                    Count = await _courseService.CountCategoryProducts(parent.Id),
+                    Name = lang == "en" ? parent.NameEnglish : lang == "ar" ? parent.NameArabic : parent.NamePersian,
+                    SubCategories = subCategories
+                };
+                categoryList.Add(category);
+            }
+            ViewData["Categories"] = categoryList;
             return View(products);
         }
         [Route("/product/{id}")]
@@ -30,7 +60,35 @@ namespace Toplearn.Web.Controllers
         {
             var product = await _courseService.GetCourse(id);
 
-			return View("product",product);
+            var lang = Request.Query["Culture"].ToString();
+            var parents = (await _courseService.GetParentCourseGroups());
+            var subCategories = new List<CategoryListDto>();
+            var categoryList = new List<CategoryListDto>();
+            foreach (var parent in parents)
+            {
+                foreach (var child in parent.Childs)
+                {
+                    var subCategory = new CategoryListDto
+                    {
+                        Id = child.GroupId,
+                        Count = await _courseService.CountCategoryProducts(child.GroupId),
+                        Name = lang == "en" ? child.NameEnglish : lang == "ar" ? child.NameArabic : parent.NamePersian,
+                    };
+
+                    subCategories.Add(subCategory);
+                }
+
+                var category = new CategoryListDto
+                {
+                    Id = parent.Id,
+                    Count = await _courseService.CountCategoryProducts(parent.Id),
+                    Name = lang == "en" ? parent.NameEnglish : lang == "ar" ? parent.NameArabic : parent.NamePersian,
+                    SubCategories = subCategories
+                };
+                categoryList.Add(category);
+            }
+            ViewData["Categories"] = categoryList;
+            return View("product", product);
         }
     }
 }

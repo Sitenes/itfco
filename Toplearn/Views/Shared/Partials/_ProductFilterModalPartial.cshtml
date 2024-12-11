@@ -1,0 +1,94 @@
+﻿@using Toplearn.Core.DTOs.CourseVM
+@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+<!-- main manu -->
+@model IEnumerable<CategoryListDto>
+
+<!--Sidebar Side-->
+<div class="sidebar-side col-xl-3 col-lg-4 col-md-12">
+    <aside class="sidebar">
+
+        <!-- Search -->
+        <div class="sidebar-widget search-box">
+            <form asp-controller="product" asp-action="index">
+                <div class="form-group">
+                    <input type="search" name="Title" placeholder="@(Localizer["SearchPlaceholder"])" required>
+                    <button type="submit"><span class="icon fa fa-search"></span></button>
+                </div>
+            </form>
+        </div>
+
+        <!--Blog Category Widget-->
+        <div class="sidebar-widget sidebar-blog-category">
+            <div class="sidebar-title">
+                <h3>Categories</h3>
+                <div class="separater"></div>
+            </div>
+            <ul class="cat-list">
+                @foreach (var category in Model)
+                {
+                    <li class="clearfix">
+                        <a href="/product?GroupId=@category.Id">
+                            @category.Name <span>@category.Count</span>
+
+                        </a>
+                    </li>
+                    @foreach (var subcategory in category.SubCategories)
+                    {
+                        <li class="clearfix">
+                            <a href="/product?GroupId=@subcategory.Id" style="margin-right:10px">@subcategory.Name <span>@subcategory.Count</span></a>
+                        </li>
+                    }
+                }
+
+                @* <li class="clearfix active"><a href="#">Industry <span>49</span></a></li> *@
+            </ul>
+        </div>
+
+        <!-- Price Filters -->
+        @*  <div class="sidebar-widget price-filters rangeslider-widget">
+        <div class="sidebar-title">
+        <h3>Filter By Price</h3>
+        <div class="separater"></div>
+        </div>
+        <div class="range-slider-one clearfix">
+        <div class="price-range-slider"></div>
+        <div class="clearfix">
+        <div class="pull-left">
+        <a href="#" class="theme-btn btn-style-one">Filtter</a>
+        </div>
+        <div class="pull-right">
+        <div class="title">Price:</div>
+        <div class="input"><input type="text" class="property-amount" name="field-name" readonly></div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <!-- Top Related Posts -->
+        <div class="sidebar-widget related-posts">
+        <div class="sidebar-title">
+        <h3>Popular Products</h3>
+        <div class="separater"></div>
+        </div>
+        <div class="post">
+        <figure class="post-thumb"><a href="shop-single.html"><img src="images/resource/products/prod-thumb-1.jpg" alt=""></a></figure>
+        <h4><a href="shop-single.html">Woo Album #4</a></h4>
+        <div class="rating"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+        <div class="price">$9.00</div>
+        </div>
+        <div class="post">
+        <figure class="post-thumb"><a href="shop-single.html"><img src="images/resource/products/prod-thumb-2.jpg" alt=""></a></figure>
+        <h4><a href="shop-single.html">Happy Ninja</a></h4>
+        <div class="rating"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+        <div class="price">$ 18.00</div>
+        </div>
+        <div class="post">
+        <figure class="post-thumb"><a href="shop-single.html"><img src="images/resource/products/prod-thumb-3.jpg" alt=""></a></figure>
+        <h4><a href="shop-single.html">Ninja Silhouette</a></h4>
+        <div class="rating"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+        <div class="price">$20.00</div>
+        </div>
+        </div> *@
+    </aside>
+</div>
