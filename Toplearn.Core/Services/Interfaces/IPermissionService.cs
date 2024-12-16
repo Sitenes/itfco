@@ -19,8 +19,9 @@ namespace Toplearn.Core.Services
         Task<int> AddRoleAsync(Role role);
         bool RemoveRole(int roleId);
         bool UpdateRole(Role role);
-        #endregion
-        Task SaveChangesAsync();
+        Task RemoveAllUserRolesById(Guid UserId);
+		#endregion
+		Task SaveChangesAsync();
 
         #region Permissions
         List<Permission> GetPermissions();

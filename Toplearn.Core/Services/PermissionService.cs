@@ -38,8 +38,12 @@ namespace Toplearn.Core.Services
         {
             return _context.Roles.Select(n => n).Include(n=>n.RolePermissions).ThenInclude(n=>n.Permission).ToList();
         }
-
-        public bool AddRole(Guid UserId, int Role)
+		public async Task RemoveAllUserRolesById(Guid UserId)
+		{
+			var userRoles = await _context.UserRoles.Where(x => x.UserId == UserId).ToListAsync();
+            _context.UserRoles.RemoveRange(userRoles);
+		}
+		public bool AddRole(Guid UserId, int Role)
         {
             try
             {

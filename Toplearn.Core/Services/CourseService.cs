@@ -334,8 +334,11 @@ namespace Toplearn.Core.Services
 			});
 			return episodesResult;
 		}
-
-		public IEnumerable<CourseGroup> GetGroups()
+        public async Task<int> CountCourses()
+        {
+            return await _context.Courses.CountAsync();
+        }
+        public IEnumerable<CourseGroup> GetGroups()
 		{
 			return _context.CourseGroups.ToList();
 		}

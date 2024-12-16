@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Toplearn.Core.Convertors;
@@ -32,7 +33,7 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
             addUser = new AddUserAdminViewModel();
         }
 
-        public IActionResult OnPost(List<int> Roles)
+        public async Task<IActionResult> OnPostAsync(List<int> Roles)
         {
             ViewData["Roles"] = _permissionService.GetAllRoles();
             #region Validation for Add user from Admin
@@ -73,16 +74,12 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
                 RegisterDate = System.DateTime.Now,
             };
 
-            #region Roles
-            Roles.ForEach(n => _permissionService.AddRole(NewUser.UserId, n));
+			#region Roles
+
             #endregion
 
             #region Avatar
-            if(addUser.UserAvatar == null)
-            {
-                NewUser.UserAvatar = "Default.png";
-            }
-            else
+            if(addUser.UserAvatar != null)
             {
                 string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(addUser.UserAvatar.FileName);
                 string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UserAvatar", newAvatarURL);
@@ -95,11 +92,12 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
 
             #endregion
 
-            _userService.AddUser(NewUser);
-            _userService.SaveChanges();
-
-            ViewData["IsSucceed"] = true;
-            return Page();
+            await _userService.AddUserAsync(NewUser);
+            await _userService.SaveChangesAsync();
+			Roles.ForEach(n => _permissionService.AddRole(NewUser.UserId, n));
+			await _permissionService.SaveChangesAsync();
+			ViewData["IsSucceed"] = true;
+			return Page();
         }
     }
 }

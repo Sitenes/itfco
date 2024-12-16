@@ -24,7 +24,6 @@
 
         @for (int i = 0; i < Categories?.Count; i++)
         {
-            @{
                 var title = Categories[i].NamePersian;
                 switch (ViewData["Culture"] as string)
                 {
@@ -35,7 +34,6 @@
                         title = Categories[i].NameArabic;
                         break;
                 }
-            }
 
 
             <div class="slide-item" style="background-image: url('/CourseRoot/Image/@Categories[i].Image');">
@@ -43,7 +41,7 @@
                     <div class="content-box">
                         <span class="title">@Localizer["FarzaneganDesignIdea"]</span>
 
-                        <h2>@Html.Raw(slideTitles[i])</h2>
+                        <h2>@Html.Raw(title)</h2>
                         <div class="visit-product">
                             <a href="/product?GroupId=@Categories[i].Id" class="theme-btn btn-style-one">
                                 <i class="icon fa fa-shopping-basket" aria-hidden="true"></i>
@@ -141,7 +139,7 @@
                     <div class="counter-column col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
                         <div class="count-box">
                             <div class="count">
-                                <span class="count-text" data-speed="5000" data-stop="237">100</span>
+                                <span class="count-text" data-speed="5000" data-stop="@ViewData["ProductCount"]">@ViewData["ProductCount"]</span>
                             </div>
                             <h4 class="counter-title">@Localizer["NumberOfProducts"]</h4>
                         </div>

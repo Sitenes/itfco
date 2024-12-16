@@ -83,8 +83,12 @@
 
 @section Scripts
 {
-	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+@* 	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
 	{
 		<partial name="_SucceedModalPartial" model="@("/Admin/ManageCategories/Index")" />
 	}
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == false)
+	{
+		<partial name="_FailedModalPartial" model="@("/Admin/ManageCategories/Index")" />
+	} *@
 }

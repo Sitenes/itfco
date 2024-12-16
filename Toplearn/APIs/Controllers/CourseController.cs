@@ -30,8 +30,9 @@ namespace Toplearn.Web.APIs.Controllers
             int Id = (int)id;
             var course = await _courseService.GetCourse(Id);
             if(!await _courseService.RemoveCourse(Id))
-                return Redirect($"/Admin/Episodes/Index/{id}/false");
-            return Redirect($"/Admin/Episodes/Index/{id}/true");
+                return Redirect($"/Admin/Courses/Index?IsSucceed=false");
+            await _courseService.SaveChanges();
+            return Redirect($"/Admin/Courses/Index?IsSucceed=true");
         }
 
     }

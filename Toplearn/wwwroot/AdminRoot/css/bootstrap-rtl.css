@@ -4873,7 +4873,7 @@ body.modal-open,
   margin-right: auto;
   width: auto;
   padding: 10px;
-  z-index: 1050;
+  z-index: 10500;
 }
 .modal-content {
   position: relative;

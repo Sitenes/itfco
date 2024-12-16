@@ -12,6 +12,7 @@ using Toplearn.Core.Services;
 using Toplearn.DataLayer.Entities.User;
 using TopLearn.Core.Security;
 using Toplearn.Core.Security;
+using System.Threading.Tasks;
 
 namespace Toplearn.Web.Pages.Admin.ManageUsers
 {
@@ -47,21 +48,25 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
             EditUser.OldAvatar = user.UserAvatar;
             EditUser.Wallet = user.Wallet;
         }
-        public IActionResult OnPost(List<int> roles)
+        public async Task<IActionResult> OnPostAsync(List<int> roles)
         {
 
             EditUser.RolesId = new List<int>();
-            ViewData["Roles"] = _permissionService.GetAllRoles();
+
             if (!ModelState.IsValid)
                 return Page();
             User user = _userService.GetUser(EditUser.UserId);
             user.IsActive = EditUser.IsActive;
             user.Phone = EditUser.Phone;
-            roles.ForEach(n => _permissionService.AddRole(user.UserId, n));
-            user.RegisterDate = EditUser.RegisterDate;
+            
+            await _permissionService.RemoveAllUserRolesById(user.UserId);
+			roles.ForEach(n => _permissionService.AddRole(user.UserId, n));
+
+			user.RegisterDate = EditUser.RegisterDate;
             user.UserName = EditUser.UserName;
             user.Wallet = EditUser.Wallet;
-            if(!string.IsNullOrWhiteSpace(EditUser.Password))
+			EditUser.RolesId = _permissionService.GetUserRoles(user.UserId);
+			if (!string.IsNullOrWhiteSpace(EditUser.Password))
                 user.Password = PasswordHelper.EncodePasswordMd5(EditUser.Password);
 
             if (EditUser.NewAvatar != null)
@@ -108,9 +113,11 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
             }
             if (!_userService.UpdateUser(user))
                 throw new Exception("یوزر آپدیت نشد");
-            _userService.SaveChanges();
+            await _userService.SaveChangesAsync();
+            await _permissionService.SaveChangesAsync();
             ViewData["IsSucceed"] = true;
-            return Page();
+			ViewData["Roles"] = _permissionService.GetAllRoles();
+			return Page();
 
         }
 

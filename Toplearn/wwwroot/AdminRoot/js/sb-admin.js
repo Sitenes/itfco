@@ -53,3 +53,16 @@ function validateDemoType() {
 }
 
 
+function removeIsSucceedAndRefresh() {
+    // گرفتن URL فعلی
+    const url = new URL(window.location.href);
+
+    // حذف پارامتر IsSucceed از Query String
+    //url.searchParams.delete('IsSucceed=');
+
+    //// تغییر URL بدون رفرش صفحه
+    //window.history.replaceState(null, '', url);
+
+    // رفرش صفحه
+    location.reload();
+}

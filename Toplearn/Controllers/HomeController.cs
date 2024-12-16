@@ -36,6 +36,7 @@ namespace Toplearn.Web.Controllers
                     break;
             }
             ViewData["Culture"] = Request.Query["Culture"].ToString();
+            ViewData["ProductCount"] = await _courseService.CountCourses();
             ViewData["Category"] = await _courseService.GetParentCourseGroups();
             return View();
         }
@@ -43,7 +44,7 @@ namespace Toplearn.Web.Controllers
         {
             return Ok(Request.Query["Culture"].ToString());
         }
-            public IActionResult chengeAr()
+        public IActionResult chengeAr()
         {
             var url = HttpContext.Request.GetEncodedUrl();
             url = url.Replace("chengeAr", "");

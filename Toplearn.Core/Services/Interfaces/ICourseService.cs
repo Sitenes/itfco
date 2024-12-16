@@ -40,6 +40,7 @@ namespace Toplearn.Core.Services.Interfaces
         Task<bool> RemoveCourse(int Id);
         Task<IEnumerable<CourseItemListViewModel>> GetCoursesList(CourseFilterListViewModel filter);
         Task<bool> Update(Course course, IFormFile ImageFile, IFormFile DemoFile);
+        Task<int> CountCourses();
         #endregion
 
         #region Episode

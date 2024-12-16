@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FarzaneganDesignIdea" xml:space="preserve">
-    <value>Farzanegan Design Idea</value>
+    <value>Ideh Tarh Farzanegan</value>
   </data>
   <data name="FarzaneganDesignIdea_Slide1" xml:space="preserve">
     <value>Leading the industry in car and spare parts</value>
@@ -196,7 +196,7 @@
     <value>Login to Site</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>golastani@gmail.com</value>
+    <value>Email</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
@@ -424,7 +424,7 @@
     <value>Operation was successful!</value>
   </data>
   <data name="signin" xml:space="preserve">
-    <value>Ssignin</value>
+    <value>Signin</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value>Category</value>

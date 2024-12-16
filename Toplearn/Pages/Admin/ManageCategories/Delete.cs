@@ -17,7 +17,7 @@ namespace Toplearn.Web.Pages.Admin.ManageCategories
         }
 
 
-        #region Delete User
+        #region Delete
         [Route("Admin/ManageCategories/Delete")]
         public async Task<IActionResult> DeleteAsync(int id)
         {

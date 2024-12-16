@@ -150,11 +150,11 @@
 	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
 	{
 		<partial name="_SucceedModalPartial" model="@("/Admin/ManageUser/UserList")" />
-		<script>
+@* 		<script>
 			$(document).ready(function () {
 				setTimeout(function () { location.replace("/Admin/ManageUser/UserList"); }, 10000);
 			});
-		</script>
+		</script> *@
 	}
 	<script type="text/javascript">
 		function validateFileType() {
@@ -169,7 +169,7 @@
 				preview.style.display = "block";
 
 			} else {
-				alert("شما فقط مجاز به انتخاب عکس با فرمت .jpg .jepg .gif .png هستید!");
+				alert("شما فقط مجاز به انتخاب عکس با فرمت .jpg .jpeg .gif .png هستید!");
 				document.getElementById("fileName").value = "";
 			}
 		}

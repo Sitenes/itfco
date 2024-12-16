@@ -5474,7 +5474,7 @@ textarea.form-control-lg {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 1050;
+  z-index: 10500;
   width: 100vw;
   height: 100vh;
   background-color: #000;

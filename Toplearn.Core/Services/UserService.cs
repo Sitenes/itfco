@@ -127,7 +127,7 @@ namespace Toplearn.Core.Services
         {
             var user = _context.Users.Find(UserId);
             if (string.IsNullOrEmpty(user?.UserAvatar))
-                user.UserAvatar = "\\UserAvatar\\Default.jpg";
+                user.UserAvatar = "Default.png";
 
 			return user;
         }
@@ -157,7 +157,7 @@ namespace Toplearn.Core.Services
             }).SingleOrDefault();
 
 			if (string.IsNullOrEmpty(user?.UserAvatar))
-				user.UserAvatar = "\\UserAvatar\\Default.jpg";
+				user.UserAvatar = "Default.png";
 			
             return user;
 
@@ -185,8 +185,8 @@ namespace Toplearn.Core.Services
                     User.UserName = "Default/" + Guid.NewGuid().ToString().Replace("-", "");
                 if (User.RegisterDate == null || User.RegisterDate == DateTime.MinValue)
                     User.RegisterDate = DateTime.Now;
-                if (string.IsNullOrWhiteSpace(User.UserAvatar))
-                    User.UserAvatar = "Default.jpg";
+                //if (string.IsNullOrWhiteSpace(User.UserAvatar))
+                //    User.UserAvatar = "Default.jpg";
                 if (string.IsNullOrWhiteSpace(User.Password))
                     User.Password = PasswordHelper.EncodePasswordMd5("user123456");
                 if (User.Wallet < 0)
@@ -219,7 +219,7 @@ namespace Toplearn.Core.Services
             if (user == null)
                 return new User();
 			if (string.IsNullOrEmpty(user?.UserAvatar))
-				user.UserAvatar = "\\UserAvatar\\Default.jpg";
+				user.UserAvatar = "Default.png";
             return user;
 		}
 
@@ -229,7 +229,7 @@ namespace Toplearn.Core.Services
                 Where(n => n.UserName == UserName).
                 Select(n => n.UserAvatar).SingleOrDefault();
 			if (string.IsNullOrEmpty(userAvatar))
-				userAvatar = "\\UserAvatar\\Default.jpg";
+				userAvatar = "Default.png";
             return userAvatar;
 		}
 
@@ -305,7 +305,7 @@ namespace Toplearn.Core.Services
         public IEnumerable<User> GetUsers()
         {
             List<User> users = _context.Users.ToList();
-            users.ForEach(x => x.UserAvatar = string.IsNullOrEmpty(x.UserAvatar) ? "\\UserAvatar\\Default.jpg" : x.UserAvatar);
+            users.ForEach(x => x.UserAvatar = string.IsNullOrEmpty(x.UserAvatar) ? "Default.png" : x.UserAvatar);
 			return users;
         }
 
@@ -342,8 +342,8 @@ namespace Toplearn.Core.Services
                     User.UserName = "Default/" + Guid.NewGuid().ToString().Replace("-", "");
                 if (User.RegisterDate == null || User.RegisterDate == DateTime.MinValue)
                     User.RegisterDate = DateTime.Now;
-                if (string.IsNullOrWhiteSpace(User.UserAvatar))
-                    User.UserAvatar = "Default.jpg";
+                //if (string.IsNullOrWhiteSpace(User.UserAvatar))
+                //    User.UserAvatar = "Default.jpg";
                 if (string.IsNullOrWhiteSpace(User.Password))
                     User.Password = PasswordHelper.EncodePasswordMd5("user123456");
                 if (User.Wallet < 0)

@@ -24,14 +24,14 @@ namespace Toplearn.Web.Pages.Admin.ManageCategories
         {
             _CourseService = CourseService;
         }
-
+        [BindProperty]
         public List<CategoryDto>? Category { get;set; }
 
-        public async Task OnGetAsync(bool IsSucceed)
+        public async Task OnGetAsync(bool? IsSucceed)
         {
-            if (IsSucceed == true)
-                ViewData["IsSucceed"] = true;
-			Category = await _CourseService.GetAllCourseGroups();
+            if (IsSucceed != null)
+                ViewData["IsSucceed"] = IsSucceed;
+            Category = await _CourseService.GetAllCourseGroups();
         }
     }
 }

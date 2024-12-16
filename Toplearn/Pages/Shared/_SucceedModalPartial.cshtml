@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model string?
 <script>
 	$(document).ready(function () {
 		setTimeout(function () {
@@ -12,6 +12,8 @@
 			}, 7000);
 		}, 50);
 	});
+	// تابع برای حذف پارامتر IsSucceed از URL و رفرش صفحه
+	
 </script>
 
 <!-- Modal -->
@@ -25,7 +27,7 @@
 				<h5 class="modal-title h2" id="exampleModalLabel">تغییرات با موفقیت اعمال شد</h5>
 			</div>
 			<div class="modal-footer">
-				<a class="btn btn-primary" href="@((Model == null) ? "#" : $"{Model}")">فهمیدم</a>
+				<a class="btn btn-primary" onclick="removeIsSucceedAndRefresh()" data-dismiss="modal" @((Model == null || Model == "") ? "" : $@"href=""{Model}""")>فهمیدم</a>
 			</div>
 		</div>
 	</div>

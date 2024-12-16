@@ -203,8 +203,5 @@
 <!-- Modal -->
 @section Scripts
 	{
-	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
-	{
-		<partial name="_SucceedModalPartial" model="@("/Admin/ManageUser/UserList")" />
-	}
+
 }

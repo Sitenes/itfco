@@ -358,14 +358,7 @@
 
 
 	</div>
-	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
-	{
-		<partial name="_SucceedModalPartial" model="@("/Admin/Courses/Index")" />
-	}
-	else if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == false)
-	{
-		<partial name="_FailedModalPartial" />
-	}
+
 	<!-- /#wrapper -->
 	<!-- Core Scripts - Include with every page -->
 	<script src="/AdminRoot/js/jquery-1.10.2.js"></script>
@@ -375,6 +368,15 @@
 	<!-- Page-Level Plugin Scripts - Blank -->
 	<!-- SB Admin Scripts - Include with every page -->
 	<script src="/AdminRoot/js/sb-admin.js"></script>
+
+	@if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+	{
+		<partial name="_SucceedModalPartial" model="@("")" />
+	}
+	else if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == false)
+	{
+		<partial name="_FailedModalPartial" model="@("")" />
+	}
 
 	@RenderSection("Scripts",false)
 	<!-- Page-Level Demo Scripts - Blank - Use for reference -->
