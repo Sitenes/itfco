@@ -58,8 +58,10 @@ namespace Toplearn.Web.Pages.Admin.ManageRoles
             await _permissionService.SaveChangesAsync();
             SelectedPermissions.ForEach(async n =>await _permissionService.AddPermissionToRoleAsync(n, Role.RoleId));
             await _permissionService.SaveChangesAsync();
-            return RedirectToPage("./Index",true);
-        }
+			ViewData["IsSucceed"] = true;
+
+			return Page();
+		}
 
     }
 }

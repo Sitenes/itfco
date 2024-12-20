@@ -1,10 +1,12 @@
 ﻿@inject ICourseService _courseService
+@using System.Text
 @using Toplearn.Core.Services.Interfaces
+@using Toplearn.DataLayer.Entities.Courses
 @using Toplearn.Web
 @using Toplearn.Web.Controllers
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
 @{
-    var groups = await _courseService.GetParentCourseGroups();
+    var groups = await _courseService.GetParentCategories();
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -36,32 +38,37 @@
                         <div class="top-left">
                             <ul class="contact-list clearfix">
                                 <li>
-                                    <i class="fa fa-volume-control-phone"></i>
-                                    <a href="tel:+989133073417"
+                                    <i class="fa fa-volume-control-phone contact-info"></i>
+                                    <a href="tel:+989133073417" class="contact-info"
                                        style="font-family:sans-serif,'Franklin Gothic Medium', 'Arial Narrow', Arial">
-                                        @Localizer["Phone"]
+                                        989133073417+
                                     </a>
                                 </li>
                                 <li>
-                                    <i class="fa fa-envelope"></i>
-                                    <a href="mailto:golastani@gmail.com">golastani@gmail.com</a>
+                                    <i class="fa fa-envelope contact-info"></i>
+                                    <a href="mailto:golastani@gmail.com" class="contact-info">golastani@gmail.com</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="top-right">
                             <ul class="social-icon-four clearfix">
                                 <li>
-                                    <a href="https://wa.me/+989939910301/?text=" target="_blank">
+                                    <a href="https://wa.me/+989939910301/?text=" class="contact-info" target="_blank">
                                         <i class="fa fa-whatsapp"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://www.facebook.com/share/17r9qoRfvv/" target="_blank">
+                                    <a href="https://t.me/Mehdi87mg" class="contact-info" target="_blank">
+                                        <i class="fa fa-telegram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.facebook.com/share/17r9qoRfvv/" class="contact-info" target="_blank">
                                         <i class="fa fa-facebook-f"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://instagram.com/itfco7" target="_blank">
+                                    <a href="https://instagram.com/itfco7" class="contact-info" target="_blank">
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>
@@ -99,25 +106,41 @@
 
                                         <li class="dropdown">
                                             <a href="#">@Localizer["Category"]</a>
-                                            <ul>
-                                                @foreach (var category in groups)
-                                                {
-                                                    <li><a href="/product?GroupId=@(category.Id)">@(category.NamePersian)</a></li>
-     @*                                                @foreach (var subcategory in category)
+                                            <ul class="category">
+
+                                                @Html.Raw(RenderCategory(groups))
+                                                @functions {
+                                                    private string RenderCategory(List<CourseGroup> categories)
                                                     {
-                                                        <li><a href="/product?GroupId=@(subcategory.Id)">@(subcategory.NamePersian)</a></li>
-                                                    } *@
+                                                        StringBuilder sb = new StringBuilder();
+                                                        foreach (var category in categories)
+                                                        {
+                                                            if (category.SubGroups != null && category.SubGroups.Any())
+                                                            {
+                                                                sb.Append("<li class=\"dropdown\">");
+                                                            }
+                                                            else
+                                                            {
+                                                                sb.Append("<li>");
+                                                            }
+                                                            sb.Append($"<a href=\"/product?GroupId={category.GroupId}\">{category.NamePersian}</a>");
+                                                            if (category.SubGroups != null && category.SubGroups.Any())
+                                                            {
+                                                                sb.Append("<ul>");
+                                                                sb.Append($"<a href=\"/product?GroupId={category.GroupId}\">{category.NamePersian}</a>");
+                                                                sb.Append(RenderCategory(category.SubGroups));
+                                                                sb.Append("</ul>");
+                                                            }
+                                                            sb.Append("</li>");
+                                                        }
+                                                        return sb.ToString();
+                                                    }
                                                 }
                                             </ul>
                                         </li>
-                                        <li>
-                                            <a href="#">
-                                                
-                                            </a>
-                                        </li>
-                                        <li><a href="#">@Localizer["Blog"]</a></li>
-                                        <li><a href="#">@Localizer["AboutUs"]</a></li>
-                                        <li><a href="#">@Localizer["ContactUs"]</a></li>
+                                        <li><a href="/Blog/Index">@Localizer["Blog"]</a></li>
+                                        <li><a href="/Home/AboutUs">@Localizer["AboutUs"]</a></li>
+                                        <li><a href="/Home/ContactUs">@Localizer["ContactUs"]</a></li>
 
                                         <div id="div1">
                                             <div id="diva1">
@@ -125,15 +148,16 @@
                                                     <a asp-action="chengeEn" asp-controller="Home" id="btna1" type="button" value="">English</a>
                                                     <a asp-action="chengeFa" asp-controller="Home" id="btna2" type="button" value="فارسی">فارسی</a>
                                                     <a asp-action="chengeAr" asp-controller="Home" id="btna3" type="button" value="العربیه">العربیه</a>
-                                                    <img id="img2"
-                                                         src="~/images/background/Windows_Settings_app_icon.png">
+                                                    @* <img id="img2"
+                                                    src="~/images/background/Windows_Settings_app_icon.png"> *@
+                                                    <i id="img2" class="fa fa-2x fa-language" style="color:black"></i>
                                                 </div>
-                                                <div id="divaa2">
+                                                <a href="/UserPanel" id="divaa2">
                                                     <img id="img3"
                                                          src="~/images/background/Person_icon_(the_Noun_Project_2817719).svg.png">
-                                                    <a asp-action="Index" asp-controller="Userpanel" id="btnb1" type="button" value=@Localizer["login"]>@Localizer["login"]</a>
-                                                    <a asp-action="Index" asp-controller="Userpanel" id="btnb2" type="button" value=@Localizer["signin"]>@Localizer["signin"]</a>
-                                                </div>
+                                                    @* <a asp-action="Index" asp-controller="Userpanel" id="btnb1" type="button" value=@Localizer["login"]>@Localizer["login"]</a>
+                                                    <a asp-action="Index" asp-controller="Userpanel" id="btnb2" type="button" value=@Localizer["signin"]>@Localizer["signin"]</a>*@
+                                                </a>
                                             </div>
                                         </div>
                                     </ul>

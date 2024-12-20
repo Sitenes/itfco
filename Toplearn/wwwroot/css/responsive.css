@@ -220,7 +220,7 @@
 
     .testimonial-block-two .inner-box {
         padding: 30px 30px;
-        height: 270px;
+        /*height: 270px;*/
     }
 
     .video-section .content-column .inner-column,
@@ -976,6 +976,80 @@
                     background: #25262c;
                     color: #ffffff !important;
                 }
+                .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul,
+                .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > ul {
+                    position: relative;
+                    border: none;
+                    float: none;
+                    visibility: visible;
+                    opacity: 1;
+                    display: none;
+                    margin: 0px;
+                    left: auto !important;
+                    right: auto !important;
+                    top: auto !important;
+                    padding: 0px;
+                    outline: none;
+                    width: 100%;
+                    background: #333333;
+                    -webkit-border-radius: 0px;
+                    -ms-border-radius: 0px;
+                    -o-border-radius: 0px;
+                    -moz-border-radius: 0px;
+                    border-radius: 0px;
+                    transition: none !important;
+                    -webkit-transition: none !important;
+                    -ms-transition: none !important;
+                    -o-transition: none !important;
+                    -moz-transition: none !important;
+                    -webkit-transform: scaleY(1);
+                    -ms-transform: scaleY(1);
+                    -moz-transform: scaleY(1);
+                    transform: scaleY(1);
+                }
+
+                    .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul,
+                    .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > ul {
+                        border-top: 1px solid rgba(255,255,255,1) !important;
+                    }
+
+                        .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li,
+                        .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > ul > li {
+                            border-top: 1px solid rgba(255,255,255,1) !important;
+                            border-bottom: none;
+                            opacity: 1 !important;
+                            top: 0px !important;
+                            left: 0px !important;
+                            visibility: visible !important;
+                        }
+
+                            .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li:first-child,
+                            .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > ul > li:first-child {
+                                border-top: none !important;
+                            }
+
+                            .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > ul > li > a {
+                                padding: 12px 20px !important;
+                                line-height: 22px;
+                                color: #ffffff;
+                                font-weight: 500;
+                                font-size: 15px;
+                                background: #25262c;
+                                text-align: right;
+                            }
+
+                                .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > ul > li > a:hover,
+                                .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > ul > li > a:active,
+                                .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > ul > li > a:focus {
+                                    background: #ff5926;
+                                }
+
+                            .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > ul > li:hover > a,
+                            .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > ul > li.current > a {
+                                background: #25262c;
+                                color: #ffffff !important;
+                            }
+
 
     .main-menu .navbar-collapse > .navigation li.dropdown .dropdown-btn {
         display: block;

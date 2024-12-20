@@ -58,10 +58,10 @@ function removeIsSucceedAndRefresh() {
     const url = new URL(window.location.href);
 
     // حذف پارامتر IsSucceed از Query String
-    //url.searchParams.delete('IsSucceed=');
+    url.searchParams.delete('IsSucceed');
 
-    //// تغییر URL بدون رفرش صفحه
-    //window.history.replaceState(null, '', url);
+    // تغییر URL بدون رفرش صفحه
+    window.history.replaceState(null, '', url);
 
     // رفرش صفحه
     location.reload();

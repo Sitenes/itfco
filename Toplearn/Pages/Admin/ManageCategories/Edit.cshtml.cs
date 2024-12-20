@@ -55,8 +55,10 @@ namespace Toplearn.Web.Pages.Admin.ManageCategories
             }
 			await _courseService.UpdateCategory(Category);
 			await _courseService.SaveChanges();
-            return RedirectToPage("./Index",true);
-        }
+			ViewData["IsSucceed"] = true;
+
+			return Page();
+		}
 
     }
 }

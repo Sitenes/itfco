@@ -16,48 +16,50 @@ using Toplearn.DataLayer.Entities.User;
 
 namespace Toplearn.Web.Pages.Admin.ManageCategories
 {
-    [PermissionChecker(Core.AllEnums.PermissionEnum.AddCategory)]
-    public class CreateModel : PageModel
-    {
-        private readonly ICourseService _courseService;
-        public CreateModel(ICourseService courseService)
-        {
-            _courseService = courseService;
-        }
+	[PermissionChecker(Core.AllEnums.PermissionEnum.AddCategory)]
+	public class CreateModel : PageModel
+	{
+		private readonly ICourseService _courseService;
+		public CreateModel(ICourseService courseService)
+		{
+			_courseService = courseService;
+		}
 
-        public async Task<IActionResult> OnGetAsync()
-        {
-            var categories = await _courseService.GetAllCourseGroups();
-            ViewData["Categories"] = categories;
-            return Page();
-        }
+		public async Task<IActionResult> OnGetAsync()
+		{
+			var categories = await _courseService.GetAllCourseGroups();
+			ViewData["Categories"] = categories;
+			return Page();
+		}
 
-        [BindProperty]
-        public CourseGroup? Category { get; set; }
+		[BindProperty]
+		public CourseGroup? Category { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPost(int? ParentId,IFormFile? ImageFile)
+		// To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+		public async Task<IActionResult> OnPost(int? ParentId, IFormFile? ImageFile)
 		{
 			var categories = await _courseService.GetAllCourseGroups();
 			ViewData["Categories"] = categories;
 			if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+			{
+				return Page();
+			}
 
-            await _courseService.AddCategory(new CategoryDto
-            {
+			await _courseService.AddCategory(new CategoryDto
+			{
 				Id = Category.GroupId,
 				ParentId = ParentId,
-                NameArabic = Category.NameArabic,
-                NameEnglish = Category.NameEnglish,
-                NamePersian = Category.NamePersian,
+				NameArabic = Category.NameArabic,
+				NameEnglish = Category.NameEnglish,
+				NamePersian = Category.NamePersian,
 				ImageFile = ImageFile
 			});
 
-            await _courseService.SaveChanges();
+			await _courseService.SaveChanges();
 
-            return RedirectToPage("./Index",true);
-        }
-    }
+			ViewData["IsSucceed"] = true;
+
+			return Page();
+		}
+	}
 }

@@ -40,6 +40,10 @@ namespace Toplearn.Web.Controllers
             ViewData["Category"] = await _courseService.GetParentCourseGroups();
             return View();
         }
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
         public IActionResult Culture()
         {
             return Ok(Request.Query["Culture"].ToString());

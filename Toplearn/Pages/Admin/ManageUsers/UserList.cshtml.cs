@@ -17,7 +17,6 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
         public List(IUserService userService)
         {
             _userService = userService;
-
         }
 
 

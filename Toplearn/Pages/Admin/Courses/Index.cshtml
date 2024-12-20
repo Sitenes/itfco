@@ -117,7 +117,7 @@
 										{
 											<tr class="gradeA odd">
 												<td class="center ">
-													<img src="/CourseRoot/ThumbImage/@courseItem.Image" width="60" />
+													<img src="/CourseRoot/Image/@courseItem.Image" width="60" />
 												</td>
 												<td class=" center ">@courseItem.CourseTitle</td>
 												@* <td class=" center ">@courseItem.NumberOfStudents</td> *@
@@ -188,7 +188,7 @@
 												<ul class="pagination">
 													@if (Model.Filters.CurrentPage > 1)
 													{
-
+														
 														<li>
 															<button asp-route-currentPage="@(Model.Filters.CurrentPage-1)" class="btn btn-outline btn-primary " type="submit">
 																<i class="zmdi zmdi-arrow-right"></i>

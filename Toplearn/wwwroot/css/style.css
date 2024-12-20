@@ -590,7 +590,7 @@ img {
 
                 .main-header .top-left .contact-list li i {
                     float: left;
-                    font-size: 16px;
+                    font-size: 24px;
                     line-height: 30px;
                     margin-right: 10px;
                     color: #ffffff;
@@ -633,7 +633,7 @@ img {
         .social-icon-four li a {
             position: relative;
             display: block;
-            font-size: 16px;
+            font-size: 24px;
             line-height: 30px;
             color: #ffffff;
             -webkit-transition: all 300ms ease;
@@ -700,15 +700,23 @@ img {
         margin: 0px;
         display: flex;
     }
-
+        .main-menu .navigation .category a {
+            position: relative;
+            display: block;
+            padding: 10px 20px;
+            line-height: 40px;
+            font-weight: 400;
+            font-size: 15px;
+            color: #ffffff;
+            text-align: right;
+            text-transform: capitalize;
+            border-right: 4px solid transparent;
+            transition: all 500ms ease;
+        }
         .main-menu .navigation > li {
             position: relative;
             float: left;
             margin-left: 45px;
-            -webkit-transition: all 300ms ease;
-            -moz-transition: all 300ms ease;
-            -ms-transition: all 300ms ease;
-            -o-transition: all 300ms ease;
             transition: all 300ms ease;
         }
 
@@ -723,18 +731,9 @@ img {
                 opacity: 1;
                 text-align: center;
                 text-transform: uppercase;
-                -webkit-transition: all 300ms ease;
-                -moz-transition: all 300ms ease;
-                -ms-transition: all 300ms ease;
-                -o-transition: all 300ms ease;
                 transition: all 300ms ease;
             }
 
-
-            .main-menu .navigation > li > ul > li > ul > li:hover > a {
-                color: #25262c;
-                background: #ffffff;
-            }
 
             .main-menu .navigation > li > ul > li > ul > li.dropdown > a:after {
                 font-family: 'FontAwesome';
@@ -765,16 +764,7 @@ img {
                 padding: 0px 0px;
                 z-index: 100;
                 background: rgba(47,46,50,.90);
-                -webkit-transition: all 200ms linear;
-                -moz-transition: all 200ms linear;
-                -ms-transition: all 200ms linear;
-                -o-transition: all 200ms linear;
                 transition: all 200ms linear;
-                opacity: 1;
-                -webkit-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
-                -ms-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
-                -o-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
-                -moz-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
                 box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
             }
 
@@ -805,10 +795,6 @@ img {
                         text-transform: capitalize;
                         border-right: 4px solid transparent;
                         transition: all 500ms ease;
-                        -moz-transition: all 500ms ease;
-                        -webkit-transition: all 500ms ease;
-                        -ms-transition: all 500ms ease;
-                        -o-transition: all 500ms ease;
                     }
 
                     .main-menu .navigation > li > ul > li:hover > a {
@@ -841,15 +827,7 @@ img {
                         padding: 0px 0px;
                         z-index: 100;
                         background: rgba(47,46,50,.90);
-                        -webkit-transition: all 200ms linear;
-                        -moz-transition: all 200ms linear;
-                        -ms-transition: all 200ms linear;
-                        -o-transition: all 200ms linear;
                         transition: all 200ms linear;
-                        -webkit-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
-                        -ms-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
-                        -o-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
-                        -moz-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
                         box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
                     }
 
@@ -875,10 +853,6 @@ img {
                                 text-transform: capitalize;
                                 border-left: 4px solid transparent;
                                 transition: all 500ms ease;
-                                -moz-transition: all 500ms ease;
-                                -webkit-transition: all 500ms ease;
-                                -ms-transition: all 500ms ease;
-                                -o-transition: all 500ms ease;
                             }
 
                                 .main-menu .navigation > li > ul > li > ul > li > a:hover {
@@ -886,6 +860,116 @@ img {
                                     background: #222222;
                                     border-left: 4px solid #ff8a00;
                                 }
+
+                            /* سطح سوم */
+
+
+                            .main-menu .navigation > li > ul > li > ul > li > ul {
+                                position: absolute;
+                                left: 110%;
+                                top: 0;
+                                width: 200px;
+                                padding: 0;
+                                z-index: 100;
+                                background: rgba(47, 46, 50, 0.90);
+                                transition: all 200ms linear;
+                                box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.05), -2px 0px 5px 1px rgba(0, 0, 0, 0.05);
+                                display: none;
+                                visibility: hidden;
+                                opacity: 0;
+                            }
+
+                                .main-menu .navigation > li > ul > li > ul > li:hover > ul,
+                                .main-menu .navigation > li > ul > li > ul > li > ul > li > a:hover + ul {
+                                    display: block;
+                                    visibility: visible;
+                                    opacity: 1;
+                                }
+
+                                /* آیتم‌های زیرمنو */
+                                .main-menu .navigation > li > ul > li > ul > li > ul > li {
+                                    position: relative;
+                                    width: 100%;
+                                    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+                                }
+
+                                    .main-menu .navigation > li > ul > li > ul > li > ul > li:last-child {
+                                        border-bottom: none;
+                                    }
+
+                                    .main-menu .navigation > li > ul > li > ul > li > ul > li > a {
+                                        position: relative;
+                                        display: block;
+                                        padding: 10px 20px;
+                                        line-height: 24px;
+                                        font-weight: 400;
+                                        font-size: 15px;
+                                        color: #ffffff;
+                                        text-align: left;
+                                        text-transform: capitalize;
+                                        border-left: 4px solid transparent;
+                                        transition: all 500ms ease;
+                                    }
+
+                                        .main-menu .navigation > li > ul > li > ul > li > ul > li > a:hover {
+                                            color: #ffffff;
+                                            background: #222222;
+                                            border-left: 4px solid #ff8a00;
+                                        }
+
+                                    /* سطح چهارم */
+                                    .main-menu .navigation > li > ul > li > ul > li > ul > li > ul {
+                                        position: absolute;
+                                        left: 110%;
+                                        top: 0;
+                                        width: 200px;
+                                        padding: 0;
+                                        z-index: 100;
+                                        background: rgba(47, 46, 50, 0.90);
+                                        transition: all 200ms linear;
+                                        box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.05), -2px 0px 5px 1px rgba(0, 0, 0, 0.05);
+                                        display: none;
+                                        visibility: hidden;
+                                        opacity: 0;
+                                    }
+
+                                        .main-menu .navigation > li > ul > li > ul > li > ul > li:hover > ul,
+                                        .main-menu .navigation > li > ul > li > ul > li > ul > li > ul > li > a:hover + ul {
+                                            display: block;
+                                            visibility: visible;
+                                            opacity: 1;
+                                        }
+
+                                        /* سطح پنجم */
+                                        .main-menu .navigation > li > ul > li > ul > li > ul > li > ul > li {
+                                            position: relative;
+                                            width: 100%;
+                                            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+                                        }
+
+                                            .main-menu .navigation > li > ul > li > ul > li > ul > li > ul > li:last-child {
+                                                border-bottom: none;
+                                            }
+
+                                            .main-menu .navigation > li > ul > li > ul > li > ul > li > ul > li > a {
+                                                position: relative;
+                                                display: block;
+                                                padding: 10px 20px;
+                                                line-height: 24px;
+                                                font-weight: 400;
+                                                font-size: 15px;
+                                                color: #ffffff;
+                                                text-align: left;
+                                                text-transform: capitalize;
+                                                border-left: 4px solid transparent;
+                                                transition: all 500ms ease;
+                                            }
+
+        .main-menu .navigation .category ul > a:hover, .main-menu .navigation .category li > a:hover {
+            color: #ffffff;
+            background: #222222;
+            border-left: 4px solid #ff8a00;
+        }
 
             .main-menu .navigation > li.dropdown:hover > ul {
                 -webkit-transition: all 300ms linear;
@@ -1255,7 +1339,7 @@ img {
         .header-style-two .main-menu .navigation > li:hover > a:before,
         .header-style-two .main-menu .navigation > li.current > a:before {
             left: 0%;
-            width: 100%;
+            /*width: 100%;*/
         }
 
 
@@ -7139,7 +7223,7 @@ header-style-seven {
         padding: 40px 60px;
         border: 1px dashed #bbbbbb;
         background-color: #ffffff;
-        height: 270px;
+        /*height: 270px;*/
     }
 
         .testimonial-block-two .inner-box .text {
@@ -7149,6 +7233,7 @@ header-style-seven {
             line-height: 30px;
             color: #777777;
             font-weight: 400;
+            margin-top: 30px;
             margin-bottom: 20px;
         }
 
@@ -7189,6 +7274,7 @@ header-style-seven {
                 display: block;
                 width: 100%;
                 height: auto;
+                border-radius:100%;
             }
 
         .testimonial-block-two .info-box .name {
@@ -9402,7 +9488,7 @@ header-style-seven {
 
     .main-footer .widgets-section {
         position: relative;
-        padding: 220px 0 60px;
+        /*padding: 220px 0 60px;*/
         margin-top: -100px;
     }
 
@@ -9764,13 +9850,13 @@ header-style-seven {
     .social-icon-two li {
         position: relative;
         float: left;
-        margin-left: 26px;
+        margin: 0px 20px;
     }
 
         .social-icon-two li a {
             position: relative;
             display: block;
-            font-size: 16px;
+/*            font-size: 16px;*/
             line-height: 30px;
             color: #f4f4f4;
             font-weight: 400;
@@ -13486,7 +13572,7 @@ header-style-seven {
     top: 25px;
     left: 130px;
     position: absolute;
-    width: 140px;
+    width: 100px;
     height: 50px;
     border: 5px solid orange;
     border-radius: 100px;
@@ -13504,13 +13590,12 @@ header-style-seven {
 #img2 {
     position: absolute;
     left: -21px;
-    top: -3px;
-    width: 35px;
+    width: 26px;
 }
 
 #img3 {
     position: absolute;
-    width: 30px;
+    width: 24px;
 }
 
 #divaa1 {
@@ -13525,7 +13610,7 @@ header-style-seven {
 }
 
     #divaa1:hover {
-        height: 250px;
+        height: 237px;
     }
 
         #divaa1:hover > #divaaa1 {
@@ -13547,7 +13632,7 @@ header-style-seven {
 
 #divaa2 {
     position: absolute;
-    left: 75px;
+    left: 40px;
     width: 50px;
     top: 2px;
     height: 0px;
@@ -13557,13 +13642,13 @@ header-style-seven {
     transition: .6s;
 }
 
-    #divaa2:hover {
+  /*  #divaa2:hover {
         height: 200px;
     }
 
         #divaa2:hover > #divaaa2 {
             height: 230px;
-        }
+        }*/
 
 #divaaa2 {
     position: absolute;
@@ -13640,11 +13725,11 @@ header-style-seven {
     transition: .6s;
 }
 
+
 #divaa1:hover > #btna1 {
     top: 90px;
-    color: black;
-    background: dimgrey;
-    padding-bottom: 5px;
+    color: initial;
+    background: inherit;
 }
 
 #btna2 {
@@ -13665,8 +13750,8 @@ header-style-seven {
 
 #divaa1:hover > #btna2 {
     top: 140px;
-    color: black;
-    background: dimgrey;
+    color: initial;
+    background: inherit;
     padding-bottom: 5px;
 }
 
@@ -13688,8 +13773,8 @@ header-style-seven {
 
 #divaa1:hover > #btna3 {
     top: 190px;
-    color: black;
-    background: dimgrey;
+    color: initial;
+    background: inherit;
     padding-bottom: 5px;
 }
 
@@ -13814,4 +13899,8 @@ header-style-seven {
 
 .modal-dialog{
     z-index:10000;
+}
+
+.contact-info{
+    font-size: 20px;
 }

@@ -297,7 +297,7 @@ a{
 	.main-menu .navigation > li .mega-menu-bar .column > ul > li:hover > a,
 	.main-menu .navbar-collapse > .navigation > li.current > a,
 	.main-menu .navbar-collapse > .navigation > li.current-menu-item > a{
-		background-color:#ff8a00;
+		/*background-color:#ff8a00;*/
 	}
 	
 }

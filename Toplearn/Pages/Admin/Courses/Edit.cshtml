@@ -25,6 +25,7 @@
                                     <span class="input-group-addon">
                                         <i class="zmdi zmdi-card"></i>
                                     </span>
+                                    <input asp-for="Course.CourseId" type="hidden">
                                     <input asp-for="Course.Title" class="form-control" placeholder="عنوان محصول">
                                     <span asp-validation-for="Course.Title" class="text-danger"></span>
                                 </div>
@@ -130,13 +131,19 @@
 
                                 <div class="col-md-6 input-group" style="margin:20px auto">
                                     <span class="input-group-addon">
-                                        <i class="zmdi zmdi-money"></i>
+                                        <i class="zmdi zmdi-money"></i> تومان
                                     </span>
                                     <input asp-for="Course.Price" min="0" max="10000000" class="form-control" placeholder="مبلغ محصول">
                                     <span asp-validation-for="Course.Price" class="text-danger"></span>
                                 </div>
 
-
+                                <div class="col-md-6 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-money"></i> دلار
+                                    </span>
+                                    <input asp-for="Course.PriceDollar" min="0" max="10000000" class="form-control" placeholder="مبلغ محصول">
+                                    <span asp-validation-for="Course.PriceDollar" class="text-danger"></span>
+                                </div>
                             </div>
                             <div class="col-md-4">
                                 <button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-plus-circle"></i> <strong> افزودن محصول </strong> </button>
@@ -202,6 +209,22 @@
                                                         <li>
                                                             <div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem2.GroupId)"> @(groupItem2.NamePersian)</label></div>
                                                         </li>
+                                                        <ul>
+                                                            @foreach (var groupItem3 in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == groupItem2.GroupId))
+                                                            {
+                                                                <li>
+                                                                    <div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem3.GroupId)"> @(groupItem3.NamePersian)</label></div>
+                                                                </li>
+                                                                <ul>
+                                                                    @foreach (var groupItem4 in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == groupItem3.GroupId))
+                                                                    {
+                                                                        <li>
+                                                                            <div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem4.GroupId)"> @(groupItem4.NamePersian)</label></div>
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            }
+                                                        </ul>
                                                     }
                                                 </ul>
                                             }

@@ -25,7 +25,7 @@ namespace Toplearn.Core.Services
         public List<WalletShowViewModel> GetAllPaiedWallet(Guid UserId)
         {
             List<WalletShowViewModel> wallets = _context.Wallets.
-                Where(w => w.UserId == UserId && w.IsPay == true).
+                Where(w => w.UserId == UserId && w.IsPaid == true).
                 Select(w => new WalletShowViewModel()
                 {
                     Amount = w.Amount,
@@ -44,7 +44,7 @@ namespace Toplearn.Core.Services
                 {
                     Amount = Price,
                     Description = "شارژ کیف پول حساب کاربری",
-                    IsPay = false,
+                    IsPaid = false,
                     PayDate = DateTime.Now,
                     TypeId = 1,
                     UserId = _context.Users.Where(n => n.UserName == UserName).Select(n => n.UserId).SingleOrDefault(),
@@ -65,8 +65,8 @@ namespace Toplearn.Core.Services
         {
             try
             {
-                Wallet wallet = _context.Wallets.SingleOrDefault(n => n.IsPay == false && n.WalletId == WalletId);
-                wallet.IsPay = true;
+                Wallet wallet = _context.Wallets.SingleOrDefault(n => n.IsPaid == false && n.WalletId == WalletId);
+                wallet.IsPaid = true;
                 User user = _context.Users.SingleOrDefault(n => n.UserName == UserName);
                 user.Wallet += wallet.Amount;
                 //_context.Wallets.Update(wallet);

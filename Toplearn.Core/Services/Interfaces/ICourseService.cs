@@ -31,6 +31,7 @@ namespace Toplearn.Core.Services.Interfaces
         Task DeleteCategory(int id);
         Task<List<CategoryDto>> GetParentCourseGroups();
         Task<int> CountCategoryProducts(int groupId);
+        Task<List<CourseGroup>> GetParentCategories();
         #endregion
 
         #region Courses

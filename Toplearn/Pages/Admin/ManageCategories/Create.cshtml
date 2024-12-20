@@ -110,6 +110,14 @@
 															<li>
 																	<div class="checkbox"><label><input asp-for="Category.ParentId" name="ParentId" type="radio" value="@(perItem3.Id)"> @(perItem3.NamePersian)</label></div>
 															</li>
+																<ul>
+																	@foreach (var perItem4 in Categories.Where(n => n.ParentId == perItem3.Id))
+																	{
+																		<li>
+																			<div class="checkbox"><label><input asp-for="Category.ParentId" name="ParentId" type="radio" value="@(perItem4.Id)"> @(perItem4.NamePersian)</label></div>
+																		</li>
+																	}
+																</ul>
 															}
 														</ul>
 													}

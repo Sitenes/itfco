@@ -68,6 +68,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\CourseRoot\Demo\" />
+    <Folder Include="wwwroot\CourseRoot\DescriptionImg\" />
+    <Folder Include="wwwroot\CourseRoot\Episode\" />
     <Folder Include="wwwroot\upload\" />
 	  <Folder Include="wwwroot\UserAvatar\" />
   </ItemGroup>

@@ -44,7 +44,9 @@ namespace Toplearn.Web.Pages.Admin.ManageRoles
             
             await _permissionService.SaveChangesAsync();
 
-            return RedirectToPage("./Index",true);
-        }
+			ViewData["IsSucceed"] = true;
+
+			return Page();
+		}
     }
 }
