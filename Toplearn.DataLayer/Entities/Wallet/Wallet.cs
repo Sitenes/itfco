@@ -25,7 +25,7 @@ namespace Toplearn.DataLayer.Entities.Wallet
         public DateTime PayDate { get; set; }
 
         [Display(Name ="پرداخت شده")]
-        public bool IsPay { get; set; }
+        public bool IsPaid { get; set; }
 
         #region Relations
         [Display(Name ="کاربر")]
