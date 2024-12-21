@@ -157,40 +157,40 @@
     <value>Latest News and Articles</value>
   </data>
   <data name="BlogTitle1" xml:space="preserve">
-    <value>Building an industrial machine for Mobarakeh Steel Company with the efforts of the Ideh Poyan team.</value>
+    <value>First Article</value>
   </data>
   <data name="Date1" xml:space="preserve">
     <value>06 June 2018</value>
   </data>
   <data name="Author1" xml:space="preserve">
-    <value>Golestaneh</value>
+    <value>Golestani</value>
   </data>
   <data name="BlogTitle2" xml:space="preserve">
-    <value>Second Article Title</value>
+    <value>Second Article</value>
   </data>
   <data name="Date2" xml:space="preserve">
     <value>07 July 2019</value>
   </data>
   <data name="Author2" xml:space="preserve">
-    <value>Second Author</value>
+    <value>Golestani</value>
   </data>
   <data name="BlogTitle3" xml:space="preserve">
-    <value>Third Article Title</value>
+    <value>Third Article</value>
   </data>
   <data name="Date3" xml:space="preserve">
     <value>08 August 2020</value>
   </data>
   <data name="Author3" xml:space="preserve">
-    <value>Third Author</value>
+    <value>Golestani</value>
   </data>
   <data name="BlogTitle4" xml:space="preserve">
-    <value>Fourth Article Title</value>
+    <value>Fourth Article</value>
   </data>
   <data name="Date4" xml:space="preserve">
     <value>09 September 2021</value>
   </data>
   <data name="Author4" xml:space="preserve">
-    <value>Fourth Author</value>
+    <value>Golestani</value>
   </data>
   <data name="LoginToSite" xml:space="preserve">
     <value>Login to Site</value>
@@ -221,9 +221,6 @@
   </data>
   <data name="RegistrationSuccessful" xml:space="preserve">
     <value>Registration Successful</value>
-  </data>
-  <data name="Hello" xml:space="preserve">
-    <value>Hello</value>
   </data>
   <data name="EmailSentTo" xml:space="preserve">
     <value>An email containing an activation link has been sent to</value>
@@ -340,7 +337,7 @@
     <value>You can now easily log in to your account using your new password</value>
   </data>
   <data name="FarzanganIdeaTitle" xml:space="preserve">
-    <value>Farzangan Project Idea</value>
+    <value>Ideh Tarh Farzanegan</value>
   </data>
   <data name="Phone" xml:space="preserve">
     <value>+989133073417</value>
@@ -375,9 +372,6 @@
   <data name="ErrorMessage" xml:space="preserve">
     <value>Error occurred</value>
   </data>
-  <data name="welcome" xml:space="preserve">
-    <value>b</value>
-  </data>
   <data name="EmailVerification" xml:space="preserve">
     <value>Email Verification</value>
   </data>
@@ -385,7 +379,7 @@
     <value>Hello</value>
   </data>
   <data name="WelcomeToSite" xml:space="preserve">
-    <value>Welcome to the eShop website. You can now easily continue with your shopping.</value>
+    <value>Welcome to the Ideh Tarh Farzanegan website. You can now easily continue with your shopping.</value>
   </data>
   <data name="WelcomeBackMessage" xml:space="preserve">
     <value>Welcome back</value>

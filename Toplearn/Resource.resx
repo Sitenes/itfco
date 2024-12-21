@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FarzaneganDesignIdea" xml:space="preserve">
-    <value>ایده طراح فرزانگان</value>
+    <value>ایده طرح فرزانگان</value>
   </data>
   <data name="FarzaneganDesignIdea_Slide1" xml:space="preserve">
     <value>پیشرو در صنعت خودرو و قطعات یدکی</value>
@@ -157,40 +157,40 @@
     <value>آخرین اخبار و مقالات</value>
   </data>
   <data name="BlogTitle1" xml:space="preserve">
-    <value>ساخت ماشین صنعتی برای فولاد مبارکه اصفهان به همت طرح ایده پژوهان.</value>
+    <value>مقاله اول</value>
   </data>
   <data name="Date1" xml:space="preserve">
     <value>06 June 2018</value>
   </data>
   <data name="Author1" xml:space="preserve">
-    <value>گلستانه</value>
+    <value>مهندس گلستانی</value>
   </data>
   <data name="BlogTitle2" xml:space="preserve">
-    <value>عنوان مقاله دوم</value>
+    <value>مقاله دوم</value>
   </data>
   <data name="Date2" xml:space="preserve">
     <value>07 July 2019</value>
   </data>
   <data name="Author2" xml:space="preserve">
-    <value>نویسنده دوم</value>
+    <value>مهندس گلستانی</value>
   </data>
   <data name="BlogTitle3" xml:space="preserve">
-    <value>عنوان مقاله سوم</value>
+    <value>مقاله سوم</value>
   </data>
   <data name="Date3" xml:space="preserve">
     <value>08 August 2020</value>
   </data>
   <data name="Author3" xml:space="preserve">
-    <value>نویسنده سوم</value>
+    <value>مهندس گلستانی</value>
   </data>
   <data name="BlogTitle4" xml:space="preserve">
-    <value>عنوان مقاله چهارم</value>
+    <value>مقاله چهارم</value>
   </data>
   <data name="Date4" xml:space="preserve">
     <value>09 September 2021</value>
   </data>
   <data name="Author4" xml:space="preserve">
-    <value>نویسنده چهارم</value>
+    <value>مهندس گلستانی</value>
   </data>
   <data name="LoginToSite" xml:space="preserve">
     <value>ورود به سایت</value>
@@ -355,7 +355,7 @@
     <value>رمز عبور شما با موفقیت تغییر و ثبت شد</value>
   </data>
   <data name="PasswordLoginInstruction" xml:space="preserve">
-    <value>اکنون به راحتی می توانید با رمز عبور جدید خود وارد حسابتان بشوید</value>
+    <value>اکنون به راحتی می توانید با رمز عبور جدید خود وارد حساب تان بشوید</value>
   </data>
   <data name="FarzanganIdeaTitle" xml:space="preserve">
     <value>ایده طرح فرزانگان</value>
