@@ -10,6 +10,8 @@
 
 <div class="row">
     <form method="post" enctype="multipart/form-data">
+        <input asp-for="Course.DemoFileName" type="hidden">
+        <input asp-for="Course.Image" type="hidden">
         <div class="col-md-8">
 
             <div class="panel panel-primary">
@@ -67,14 +69,14 @@
                                     <span asp-validation-for="Course.Description" class="text-danger"></span>
                                 </div>
 
-                                @* <div class="col-md-6 input-group" style="margin:20px auto">
-                                <span class="input-group-addon">
-                                <i class="zmdi zmdi-movie"></i>
-                                <label>فیلم دمو</label>
-                                </span>
-                                <input type="file" id="demofile" name="DemoFile" accept=".avi,.flv,.mov,.wmv,.mkv,.mp4" onchange="validateDemoType()" class="form-control" />
-                                <span asp-validation-for="Course.DemoFileName" class="text-danger"></span>
-                                </div> *@
+                                <div class="col-md-6 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-movie"></i>
+                                        <label>فیلم دمو</label>
+                                    </span>
+                                    <input type="file" id="demofile" name="DemoFile" accept=".avi,.flv,.mov,.wmv,.mkv,.mp4"
+                                           class="form-control" />
+                                </div>
 
                                 @*
                                 @if (ViewData["Statuses"] != null)

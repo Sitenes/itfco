@@ -39,7 +39,7 @@ namespace Toplearn
             });
 
             // تنظیم مسیر فایل‌های منبع
-            services.AddLocalization(/*options => options.ResourcesPath = "Resources"*/);
+            services.AddLocalization();
             services.AddMvc()
                     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                     .AddDataAnnotationsLocalization();
@@ -70,19 +70,20 @@ namespace Toplearn
                     Title = "API"
                 });
             });
-
-            services.Configure<FormOptions>(option => option.MultipartBodyLengthLimit = 6000000);
+			
+			services.Configure<FormOptions>(option => option.MultipartBodyLengthLimit = 6000000);
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
 
-            #region IoC
-            services.AddTransient<IUserService, UserService>();
+			#region IoC
+			services.AddTransient<IUserService, UserService>();
             services.AddTransient<IViewRenderService, RenderViewToString>();
             services.AddTransient<IWalletService, WalletService>();
             services.AddTransient<IPermissionService, PermissionService>();
             services.AddTransient<ICourseService, CourseService>();
+            services.AddTransient<ICartService, CartService>();
             #endregion
 
             #region DataBase Context
@@ -130,7 +131,7 @@ namespace Toplearn
                 new CultureInfo("en")
             };
 
-            var localizationOptions = new RequestLocalizationOptions
+			var localizationOptions = new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture("fa"), // زبان پیش‌فرض
                 SupportedCultures = supportedCultures,

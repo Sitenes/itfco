@@ -47,9 +47,9 @@ namespace Toplearn.Web.Pages.Admin.Courses
             if (!ModelState.IsValid)
                 return Page();
 
-			var userClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-			if (userClaim != null)
-				Course.UserCreatorId = Guid.Parse(userClaim.Value);
+			//var userClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+			//if (userClaim != null)
+			//	Course.UserCreatorId = Guid.Parse(userClaim.Value);
 
 			//Course = await _courseService.SetGroup(Course);
 

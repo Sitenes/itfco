@@ -7706,6 +7706,8 @@ header-style-seven {
         background-repeat: no-repeat;
         background-position: center;
         content: "";
+        max-width: 100%;
+        max-height: 100%;
     }
 
 /*** 

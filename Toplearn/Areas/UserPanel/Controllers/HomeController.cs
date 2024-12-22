@@ -31,7 +31,7 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
 
 
         #region Panel User
-        [Route("UserPanel/{UserName?}")]
+        [Route("UserPanel")]
         public ActionResult Index()
         {
             User user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));

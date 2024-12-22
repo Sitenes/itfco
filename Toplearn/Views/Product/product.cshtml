@@ -12,7 +12,7 @@
             <div class="row clearfix" style="flex-direction: row-reverse;">
 
                 <!--Content Side-->
-               <div class="content-side col-xl-9 col-lg-8 col-md-12">
+                <div class="content-side col-xl-9 col-lg-8 col-md-12">
                     <div class="shop-single">
                         <div class="product-details">
                             <!--Basic Details-->
@@ -40,12 +40,14 @@
                                             <form asp-controller="product" asp-action="addtocart">
                                                 <div class="item-quantity"><input class="quantity-spinner" type="text" value="1" name="quantity"></div>
                                                 <button type="submit" class="theme-btn btn-style-one add-to-cart">افزودن به سبد</button>
-                                                تعداد : 
+                                                تعداد :
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
                             <!--Basic Details-->
                             <!--Product Info Tabs-->
                             <div class="product-info-tabs">
@@ -55,6 +57,10 @@
                                     <!--Tab Btns-->
                                     <ul class="tab-btns tab-buttons clearfix">
                                         <li data-tab="#prod-details" class="tab-btn active-btn">توضیحات</li>
+                                        @if (!string.IsNullOrWhiteSpace(Model.DemoFileName))
+                                        {
+                                            <li data-tab="#prod-video" class="tab-btn">ویدئو</li>
+                                        }
                                         @* <li data-tab="#prod-reviews" class="tab-btn active-btn">Review (3)</li> *@
                                     </ul>
 
@@ -67,7 +73,47 @@
                                                 @Html.Raw(Model.Description)
                                             </div>
                                         </div>
+                                        <!--Tab-->
+                                        @if (!string.IsNullOrWhiteSpace(Model.DemoFileName))
+                                        {
+                                            <div class="tab" id="prod-video">
+                                                <h2 class="title">ویدئو محصول</h2>
 
+                                                <!-- Video Section -->
+                                                <section class="video-section style-two">
+                                                    <div class="outer-box">
+                                                        <div class="auto-container">
+                                                            <div class="row">
+                                                                @*                                                 <div class="content-column col-lg-6 col-md-12 col-sm-12">
+                                                            <div class="inner-column">
+                                                            <div class="sec-title">
+                                                            <span class="float-text">تماشا کنید</span>
+                                                            <h2>درباره خدمات آیسان تک</h2>
+                                                            </div>
+                                                            <span class="title">اهداف و استراتژی ها</span>
+                                                            <div class="text">عقد تفاهم نامه ها و موافقت نامه های همکاری با با شرکت های معتبر بین المللی اروپایی ارتقا سطح قابلیت های سازمانی و نیروی انسانی ایجاد نظام ارزیابی میزان رضایت مشتریان تکمیل سبد کالاهای مورد نیاز صنعت مطابق با استاندارهای جهانی افزایش توان رقابتی ازطریق مطالعه نقات قوت و ضعف رقبا تقویت و توسه همکاری با شرکت های معتبر داخلی و خارجی در راستای ارتقا توانمندی های مرتبط جهت حضور در پروژه های مختلف و تامین مواد و تجهیزات مورد نیاز</div>
+                                                            </div>
+                                                            </div>
+                                                            *@
+                                                                <!-- Video Column -->
+                                                                <div class="video-column col-lg-12 col-md-12 col-sm-12">
+                                                                    <div class="inner-column">
+                                                                        <div class="video-box">
+                                                                            <figure class="image">
+                                                                                <img src="/CourseRoot/Image/@(Model.Image)" alt="@(Model.Title)">
+                                                                                <a href="/CourseRoot/Demo/@(Model.DemoFileName)" class="link" data-fancybox="gallery" data-caption=""><span class="icon fa fa-play"></span></a>
+                                                                            </figure>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                                <!--End Video Section -->
+
+                                            </div>
+                                        }
                                         <!--Tab-->
                                         <div class="tab" id="prod-reviews">
                                             <h2 class="title">3 Reviews For Patient Ninja</h2>

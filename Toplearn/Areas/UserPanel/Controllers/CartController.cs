@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ using Toplearn.DataLayer.Entities.Courses;
 namespace Toplearn.Web.Areas.UserPanel.Controllers
 {
     //[Route("/{language}/")]
-
+    [Authorize]
+    [Area("UserPanel")]
     public class CartController : Controller
     {
         private readonly ICartService _cartService;
@@ -26,7 +28,7 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
             _userService = userService;
             _localizer = localizer;
         }
-
+        [Route("UserPanel/Cart")]
         public async Task<IActionResult> Index(int productId = 0, int Count = 1)
         {
             var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
@@ -41,7 +43,7 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
                 cart = new Cart()
                 {
                     FirstName = user.UserName,
-                    Courses = new List<Course> { product }
+                    Courses = product == null?null: new List<Course> { product }
                 };
                 await _cartService.AddCartAsync(cart);
             }
@@ -51,7 +53,7 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
             }
             await _cartService.SaveChangesAsync();
 
-            return View();
+            return View(cart);
         }
 
     }

@@ -108,8 +108,8 @@ namespace Toplearn.Core.Services
                     if (string.IsNullOrEmpty(episode.EpisodeFileName))
                     {
                         string oldPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Episode", episode.EpisodeFileName);
-                        if (System.IO.File.Exists(oldPath))
-                            System.IO.File.Delete(oldPath);
+                        if (File.Exists(oldPath))
+                            File.Delete(oldPath);
                     }
                     string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(video.FileName);
                     string newPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Episode", newAvatarURL);
@@ -382,9 +382,9 @@ namespace Toplearn.Core.Services
                 if (!string.IsNullOrEmpty(course.DemoFileName))
                 {
                     string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Demo", course.DemoFileName ?? "");
-                    if (System.IO.File.Exists(path))
+                    if (File.Exists(path))
                     {
-                        System.IO.File.Delete(path);
+                        File.Delete(path);
                     }
                 }
 
@@ -392,14 +392,14 @@ namespace Toplearn.Core.Services
                 if (!string.IsNullOrEmpty(course.Image) && !course.Image.Contains("Default"))
                 {
                     string imgPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", course.Image ?? "");
-                    if (System.IO.File.Exists(imgPath))
+                    if (File.Exists(imgPath))
                     {
-                        System.IO.File.Delete(imgPath);
+                        File.Delete(imgPath);
                     }
                     string thumbImgPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", course.Image ?? "");
-                    if (System.IO.File.Exists(thumbImgPath))
+                    if (File.Exists(thumbImgPath))
                     {
-                        System.IO.File.Delete(thumbImgPath);
+                        File.Delete(thumbImgPath);
                     }
                 }
 
@@ -469,15 +469,15 @@ namespace Toplearn.Core.Services
                     if (course.Image != "Default.jpg" && !string.IsNullOrEmpty(course.Image))
                     {
                         string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", course.Image);
-                        if (System.IO.File.Exists(path))
+                        if (File.Exists(path))
                         {
-                            System.IO.File.Delete(path);
+                            File.Delete(path);
                         }
 
                         string thumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", course.Image);
-                        if (System.IO.File.Exists(thumbPath))
+                        if (File.Exists(thumbPath))
                         {
-                            System.IO.File.Delete(thumbPath);
+                            File.Delete(thumbPath);
                         }
                     }
                     string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
@@ -498,9 +498,9 @@ namespace Toplearn.Core.Services
                     if (course.DemoFileName != null)
                     {
                         string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Demo", course.DemoFileName);
-                        if (System.IO.File.Exists(path))
+                        if (File.Exists(path))
                         {
-                            System.IO.File.Delete(path);
+                            File.Delete(path);
                         }
                     }
                     string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(DemoFile.FileName ?? "");
@@ -617,15 +617,15 @@ namespace Toplearn.Core.Services
                 if (category.Image != "Default.jpg" && !string.IsNullOrEmpty(category.Image))
                 {
                     string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image", category.Image);
-                    if (System.IO.File.Exists(path))
+                    if (File.Exists(path))
                     {
-                        System.IO.File.Delete(path);
+                        File.Delete(path);
                     }
 
                     string thumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage", category.Image);
-                    if (System.IO.File.Exists(thumbPath))
+                    if (File.Exists(thumbPath))
                     {
-                        System.IO.File.Delete(thumbPath);
+                        File.Delete(thumbPath);
                     }
                 }
                 string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(categoryDto.ImageFile.FileName);
