@@ -31,6 +31,7 @@ namespace Toplearn.DataLayer.Context
 
         #region Wallet
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<CourseCart> CourseCarts { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<WalletType> WalletType { get; set; }
         #endregion

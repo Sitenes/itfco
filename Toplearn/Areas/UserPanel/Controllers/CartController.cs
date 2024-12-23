@@ -43,13 +43,14 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
                 cart = new Cart()
                 {
                     FirstName = user.UserName,
-                    Courses = product == null?null: new List<Course> { product }
+                    //Courses = product == null ? null : new List<Course> { product }
                 };
                 await _cartService.AddCartAsync(cart);
             }
             else
             {
-                cart.Courses.Add(product);
+                //if (product != null)
+                //    cart.Courses.Add(product);
             }
             await _cartService.SaveChangesAsync();
 

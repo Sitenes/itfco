@@ -33,7 +33,16 @@ namespace Toplearn.DataLayer.Entities.Courses
         [ForeignKey("UserCreatorId")]
         public User.User UserCreator { get; set; }
 
-        public List<Course> Courses { get; set; }
+        public List<CourseCart> CourseCarts { get; set; }
         #endregion
+    }
+    public class CourseCart
+    {
+        public int Id { get; set; }
+        public int CourseId { get; set; }
+        public int CartId { get; set; }
+        public Course Course { get; set; }
+        public Cart Cart { get; set; }
+        public int Count { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Toplearn.Core.AllEnums;
 using Toplearn.Core.Services.Interfaces;
 using Toplearn.DataLayer.Context;
 using Toplearn.DataLayer.Entities.Courses;
@@ -34,7 +35,14 @@ namespace Toplearn.Core.Services
 
             return await query.ToListAsync();
         }
+        public async Task<Cart> GetLastNotPaidCartAsync(Guid UserId)
+        {
+            var cart = await _context.Carts.LastOrDefaultAsync(c => c.UserCreatorId == UserId && c.IsPaid == false);
+            if(cart == null)
+                cart = new Cart() {UserCreatorId = UserId };
 
+            return cart;
+        }
         public async Task<Cart> GetCartAsync(int CartId)
         {
             return await _context.Carts.SingleOrDefaultAsync(n => n.Id == CartId);
@@ -44,7 +52,15 @@ namespace Toplearn.Core.Services
         {
             await _context.Carts.AddAsync(cart);
         }
-
+        public async Task AddProductToCartAsync(int cartId,int courseId,int count)
+        {
+            await _context.CourseCarts.AddAsync(new CourseCart
+            {
+                Count = count,
+                CartId = cartId,
+                CourseId = courseId
+            });
+        }
         public void UpdateCart(Cart cart)
         {
             _context.Carts.Update(cart);

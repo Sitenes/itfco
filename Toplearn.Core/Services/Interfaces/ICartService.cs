@@ -14,5 +14,7 @@ namespace Toplearn.Core.Services.Interfaces
         void UpdateCart(Cart cart);
         Task DeleteCartAsync(int CartId);
         Task SaveChangesAsync();
+        Task AddProductToCartAsync(int cartId, int courseId, int count);
+        Task<Cart> GetLastNotPaidCartAsync(Guid UserId);
     }
 }
