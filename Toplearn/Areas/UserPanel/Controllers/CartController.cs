@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Toplearn.Core.Services;
 using Toplearn.Core.Services.Interfaces;
 using Toplearn.DataLayer.Entities.Courses;
+using Toplearn.DataLayer.Entities.User;
 
 namespace Toplearn.Web.Areas.UserPanel.Controllers
 {
@@ -33,28 +34,44 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
         {
             var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
             if (user == null)
-                return Redirect($"/login?ReturnUrl=?/UserPanel/Cart/Index?productId={productId}&Count={Count}");
-            var carts = await _cartService.GetAllCartsAsync(IsPaid: false);
-            var cart = carts.FirstOrDefault();
+                return Redirect($"/login?ReturnUrl=/UserPanel/Cart/Index?productId={productId}&Count={Count}");
+            var cart = await _cartService.GetLastNotPaidCartAsync(user.UserId);
             var product = await _courseService.GetCourse(productId);
-
-            if (cart == null)
-            {
-                cart = new Cart()
-                {
-                    FirstName = user.UserName,
-                    //Courses = product == null ? null : new List<Course> { product }
-                };
-                await _cartService.AddCartAsync(cart);
-            }
-            else
-            {
-                //if (product != null)
-                //    cart.Courses.Add(product);
-            }
+            if(product != null)
+                await _cartService.AddOrUpdateProductInCartAsync(cart.Id,productId,Count);
             await _cartService.SaveChangesAsync();
-
+			cart = await _cartService.GetLastNotPaidCartAsync(user.UserId);
+			return View(cart);
+        }
+        [Route("UserPanel/Cart/Checkout")]
+        public async Task<IActionResult> Checkout()
+        {
+            var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            if (user == null)
+                return Redirect($"/login?ReturnUrl=/UserPanel/Cart/Index");
+            var cart = await _cartService.GetLastNotPaidCartAsync(user.UserId);
             return View(cart);
+        }
+        [Route("UserPanel/Cart/Payment")]
+        public async Task<IActionResult> Payment()
+        {
+            var cart = await _cartService.GetLastNotPaidCartAsync(user.UserId);
+            return View(cart);
+        }
+        [Route("UserPanel/Cart/RemoveProduct/{courseId}")]
+        public async Task<IActionResult> RemoveProduct(int courseId)
+        {
+            var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            if (user == null)
+                return Redirect("/login");
+
+            var cart = await _cartService.GetLastNotPaidCartAsync(user.UserId);
+            if (cart == null)
+                return NotFound();
+
+            await _cartService.RemoveProductFromCartAsync(cart.Id, courseId);
+            await _cartService.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
     }

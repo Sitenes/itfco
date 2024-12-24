@@ -706,7 +706,7 @@
             }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1139px) {
 
     #div1 {
         top: -33px !important;
@@ -826,18 +826,18 @@
         box-shadow: none;
     }
 
-    .main-menu .collapse.in,
-    .main-menu .collapsing {
-        padding: 10px 0px 0px;
-        border: none;
-        margin: 0px 0px 15px;
-        -ms-border-radius: 0px;
-        -moz-border-radius: 0px;
-        -webkit-border-radius: 0px;
-        -o-border-radius: 0px;
-        border-radius: 0px;
-        box-shadow: none;
-    }
+        .main-menu .collapse.in,
+        .main-menu .collapsing {
+            padding: 10px 0px 0px;
+            border: none;
+            margin: 0px 0px 15px;
+            -ms-border-radius: 0px;
+            -moz-border-radius: 0px;
+            -webkit-border-radius: 0px;
+            -o-border-radius: 0px;
+            border-radius: 0px;
+            box-shadow: none;
+        }
 
     .navbar-dark .navbar-toggler {
         border: 1px solid #ffffff;
@@ -976,6 +976,7 @@
                     background: #25262c;
                     color: #ffffff !important;
                 }
+
                 .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul,
                 .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > ul {
                     position: relative;
@@ -1973,7 +1974,7 @@
     }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1139px) {
 
     .banner-carousel-three .slide-item:before {
         width: 120%;

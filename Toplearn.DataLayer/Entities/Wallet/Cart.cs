@@ -26,6 +26,7 @@ namespace Toplearn.DataLayer.Entities.Courses
         public string Postcode { get; set; }
         public string Notes { get; set; }  // Special notes for shipping, if any
         public bool IsPaid { get; set; }
+        public DateTime CreateDate { get; set; }
         public Guid? UserCreatorId { get; set; }
 
         #region Relations

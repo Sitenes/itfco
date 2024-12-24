@@ -272,12 +272,12 @@ a{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffae00', endColorstr='#ff8a00',GradientType=0 );
 }
 
-@media only screen and (max-width: 767px){
-	
-	.main-menu .navbar-header .navbar-toggler .icon{
-		color:#ff8a00;
+@media only screen and (max-width: 1139px) {
+
+	.main-menu .navbar-header .navbar-toggler .icon {
+		color: #ff8a00;
 	}
-	
+
 	.main-menu .navbar-header .navbar-toggle,
 	.main-menu .navbar-collapse > .navigation,
 	.main-menu .navbar-collapse > .navigation > li > ul,
@@ -296,8 +296,7 @@ a{
 	.main-menu .navigation > li .mega-menu-bar .column > ul > li > a,
 	.main-menu .navigation > li .mega-menu-bar .column > ul > li:hover > a,
 	.main-menu .navbar-collapse > .navigation > li.current > a,
-	.main-menu .navbar-collapse > .navigation > li.current-menu-item > a{
+	.main-menu .navbar-collapse > .navigation > li.current-menu-item > a {
 		/*background-color:#ff8a00;*/
 	}
-	
 }

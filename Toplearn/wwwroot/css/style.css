@@ -11637,12 +11637,12 @@ header-style-seven {
 
 .cart-table tbody tr .prod-column .column-box {
     position: relative;
-    min-height: 110px;
+    /*min-height: 110px;*/
 }
 
     .cart-table tbody tr .prod-column .column-box .prod-thumb {
         position: relative;
-        width: 140px;
+        /*width: 140px;*/
         margin: 0 auto;
         text-align: center;
     }
@@ -11710,7 +11710,8 @@ header-style-seven {
     }
 
         .cart-table tbody tr td.prod-column {
-            padding-left: 48px;
+            /*padding-left: 48px;*/
+            width: 20%;
         }
 
         .cart-table tbody tr td.total {

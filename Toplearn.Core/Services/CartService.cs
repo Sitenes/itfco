@@ -37,9 +37,12 @@ namespace Toplearn.Core.Services
         }
         public async Task<Cart> GetLastNotPaidCartAsync(Guid UserId)
         {
-            var cart = await _context.Carts.LastOrDefaultAsync(c => c.UserCreatorId == UserId && c.IsPaid == false);
+            var cart = await _context.Carts.Include(x=>x.CourseCarts).ThenInclude(x=>x.Course).OrderBy(x=>x.CreateDate).LastOrDefaultAsync(c => c.UserCreatorId == UserId && c.IsPaid == false);
             if(cart == null)
-                cart = new Cart() {UserCreatorId = UserId };
+            {
+                cart = new Cart() { UserCreatorId = UserId, };
+                await AddCartAsync(cart);
+            }
 
             return cart;
         }
@@ -50,17 +53,33 @@ namespace Toplearn.Core.Services
 
         public async Task AddCartAsync(Cart cart)
         {
+            cart.CreateDate = DateTime.Now;
             await _context.Carts.AddAsync(cart);
         }
-        public async Task AddProductToCartAsync(int cartId,int courseId,int count)
+        public async Task AddOrUpdateProductInCartAsync(int cartId, int courseId, int count)
         {
-            await _context.CourseCarts.AddAsync(new CourseCart
+            // بررسی وجود محصول در سبد خرید
+            var existingCourseCart = await _context.CourseCarts
+                .FirstOrDefaultAsync(cc => cc.CartId == cartId && cc.CourseId == courseId);
+
+            if (existingCourseCart != null)
             {
-                Count = count,
-                CartId = cartId,
-                CourseId = courseId
-            });
+                // به‌روزرسانی تعداد محصول
+                existingCourseCart.Count = count;
+                _context.CourseCarts.Update(existingCourseCart);
+            }
+            else
+            {
+                // اضافه کردن محصول جدید
+                await _context.CourseCarts.AddAsync(new CourseCart
+                {
+                    Count = count,
+                    CartId = cartId,
+                    CourseId = courseId
+                });
+            }
         }
+
         public void UpdateCart(Cart cart)
         {
             _context.Carts.Update(cart);
@@ -77,6 +96,16 @@ namespace Toplearn.Core.Services
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
+        }
+        public async Task RemoveProductFromCartAsync(int cartId, int courseId)
+        {
+            var courseCart = await _context.CourseCarts
+                .FirstOrDefaultAsync(cc => cc.CartId == cartId && cc.CourseId == courseId);
+
+            if (courseCart != null)
+            {
+                _context.CourseCarts.Remove(courseCart);
+            }
         }
     }
 }
