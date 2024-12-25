@@ -1,9 +1,14 @@
-﻿ <!--Checkout Details-->
-<div class="checkout-form">
-    <form method="post" action="checkout.html">
+﻿@using Toplearn.DataLayer.Entities.Courses;
+@model Cart
+@{
+    ViewData["Title"] = "پرداخت";
+}
+<form method="get" asp-action="Payment" asp-controller="Cart">
+    <!--Checkout Details-->
+    <div class="checkout-form container">
         <div class="row clearfix">
             <!--Column-->
-            <div class="column col-lg-6 col-md-12 col-sm-12">
+            <div class="column col-lg-12 col-md-12 col-sm-12">
                 <div class="sec-title">
                     <h3>Billing Details</h3>
                 </div>
@@ -13,198 +18,114 @@
                     <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
                         <div class="field-label">First Name <sup>*</sup></div>
-                        <input type="text" name="field-name" value="" placeholder="">
+                        <input type="text" required asp-for="FirstName" placeholder="">
                     </div>
 
                     <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
-                        <div class="field-label">Last Name </div>
-                        <input type="text" name="field-name" value="" placeholder="">
+                        <div class="field-label">Last Name  <sup>*</sup></div>
+                        <input type="text" required asp-for="LastName" placeholder="">
                     </div>
 
                     <!--Form Group-->
                     <div class="form-group col-md-12 col-sm-12">
                         <div class="field-label">Company Name</div>
-                        <input type="text" name="field-name" value="" placeholder="">
+                        <input type="text" asp-for="CompanyName" placeholder="">
                     </div>
 
                     <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
                         <div class="field-label">Email Address</div>
-                        <input type="text" name="field-name" value="" placeholder="">
+                        <input type="text" asp-for="Email" placeholder="">
                     </div>
 
                     <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
                         <div class="field-label">Phone</div>
-                        <input type="text" name="field-name" value="" placeholder="">
+                        <input type="text" asp-for="Phone" placeholder="">
                     </div>
 
                     <!--Form Group-->
                     <div class="form-group col-md-12 col-sm-12">
                         <div class="field-label">Country</div>
                         <select>
-                            <option>Pakistan</option>
-                            <option>India</option>
-                            <option>Australia</option>
-                            <option>Usa</option>
+                            <input type="text" asp-for="Country" placeholder="">
                         </select>
                     </div>
 
                     <!--Form Group-->
                     <div class="form-group col-md-12 col-sm-12">
-                        <div class="field-label">Address</div>
-                        <input type="text" name="field-name" value="" placeholder="Street address">
+                        <div class="field-label">Address <sup>*</sup></div>
+                        <input type="text" required asp-for="Address" placeholder="Street address">
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12">
-                        <input type="text" name="field-name" value="" placeholder="Apartment,suite,unit etc. (optional)">
+                        <input type="text" asp-for="AddressAdditional" placeholder="Apartment,suite,unit etc. (optional)">
                     </div>
 
                     <!--Form Group-->
                     <div class="form-group col-md-12 col-sm-12">
                         <div class="field-label">Town/City</div>
-                        <input type="text" name="field-name" value="" placeholder="">
+                        <input type="text" asp-for="City" placeholder="">
                     </div>
 
                     <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
                         <div class="field-label">State / County</div>
-                        <input type="text" name="field-name" value="" placeholder="">
+                        <input type="text" asp-for="State" placeholder="">
                     </div>
 
                     <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
                         <div class="field-label">Postcode/ ZIP</div>
-                        <input type="text" name="field-name" value="" placeholder="">
-                    </div>
-
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                        <input type="checkbox" name="shipping-option" id="account-option"> &ensp; <label for="account-option">Create An Account?</label>
-                        <div class="text">Create an account by entering the information below. if you are a returning custoer please login at the top of the page.</div>
-                    </div>
-
-                    <!--Form Group-->
-                    <div class="form-group col-md-12 col-sm-12">
-                        <div class="field-label"><span>Account Password</span></div>
-                        <input type="password" name="field-name" value="" placeholder="Password">
+                        <input type="text" asp-for="Postcode" placeholder="">
                     </div>
 
                 </div>
-            </div>
-            <!--Column-->
-            <div class="column col-lg-6 col-md-12 col-sm-12">
-                <div class="sec-title">
-                    <h3>Ship to a different address?</h3>
-                </div>
-
-                <div class="row clearfix">
-
-                    <!--Form Group-->
-                    <div class="form-group col-md-6 col-sm-12">
-                        <div class="field-label">First Name <sup>*</sup></div>
-                        <input type="text" name="field-name" value="" placeholder="">
-                    </div>
-
-                    <!--Form Group-->
-                    <div class="form-group col-md-6 col-sm-12">
-                        <div class="field-label">Last Name </div>
-                        <input type="text" name="field-name" value="" placeholder="">
-                    </div>
-
-                    <!--Form Group-->
-                    <div class="form-group col-md-12 col-sm-12 ">
-                        <div class="field-label">Company Name</div>
-                        <input type="text" name="field-name" value="" placeholder="">
-                    </div>
-
-                    <!--Form Group-->
-                    <div class="form-group col-md-12 col-sm-12 ">
-                        <div class="field-label">Country</div>
-                        <input type="text" name="field-name" value="" placeholder="">
-                    </div>
-
-                    <!--Form Group-->
-                    <div class="form-group col-md-12 col-sm-12 ">
-                        <div class="field-label">Address</div>
-                        <input type="text" name="field-name" value="" placeholder="Street address">
-
-                    </div>
-
-                    <!--Form Group-->
-                    <div class="form-group col-md-12 col-sm-12 ">
-                        <input type="text" name="field-name" value="" placeholder="Apartment,suite,unit etc. (optional)">
-                    </div>
-
-                    <!--Form Group-->
-                    <div class="form-group col-md-12 col-sm-12 ">
-                        <div class="field-label">Town/City</div>
-                        <input type="text" name="field-name" value="" placeholder="">
-                    </div>
-
-                    <!--Form Group-->
-                    <div class="form-group col-md-6 col-sm-12">
-                        <div class="field-label">State / County</div>
-                        <input type="text" name="field-name" value="" placeholder="">
-                    </div>
-
-                    <!--Form Group-->
-                    <div class="form-group col-md-6 col-sm-12">
-                        <div class="field-label">Postcode/ ZIP</div>
-                        <input type="text" name="field-name" value="" placeholder="">
-                    </div>
-
-                    <!--Form Group-->
-                    <div class="form-group col-md-12 col-sm-12 ">
-                        <div class="field-label">Other Notes</div>
-                        <textarea class="" placeholder="Notes about your order,e.g. special notes for delivery."></textarea>
-                    </div>
-
-                </div>
-
             </div>
         </div>
-    </form>
-</div>
-<!--End Checkout Details-->
-<!--Payment Box-->
-<div class="payment-box">
-    <div class="upper-box">
+    </div>
+    <!--End Checkout Details-->
+    <!--Payment Box-->
+    <div class="payment-box">
+        <div class="upper-box">
 
-        <!--Payment Options-->
-        <div class="payment-options">
+            @*         <!--Payment Options-->
+            <div class="payment-options">
             <ul>
-                <li>
-                    <div class="radio-option">
-                        <input type="radio" name="payment-group" id="payment-2" checked>
-                        <label for="payment-2"><strong>Direct Bank Transfer</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
-                    </div>
-                </li>
-                <li>
-                    <div class="radio-option">
-                        <input type="radio" name="payment-group" id="payment-1">
-                        <label for="payment-1"><strong>Check Payments</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
-                    </div>
-                </li>
+            <li>
+            <div class="radio-option">
+            <input type="radio" name="payment-group" id="payment-2" checked>
+            <label for="payment-2"><strong>Direct Bank Transfer</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
+            </div>
+            </li>
+            <li>
+            <div class="radio-option">
+            <input type="radio" name="payment-group" id="payment-1">
+            <label for="payment-1"><strong>Check Payments</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
+            </div>
+            </li>
 
-                <li>
-                    <div class="radio-option">
-                        <input type="radio" name="payment-group" id="payment-3">
-                        <label for="payment-3"><strong>Cash on Delivery</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
-                    </div>
-                </li>
-                <li>
-                    <div class="radio-option">
-                        <input type="radio" name="payment-group" id="payment-4">
-                        <label for="payment-4"><strong>PayPal</strong><span class="image"><img src="images/resource/paypal.jpg" alt="" /></span></label>
-                        <a href="#" class="what-paypall">What is PayPal?</a>
-                    </div>
-                </li>
+            <li>
+            <div class="radio-option">
+            <input type="radio" name="payment-group" id="payment-3">
+            <label for="payment-3"><strong>Cash on Delivery</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
+            </div>
+            </li>
+            <li>
+            <div class="radio-option">
+            <input type="radio" name="payment-group" id="payment-4">
+            <label for="payment-4"><strong>PayPal</strong><span class="image"><img src="images/resource/paypal.jpg" alt="" /></span></label>
+            <a href="#" class="what-paypall">What is PayPal?</a>
+            </div>
+            </li>
             </ul>
+            </div>
+            </div> *@
+            <div class="lower-box text-right">
+                <button type="submit" class="theme-btn btn-style-one">Place Order</button>
+            </div>
         </div>
     </div>
-    <div class="lower-box text-right">
-        <a href="#" class="theme-btn btn-style-one">Place Order</a>
-    </div>
-</div>
-<!--End Payment Box-->
+    <!--End Payment Box-->
+</form>

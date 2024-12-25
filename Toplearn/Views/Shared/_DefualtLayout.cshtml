@@ -1,5 +1,7 @@
 ﻿@inject ICourseService _courseService
+@inject ICartService _cartService
 @using System.Text
+@using System.Security.Claims
 @using Toplearn.Core.Services.Interfaces
 @using Toplearn.DataLayer.Entities.Courses
 @using Toplearn.Web
@@ -7,6 +9,7 @@
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
 @{
     var groups = await _courseService.GetParentCategories();
+    var courseCount = await _cartService.CountProductInCartAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -105,7 +108,7 @@
                                         <li class="current"><a href="/">@Localizer["Home"]</a></li>
 
                                         <li class="dropdown">
-                                            <a href="#">@Localizer["Category"]</a>
+                                            <a href="/product">@Localizer["Category"]</a>
                                             <ul class="category">
 
                                                 @Html.Raw(RenderCategory(groups))
@@ -167,9 +170,9 @@
                             <div class="outer-box">
                                 <!-- Cart Btn -->
                                 <div class="cart-btn">
-                                    <a href="shop.html" title="">
+                                    <a href="/UserPanel/Cart" >
                                         <i class="fa fa-shopping-basket"></i>
-                                        <span class="count">2</span>
+                                        <span class="count">@(courseCount)</span>
                                     </a>
                                 </div>
 
@@ -184,9 +187,9 @@
                                             aria-labelledby="dropdownMenu3">
                                             <li class="panel-outer">
                                                 <div class="form-container">
-                                                    <form method="post" action="blog.html">
+                                                    <form asp-controller="product" asp-action="index">
                                                         <div class="form-group">
-                                                            <input type="search" name="field-name" value=""
+                                                            <input type="search" name="Title"
                                                                    placeholder=@Localizer["SearchHere"] required>
                                                             <button type="submit" class="search-btn">
                                                                 <span class="fa fa-search"></span>

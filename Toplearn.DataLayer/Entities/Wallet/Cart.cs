@@ -24,6 +24,8 @@ namespace Toplearn.DataLayer.Entities.Courses
         public string City { get; set; }
         public string State { get; set; }
         public string Postcode { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
         public string Notes { get; set; }  // Special notes for shipping, if any
         public bool IsPaid { get; set; }
         public DateTime CreateDate { get; set; }

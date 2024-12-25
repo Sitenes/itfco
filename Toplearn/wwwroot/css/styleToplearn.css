@@ -632,7 +632,7 @@ main .terms-items .term-col article i{
   }
 }
 
-@media screen and (max-width : 768px){
+@media screen and (max-width : 1139px){
   .client-page .container-content{
     width: 92%;
     margin-right: 4%

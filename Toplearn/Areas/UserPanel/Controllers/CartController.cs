@@ -50,12 +50,31 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
             if (user == null)
                 return Redirect($"/login?ReturnUrl=/UserPanel/Cart/Index");
             var cart = await _cartService.GetLastNotPaidCartAsync(user.UserId);
+
             return View(cart);
         }
         [Route("UserPanel/Cart/Payment")]
-        public async Task<IActionResult> Payment()
+        public async Task<IActionResult> Payment(Cart cart)
         {
-            var cart = await _cartService.GetLastNotPaidCartAsync(user.UserId);
+            var cartOld = await _cartService.GetCartAsync(cart.Id);
+            var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            if (user == null)
+                return Redirect($"/login?ReturnUrl=/UserPanel/Cart/Index");
+            cartOld.Address = cart.Address;
+            cartOld.AddressAdditional = cart.AddressAdditional;
+            cartOld.City = cart.City;
+            cartOld.CompanyName = cart.CompanyName;
+            cartOld.Country = cart.Country;
+            cartOld.Email = cart.Email;
+            cartOld.FirstName = cart.FirstName;
+            cartOld.LastName = cart.LastName;
+            cartOld.Notes = cart.Notes;
+            cartOld.Phone = cart.Phone;
+            cartOld.Postcode = cart.Postcode;
+            cartOld.State = cart.State;
+
+            _cartService.UpdateCart(cartOld);
+            await _cartService.SaveChangesAsync();
             return View(cart);
         }
         [Route("UserPanel/Cart/RemoveProduct/{courseId}")]
