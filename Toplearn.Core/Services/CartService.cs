@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Toplearn.Core.AllEnums;
+using Toplearn.Core.DTOs.WalletVM;
 using Toplearn.Core.Services.Interfaces;
 using Toplearn.DataLayer.Context;
 using Toplearn.DataLayer.Entities.Courses;
@@ -19,23 +20,44 @@ namespace Toplearn.Core.Services
         }
 
 
-        public async Task<List<Cart>> GetAllCartsAsync(Guid? UserId = null, bool? IsPaid = null)
-        {
-            IQueryable<Cart> query = _context.Carts;
+		public async Task<List<Cart>> GetAllCartsAsync(CartFilterViewModel filter)
+		{
+			IQueryable<Cart> query = _context.Carts.Include(x=>x.UserCreator).Include(x => x.CourseCarts).ThenInclude(x=>x.Course);
 
-            if (UserId.HasValue)
-            {
-                query = query.Where(c => c.UserCreatorId == UserId);
-            }
+			if (filter.UserId.HasValue)
+				query = query.Where(c => c.UserCreatorId == filter.UserId);
 
-            if (IsPaid.HasValue)
-            {
-                query = query.Where(c => c.IsPaid == IsPaid);
-            }
+			if (filter.IsPaid.HasValue)
+				query = query.Where(c => c.IsPaid == filter.IsPaid);
 
-            return await query.ToListAsync();
-        }
-        public async Task<Cart> GetLastNotPaidCartAsync(Guid UserId)
+			if (!string.IsNullOrEmpty(filter.FilterEmail))
+				query = query.Where(c => c.UserCreator.Email.Contains(filter.FilterEmail));
+
+			if (!string.IsNullOrEmpty(filter.FilterNameId))
+				query = query.Where(c => c.UserCreator.UserName.Contains(filter.FilterNameId) || c.UserCreator.UserId.ToString().Contains(filter.FilterNameId) || c.Id.ToString() == filter.FilterNameId);
+
+			if (filter.FilterPhone.HasValue)
+				query = query.Where(c => c.Phone.Contains(filter.FilterPhone.ToString()) || c.UserCreator.Phone.ToString().Contains(filter.FilterPhone.ToString()));
+
+			if (filter.OnlyActivate.HasValue && filter.OnlyActivate.Value)
+				query = query.Where(c => c.UserCreator.IsActive);
+
+			if (filter.PriceFrom.HasValue)
+				query = query.Where(c => c.CourseCarts.Sum(x=>x.Course.Price * x.Count) >= filter.PriceFrom.Value);
+
+			if (filter.PriceTo.HasValue)
+				query = query.Where(c => c.CourseCarts.Sum(x => x.Course.Price * x.Count) <= filter.PriceTo.Value);
+
+			if (filter.ItemPerPage > 0 && filter.CurrentPage > 0)
+			{
+				int skip = (filter.CurrentPage - 1) * filter.ItemPerPage;
+				query = query.Skip(skip).Take(filter.ItemPerPage);
+			}
+
+			return await query.ToListAsync();
+		}
+
+		public async Task<Cart> GetLastNotPaidCartAsync(Guid UserId)
         {
             var cart = await _context.Carts.Include(x=>x.CourseCarts).ThenInclude(x=>x.Course).OrderBy(x=>x.CreateDate).LastOrDefaultAsync(c => c.UserCreatorId == UserId && c.IsPaid == false);
             if(cart == null)
@@ -48,7 +70,7 @@ namespace Toplearn.Core.Services
         }
         public async Task<Cart> GetCartAsync(int CartId)
         {
-            return await _context.Carts.SingleOrDefaultAsync(n => n.Id == CartId);
+            return await _context.Carts.Include(x=>x.UserCreator).Include(x => x.CourseCarts).ThenInclude(x=>x.Course).FirstOrDefaultAsync(n => n.Id == CartId);
         }
 
         public async Task AddCartAsync(Cart cart)
@@ -85,13 +107,16 @@ namespace Toplearn.Core.Services
             _context.Carts.Update(cart);
         }
 
-        public async Task DeleteCartAsync(int CartId)
+        public async Task<bool> DeleteCartAsync(int CartId)
         {
             var cart = await _context.Carts.SingleOrDefaultAsync(n => n.Id == CartId);
             if (cart != null)
             {
                 _context.Carts.Remove(cart);
             }
+            else
+                return false;
+            return true;
         }
         public async Task SaveChangesAsync()
         {

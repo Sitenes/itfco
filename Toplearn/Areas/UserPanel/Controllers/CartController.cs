@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Toplearn.Core.DTOs.WalletVM;
 using Toplearn.Core.Services;
 using Toplearn.Core.Services.Interfaces;
 using Toplearn.DataLayer.Entities.Courses;
@@ -30,12 +31,20 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
             _localizer = localizer;
         }
         [Route("UserPanel/Cart")]
-        public async Task<IActionResult> Index(int productId = 0, int Count = 1)
+        public async Task<IActionResult> Index(int productId = 0, int Count = 1,int cartId = 0)
         {
             var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
             if (user == null)
                 return Redirect($"/login?ReturnUrl=/UserPanel/Cart/Index?productId={productId}&Count={Count}");
-            var cart = await _cartService.GetLastNotPaidCartAsync(user.UserId);
+            Cart? cart = null;
+            if (cartId != 0)
+            {
+                cart = await _cartService.GetCartAsync(cartId);
+            }
+            else
+            {
+                cart = await _cartService.GetLastNotPaidCartAsync(user.UserId);
+            }
             var product = await _courseService.GetCourse(productId);
             if(product != null)
                 await _cartService.AddOrUpdateProductInCartAsync(cart.Id,productId,Count);
@@ -43,9 +52,23 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
 			cart = await _cartService.GetLastNotPaidCartAsync(user.UserId);
 			return View(cart);
         }
-        [Route("UserPanel/Cart/Checkout")]
-        public async Task<IActionResult> Checkout()
+        [Route("UserPanel/CartList")]
+        public async Task<IActionResult> CartList()
         {
+            var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            if (user == null)
+                return Redirect($"/login?ReturnUrl=/UserPanel/CartList");
+            var carts = await _cartService.GetAllCartsAsync(new CartFilterViewModel
+            {
+                UserId = user.UserId
+            });
+            return View(carts);
+        }
+        [Route("UserPanel/Cart/Checkout")]
+        public async Task<IActionResult> Checkout(bool? IsSucceed)
+        {
+            if (IsSucceed != null)
+                ViewData["IsSucceed"] = IsSucceed;
             var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
             if (user == null)
                 return Redirect($"/login?ReturnUrl=/UserPanel/Cart/Index");
@@ -55,11 +78,12 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
         }
         [Route("UserPanel/Cart/Payment")]
         public async Task<IActionResult> Payment(Cart cart)
-        {
-            var cartOld = await _cartService.GetCartAsync(cart.Id);
+		{
+
             var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
             if (user == null)
                 return Redirect($"/login?ReturnUrl=/UserPanel/Cart/Index");
+            var cartOld = await _cartService.GetLastNotPaidCartAsync(user.UserId);
             cartOld.Address = cart.Address;
             cartOld.AddressAdditional = cart.AddressAdditional;
             cartOld.City = cart.City;
@@ -72,10 +96,11 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
             cartOld.Phone = cart.Phone;
             cartOld.Postcode = cart.Postcode;
             cartOld.State = cart.State;
+            cartOld.Notes = cart.Notes;
 
             _cartService.UpdateCart(cartOld);
             await _cartService.SaveChangesAsync();
-            return View(cart);
+            return RedirectToAction(nameof(Checkout),new {IsSucceed = true});
         }
         [Route("UserPanel/Cart/RemoveProduct/{courseId}")]
         public async Task<IActionResult> RemoveProduct(int courseId)

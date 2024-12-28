@@ -232,6 +232,14 @@
         <script src="/js/color-settings.js"></script>
         <script src="/js/site.js"></script>
         <script src="/js/script.js"></script>
+        @if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == true)
+        {
+            <partial name="Partials/_CheckoutSuccessfulModalPartial" />
+        }
+        else if (ViewData["IsSucceed"] != null && (bool)(ViewData["IsSucceed"]) == false)
+        {
+            <partial name="Partials/_CheckoutSuccessfulModalPartial" />
+        }
         @RenderSection("Scripts", false)
     </div>
 </body>

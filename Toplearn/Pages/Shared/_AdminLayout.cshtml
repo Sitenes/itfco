@@ -339,6 +339,23 @@
 								</ul>
 							</li>
 						}
+						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CartManagement, _userId))
+						{
+							<li>
+								<a href="/Admin/ManageRoles/Index"><i class="fa fa-bar-chart-o fa-fw"></i>سفارشات<span class="fa arrow"></span></a>
+								<ul class="nav nav-third-level">
+									<li>
+										<a href="/Admin/Wallets/Index">لیست سفارشات</a>
+									</li>
+									@* @if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddCategory, _userId))
+									{
+										<li>
+											<a href="/Admin/ManageCategories/Create">افزودن دسته بندی جدید</a>
+										</li>
+									} *@
+								</ul>
+							</li>
+						}
 					</ul>
 					<!-- /#side-menu -->
 				</div>

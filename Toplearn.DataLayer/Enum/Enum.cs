@@ -48,5 +48,7 @@ namespace Toplearn.Core.AllEnums
         AddCategory = 19,
         EditCategory = 20,
         RemoveCategory = 21,
+        CartManagement = 22,
+        RemoveCart = 23,
     }
 }

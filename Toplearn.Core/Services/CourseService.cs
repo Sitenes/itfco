@@ -212,7 +212,8 @@ namespace Toplearn.Core.Services
                 Courses = Courses.Where(n => n.Title.Contains(Filter.Title));
             }
             Filter.CoursesCount = Courses.Count();
-            if (Filter.CurrentPage != 0)
+			Courses = Courses.OrderByDescending(x=>x.RegistrationDate);
+			if (Filter.CurrentPage != 0)
                 Courses = Courses.Skip((Filter.CurrentPage - 1) * Filter.ItemPerPage);
             if (Filter.ItemPerPage != 0)
                 Courses = Courses.Take(Filter.ItemPerPage);

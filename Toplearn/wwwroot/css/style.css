@@ -11587,7 +11587,7 @@ header-style-seven {
 
 .cart-outer .cart-table {
     width: 100%;
-    min-width: 900px;
+    /*min-width: 900px;*/
 }
 
 .cart-table .cart-header {
@@ -11618,7 +11618,7 @@ header-style-seven {
 
 .cart-table tbody tr td {
     line-height: 24px;
-    padding: 30px 25px 30px;
+    padding: 30px 20px 30px;
 }
 
 .cart-table tbody tr .qty {

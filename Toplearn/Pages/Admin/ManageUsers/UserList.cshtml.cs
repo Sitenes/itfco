@@ -21,11 +21,12 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
 
 
         public UsersForAdminViewModel Filters { get; set; }
-        public void OnGet(UsersForAdminViewModel filters,bool IsSucceed)
+        public void OnGet(UsersForAdminViewModel filters,bool IsSucceed, [FromQuery] string userId)
         {
             if(IsSucceed)
                 ViewData["IsSucceed"] = true;
-
+            if (!string.IsNullOrEmpty(userId))
+                filters.filterNameId = userId;
             if (filters.PagesCount == 0)
                 filters.PagesCount = 1;
             if (filters.CurrentPage == 0)

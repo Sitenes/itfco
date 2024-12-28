@@ -490,6 +490,7 @@
     <Compile Include="DTOs\CourseVM\CourseViewModel.cs" />
     <Compile Include="DTOs\CourseVM\EpisodeViewModel.cs" />
     <Compile Include="DTOs\Resource.cs" />
+    <Compile Include="DTOs\BlogVM\BlogViewModel.cs" />
     <Compile Include="DTOs\TeacherVM\TeacherForAdmin.cs" />
     <Compile Include="DTOs\UserVM\UserPanelViewModel.cs" />
     <Compile Include="DTOs\WalletVM\WalletViewModel.cs" />
@@ -503,7 +504,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\ActivateCodeGenerator.cs" />
     <Compile Include="Security\PasswordHelper.cs" />
+    <Compile Include="Services\BlogService.cs" />
     <Compile Include="Services\CourseService.cs" />
+    <Compile Include="Services\Interfaces\IBlogService.cs" />
     <Compile Include="Services\Interfaces\ICourseService.cs" />
     <Compile Include="Services\Interfaces\ICartService.cs" />
     <Compile Include="Services\PermissionService.cs" />

@@ -10,6 +10,7 @@ using Toplearn.DataLayer.Entities.Courses;
 using Toplearn.DataLayer.Entities.User;
 using Toplearn.DataLayer.Entities.Wallet;
 using Toplearn.DataLayer.Entities.Permissions;
+using Toplearn.DataLayer.Entities.Blogs;
 
 namespace Toplearn.DataLayer.Context
 {
@@ -51,11 +52,17 @@ namespace Toplearn.DataLayer.Context
         public DbSet<CourseLevel> CourseLevels { get; set; }
         public DbSet<CourseGroup> CourseGroups { get; set; }
         public DbSet<Episode> Episode { get; set; }
-        #endregion
-        #endregion
+		#endregion
 
-        #region ModelBuilder
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+		#region Blogs
+		public DbSet<Blog> Blogs { get; set; }
+		
+		#endregion
+
+		#endregion
+
+		#region ModelBuilder
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Adding Categories
             var permissions = Enum.GetValues(typeof(Core.AllEnums.PermissionEnum))

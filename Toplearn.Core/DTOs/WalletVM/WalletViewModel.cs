@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Toplearn.Core.DTOs.UserVM;
 
 namespace Toplearn.Core.DTOs.WalletVM
 {
@@ -32,5 +33,29 @@ namespace Toplearn.Core.DTOs.WalletVM
         [DataType("long", ErrorMessage = "لطفا مبلغ را به درستی وارد نمایید")]
         public long ChargeAmount { get; set; }
 
+    }
+    public class CartListAdminViewModel
+    {
+        public string UserName { get; set; }
+        public int Count { get; set; }
+        public long TotalPrice { get; set; }
+        public int Id { get; set; }
+    }
+    public class CartFilterViewModel
+    {
+        public string FilterEmail { get; set; }
+        public string FilterNameId { get; set; }
+        public long? FilterPhone { get; set; }
+        public bool? OnlyActivate { get; set; }
+        public int PagesCount { get; set; }
+        public int CurrentPage { get; set; }
+        public int UserListCount { get; set; }
+        public int NumAllUser { get; set; }
+        public long? PriceFrom { get; set; }
+        public long? PriceTo { get; set; }
+        public int ItemPerPage { get; set; }
+        public int CoursesCount { get; set; }
+        public Guid? UserId { get; set; }
+        public bool? IsPaid { get; set; }
     }
 }

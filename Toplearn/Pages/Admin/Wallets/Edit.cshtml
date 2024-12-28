@@ -1,0 +1,203 @@
+﻿@page "{id}"
+@inject ICartService _cartService
+@using Toplearn.Core.DTOs.TeacherVM
+@using Toplearn.Core.Services.Interfaces
+@model Toplearn.Web.Pages.Admin.Wallets.EditModel
+@{
+    Guid _userId = Guid.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
+    ViewData["Title"] = "ویرایش محصول";
+}
+
+<div class="row">
+    <form method="post" enctype="multipart/form-data">
+        <input asp-for="Cart.Id" type="hidden">
+        <input asp-for="Cart.UserCreatorId" type="hidden">
+
+        <div class="col-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading h3">
+                    ویرایش محصول
+                </div>
+                <div class="panel-body">
+                    <div class="container client-page">
+                        <!-- فیلدهای جدید -->
+                        <div class="row">
+                            <div class="col-md-6 input-group" style="margin:20px auto">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-check"></i>
+                                </span>
+                                <select asp-for="Cart.IsPaid" class="form-control">
+                                    <option value="true">پرداخت شده</option>
+                                    <option value="false">پرداخت نشده</option>
+                                </select>
+                                <span asp-validation-for="Cart.IsPaid" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 input-group" style="margin:20px auto">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-globe"></i>
+                                </span>
+                                <input asp-for="Cart.Country" class="form-control" placeholder="کشور">
+                                <span asp-validation-for="Cart.Country" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 input-group" style="margin:20px auto">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-city"></i>
+                                </span>
+                                <input asp-for="Cart.State" class="form-control" placeholder="استان">
+                                <span asp-validation-for="Cart.State" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 input-group" style="margin:20px auto">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-pin"></i>
+                                </span>
+                                <input asp-for="Cart.Postcode" class="form-control" placeholder="کد پستی">
+                                <span asp-validation-for="Cart.Postcode" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 input-group" style="margin:20px auto">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-balance"></i>
+                                </span>
+                                <input asp-for="Cart.CompanyName" class="form-control" placeholder="نام شرکت">
+                                <span asp-validation-for="Cart.CompanyName" class="text-danger"></span>
+                            </div>
+                            <a href="/Admin/ManageUser/UserList?userId=@(Model.Cart.UserCreatorId)" class="form-control" placeholder="نام شرکت">
+                                <div class="col-md-6 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-account"></i>
+                                    </span>
+                                    مشاهده کاربر
+                                </div>
+                            </a>
+                            <div class="col-sm-12 input-group" style="margin:20px auto">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-pin-drop"></i>
+                                </span>
+                                <textarea asp-for="Cart.Address" style="resize: vertical; max-height: 200px; min-height: 30px; height: 40px;" class="form-control" placeholder="آدرس"></textarea>
+                                <span asp-validation-for="Cart.Address" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-sm-12 input-group" style="margin:20px auto">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-pin-drop"></i>
+                                </span>
+                                <textarea asp-for="Cart.AddressAdditional" style="resize: vertical; max-height: 200px; min-height: 30px; height: 40px;" class="form-control" placeholder="اطلاعات اضافی آدرس (مانند شماره واحد)"></textarea>
+                                <span asp-validation-for="Cart.AddressAdditional" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <button type="submit" class="form-control btn btn-success btn-block">
+                                <i class="zmdi zmdi-check"></i>
+                                <strong>بروزرسانی</strong>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                لیست محصولات
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form method="post">
+                        <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+                                <thead>
+                                    <tr role="row" class="h4 text-center">
+                                        <th>تصویر</th>
+                                        <th>عنوان محصول</th>
+                                        @* <th>دانشجو</th> *@
+                                        <th>قیمت تک</th>
+                                        <th>تعداد</th>
+                                        <th>قیمت نهایی</th>
+                                        <th>دستورات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Cart.CourseCarts != null)
+                                        @foreach (var course in Model.Cart.CourseCarts)
+                                        {
+                                            var courseItem = course.Course;
+                                            <tr class="gradeA odd">
+                                                <td class="center ">
+                                                    <img src="/CourseRoot/Image/@courseItem.Image" width="60" />
+                                                </td>
+                                                <td class=" center ">@courseItem.Title</td>
+                                                @* <td class=" center ">@courseItem.NumberOfStudents</td> *@
+                                                <td class="center ">@courseItem.Price</td>
+                                                <td class="center ">@course.Count</td>
+                                                <td class="center ">@(courseItem.Price * course.Count)</td>
+                                                <td class="center tooltip-demo">
+                                                    @* 	@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CourseEpisodesManagement, _userId).Result)
+                                            {
+
+                                            <a href="/Admin/Episodes/Index/@courseItem.CourseId/null" data-toggle="tooltip" data-placement="top" title="" data-original-title="لیست قسمت ها" class="btn btn-outline btn-primary "><i class="zmdi zmdi-videocam"></i></a>
+
+                                            } *@
+                                                    @if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.EditCourse, _userId).Result)
+                                                    {
+                                                        <a href="/Admin/Courses/Edit/@courseItem.CourseId" class="btn btn-outline btn-warning "><i class="fa fa-edit"></i></a>
+                                                    }
+
+                                                    @if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.RemoveCourse, _userId).Result)
+                                                    {
+                                                        <a class="btn btn-outline btn-danger " data-toggle="modal" data-target="#DeleteModal@(courseItem.CourseId)">
+                                                            <i class="zmdi zmdi-close"></i>
+                                                        </a>
+                                                    }
+
+                                                    <div class="modal fade" id="DeleteModal@(courseItem.CourseId)" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true" style="display: none;">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header alert-warning">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                    <h5 class="modal-title h2" id="exampleModalLabel">آیا از حذف @(courseItem.Title) اطمینان دارید ؟</h5>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default btn-outline" data-dismiss="modal" aria-label="Close">بیخیال</button>
+                                                                    <a class="btn btn-danger" style="min-width:100px" href="/api/Cart/RemoveProduct/@(courseItem.CourseId)/@(Model.Cart.Id)">حذف</a>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.modal-content -->
+                                                        </div>
+                                                        <!-- /.modal-dialog -->
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                        }
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+    <!-- /.panel-body -->
+</div>
+
+
+@section Scripts
+{
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('mainGroup', { customConfig: '/js/Config.js' });
+    </script>
+}
