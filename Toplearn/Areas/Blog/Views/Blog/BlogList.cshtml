@@ -1,0 +1,89 @@
+﻿@using Toplearn.DataLayer.Entities.Blogs
+@model IEnumerable<Blog>
+@{
+    Layout = "_DefualtLayout";
+}
+<section class="container">
+    <div class="auto-container">
+        <div class="row">
+            <aside class="sidebar default-sidebar col-md-4 col-sm-12">
+                <!--search box-->
+                <div class="sidebar-widget search-box">
+                    <form method="get" action="@Url.Action("BlogList", "Blog")">
+                        <div class="form-group">
+                            <input type="search" name="search" value="@ViewBag.Search" placeholder="Search.....">
+                            <button type="submit"><span class="icon fa fa-search"></span></button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Categories -->
+                @* <div class="sidebar-widget categories">
+                <div class="sidebar-title"><h3>Categories</h3></div>
+                <ul>
+                @foreach (var category in ViewBag.Categories)
+                {
+                <li><a href="@Url.Action("BlogList", "Blog", new { category = category })">@category</a></li>
+                }
+                </ul>
+                </div> *@
+            </aside>
+
+        </div>
+        <div class="row">
+            @foreach (var blog in Model)
+            {
+                <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image">
+                                <img src="@blog.Image" alt="@blog.Title" />
+                            </figure>
+                            <div class="overlay-box">
+                                <a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })"><i class="fa fa-link"></i></a>
+                            </div>
+                        </div>
+                        <div class="caption-box">
+                            <div class="inner">
+                                <h3>
+                                    <a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">@blog.Title</a>
+                                </h3>
+                                <ul class="info">
+                                    <li>@blog.CreateDate.ToString("dd MMM yyyy")</li>
+                                    <li><a href="#">@blog.UserCreator.UserName</a></li>
+                                    <li><a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">3 Comments</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="styled-pagination">
+            <ul class="clearfix">
+                @if (ViewBag.CurrentPage > 1)
+                {
+                    <li class="prev-post">
+                        <a href="@Url.Action("BlogList", "Blog", new { page = ViewBag.CurrentPage - 1, search = ViewBag.Search, category = ViewBag.Category })">
+                            <span class="fa fa-long-arrow-left"></span> Prev
+                        </a>
+                    </li>
+                }
+                @for (var i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="@(i == ViewBag.CurrentPage ? "active" : "")">
+                        <a href="@Url.Action("BlogList", "Blog", new { page = i, search = ViewBag.Search, category = ViewBag.Category })">@i</a>
+                    </li>
+                }
+                @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                {
+                    <li class="next-post">
+                        <a href="@Url.Action("BlogList", "Blog", new { page = ViewBag.CurrentPage + 1, search = ViewBag.Search, category = ViewBag.Category })">
+                            Next <span class="fa fa-long-arrow-right"></span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</section>

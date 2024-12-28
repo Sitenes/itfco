@@ -1,0 +1,97 @@
+﻿@page
+@model Toplearn.Web.Pages.Admin.Blogs.List
+@{
+	ViewData["Title"] = "لیست وبلاگ‌ها";
+
+	Guid _userId = Guid.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
+}
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				لیست وبلاگ‌ها
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<form method="post">
+						@* <div class="row text-center">
+							<div class="col-xs-6 col-md-4">
+								<input class="form-control btn-block" value="@Model.FilterTitle" name="filterTitle" placeholder="عنوان وبلاگ">
+							</div>
+							<div class="col-xs-6 col-md-4">
+								<input class="form-control btn-block" value="@Model.FilterTags" name="filterTags" placeholder="برچسب‌ها">
+							</div>
+							<div class="col-xs-6 col-md-4">
+								<button type="submit" class="btn btn-primary btn-outline btn-block">
+									<i class="fa fa-search"></i> جستجو
+								</button>
+							</div>
+						</div> *@
+
+						<table class="table table-striped table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>عنوان</th>
+									<th>تاریخ ایجاد</th>
+									<th>کاربر ایجادکننده</th>
+									<th>دستورات</th>
+								</tr>
+							</thead>
+							<tbody>
+								@if (Model?.Blogs != null)
+								@foreach (var blog in Model.Blogs)
+								{
+									<tr>
+										<td>@blog.Title</td>
+										<td>@blog.CreateDate.ToShamsi()</td>
+										<td>@blog.UserCreator.UserName</td>
+										<td>
+											<a href="/Admin/ManageBlog/Edit/@blog.Id" class="btn btn-warning">
+												<i class="fa fa-edit"></i> ویرایش
+											</a>
+											<a href="/Admin/ManageBlog/Delete/@blog.Id" class="btn btn-danger">
+												<i class="fa fa-trash"></i> حذف
+											</a>
+
+											@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.EditBlog, _userId))
+											{
+												<a href="/Admin/Blogs/Edit/@blog.Id" class="btn btn-outline btn-warning "><i class="fa fa-edit"></i></a>
+											}
+
+											@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.RemoveBlog, _userId))
+											{
+												<a class="btn btn-outline btn-danger " data-toggle="modal" data-target="#DeleteModal@(blog.Id)">
+													<i class="zmdi zmdi-delete"></i>
+												</a>
+											}
+
+											<div class="modal fade" id="DeleteModal@(blog.Id)" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true" style="display: none;">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header alert-warning">
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+															<h5 class="modal-title h2" id="exampleModalLabel">آیا از حذف @(blog.Title) اطمینان دارید ؟</h5>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default btn-outline" data-dismiss="modal" aria-label="Close">بیخیال</button>
+															<a class="btn btn-danger" style="min-width:100px" href="/Admin/Blogs/Delete?BlogId=@(blog.Id)">حذف</a>
+														</div>
+													</div>
+													<!-- /.modal-content -->
+												</div>
+												<!-- /.modal-dialog -->
+											</div>
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

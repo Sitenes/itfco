@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Toplearn.DataLayer.Context;
 
 namespace Toplearn.Web.Migrations
 {
     [DbContext(typeof(ToplearnContext))]
-    partial class ToplearnContextModelSnapshot : ModelSnapshot
+    [Migration("20241228214321_AddBlog")]
+    partial class AddBlog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -452,26 +454,6 @@ namespace Toplearn.Web.Migrations
                         {
                             PermissionId = 23,
                             PermissionTitle = "RemoveCart"
-                        },
-                        new
-                        {
-                            PermissionId = 24,
-                            PermissionTitle = "BlogManagement"
-                        },
-                        new
-                        {
-                            PermissionId = 25,
-                            PermissionTitle = "AddBlog"
-                        },
-                        new
-                        {
-                            PermissionId = 26,
-                            PermissionTitle = "EditBlog"
-                        },
-                        new
-                        {
-                            PermissionId = 27,
-                            PermissionTitle = "RemoveBlog"
                         });
                 });
 
@@ -633,30 +615,6 @@ namespace Toplearn.Web.Migrations
                         {
                             RP_Id = 23,
                             PermissionId = 23,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            RP_Id = 24,
-                            PermissionId = 24,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            RP_Id = 25,
-                            PermissionId = 25,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            RP_Id = 26,
-                            PermissionId = 26,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            RP_Id = 27,
-                            PermissionId = 27,
                             RoleId = 1
                         });
                 });

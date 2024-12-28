@@ -13,25 +13,28 @@ using Toplearn.DataLayer.Entities.Courses;
 
 namespace Toplearn.Core.Services
 {
-	public class ServiceBlog : IBlogService
+	public class BlogService : IBlogService
 	{
-		private readonly DbContext _context;
+		private readonly ToplearnContext _context;
 
-		public ServiceBlog(DbContext context)
+		public BlogService(ToplearnContext context)
 		{
 			_context = context;
 		}
 
 		public async Task<Blog> GetByIdAsync(int id)
 		{
-			return await _context.Set<Blog>().FindAsync(id);
+			return await _context.Set<Blog>().Include(x=>x.UserCreator).FirstOrDefaultAsync(x=>x.Id == id);
 		}
 
 		public async Task<IEnumerable<Blog>> GetAllAsync()
 		{
-			return await _context.Set<Blog>().ToListAsync();
+			return await _context.Set<Blog>().Include(x=>x.UserCreator).ToListAsync();
 		}
-
+		public async Task SaveChangesAsync()
+		{
+			await _context.SaveChangesAsync();
+		}
 		public async Task AddAsync(Blog blog)
 		{
 			await _context.Set<Blog>().AddAsync(blog);

@@ -23,5 +23,6 @@ namespace Toplearn.Core.Services.Interfaces
 		Task UpdateAsync(Blog blog);
 		Task DeleteAsync(int id);
 		Task<IEnumerable<Blog>> SearchAsync(BlogFilter filter);
+		Task SaveChangesAsync();
 	}
 }

@@ -15,7 +15,8 @@ namespace Toplearn.DataLayer.Entities.Blogs
         public DateTime CreateDate { get; set; }
         public string Content { get; set; }
 		public string Tags { get; set; }
-		public Guid UserCreatorId { get; set; }
+        public string ShortDescription { get; set; }
+        public Guid UserCreatorId { get; set; }
 		public Entities.User.User UserCreator { get; set; }
 	}
 }

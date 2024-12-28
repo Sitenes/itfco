@@ -50,5 +50,9 @@ namespace Toplearn.Core.AllEnums
         RemoveCategory = 21,
         CartManagement = 22,
         RemoveCart = 23,
+        BlogManagement = 24,
+        AddBlog = 25,
+        EditBlog = 26,
+        RemoveBlog = 27,
     }
 }
