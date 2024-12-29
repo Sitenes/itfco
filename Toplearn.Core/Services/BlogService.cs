@@ -59,7 +59,7 @@ namespace Toplearn.Core.Services
 
 		public async Task<IEnumerable<Blog>> SearchAsync(BlogFilter filter)
 		{
-			IQueryable<Blog> query = _context.Set<Blog>();
+			IQueryable<Blog> query = _context.Set<Blog>().Include(x=>x.UserCreator);
 
 			if (!string.IsNullOrEmpty(filter.Title))
 			{

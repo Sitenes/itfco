@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Toplearn.Core.Services.Interfaces;
 using Toplearn.DataLayer.Entities.Blogs;
+using TopLearn.Core.Convertors;
+using Toplearn.DataLayer.Entities.Courses;
+using System.Security.Claims;
 
 namespace Toplearn.Web.Pages.Admin.Blogs
 {
@@ -27,6 +30,8 @@ namespace Toplearn.Web.Pages.Admin.Blogs
             if (id.HasValue)
             {
                 Blog = await _blogService.GetByIdAsync(id.Value);
+
+
                 if (Blog == null)
                     return NotFound();
             }
@@ -34,18 +39,60 @@ namespace Toplearn.Web.Pages.Admin.Blogs
             {
                 Blog = new Blog();
             }
+            if (string.IsNullOrEmpty(Blog.Image))
+                Blog.Image = "Default.jpg";
 
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(IFormFile? file)
+        public async Task<IActionResult> OnPostAsync(IFormFile? ImageFile)
         {
             if (!ModelState.IsValid)
                 return Page();
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            string newImage = "";
+            if (ImageFile != null)
+            {
+                string imageDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image");
+                string thumbDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage");
 
+                if (!Directory.Exists(imageDir))
+                    Directory.CreateDirectory(imageDir);
+
+                if (!Directory.Exists(thumbDir))
+                    Directory.CreateDirectory(thumbDir);
+
+                if (Blog.Image != "Default.jpg" && !string.IsNullOrEmpty(Blog.Image))
+                {
+                    string path = Path.Combine(imageDir, Blog.Image);
+                    if (System.IO.File.Exists(path))
+                    {
+                        System.IO.File.Delete(path);
+                    }
+
+                    string thumbPath = Path.Combine(thumbDir, Blog.Image);
+                    if (System.IO.File.Exists(thumbPath))
+                    {
+                        System.IO.File.Delete(thumbPath);
+                    }
+                }
+                string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
+                string newPath = Path.Combine(imageDir, newAvatarURL);
+                using (var stream = new FileStream(newPath, FileMode.Create))
+                {
+                    ImageFile.CopyTo(stream);
+                }
+                newImage = newAvatarURL;
+                ImageConvertor imageResize = new ImageConvertor();
+                string ThumbPath = Path.Combine(thumbDir, newAvatarURL);
+                string ImageCurrentPath = newPath;
+                imageResize.Image_resize(ImageCurrentPath, ThumbPath, 5000);
+            }
             if (Blog.Id == 0)
             {
                 Blog.CreateDate = DateTime.Now;
+                Blog.UserCreatorId = userId;
+                Blog.Image = newImage;
                 await _blogService.AddAsync(Blog);
             }
             else
@@ -58,29 +105,12 @@ namespace Toplearn.Web.Pages.Admin.Blogs
                 existingBlog.ShortDescription = Blog.ShortDescription;
                 existingBlog.Tags = Blog.Tags;
                 existingBlog.Content = Blog.Content;
+                existingBlog.Image = newImage;
 
-                if (file != null)
-                {
-
-                    string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "BlogImages", existingBlog.Image);
-                    if (System.IO.File.Exists(imagePath))
-                    {
-                        System.IO.File.Delete(imagePath);
-                    }
-
-                    string newImageName = Guid.NewGuid() + Path.GetExtension(Blog.Image.FileName);
-                    string newImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "BlogImages", newImageName);
-                    using (var stream = new FileStream(newImagePath, FileMode.Create))
-                    {
-                        await Blog.Image.CopyToAsync(stream);
-                    }
-
-                    existingBlog.Image = newImageName;
-                }
             }
 
             await _blogService.SaveChangesAsync();
-            return RedirectToPage("Index");
+            return await OnGetAsync(Blog.Id);
         }
     }
 }

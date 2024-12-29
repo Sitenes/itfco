@@ -1,5 +1,5 @@
 ﻿@page "{id?}"
-@model Toplearn.Web.Pages.Admin.Blogs.EditBlogModel
+@model Toplearn.Web.Pages.Admin.Blogs.EditModel
 @{
     ViewData["Title"] = "ویرایش/ایجاد بلاگ";
 }
@@ -43,7 +43,7 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <div class="thumbnail">
-                            <img id="imgAvatar" src="/CourseRoot/Image/@(Model.Blog.Image)" />
+                            <img id="imgAvatar" src="/BlogRoot/Image/@(Model.Blog.Image)" />
                         </div>
                         <label>انتخاب تصویر</label>
                         <input type="file" id="fileName" name="ImageFile" accept=".jpg,.jpeg,.png,.gif" onchange="validateFileType()" class="form-control" />
@@ -57,9 +57,9 @@
 </div>
 
 @section Scripts {
-    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace('contentEditor');
+        CKEDITOR.replace('contentEditor', { customConfig: '/js/Config.js' });
     </script>
 }
 
