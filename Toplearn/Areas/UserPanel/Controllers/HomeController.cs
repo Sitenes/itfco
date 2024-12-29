@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Authentication;
 using System.Collections.Generic;
 using Toplearn.Core.Senders;
 using TopLearn.Core.Security;
+using Toplearn.Core.Services.Interfaces;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace Toplearn.Web.Areas.UserPanel.Controllers
 {
@@ -22,17 +25,19 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
     public class HomeController : Controller
 	{
 		private readonly IUserService _userService;
+        private readonly IBlogService _blogService;
         private readonly IViewRenderService _renderService;
-        public HomeController(IUserService userService , IViewRenderService renderService)
+        public HomeController(IUserService userService , IBlogService blogService, IViewRenderService renderService)
 		{
 			_userService = userService;
+            this._blogService = blogService;
             _renderService = renderService;
         }
 
 
         #region Panel User
         [Route("UserPanel")]
-        public ActionResult Index()
+        public async Task<ActionResult> IndexAsync()
         {
             User user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
             UserPanelViewModel userPanel = new UserPanelViewModel()
@@ -44,7 +49,13 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
                 Wallet = user.Wallet,
                 UserAvatar = user.UserAvatar
             };
-
+            var blogs = await _blogService.SearchAsync(new Core.DTOs.TeacherVM.BlogFilter
+            {
+                PageNumber = 1,
+                PageSize = 4,
+            });
+            blogs.ToList().ForEach(x => x.Image = string.IsNullOrEmpty(x.Image) ? "Default.jpg" : "");
+            ViewData["Blogs"] = blogs;
             return View(userPanel);
         }
 

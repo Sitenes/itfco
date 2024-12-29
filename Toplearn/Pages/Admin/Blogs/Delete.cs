@@ -18,7 +18,7 @@ namespace Toplearn.Web.Pages.Admin.Blogs
 
 
 		#region Delete Blog
-		[Route("Admin/ManageBlog/Delete")]
+		[Route("Admin/Blogs/Delete")]
 		public async Task<IActionResult> DeleteAsync(int BlogId)
 		{
 			if (BlogId == 0)

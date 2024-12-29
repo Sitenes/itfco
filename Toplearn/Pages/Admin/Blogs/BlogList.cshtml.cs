@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -23,13 +24,12 @@ namespace Toplearn.Web.Pages.Admin.Blogs
 
 
         public IEnumerable<Blog> Blogs { get; set; }
-        public async Task OnGetAsync(bool IsSucceed, [FromQuery] string blogId)
+        public async Task OnGetAsync(bool IsSucceed)
         {
             if(IsSucceed)
                 ViewData["IsSucceed"] = true;
-            if (!string.IsNullOrEmpty(blogId))
             Blogs = await _blogService.GetAllAsync();
-
+            Blogs.ToList().ForEach(x => x.Image = string.IsNullOrEmpty(x.Image) ? "Default.jpg" : x.Image);
         }
     }
 }

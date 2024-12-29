@@ -29,7 +29,7 @@ namespace Toplearn.Core.Services
 
 		public async Task<IEnumerable<Blog>> GetAllAsync()
 		{
-			return await _context.Set<Blog>().Include(x=>x.UserCreator).ToListAsync();
+			return await _context.Set<Blog>().Include(x=>x.UserCreator).OrderByDescending(x=>x.CreateDate).ToListAsync();
 		}
 		public async Task SaveChangesAsync()
 		{

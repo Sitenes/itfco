@@ -25,8 +25,10 @@ namespace Toplearn.Web.Pages.Admin.Blogs
         [BindProperty]
         public Blog Blog { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, bool? isSucceed = null)
         {
+            if (isSucceed != null)
+                ViewData["IsSucceed"] = isSucceed;
             if (id.HasValue)
             {
                 Blog = await _blogService.GetByIdAsync(id.Value);
@@ -47,70 +49,79 @@ namespace Toplearn.Web.Pages.Admin.Blogs
 
         public async Task<IActionResult> OnPostAsync(IFormFile? ImageFile)
         {
-            if (!ModelState.IsValid)
-                return Page();
-            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            string newImage = "";
-            if (ImageFile != null)
+            try
             {
-                string imageDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "Image");
-                string thumbDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CourseRoot", "ThumbImage");
-
-                if (!Directory.Exists(imageDir))
-                    Directory.CreateDirectory(imageDir);
-
-                if (!Directory.Exists(thumbDir))
-                    Directory.CreateDirectory(thumbDir);
-
-                if (Blog.Image != "Default.jpg" && !string.IsNullOrEmpty(Blog.Image))
+                if (!ModelState.IsValid)
+                    return Page();
+                var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                string newImage = "";
+                if (ImageFile != null)
                 {
-                    string path = Path.Combine(imageDir, Blog.Image);
-                    if (System.IO.File.Exists(path))
-                    {
-                        System.IO.File.Delete(path);
-                    }
+                    string imageDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "BlogRoot", "Image");
+                    string thumbDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "BlogRoot", "ThumbImage");
 
-                    string thumbPath = Path.Combine(thumbDir, Blog.Image);
-                    if (System.IO.File.Exists(thumbPath))
+                    if (!Directory.Exists(imageDir))
+                        Directory.CreateDirectory(imageDir);
+
+                    if (!Directory.Exists(thumbDir))
+                        Directory.CreateDirectory(thumbDir);
+
+                    if (Blog.Image != "Default.jpg" && !string.IsNullOrEmpty(Blog.Image))
                     {
-                        System.IO.File.Delete(thumbPath);
+                        string path = Path.Combine(imageDir, Blog.Image);
+                        if (System.IO.File.Exists(path))
+                        {
+                            System.IO.File.Delete(path);
+                        }
+
+                        string thumbPath = Path.Combine(thumbDir, Blog.Image);
+                        if (System.IO.File.Exists(thumbPath))
+                        {
+                            System.IO.File.Delete(thumbPath);
+                        }
                     }
+                    string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
+                    string newPath = Path.Combine(imageDir, newAvatarURL);
+                    using (var stream = new FileStream(newPath, FileMode.Create))
+                    {
+                        ImageFile.CopyTo(stream);
+                    }
+                    newImage = newAvatarURL;
+                    ImageConvertor imageResize = new ImageConvertor();
+                    string ThumbPath = Path.Combine(thumbDir, newAvatarURL);
+                    string ImageCurrentPath = newPath;
+                    imageResize.Image_resize(ImageCurrentPath, ThumbPath, 5000);
                 }
-                string newAvatarURL = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
-                string newPath = Path.Combine(imageDir, newAvatarURL);
-                using (var stream = new FileStream(newPath, FileMode.Create))
+                if (Blog.Id == 0)
                 {
-                    ImageFile.CopyTo(stream);
+                    Blog.CreateDate = DateTime.Now;
+                    Blog.UserCreatorId = userId;
+                    Blog.Image = newImage;
+                    await _blogService.AddAsync(Blog);
                 }
-                newImage = newAvatarURL;
-                ImageConvertor imageResize = new ImageConvertor();
-                string ThumbPath = Path.Combine(thumbDir, newAvatarURL);
-                string ImageCurrentPath = newPath;
-                imageResize.Image_resize(ImageCurrentPath, ThumbPath, 5000);
+                else
+                {
+                    var existingBlog = await _blogService.GetByIdAsync(Blog.Id);
+                    if (existingBlog == null)
+                        return NotFound();
+
+                    existingBlog.Title = Blog.Title;
+                    existingBlog.ShortDescription = Blog.ShortDescription;
+                    existingBlog.Tags = Blog.Tags;
+                    existingBlog.Content = Blog.Content;
+                    if (ImageFile != null)
+                        existingBlog.Image = newImage;
+
+                }
+
+                await _blogService.SaveChangesAsync();
             }
-            if (Blog.Id == 0)
+            catch (Exception)
             {
-                Blog.CreateDate = DateTime.Now;
-                Blog.UserCreatorId = userId;
-                Blog.Image = newImage;
-                await _blogService.AddAsync(Blog);
-            }
-            else
-            {
-                var existingBlog = await _blogService.GetByIdAsync(Blog.Id);
-                if (existingBlog == null)
-                    return NotFound();
-
-                existingBlog.Title = Blog.Title;
-                existingBlog.ShortDescription = Blog.ShortDescription;
-                existingBlog.Tags = Blog.Tags;
-                existingBlog.Content = Blog.Content;
-                existingBlog.Image = newImage;
-
+                return await OnGetAsync(Blog.Id, false);
             }
 
-            await _blogService.SaveChangesAsync();
-            return await OnGetAsync(Blog.Id);
+            return await OnGetAsync(Blog.Id, true);
         }
     }
 }
