@@ -356,6 +356,24 @@
 								</ul>
 							</li>
 						}
+						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.BlogManagement, _userId))
+						{
+							<li>
+								<a href="/Admin/Blogs/BlogList"><i class="fa fa-bar-chart-o fa-fw"></i> وبلاگ <span class="fa arrow"></span></a>
+								<ul class="nav nav-third-level">
+									<li>
+										<a href="/Admin/Blogs/BlogList">لیست مقالات</a>
+									</li>
+									@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddBlog, _userId))
+									{
+										<li>
+											<a href="/Admin/Blogs/Edit">افزودن مقاله جدید</a>
+										</li>
+									}
+								</ul>
+							</li>
+						}
+
 					</ul>
 					<!-- /#side-menu -->
 				</div>

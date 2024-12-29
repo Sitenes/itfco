@@ -9,7 +9,7 @@ using Toplearn.Core.Services.Interfaces;
 namespace Toplearn.Web.Areas.Blog.Controllers
 {
     [Area("Blog")]
-    [Route("[area]/[controller]/[action]")]
+    [Route("[controller]/[action]")]
     public class BlogController : Controller
     {
         private readonly IBlogService _blogService;

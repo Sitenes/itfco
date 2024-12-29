@@ -50,8 +50,8 @@
                                     </h3>
                                     <ul class="info">
                                         <li>@blog.CreateDate.ToString("dd MMM yyyy")</li>
-                                        <li><a href="#">@blog.UserCreator.UserName</a></li>
-                                        <li><a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">3 Comments</a></li>
+                                        <li><a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">@blog.UserCreator.UserName</a></li>
+                                        @* <li><a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">3 Comments</a></li> *@
                                     </ul>
                                 </div>
                             </div>
