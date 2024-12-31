@@ -10,6 +10,8 @@ using Toplearn.Web;
 using TopLearn.Web;
 using Microsoft.AspNetCore.Http.Extensions;
 using System.Web;
+using Toplearn.Core.Services;
+using System.Linq;
 
 namespace Toplearn.Web.Controllers
 {
@@ -18,10 +20,13 @@ namespace Toplearn.Web.Controllers
     {
         private readonly ICourseService _courseService;
         private readonly IStringLocalizer<Resource> _localizer;
-        public HomeController(ICourseService courseService, IStringLocalizer<Resource> localizer)
+        private readonly IBlogService _blogService;
+
+        public HomeController(ICourseService courseService, IStringLocalizer<Resource> localizer,IBlogService blogService)
         {
             _courseService = courseService;
             _localizer = localizer;
+            this._blogService = blogService;
         }
 
         public async Task<IActionResult> Index(int Id)
@@ -38,6 +43,14 @@ namespace Toplearn.Web.Controllers
             ViewData["Culture"] = Request.Query["Culture"].ToString();
             ViewData["ProductCount"] = await _courseService.CountCourses();
             ViewData["Category"] = await _courseService.GetParentCourseGroups();
+
+            var blogs = await _blogService.SearchAsync(new Core.DTOs.TeacherVM.BlogFilter
+            {
+                PageNumber = 1,
+                PageSize = 4,
+            });
+           
+            ViewData["Blogs"] = blogs;
             return View();
         }
         public IActionResult AboutUs()

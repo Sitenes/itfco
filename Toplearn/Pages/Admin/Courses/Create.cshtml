@@ -133,7 +133,8 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-money"></i> تومان
 									</span>
-									<input asp-for="Course.Price" min="0" max="10000000" class="form-control" placeholder="مبلغ محصول">
+									<input asp-for="Course.Price" min="0" max="9223372036854775807"
+										   oninput="if(this.value.length > 19) this.value = this.value.slice(0, 19);" class="form-control" placeholder="مبلغ محصول">
 									<span asp-validation-for="Course.Price" class="text-danger"></span>
 								</div>
 
@@ -141,7 +142,8 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-money"></i> دلار
 									</span>
-									<input asp-for="Course.PriceDollar" min="0" max="10000000" class="form-control" placeholder="مبلغ محصول">
+									<input asp-for="Course.PriceDollar" min="0" max="9223372036854775807"
+										   oninput="if(this.value.length > 19) this.value = this.value.slice(0, 19);" class="form-control" placeholder="مبلغ محصول">
 									<span asp-validation-for="Course.PriceDollar" class="text-danger"></span>
 								</div>
 

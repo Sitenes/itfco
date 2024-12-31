@@ -319,6 +319,12 @@
 											<a href="/Admin/Courses/Create">افزودن محصول جدید</a>
 										</li>
 									}
+									@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddCourse, _userId))
+									{
+										<li>
+											<a href="/Admin/Courses/Discount">کد تخفیف</a>
+										</li>
+									}
 								</ul>
 							</li>
 						}

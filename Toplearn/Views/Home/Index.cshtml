@@ -1,5 +1,6 @@
 ﻿@using System.Web;
 @using Toplearn.Core.DTOs.CourseVM
+@using Toplearn.DataLayer.Entities.Blogs
 @using Toplearn.Web
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
 
@@ -111,12 +112,6 @@
     </div>
 </section>
 
-
-
-
-
-
-
 <!-- End Specialize Section -->
 <!-- Fun Fact And Features -->
 <section class="fun-fact-and-features" style="background-image: url(/images/background/3.jpg);">
@@ -169,13 +164,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
 
 <!-- End Fun Fact Section -->
 <!-- Products Section -->
@@ -336,89 +324,29 @@
             <h2>@Localizer["LatestNewsAndArticles"]</h2>
         </div>
         <div class="row">
-            <!-- News Block -->
-            <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><img src="/images/resource/news-4.jpg" alt=""></figure>
-                        <div class="overlay-box"><a href="blog-detail.html"><i class="fa fa-link"></i></a></div>
-                    </div>
-                    <div class="caption-box">
-                        <div class="inner">
-                            <h3>
-                                <a href="blog-detail.html">@Localizer["BlogTitle1"]</a>
-                            </h3>
-                            <ul class="info">
-                                <li>@Localizer["Date1"]</li>
-                                <li><a href="blog-detail-2.html">@Localizer["Author1"]</a></li>
-                            </ul>
+            @foreach (var blog in ViewData["Blogs"] as List<Blog>)
+            {
+                <!-- News Block -->
+                <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image"><img src="/BlogRoot/Image/@(blog.Image)" alt=""></figure>
+                            <div class="overlay-box"><a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })"><i class="fa fa-link"></i></a></div>
+                        </div>
+                        <div class="caption-box">
+                            <div class="inner">
+                                <h3>
+                                    <a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">@(blog.Title)</a>
+                                </h3>
+                                <ul class="info">
+                                    <li style="direction: ltr;" >@(blog.CreateDate.ToString("yyyy MMM dd"))</li>
+                                    <li><a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">@blog.UserCreator.UserName</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- News Block -->
-            <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><img src="/images/resource/news-5.jpg" alt=""></figure>
-                        <div class="overlay-box"><a href="blog-detail.html"><i class="fa fa-link"></i></a></div>
-                    </div>
-                    <div class="caption-box">
-                        <div class="inner">
-                            <h3>
-                                <a href="blog-detail.html">@Localizer["BlogTitle2"]</a>
-                            </h3>
-                            <ul class="info">
-                                <li>@Localizer["Date2"]</li>
-                                <li><a href="blog-detail-2.html">@Localizer["Author2"]</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- News Block -->
-            <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><img src="/images/resource/news-6.jpg" alt=""></figure>
-                        <div class="overlay-box"><a href="blog-detail.html"><i class="fa fa-link"></i></a></div>
-                    </div>
-                    <div class="caption-box">
-                        <div class="inner">
-                            <h3>
-                                <a href="blog-detail.html">@Localizer["BlogTitle3"]</a>
-                            </h3>
-                            <ul class="info">
-                                <li>@Localizer["Date3"]</li>
-                                <li><a href="blog-detail-2.html">@Localizer["Author3"]</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- News Block -->
-            <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><img src="/images/resource/news-7.jpg" alt=""></figure>
-                        <div class="overlay-box"><a href="blog-detail.html"><i class="fa fa-link"></i></a></div>
-                    </div>
-                    <div class="caption-box">
-                        <div class="inner">
-                            <h3>
-                                <a href="blog-detail.html">@Localizer["BlogTitle4"]</a>
-                            </h3>
-                            <ul class="info">
-                                <li>@Localizer["Date4"]</li>
-                                <li><a href="blog-detail-2.html">@Localizer["Author4"]</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>

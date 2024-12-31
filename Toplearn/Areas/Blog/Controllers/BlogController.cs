@@ -32,6 +32,8 @@ namespace Toplearn.Web.Areas.Blog.Controllers
             ViewBag.Search = search;
             blogs.ToList().ForEach(x => x.Image = string.IsNullOrEmpty(x.Image) ? "Default.jpg" : "");
             //ViewBag.TotalPages = (int)Math.Ceiling((double)blogs.TotalCount / pageSize);
+
+            
             return View(blogs);
         }
 
@@ -43,7 +45,10 @@ namespace Toplearn.Web.Areas.Blog.Controllers
             {
                 return NotFound();
             }
-            return View(blog);
+            var baseUrl = $"{Request.Scheme}://{Request.Host}";
+            ViewData["BaseUrl"] = baseUrl;
+
+            return View(nameof(BlogDetail),blog);
         }
     }
 }

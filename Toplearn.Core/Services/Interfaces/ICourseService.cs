@@ -53,6 +53,15 @@ namespace Toplearn.Core.Services.Interfaces
 
         #endregion
 
+        #region Discount
+        Task<List<Discount>> GetAllDiscountsAsync();
+        Task<Discount> GetDiscountByIdAsync(int id);
+        Task AddDiscountAsync(Discount discount);
+        Task UpdateDiscountAsync(Discount discount);
+        Task DeleteDiscountAsync(int id);
+        Task<List<Discount>> SearchDiscountsAsync(string keyword);
+        Task<bool> ApplyDiscountAsync(string code, int userId, int courseId);
+        #endregion
         Task SaveChanges();
     }
 }

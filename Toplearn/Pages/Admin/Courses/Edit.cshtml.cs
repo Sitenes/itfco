@@ -24,7 +24,7 @@ namespace Toplearn.Web.Pages.Admin.Courses
 
         [BindProperty]
         public Course Course { get; set; }
-        public void OnGet([FromRoute]int id)
+        public void OnGet([FromRoute] int id)
         {
             ViewData["Groups"] = _courseService.GetGroups() as List<CourseGroup>;
             ViewData["Teachers"] = _courseService.GetTeachersName();
@@ -34,7 +34,7 @@ namespace Toplearn.Web.Pages.Admin.Courses
             if (string.IsNullOrEmpty(Course.Image))
                 Course.Image = "Default.jpg";
 
-			if (Course == null)
+            if (Course == null)
                 BadRequest();
         }
         public async Task<IActionResult> OnPostAsync(IFormFile? ImageFile, IFormFile? DemoFile)
@@ -47,20 +47,20 @@ namespace Toplearn.Web.Pages.Admin.Courses
             if (!ModelState.IsValid)
                 return Page();
 
-			//var userClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-			//if (userClaim != null)
-			//	Course.UserCreatorId = Guid.Parse(userClaim.Value);
+            //var userClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            //if (userClaim != null)
+            //	Course.UserCreatorId = Guid.Parse(userClaim.Value);
 
-			//Course = await _courseService.SetGroup(Course);
+            //Course = await _courseService.SetGroup(Course);
 
-            bool IsSucceed = await _courseService.Update(Course,ImageFile,DemoFile);
+            bool IsSucceed = await _courseService.Update(Course, ImageFile, DemoFile);
             if (IsSucceed)
             {
                 await _courseService.SaveChanges();
                 return Redirect("/Admin/Courses/Index?IsSucceed=true");
             }
             else
-            return Redirect("/Admin/Courses/Index?IsSucceed=false");
+                return Redirect("/Admin/Courses/Index?IsSucceed=false");
         }
     }
 }

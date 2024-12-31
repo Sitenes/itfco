@@ -1,0 +1,78 @@
+﻿@using Toplearn.DataLayer.Entities.Blogs
+@model Blog
+@{
+    ViewData["Title"] = "وبلاگ " + Model.Title;
+    Layout = "_DefualtLayout";
+}
+<!-- Sidebar Page Container -->
+<div class="sidebar-page-container container ">
+    <div class="auto-container">
+        <div class="row clearfix" style="flex-direction: row-reverse;">
+            <div class="content-side col-lg-12 col-md-12 col-sm-12">
+                <div class="blog-detail">
+                    <!-- News Block -->
+                    <div class="news-block-two">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image"><img style="max-height:70%" src="/BlogRoot/Image/@Model.Image" alt="@Model.Title"></figure>
+                            </div>
+                            <div class="caption-box">
+                                <div class="inner">
+                                    <h3>@Model.Title</h3>
+                                    <ul class="info">
+                                        <li style="direction:ltr">@Model.CreateDate.ToString("yyyy MMMM dd")</li>
+                                        <li>@Model.UserCreator.UserName</li>
+                                    </ul>
+                                    <p>@Html.Raw(Model.Content)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="tags clearfix">
+                        <span class="title">Tags:</span>
+                        <ul>
+                            @foreach (var tag in Model.Tags.Split(','))
+                            {
+                                <li><a href="#">@tag.Trim()</a></li>
+                            }
+                        </ul>
+                    </div>
+
+                    <!-- Share Option -->
+                    <div class="share-option">
+                        <span class="title">Share This:</span>
+                        <ul class="social-icon-colored clearfix">
+                            <li class="facebook">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=@ViewData["BaseUrl"]/Blog/BlogDetail/@Model.Id" target="_blank">
+                                    <i class="fa fa-facebook"></i>Facebook
+                                </a>
+                            </li>
+                            <li class="twitter">
+                                <a href="https://twitter.com/intent/tweet?url=@ViewData["BaseUrl"]/Blog/BlogDetail/@Model.Id&text=@Model.Title" target="_blank">
+                                    <i class="fa fa-twitter"></i>Twitter
+                                </a>
+                            </li>
+                            <li class="google-plus">
+                                <a href="https://plus.google.com/share?url=@ViewData["BaseUrl"]/Blog/BlogDetail/@Model.Id" target="_blank">
+                                    <i class="fa fa-google-plus"></i>Google Plus
+                                </a>
+                            </li>
+                            <li class="pinterest">
+                                <a href="https://pinterest.com/pin/create/button/?url=@ViewData["BaseUrl"]/Blog/BlogDetail/@Model.Id&media=@Model.Image&description=@Model.ShortDescription" target="_blank">
+                                    <i class="fa fa-pinterest-p"></i>Pinterest
+                                </a>
+                            </li>
+                            <li class="mail">
+                                <a href="mailto:?subject=@Model.Title&body=@ViewData["BaseUrl"]/Blog/BlogDetail/@Model.Id" target="_blank">
+                                    <i class="fa fa-envelope"></i>Mail to Friends
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

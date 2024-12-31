@@ -49,13 +49,6 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
                 Wallet = user.Wallet,
                 UserAvatar = user.UserAvatar
             };
-            var blogs = await _blogService.SearchAsync(new Core.DTOs.TeacherVM.BlogFilter
-            {
-                PageNumber = 1,
-                PageSize = 4,
-            });
-            blogs.ToList().ForEach(x => x.Image = string.IsNullOrEmpty(x.Image) ? "Default.jpg" : "");
-            ViewData["Blogs"] = blogs;
             return View(userPanel);
         }
 

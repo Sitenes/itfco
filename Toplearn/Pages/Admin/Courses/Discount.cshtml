@@ -1,0 +1,82 @@
+﻿@page
+@model Toplearn.Web.Pages.Admin.Courses.DiscountsModel
+@using Toplearn.Core.Services.Interfaces
+@using Toplearn.DataLayer.Entities.Courses
+@inject ICourseService _courseService
+
+@{
+    ViewData["Title"] = "مدیریت تخفیفات";
+}
+
+<h2>مدیریت تخفیفات</h2>
+
+<!-- نمایش لیست تخفیفات -->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>عنوان</th>
+            <th>کد تخفیف</th>
+            <th>درصد تخفیف</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var discount in Model.Discounts)
+        {
+            <tr>
+                <td>@discount.Title</td>
+                <td>@discount.DiscountCode</td>
+                <td>@discount.Percent%</td>
+                <td>
+                    <button class="btn btn-warning" onclick="editDiscount(@discount.Id, '@discount.Title', @discount.Percent)">ویرایش</button>
+                    <button class="btn btn-danger" onclick="deleteDiscount(@discount.Id)">حذف</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- فرم افزودن یا ویرایش تخفیف -->
+<h3>@(Model.IsEditing ? "ویرایش تخفیف" : "افزودن تخفیف جدید")</h3>
+<form method="post" class="form-group row">
+    <input type="hidden" asp-for="EditingDiscount.Id" />
+
+        <div class="col-lg-6">
+            <label class="col-lg-3 col-form-label">عنوان:</label>
+            <input asp-for="EditingDiscount.Title" class="form-control" />
+            <span asp-validation-for="EditingDiscount.Title" class="text-danger"></span>
+        </div>
+
+        <div class="col-lg-6">
+            <label class="col-lg-3 col-form-label">درصد:</label>
+            <input asp-for="EditingDiscount.Percent" class="form-control" />
+            <span asp-validation-for="EditingDiscount.Percent" class="text-danger"></span>
+        </div>
+
+        <div class="col-lg-6">
+            <label class="col-lg-3 col-form-label">کد تخفیف:</label>
+            <input asp-for="EditingDiscount.DiscountCode" class="form-control" />
+            <span asp-validation-for="EditingDiscount.DiscountCode" class="text-danger"></span>
+        </div>
+
+        <div class="col-lg-9">
+            <button type="submit" class="btn btn-success">@((Model.IsEditing ? "ذخیره تغییرات" : "افزودن"))</button>
+        </div>
+</form>
+
+
+@section Scripts {
+    <script>
+        function editDiscount(id, title, percent) {
+            document.querySelector("[name='EditingDiscount.Id']").value = id;
+            document.querySelector("[name='EditingDiscount.Title']").value = title;
+            document.querySelector("[name='EditingDiscount.Percent']").value = percent;
+        }
+
+        function deleteDiscount(id) {
+            if (confirm("آیا از حذف این تخفیف مطمئن هستید؟")) {
+                window.location.href = `/Admin/Courses/Discounts?handler=Delete&id=${id}`;
+            }
+        }
+    </script>
+}

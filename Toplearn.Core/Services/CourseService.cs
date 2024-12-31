@@ -657,5 +657,64 @@ namespace Toplearn.Core.Services
                 category.SubGroups.ForEach(x => x.IsDeleted = true);
             }
         }
+
+        public async Task<List<Discount>> GetAllDiscountsAsync()
+        {
+            return await _context.Discounts.ToListAsync();
+        }
+
+        public async Task<Discount> GetDiscountByIdAsync(int id)
+        {
+            return await _context.Discounts.FindAsync(id);
+        }
+
+        public async Task AddDiscountAsync(Discount discount)
+        {
+            discount.CreateDate = DateTime.Now;
+            await _context.Discounts.AddAsync(discount);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateDiscountAsync(Discount discount)
+        {
+            var existingDiscount = await _context.Discounts.FindAsync(discount.Id);
+            if (existingDiscount != null)
+            {
+                existingDiscount.DiscountCode = discount.DiscountCode;
+                existingDiscount.Percent = discount.Percent;
+                _context.Discounts.Update(existingDiscount);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task DeleteDiscountAsync(int id)
+        {
+            var discount = await _context.Discounts.FindAsync(id);
+            if (discount != null)
+            {
+                _context.Discounts.Remove(discount);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<List<Discount>> SearchDiscountsAsync(string keyword)
+        {
+            return await _context.Discounts
+                .Where(d => d.DiscountCode.Contains(keyword))
+                .ToListAsync();
+        }
+
+        public async Task<bool> ApplyDiscountAsync(string code, int userId, int courseId)
+        {
+            var discount = await _context.Discounts
+                .FirstOrDefaultAsync(d => d.DiscountCode == code);
+
+            if (discount != null)
+            {
+                // اینجا می‌توان اعمال تخفیف روی قیمت را انجام داد
+                return true;
+            }
+            return false;
+        }
     }
 }

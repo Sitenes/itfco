@@ -52,10 +52,11 @@ namespace Toplearn.DataLayer.Context
         public DbSet<CourseLevel> CourseLevels { get; set; }
         public DbSet<CourseGroup> CourseGroups { get; set; }
         public DbSet<Episode> Episode { get; set; }
-		#endregion
+        public DbSet<Discount> Discounts { get; set; }
+        #endregion
 
-		#region Blogs
-		public DbSet<Blog> Blogs { get; set; }
+        #region Blogs
+        public DbSet<Blog> Blogs { get; set; }
 		
 		#endregion
 
