@@ -71,7 +71,7 @@ namespace Toplearn
                 });
             });
 			
-			services.Configure<FormOptions>(option => option.MultipartBodyLengthLimit = 6000000);
+			services.Configure<FormOptions>(option => option.MultipartBodyLengthLimit = 600000000);
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -90,8 +90,8 @@ namespace Toplearn
             #region DataBase Context
             services.AddDbContext<ToplearnContext>(options =>
                 options.UseSqlServer(
-                    //"Data Source=.;Initial Catalog=ITFCO_DB;Integrated Security=true;MultipleActiveResultSets=true;",
-                    "Server=93.126.41.157;Database=ITFCO_DB;User Id=amin;Password=amin09013348988;TrustServerCertificate=true;",
+                    "Data Source=.;Initial Catalog=ITFCO_DB;Integrated Security=true;MultipleActiveResultSets=true;",
+                    //"Server=93.126.41.157;Database=ITFCO_DB;User Id=amin;Password=amin09013348988;TrustServerCertificate=true;",
                     b => b.MigrationsAssembly("Toplearn.Web")),
                     ServiceLifetime.Transient
             );
