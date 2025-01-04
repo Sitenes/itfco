@@ -700,6 +700,7 @@ img {
         margin: 0px;
         display: flex;
     }
+
         .main-menu .navigation .category a {
             position: relative;
             display: block;
@@ -713,6 +714,7 @@ img {
             border-right: 4px solid transparent;
             transition: all 500ms ease;
         }
+
         .main-menu .navigation > li {
             position: relative;
             float: left;
@@ -971,16 +973,16 @@ img {
             border-left: 4px solid #ff8a00;
         }
 
-            .main-menu .navigation > li.dropdown:hover > ul {
-                -webkit-transition: all 300ms linear;
-                -moz-transition: all 300ms linear;
-                -ms-transition: all 300ms linear;
-                -o-transition: all 300ms linear;
-                transition: all 300ms linear;
-                visibility: visible;
-                opacity: 1;
-                top: 100%;
-            }
+        .main-menu .navigation > li.dropdown:hover > ul {
+            -webkit-transition: all 300ms linear;
+            -moz-transition: all 300ms linear;
+            -ms-transition: all 300ms linear;
+            -o-transition: all 300ms linear;
+            transition: all 300ms linear;
+            visibility: visible;
+            opacity: 1;
+            top: 100%;
+        }
 
         .main-menu .navigation li > ul > li.dropdown:hover > ul {
             visibility: visible;
@@ -7274,7 +7276,7 @@ header-style-seven {
                 display: block;
                 width: 100%;
                 height: auto;
-                border-radius:100%;
+                border-radius: 100%;
             }
 
         .testimonial-block-two .info-box .name {
@@ -9858,7 +9860,7 @@ header-style-seven {
         .social-icon-two li a {
             position: relative;
             display: block;
-/*            font-size: 16px;*/
+            /*            font-size: 16px;*/
             line-height: 30px;
             color: #f4f4f4;
             font-weight: 400;
@@ -13595,10 +13597,12 @@ header-style-seven {
     position: absolute;
     width: 20px;
 }
+
 .footer-logo > figure {
     display: flex;
     align-items: center;
 }
+
 #divaa1 {
     position: absolute;
     left: 20px;
@@ -13643,7 +13647,7 @@ header-style-seven {
     transition: .6s;
 }
 
-  /*  #divaa2:hover {
+/*  #divaa2:hover {
         height: 200px;
     }
 
@@ -13895,13 +13899,14 @@ header-style-seven {
 }
 
 .header-lower {
-    position:relative;
+    position: absolute;
+    top: 43px;
 }
 
-.modal-dialog{
-    z-index:10000;
+.modal-dialog {
+    z-index: 10000;
 }
 
-.contact-info{
+.contact-info {
     font-size: 20px;
 }
