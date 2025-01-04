@@ -24,8 +24,13 @@ namespace Toplearn.Core.Services
 
 		public async Task<Blog> GetByIdAsync(int id)
 		{
-			return await _context.Set<Blog>().Include(x=>x.UserCreator).FirstOrDefaultAsync(x=>x.Id == id);
-		}
+			var blog = await _context.Set<Blog>().Include(x=>x.UserCreator).FirstOrDefaultAsync(x=>x.Id == id);
+			if(string.IsNullOrEmpty(blog.Image))
+				blog.Image = "Default.jpg";
+
+            return blog;
+
+        }
 
 		public async Task<IEnumerable<Blog>> GetAllAsync()
 		{
@@ -88,7 +93,7 @@ namespace Toplearn.Core.Services
 			if (filter.PageSize != 0)
 				query = query.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize);
 			var result = await query.ToListAsync();
-            result.ForEach(x => x.Image = string.IsNullOrEmpty(x.Image) ? "Default.jpg" : "");
+            result.ForEach(x => x.Image = string.IsNullOrEmpty(x.Image) ? "Default.jpg" : x.Image);
             return result;
 		}
 	}

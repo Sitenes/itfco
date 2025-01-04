@@ -91,7 +91,7 @@ namespace Toplearn
             services.AddDbContext<ToplearnContext>(options =>
                 options.UseSqlServer(
                     "Data Source=.;Initial Catalog=ITFCO_DB;Integrated Security=true;MultipleActiveResultSets=true;",
-                    //"Server=93.126.41.157;Database=ITFCO_DB;User Id=amin;Password=amin0901334898;TrustServerCertificate=true;",
+                    //"Server=93.126.41.157;Database=ITFCO_DB;User Id=amin;Password=amin09013348988;TrustServerCertificate=true;",
                     b => b.MigrationsAssembly("Toplearn.Web")),
                     ServiceLifetime.Transient
             );
@@ -114,10 +114,10 @@ namespace Toplearn
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
+            //if (env.IsDevelopment())
+            //{
                 app.UseDeveloperExceptionPage();
-            }
+            //}
 
             #region Uses
             app.UseStaticFiles();

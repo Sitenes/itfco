@@ -24,13 +24,11 @@ namespace Toplearn.Web.Areas.Blog.Controllers
         [Route("")]
         public async Task<IActionResult> BlogList(string search = "")
         {
-            const int pageSize = 10; // تعداد آیتم‌های هر صفحه
             var blogs = await _blogService.SearchAsync(new Core.DTOs.TeacherVM.BlogFilter
             {
                 Title = search,
             });
             ViewBag.Search = search;
-            blogs.ToList().ForEach(x => x.Image = string.IsNullOrEmpty(x.Image) ? "Default.jpg" : "");
             //ViewBag.TotalPages = (int)Math.Ceiling((double)blogs.TotalCount / pageSize);
 
             
