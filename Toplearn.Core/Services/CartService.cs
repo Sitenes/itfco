@@ -132,8 +132,10 @@ namespace Toplearn.Core.Services
                 _context.CourseCarts.Remove(courseCart);
             }
         }
-        public async Task<int> CountProductInCartAsync(Guid UserId)
+        public async Task<int> CountProductInCartAsync(Guid? UserId)
         {
+            if (UserId == null)
+                return 0;
             var courseCount = await _context.CourseCarts.Include(x=>x.Cart)
                 .CountAsync(x => x.Cart.UserCreatorId == UserId && !x.Cart.IsPaid);
 
