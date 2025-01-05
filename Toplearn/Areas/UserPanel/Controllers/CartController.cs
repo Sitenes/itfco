@@ -31,8 +31,10 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
             _localizer = localizer;
         }
         [Route("UserPanel/Cart")]
-        public async Task<IActionResult> Index(int productId = 0, int Count = 1,int cartId = 0)
+        public async Task<IActionResult> Index(int productId = 0, int Count = 1,int cartId = 0,bool? codeSuccess = null)
         {
+            if(codeSuccess != null)
+                ViewData["codeSuccess"] = codeSuccess;
             var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
             if (user == null)
                 return Redirect($"/login?ReturnUrl=/UserPanel/Cart/Index?productId={productId}&Count={Count}");
@@ -52,6 +54,26 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
 			cart = await _cartService.GetLastNotPaidCartAsync(user.UserId);
 			return View(cart);
         }
+
+        [Route("UserPanel/Cart/ApplyCoupon")]
+        [HttpPost]
+        public async Task<IActionResult> ApplyCoupon(string code,int cartId)
+        {
+            var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            if (user == null)
+                return Redirect($"/login?ReturnUrl=/UserPanel/Cart/Index");
+            
+                var cart = await _cartService.GetCartAsync(cartId);
+            var discount = await _courseService.SearchDiscountsAsync(code);
+            if (cart == null || discount == null)
+                return RedirectToAction(nameof(Index),new { cartId , codeSuccess = false});
+           
+            cart.DiscountId = discount.Id;
+           
+            await _cartService.SaveChangesAsync();
+            return RedirectToAction(nameof(Index), new { cartId, codeSuccess = true });
+        }
+
         [Route("UserPanel/CartList")]
         public async Task<IActionResult> CartList()
         {

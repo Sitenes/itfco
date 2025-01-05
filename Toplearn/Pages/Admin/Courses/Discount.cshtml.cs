@@ -28,6 +28,7 @@ namespace Toplearn.Web.Pages.Admin.Courses
 
         public async Task<IActionResult> OnPostAsync()
         {
+            ModelState.Remove("EditingDiscount.Id");
             if (!ModelState.IsValid)
             {
                 Discounts = await _courseService.GetAllDiscountsAsync();
@@ -45,11 +46,11 @@ namespace Toplearn.Web.Pages.Admin.Courses
 
             return RedirectToPage();
         }
-
+        
         public async Task<IActionResult> OnGetDeleteAsync(int id)
         {
             await _courseService.DeleteDiscountAsync(id);
-            return RedirectToPage();
+            return Redirect("/Admin/Courses/Discount");
         }
     }
 }

@@ -12,6 +12,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Toplearn.Core.Convertors;
 using Toplearn.Core.DTOs.UserVM;
 using Toplearn.DataLayer.Context;
+using Toplearn.DataLayer.Entities;
 using Toplearn.DataLayer.Entities.User;
 using TopLearn.Core.Security;
 
@@ -210,8 +211,14 @@ namespace Toplearn.Core.Services
         {
             return _context.Users.Any(n => n.EmailLink == emailLink);
         }
-
-
+        public async Task<Setting> GetSettingAsync()
+        {
+            return await _context.Settings.FirstOrDefaultAsync();
+        }
+        public void UpdateSetting(Setting setting)
+        {
+            _context.Settings.Update(setting);
+        }
         public User GetUserByName(string UserName)
         {
             var user = _context.Users.

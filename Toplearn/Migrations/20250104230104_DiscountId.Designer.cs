@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Toplearn.DataLayer.Context;
 
 namespace Toplearn.Web.Migrations
 {
     [DbContext(typeof(ToplearnContext))]
-    partial class ToplearnContextModelSnapshot : ModelSnapshot
+    [Migration("20250104230104_DiscountId")]
+    partial class DiscountId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -501,11 +503,6 @@ namespace Toplearn.Web.Migrations
                         {
                             PermissionId = 27,
                             PermissionTitle = "RemoveBlog"
-                        },
-                        new
-                        {
-                            PermissionId = 28,
-                            PermissionTitle = "Setting"
                         });
                 });
 
@@ -692,42 +689,6 @@ namespace Toplearn.Web.Migrations
                             RP_Id = 27,
                             PermissionId = 27,
                             RoleId = 1
-                        },
-                        new
-                        {
-                            RP_Id = 28,
-                            PermissionId = 28,
-                            RoleId = 1
-                        });
-                });
-
-            modelBuilder.Entity("Toplearn.DataLayer.Entities.Setting", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("NumberOfCustomers")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NumberOfEmployees")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("YearsOfExperience")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Settings");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            NumberOfCustomers = "100",
-                            NumberOfEmployees = "12",
-                            YearsOfExperience = "14"
                         });
                 });
 

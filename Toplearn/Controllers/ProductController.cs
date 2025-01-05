@@ -27,17 +27,18 @@ namespace Toplearn.Web.Controllers
 
             var products = await _courseService.GetCoursesList(input);
             var parents = (await _courseService.GetParentCourseGroups());
-            var subCategories = new List<CategoryListDto>();
+
             var categoryList = new List<CategoryListDto>();
             foreach (var parent in parents)
             {
+                var subCategories = new List<CategoryListDto>();
                 foreach (var child in parent.Childs)
                 {
                     var subCategory = new CategoryListDto
                     {
                         Id = child.GroupId,
                         Count = await _courseService.CountCategoryProducts(child.GroupId),
-                        Name = lang == "en" ? child.NameEnglish : lang == "ar" ? child.NameArabic : parent.NamePersian,
+                        Name = lang == "en" ? child.NameEnglish : lang == "ar" ? child.NameArabic : child.NamePersian,
                     };
 
                     subCategories.Add(subCategory);
@@ -62,17 +63,18 @@ namespace Toplearn.Web.Controllers
 
             var lang = Request.Query["Culture"].ToString();
             var parents = (await _courseService.GetParentCourseGroups());
-            var subCategories = new List<CategoryListDto>();
+
             var categoryList = new List<CategoryListDto>();
             foreach (var parent in parents)
             {
+                var subCategories = new List<CategoryListDto>();
                 foreach (var child in parent.Childs)
                 {
                     var subCategory = new CategoryListDto
                     {
                         Id = child.GroupId,
                         Count = await _courseService.CountCategoryProducts(child.GroupId),
-                        Name = lang == "en" ? child.NameEnglish : lang == "ar" ? child.NameArabic : parent.NamePersian,
+                        Name = lang == "en" ? child.NameEnglish : lang == "ar" ? child.NameArabic : child.NamePersian,
                     };
 
                     subCategories.Add(subCategory);

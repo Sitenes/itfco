@@ -104,6 +104,7 @@
                                         <th>وضعیت</th>
                                         <th>مجموع قیمت</th>
                                         <th>تعداد ایتم ها</th>
+                                        <th>کد تخفیف</th>
                                         <th>دستورات</th>
                                     </tr>
                                 </thead>
@@ -125,8 +126,20 @@
                                                         <span class="badge alert-warning"> <i class="zmdi zmdi-close"></i> پرداخت نشده </span>
                                                     }
                                                 </td>
-                                                <td class="center ">@courseItem.CourseCarts?.Sum(x => x.Course?.Price)</td>
-                                                <td class="center ">@courseItem.CourseCarts?.Count()</td>
+                                                <td class="center">
+                                                    @if (courseItem.Discount != null)
+                                                    {
+                                                        <span style="text-decoration: line-through;">@courseItem.GetPrice()</span>
+                                                        <br />
+                                                        <span>@courseItem.GetPriceWithDiscount()</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        @courseItem.GetPrice()
+                                                    }
+                                                </td>
+                                                <td class="center">@courseItem.CourseCarts?.Count()</td>
+                                                <td class="center">@courseItem.Discount?.Title</td>
 
                                                 <td class="center tooltip-demo">
 

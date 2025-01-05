@@ -33,7 +33,7 @@
                                         </div>
                                         <div class="lower-content">
                                             <h3><a href="/product/@(product.CourseId)">@(product.CourseTitle)</a></h3>
-                                            <div class="price">@* <span class="discount">$15.00</span> *@ @(product.Price) <span>تومان</span></div>
+                                            <div class="price">@* <span class="discount">$15.00</span> *@ @(product.Price.ToString("#,###")) <span>تومان</span></div>
                                             <div class="clearfix">
                                                 <div class="pull-left">
                                                     <a class="add-cart" href="/UserPanel/Cart?productId=@(product.CourseId)"><span class="fa fa-cart-plus"></span>@Localizer["AddToCart"]</a>
@@ -56,7 +56,7 @@
 
                         </div>
 
-                        <!-- Pagination -->
+                       @*  <!-- Pagination -->
                         <div class="styled-pagination">
                             <ul class="clearfix">
                                 <li class="prev-post"><a href="#"><span class="fa fa-long-arrow-left"></span> @Localizer["Prev"]</a></li>
@@ -65,7 +65,7 @@
                                 <li><a href="#">3</a></li>
                                 <li class="next-post"><a href="#"> @Localizer["Next"] <span class="fa fa-long-arrow-right"></span> </a></li>
                             </ul>
-                        </div>
+                        </div> *@
                     </div>
                 </div>
 

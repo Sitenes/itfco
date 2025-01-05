@@ -28,7 +28,7 @@
                 <td>@discount.DiscountCode</td>
                 <td>@discount.Percent%</td>
                 <td>
-                    <button class="btn btn-warning" onclick="editDiscount(@discount.Id, '@discount.Title', @discount.Percent)">ویرایش</button>
+                    <button class="btn btn-warning" onclick="editDiscount(@discount.Id, '@discount.Title', @discount.Percent,'@discount.DiscountCode')">ویرایش</button>
                     <button class="btn btn-danger" onclick="deleteDiscount(@discount.Id)">حذف</button>
                 </td>
             </tr>
@@ -59,23 +59,26 @@
             <span asp-validation-for="EditingDiscount.DiscountCode" class="text-danger"></span>
         </div>
 
-        <div class="col-lg-9">
-            <button type="submit" class="btn btn-success">@((Model.IsEditing ? "ذخیره تغییرات" : "افزودن"))</button>
+        <div class="col-lg-6" >
+        <button style="margin:30px;width:200px;font-size:larger;" id="submitChanges" type="submit" class="btn btn-success">@((Model.IsEditing ? "ذخیره تغییرات" : "افزودن"))</button>
         </div>
 </form>
 
 
 @section Scripts {
     <script>
-        function editDiscount(id, title, percent) {
+
+        function editDiscount(id, title, percent, discountCode) {
+            document.getElementById('submitChanges').innerText = 'ذخیره تغییرات';
             document.querySelector("[name='EditingDiscount.Id']").value = id;
             document.querySelector("[name='EditingDiscount.Title']").value = title;
             document.querySelector("[name='EditingDiscount.Percent']").value = percent;
+            document.querySelector("[name='EditingDiscount.DiscountCode']").value = discountCode;
         }
 
         function deleteDiscount(id) {
             if (confirm("آیا از حذف این تخفیف مطمئن هستید؟")) {
-                window.location.href = `/Admin/Courses/Discounts?handler=Delete&id=${id}`;
+                window.location.href = `/Admin/Courses/Discount?handler=Delete&id=${id}`;
             }
         }
     </script>

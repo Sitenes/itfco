@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Toplearn.DataLayer.Context;
 
 namespace Toplearn.Web.Migrations
 {
     [DbContext(typeof(ToplearnContext))]
-    partial class ToplearnContextModelSnapshot : ModelSnapshot
+    [Migration("20250105022755_Setting")]
+    partial class Setting
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -720,15 +722,6 @@ namespace Toplearn.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Settings");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            NumberOfCustomers = "100",
-                            NumberOfEmployees = "12",
-                            YearsOfExperience = "14"
-                        });
                 });
 
             modelBuilder.Entity("Toplearn.DataLayer.Entities.User.Role", b =>

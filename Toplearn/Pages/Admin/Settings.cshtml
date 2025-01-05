@@ -1,0 +1,42 @@
+﻿@page
+@model Toplearn.Web.Pages.Admin.Blogs.SettingsModel
+@{
+    ViewData["Title"] = "ویرایش تنظیمات";
+}
+
+<div class="row">
+    <form method="post" enctype="multipart/form-data">
+        <input asp-for="setting.Id"  type="hidden">
+        <div class="col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading h3">ویرایش تنظیمات</div>
+                <div class="panel-body row">
+                    <div class="form-group col-md-4">
+                        <label>تعداد سال سابقه</label>
+                        <input asp-for="setting.YearsOfExperience" class="form-control" placeholder="تعداد سال سابقه">
+                        <span asp-validation-for="setting.YearsOfExperience" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>تعداد مشتریان</label>
+                        <input asp-for="setting.NumberOfCustomers" class="form-control" placeholder="تعداد مشتریان">
+                        <span asp-validation-for="setting.NumberOfCustomers" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>تعداد کارمندان</label>
+                        <input asp-for="setting.NumberOfEmployees" class="form-control" placeholder="تعداد کارمندان">
+                        <span asp-validation-for="setting.NumberOfEmployees" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        
+                        <button type="submit" class="btn btn-primary">ذخیره تنظیمات</button>
+                       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

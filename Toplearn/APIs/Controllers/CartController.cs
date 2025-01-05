@@ -54,6 +54,17 @@ namespace Toplearn.Web.APIs.Controllers
             await _cartService.SaveChangesAsync();
             return Redirect($"/Admin/Wallets/edit/{cart.Id}?IsSucceed=true");
         }
+        [HttpGet("{courseId}/{cartId}")]
+        public async Task<IActionResult> RemoveProductByUser([FromRoute] int courseId, [FromRoute] int cartId)
+        {
 
+            var cart = await _cartService.GetCartAsync(cartId);
+            if (cart == null)
+                return NotFound();
+
+            await _cartService.RemoveProductFromCartAsync(cart.Id, courseId);
+            await _cartService.SaveChangesAsync();
+            return Redirect($"/UserPanel/Cart");
+        }
     }
 }

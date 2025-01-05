@@ -11,6 +11,7 @@ using Toplearn.DataLayer.Entities.User;
 using Toplearn.DataLayer.Entities.Wallet;
 using Toplearn.DataLayer.Entities.Permissions;
 using Toplearn.DataLayer.Entities.Blogs;
+using Toplearn.DataLayer.Entities;
 
 namespace Toplearn.DataLayer.Context
 {
@@ -57,13 +58,14 @@ namespace Toplearn.DataLayer.Context
 
         #region Blogs
         public DbSet<Blog> Blogs { get; set; }
-		
-		#endregion
 
-		#endregion
+        #endregion
 
-		#region ModelBuilder
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet<Setting> Settings { get; set; }
+        #endregion
+
+        #region ModelBuilder
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Adding Categories
             var permissions = Enum.GetValues(typeof(Core.AllEnums.PermissionEnum))
@@ -126,6 +128,14 @@ namespace Toplearn.DataLayer.Context
             modelBuilder.Entity<UserRole>().HasQueryFilter(ur => !ur.Role.IsDeleted && !ur.User.IsDeleted);
 
 			modelBuilder.Entity<CourseGroup>().HasQueryFilter(x => !x.IsDeleted);
+
+			modelBuilder.Entity<Setting>().HasData(new Setting
+            {
+                Id = 1,
+                NumberOfCustomers = "100",
+                NumberOfEmployees = "12",
+                YearsOfExperience = "14"
+            });
 
 			base.OnModelCreating(modelBuilder);
         }

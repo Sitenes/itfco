@@ -19,13 +19,13 @@
 
                     <div class="form-group">
                         <label>توضیحات کوتاه</label>
-                        <textarea asp-for="Blog.ShortDescription" class="form-control" placeholder="توضیحات کوتاه"></textarea>
+                        <textarea asp-for="Blog.ShortDescription" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" class="form-control" placeholder="توضیحات کوتاه"></textarea>
                         <span asp-validation-for="Blog.ShortDescription" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label>توضیحات کامل</label>
-                        <textarea id="contentEditor" asp-for="Blog.Content" class="form-control"></textarea>
+                        <textarea id="contentEditor" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" asp-for="Blog.Content" class="form-control"></textarea>
                         <span asp-validation-for="Blog.Content" class="text-danger"></span>
                     </div>
 
@@ -33,6 +33,7 @@
                         <label>تگ‌ها</label>
                         <input asp-for="Blog.Tags" class="form-control" placeholder="تگ‌ها">
                         <span asp-validation-for="Blog.Tags" class="text-danger"></span>
+                        <small class="help-block text-muted">تگ ها را با - جدا نمایید</small>
                     </div>
                 </div>
             </div>

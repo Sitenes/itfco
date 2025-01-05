@@ -28,6 +28,7 @@ namespace Toplearn.DataLayer.Entities.Courses
         public string Phone { get; set; }
         public string Notes { get; set; }  // Special notes for shipping, if any
         public bool IsPaid { get; set; }
+        public int? DiscountId { get; set; }
         public DateTime CreateDate { get; set; }
         public Guid? UserCreatorId { get; set; }
 
@@ -35,6 +36,8 @@ namespace Toplearn.DataLayer.Entities.Courses
 
         [ForeignKey("UserCreatorId")]
         public User.User UserCreator { get; set; }
+        [ForeignKey("DiscountId")]
+        public Discount Discount { get; set; }
 
         public List<CourseCart> CourseCarts { get; set; }
         #endregion

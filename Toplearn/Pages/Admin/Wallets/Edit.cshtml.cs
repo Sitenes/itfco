@@ -60,7 +60,7 @@ namespace Toplearn.Web.Pages.Admin.Wallets
                 existingCart.Country = Cart.Country;
                 existingCart.Address = Cart.Address;
                 existingCart.AddressAdditional = Cart.AddressAdditional;
-
+                existingCart.DiscountId = Cart.DiscountId;
                 // ذخیره تغییرات
                 _cartService.UpdateCart(existingCart);
                 await _cartService.SaveChangesAsync();

@@ -64,7 +64,7 @@
                                 <input asp-for="Cart.CompanyName" class="form-control" placeholder="نام شرکت">
                                 <span asp-validation-for="Cart.CompanyName" class="text-danger"></span>
                             </div>
-                            <a href="/Admin/ManageUser/UserList?userId=@(Model.Cart.UserCreatorId)" class="form-control" placeholder="نام شرکت">
+                            <a href="/Admin/ManageUser/UserList?userId=@(Model.Cart.UserCreatorId)" class="" placeholder="نام شرکت">
                                 <div class="col-md-6 input-group" style="margin:20px auto">
                                     <span class="input-group-addon">
                                         <i class="zmdi zmdi-account"></i>
@@ -72,6 +72,13 @@
                                     مشاهده کاربر
                                 </div>
                             </a>
+                            <div class="col-md-6 input-group" style="margin:20px auto">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-shopping-cart-plus"></i>آیدی کد تخفیف
+                                </span>
+                                <input asp-for="Cart.DiscountId" class="form-control" placeholder="آیدی کد تخفیف">
+                                <span asp-validation-for="Cart.DiscountId" class="text-danger"></span>
+                            </div>
                             <div class="col-sm-12 input-group" style="margin:20px auto">
                                 <span class="input-group-addon">
                                     <i class="zmdi zmdi-pin-drop"></i>

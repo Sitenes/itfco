@@ -490,9 +490,34 @@ ul, li {
     height: 100%;
     z-index: 999999;
     background-color: #ffffff;
+}
+
+.preloaderlogo {
     background-position: center center;
+    background-size: auto;
     background-repeat: no-repeat;
-    background-image: url(../images/icons/preloader.svg);
+    background-image: url(../images/Logo.svg);
+    animation-name: ckw;
+    animation-duration: 2s;
+    animation-iteration-count: 10;
+    z-index: 9999999;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    width: 100%;
+    height: 100%;
+    margin: auto auto;
+}
+
+@keyframes ckw {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 img {
@@ -1214,8 +1239,8 @@ img {
     transform: none !important;
     padding: 0px;
     width: 280px;
-    border-radius: 0px;
     border-top: 3px solid #25262c;
+    border-radius: 0px 0px 20px 20px;
 }
 
 .main-header .search-panel .form-container {

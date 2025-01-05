@@ -90,7 +90,8 @@ namespace Toplearn.Core.Services
 			{
 				query = query.Where(b => b.UserCreatorId == filter.UserCreatorId.Value);
 			}
-			if (filter.PageSize != 0)
+			query = query.OrderByDescending(x => x.CreateDate);
+            if (filter.PageSize != 0)
 				query = query.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize);
 			var result = await query.ToListAsync();
             result.ForEach(x => x.Image = string.IsNullOrEmpty(x.Image) ? "Default.jpg" : x.Image);

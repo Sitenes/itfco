@@ -54,5 +54,6 @@ namespace Toplearn.Core.AllEnums
         AddBlog = 25,
         EditBlog = 26,
         RemoveBlog = 27,
-    }
+		Setting = 28,
+	}
 }

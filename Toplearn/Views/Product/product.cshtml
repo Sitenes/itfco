@@ -37,8 +37,8 @@
 
                                         <div class="text">@(Model.ShortDescription)</div>
                                         <div class="other-options clearfix">
-                                            <form asp-controller="product" asp-action="addtocart">
-                                                <div class="item-quantity"><input class="quantity-spinner" type="text" value="1" name="quantity"></div>
+                                            <form asp-controller="UserPanel" asp-action="Cart" asp-route-productId="@(Model.CourseId)">
+                                                <div class="item-quantity"><input class="quantity-spinner form-control" type="text" value="1" name="Count"></div>
                                                 <button type="submit" class="theme-btn btn-style-one add-to-cart">افزودن به سبد</button>
                                                 تعداد :
                                             </form>

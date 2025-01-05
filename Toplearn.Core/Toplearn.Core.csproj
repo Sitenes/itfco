@@ -481,6 +481,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Convertors\PriceConvertor.cs" />
     <Compile Include="Convertors\DateTimeConvertor.cs" />
     <Compile Include="Convertors\FixText.cs" />
     <Compile Include="Convertors\ImageConvertor.cs" />

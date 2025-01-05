@@ -1,4 +1,5 @@
 ﻿@using Toplearn.DataLayer.Entities.Courses;
+@using Toplearn.Core.Convertors;
 @model Cart
 @{
     ViewData["Title"] = "پرداخت";
@@ -135,10 +136,11 @@
             </div>
             </div> *@
 
-            <div class="lower-box text-right">
+            <div class="lower-box text-right container" style="margin-top:0px">
                 <button type="submit" class="theme-btn btn-style-one">Place Order</button>
             </div>
         </div>
+       
     </div>
     <!--End Payment Box-->
 </form>
@@ -183,3 +185,23 @@
     </div>
 </section>
 <!--End Cart Section-->
+
+<section class="cart-section">
+    <div class="auto-container">
+
+        <div class="row justify-content-between">
+
+            <div class="column pull-right col-lg-12 col-md-12 col-sm-12">
+                <!--Totals Table-->
+                <ul class="totals-table">
+                    <li><h3>Cart Totals</h3></li>
+                    @if (Model.CourseCarts != null)
+                    {
+                        <li class="clearfix total"><span class="col">Total with out discount</span><span class="col price">@(Model.GetPrice(false).ToString("#,###")) تومان</span></li>
+                        <li class="clearfix total"><span class="col">Total</span><span class="col price">@(Model.GetPriceWithDiscount(false).ToString("#,###")) تومان</span></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

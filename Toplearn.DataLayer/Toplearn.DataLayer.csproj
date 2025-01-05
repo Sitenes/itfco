@@ -162,6 +162,7 @@
     <Compile Include="Context\ToplearnContext.cs" />
     <Compile Include="Entities\Blogs\Blog.cs" />
     <Compile Include="Entities\Courses\Discount.cs" />
+    <Compile Include="Entities\Setting.cs" />
     <Compile Include="Entities\Wallet\Cart.cs" />
     <Compile Include="Entities\Courses\Course.cs" />
     <Compile Include="Entities\Courses\CourseLevel.cs" />

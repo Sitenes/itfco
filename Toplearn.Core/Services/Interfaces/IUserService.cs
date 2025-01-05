@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Toplearn.Core.DTOs.UserVM;
+using Toplearn.DataLayer.Entities;
 using Toplearn.DataLayer.Entities.User;
 
 namespace Toplearn.Core.Services
@@ -12,7 +13,7 @@ namespace Toplearn.Core.Services
     {
         #region Validate User
         bool IsEmailLinkValid(Guid emailLink);
-        bool IsUserExist (Guid User);
+        bool IsUserExist(Guid User);
         bool IsExistEmail(string Email);
         bool IsExistPhone(long Phone);
         bool IsExistUserName(string UserName);
@@ -48,6 +49,7 @@ namespace Toplearn.Core.Services
         Task<bool> DeleteUserAsync(Guid UserId);
         Task<bool> AddUserAsync(User User);
         #endregion
-
+        Task<Setting> GetSettingAsync();
+        void UpdateSetting(Setting setting);
     }
 }

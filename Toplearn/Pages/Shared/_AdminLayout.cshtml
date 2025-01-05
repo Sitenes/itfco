@@ -236,9 +236,12 @@
 						<li>
 							<a href="/UserPanel"><i class="fa fa-user fa-fw"></i> پروفایل حساب</a>
 						</li>
-						<li>
-							<a href="#"><i class="fa fa-gear fa-fw"></i> تنظیمات</a>
-						</li>
+						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.Setting, _userId))
+						{
+							<li>
+								<a href="/Admin/Settings"><i class="fa fa-gear fa-fw"></i> تنظیمات</a>
+							</li>
+						}
 						<li class="divider"></li>
 						<li>
 							<a href="/logout"><i class="fa fa-sign-out fa-fw"></i> خروج</a>
@@ -379,7 +382,12 @@
 								</ul>
 							</li>
 						}
-
+						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.Setting, _userId))
+						{
+							<li>
+								<a href="/Admin/Settings"><i class="fa fa-gear fa-fw"></i> تنظیمات </a>
+							</li>
+						}
 					</ul>
 					<!-- /#side-menu -->
 				</div>

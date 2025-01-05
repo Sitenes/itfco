@@ -41,12 +41,12 @@
                         @foreach (var subsubcategory in subcategory?.SubCategories ?? new List<CategoryListDto>())
                         {
                             <li class="clearfix">
-                                <a href="/product?GroupId=@subsubcategory.Id" style="margin-right:20px">@subsubcategory.Name <span>@subsubcategory.Count</span></a>
+                                <a href="/product?GroupId=@subsubcategory.Id" style="margin-right:40px">@subsubcategory.Name <span>@subsubcategory.Count</span></a>
                             </li>
                             @foreach (var subsubsubcategory in subsubcategory?.SubCategories ?? new List<CategoryListDto>())
                             {
                                 <li class="clearfix">
-                                    <a href="/product?GroupId=@subsubsubcategory.Id" style="margin-right:20px">@subsubsubcategory.Name <span>@subsubsubcategory.Count</span></a>
+                                    <a href="/product?GroupId=@subsubsubcategory.Id" style="margin-right:60px">@subsubsubcategory.Name <span>@subsubsubcategory.Count</span></a>
                                 </li>
                             }
                         }

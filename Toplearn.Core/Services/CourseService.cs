@@ -697,11 +697,10 @@ namespace Toplearn.Core.Services
             }
         }
 
-        public async Task<List<Discount>> SearchDiscountsAsync(string keyword)
+        public async Task<Discount> SearchDiscountsAsync(string keyword)
         {
             return await _context.Discounts
-                .Where(d => d.DiscountCode.Contains(keyword))
-                .ToListAsync();
+                .FirstOrDefaultAsync(d => d.DiscountCode.Equals(keyword));
         }
 
         public async Task<bool> ApplyDiscountAsync(string code, int userId, int courseId)

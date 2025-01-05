@@ -22,7 +22,7 @@ namespace Toplearn.Core.Services
 
 		public async Task<List<Cart>> GetAllCartsAsync(CartFilterViewModel filter)
 		{
-			IQueryable<Cart> query = _context.Carts.Include(x=>x.UserCreator).Include(x => x.CourseCarts).ThenInclude(x=>x.Course);
+			IQueryable<Cart> query = _context.Carts.Include(x => x.Discount).Include(x=>x.UserCreator).Include(x => x.CourseCarts).ThenInclude(x=>x.Course);
 
 			if (filter.UserId.HasValue)
 				query = query.Where(c => c.UserCreatorId == filter.UserId);
@@ -59,7 +59,7 @@ namespace Toplearn.Core.Services
 
 		public async Task<Cart> GetLastNotPaidCartAsync(Guid UserId)
         {
-            var cart = await _context.Carts.Include(x=>x.CourseCarts).ThenInclude(x=>x.Course).OrderBy(x=>x.CreateDate).LastOrDefaultAsync(c => c.UserCreatorId == UserId && c.IsPaid == false);
+            var cart = await _context.Carts.Include(x => x.Discount).Include(x=>x.CourseCarts).ThenInclude(x=>x.Course).OrderBy(x=>x.CreateDate).LastOrDefaultAsync(c => c.UserCreatorId == UserId && c.IsPaid == false);
             if(cart == null)
             {
                 cart = new Cart() { UserCreatorId = UserId, };
@@ -70,7 +70,7 @@ namespace Toplearn.Core.Services
         }
         public async Task<Cart> GetCartAsync(int CartId)
         {
-            return await _context.Carts.Include(x=>x.UserCreator).Include(x => x.CourseCarts).ThenInclude(x=>x.Course).FirstOrDefaultAsync(n => n.Id == CartId);
+            return await _context.Carts.Include(x => x.Discount).Include(x=>x.UserCreator).Include(x => x.CourseCarts).ThenInclude(x=>x.Course).FirstOrDefaultAsync(n => n.Id == CartId);
         }
 
         public async Task AddCartAsync(Cart cart)

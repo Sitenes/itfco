@@ -98,7 +98,7 @@
                                                     <td class="sub-total">@(product.Course.Price)</td>
                                                     <td class="qty"><div class="item-quantity"><input disabled class="quantity-spinner" type="text" value="@(product.Count)" name="quantity"></div></td>
                                                     <td class="total">@(product.Course.Price)</td>
-                                                    <td><a href="/UserPanel/Cart/RemoveProduct/@(product.CourseId)" class="remove-btn"><span class="fa fa-2x fa-remove"></span></a></td>
+                                                    <td><a href="/api/Cart/RemoveProduct/@(product.CourseId)" class="remove-btn"><span class="fa fa-2x fa-remove"></span></a></td>
                                                     </tr>
                                                     } *@
                                                 </tbody>
