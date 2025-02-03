@@ -43,6 +43,9 @@ namespace Toplearn.DataLayer.Entities.User
         [Display(Name = "وضعیت")]
         public bool IsActive { get; set; }
 
+        [Display(Name = "نمایش نقش")]
+        public bool ShowMap { get; set; }
+
         //[Display(Name = "کد فعال سازی")]
         //[MaxLength(6, ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
         //[Column(TypeName = "varchar")]

@@ -10,12 +10,12 @@ namespace Toplearn.Core.Convertors
 {
     public static class PriceConvertor
     {
-        public static decimal GetPriceWithDiscount(this Cart cart, bool isDollar = false)
+        public static double GetPriceWithDiscount(this Cart cart, bool isDollar = false)
         {
             var totalPrice = cart.GetPrice(isDollar);
             if (cart.Discount == null)
                 return totalPrice;
-            decimal finalPrice = totalPrice * (100 - cart.Discount.Percent) / 100;
+            double finalPrice = totalPrice * (100 - cart.Discount.Percent) / 100;
             if (isDollar)
             {
                 finalPrice = Math.Round(finalPrice);
@@ -26,9 +26,9 @@ namespace Toplearn.Core.Convertors
             }
             return finalPrice;
         }
-        public static decimal GetPrice(this Cart cart, bool isDollar = false)
+        public static double GetPrice(this Cart cart, bool isDollar = false)
         {
-            decimal finalPrice = cart.CourseCarts.Sum(x => (isDollar ? x.Course.PriceDollar : x.Course.Price) * x.Count);
+            double finalPrice = cart.CourseCarts.Sum(x => (isDollar ? x.Course.PriceDollar : x.Course.Price) * x.Count);
             if (isDollar)
             {
                 finalPrice = Math.Round(finalPrice);

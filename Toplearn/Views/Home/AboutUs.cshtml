@@ -1,8 +1,27 @@
-﻿@*
+﻿@using Toplearn.Core.Services
+@inject IUserService _UserServie
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     ViewData["Title"] = "درباره ما";
+    Toplearn.DataLayer.Entities.User.User? _user = null;
+    if (User.Identity?.IsAuthenticated == true)
+    {
+        var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+        if (Guid.TryParse(userIdClaim.Value, out var _userId))
+        {
+            _user = await _UserServie.GetUserAsync(_userId);
+        }
+    }
+    @if (_user != null && _user.ShowMap)
+    {
+
+    }
+    else
+    {
+
+    }
 }
 
 <section class="about-section" style="background-image: url(/images/aboutus/1.jpg);">

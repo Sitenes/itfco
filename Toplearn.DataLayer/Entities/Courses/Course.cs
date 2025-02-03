@@ -38,7 +38,7 @@ namespace Toplearn.DataLayer.Entities.Courses
         public long Price { get; set; }//ملغ محصول
 
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
-        public long PriceDollar { get; set; }//ملغ محصول
+        public double PriceDollar { get; set; }//ملغ محصول
 
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
         public DateTime RegistrationDate { get; set; }//تاریخ ایجاد کردن این محصول و آپلود اولین فیلم آموزشی
