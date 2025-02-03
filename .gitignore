@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Toplearn/wwwroot/BlogRoot
+/Toplearn/wwwroot/CourseRoot
