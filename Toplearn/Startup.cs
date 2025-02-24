@@ -22,12 +22,19 @@ using Toplearn.Core.Services;
 using Toplearn.Core.Services.Interfaces;
 using Toplearn.DataLayer.Context;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using Microsoft.Extensions.Configuration;
 
 
 namespace Toplearn
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -88,12 +95,13 @@ namespace Toplearn
             #endregion
 
             #region DataBase Context
+
+            var connectionString = Configuration.GetConnectionString("BasicServer");
             services.AddDbContext<ToplearnContext>(options =>
                 options.UseSqlServer(
-                    "Data Source=.;Initial Catalog=ITFCO_DB;Integrated Security=true;MultipleActiveResultSets=true;",
-                    //"Server=93.126.41.157;Database=ITFCO_DB;User Id=amin;Password=amin09013348988;TrustServerCertificate=true;",
+                    connectionString,
                     b => b.MigrationsAssembly("Toplearn.Web")),
-                    ServiceLifetime.Transient
+                ServiceLifetime.Transient
             );
             #endregion
 
