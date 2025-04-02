@@ -14,14 +14,7 @@
             _user = await _UserServie.GetUserAsync(_userId);
         }
     }
-    @if (_user != null && _user.ShowMap)
-    {
 
-    }
-    else
-    {
-
-    }
 }
 
 <section class="about-section" style="background-image: url(/images/aboutus/1.jpg);">
@@ -39,7 +32,16 @@
                     </div>
                 </div>
                 <div class="inner-column" style="margin-top: 50px;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.4589170029935!2d51.83201411124869!3d32.70043108778636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fbc4f005725d1c5%3A0xb61ba2465c133717!2z2KLYrNix2YbZhdinINqv2YTYs9iq2KfZhtuM!5e0!3m2!1sen!2s!4v1734658830565!5m2!1sen!2s" width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @if (_user != null && _user.ShowMap)
+                    {
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.4589170029935!2d51.83201411124869!3d32.70043108778636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fbc4f005725d1c5%3A0xb61ba2465c133717!2z2KLYrNix2YbZhdinINqv2YTYs9iq2KfZhtuM!5e0!3m2!1sen!2s!4v1734658830565!5m2!1sen!2s" width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    }
+                    else
+                    {
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d188620.34312208623!2d51.835177380857715!3d32.66278909005366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fbc35fe8c326799%3A0x7ab57816ef5837f5!2z2KfYtdmB2YfYp9mG2Iwg2KfYs9iq2KfZhiDYp9i12YHZh9in2YbYjCDYp9uM2LHYp9mG!5e0!3m2!1sfa!2s!4v1738617191535!5m2!1sfa!2s" width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    }
                 </div>
             </div>
 
@@ -171,7 +173,6 @@
                     <div class="text">
                         ما با بهره‌گیری از کادری مجرب و علمی، محصولاتی دقیق و استاندارد جهانی تولید می‌کنیم تا نیازهای شما به بهترین شکل برآورده شود.
                     </div>
-                    <div class="link-box"><a href="/Home/ContactUs">تماس با ما</a></div>
                 </div>
             </div>
 

@@ -50,10 +50,19 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-balance-wallet"></i>
 									</span>
-									<input asp-for="addUser.Wallet" min="0" max="999999999" value="" class="form-control" placeholder="کیف پول">
+									<input asp-for="addUser.Wallet" min="0" max="@long.MaxValue" value="" class="form-control" placeholder="کیف پول">
 									<span asp-validation-for="addUser.Wallet" class="text-danger"></span>
 								</div>
-
+								<div class="col-md-4 input-group" style="margin:20px auto">
+									<div>
+										<label class="label-ckeckbox">
+											<input asp-for="addUser.IsActive" style="max-width:20px" class="form-control input-sm"><h4 class="text-right"> اکانت فعال </h4>
+										</label>
+										<label class="label-ckeckbox">
+											<input asp-for="addUser.ShowMap" style="max-width:20px" class="form-control input-sm"><h4 class="text-right"> نمایش ادرس و نقشه </h4>
+										</label>
+									</div>
+								</div>
 							</div>
 							<div class="col-md-4">
 								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-edit"></i>  افزودن کاربر </button>

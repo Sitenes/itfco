@@ -150,9 +150,9 @@
                                         <div id="div1">
                                             <div id="diva1">
                                                 <div id="divaa1">
-                                                    <a asp-action="chengeEn" asp-controller="Home" id="btna1" type="button" value="">English</a>
-                                                    <a asp-action="chengeFa" asp-controller="Home" id="btna2" type="button" value="فارسی">فارسی</a>
-                                                    <a asp-action="chengeAr" asp-controller="Home" id="btna3" type="button" value="العربیه">العربیه</a>
+                                                    <a asp-action="ChangeLanguage" asp-controller="Home" asp-route-lang="en" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)" id="btna1" type="button" value="">English</a>
+                                                    <a asp-action="ChangeLanguage" asp-controller="Home" asp-route-lang="fa" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)" id="btna2" type="button" value="فارسی">فارسی</a>
+                                                    <a asp-action="ChangeLanguage" asp-controller="Home" asp-route-lang="ar" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)" id="btna3" type="button" value="العربیه">العربیه</a>
                                                     @* <img id="img2"
                                                     src="~/images/background/Windows_Settings_app_icon.png"> *@
                                                     <i id="img2" class="fa fa-language" style="color:black"></i>

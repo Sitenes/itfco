@@ -347,3 +347,6 @@ body{
 .center{
     text-align:center;
 }
+.label-ckeckbox {
+    display: flex;
+}

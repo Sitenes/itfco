@@ -28,6 +28,7 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
             _userService = userService;
             _renderService = renderService;
             _permissionService = permissionService;
+            EditUser = new GetUserForEditViewModel();
         }
         [BindProperty]
         public GetUserForEditViewModel EditUser { get; set; }
@@ -47,6 +48,7 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
             EditUser.UserName = user.UserName;
             EditUser.OldAvatar = user.UserAvatar;
             EditUser.Wallet = user.Wallet;
+            EditUser.ShowMap = user.ShowMap;
         }
         public async Task<IActionResult> OnPostAsync(List<int> roles)
         {
@@ -65,7 +67,8 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
 			user.RegisterDate = EditUser.RegisterDate;
             user.UserName = EditUser.UserName;
             user.Wallet = EditUser.Wallet;
-			EditUser.RolesId = _permissionService.GetUserRoles(user.UserId);
+            user.ShowMap = EditUser.ShowMap;
+            EditUser.RolesId = _permissionService.GetUserRoles(user.UserId);
 			if (!string.IsNullOrWhiteSpace(EditUser.Password))
                 user.Password = PasswordHelper.EncodePasswordMd5(EditUser.Password);
 

@@ -251,7 +251,8 @@ namespace Toplearn.Core.Services
                 UserName = n.UserName,
                 Wallet = n.Wallet,
                 UserId = n.UserId,
-                IsActive = n.IsActive
+                IsActive = n.IsActive,
+                ShowMap = n.ShowMap,
             });
             if (filters.filterPhone != 0)
             {

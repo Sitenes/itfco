@@ -64,6 +64,7 @@ namespace Toplearn.Core.Services
             {
                 cart = new Cart() { UserCreatorId = UserId, };
                 await AddCartAsync(cart);
+                await SaveChangesAsync();
             }
 
             return cart;

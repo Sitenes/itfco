@@ -53,7 +53,7 @@
 									<span class="input-group-addon">
 										<i class="zmdi zmdi-balance-wallet"></i>
 									</span>
-									<input asp-for="EditUser.Wallet" min="0" max="999999999" class="form-control" placeholder="کیف پول">
+									<input asp-for="EditUser.Wallet" min="0" max="@long.MaxValue" class="form-control" placeholder="کیف پول">
 									<span asp-validation-for="EditUser.Wallet" class="text-danger"></span>
 								</div>
 
@@ -65,9 +65,12 @@
 								</div>
 
 								<div class="col-md-4 input-group" style="margin:20px auto">
-									<div class="checkbox">
-										<label>
-											<input asp-for="EditUser.IsActive" style="max-width:20px" class="form-control input-sm"><h4 class="text-right">اکانت فعال</h4>
+									<div>
+										<label class="label-ckeckbox">
+											<input asp-for="EditUser.IsActive" style="max-width:20px" class="form-control input-sm"><h4 class="text-right"> اکانت فعال </h4>
+										</label>
+										<label class="label-ckeckbox">
+											<input asp-for="EditUser.ShowMap" style="max-width:20px" class="form-control input-sm"><h4 class="text-right"> نمایش ادرس و نقشه </h4>
 										</label>
 									</div>
 								</div>

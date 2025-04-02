@@ -28,7 +28,7 @@ namespace Toplearn.Web.Pages.Admin.ManageRoles
         {
             if (IsSucceed == true)
                 ViewData["IsSucceed"] = true;
-            Role = _permissionService.GetAllRoles();
+            Role = _permissionService.GetAllRolesIncPermissions();
         }
     }
 }

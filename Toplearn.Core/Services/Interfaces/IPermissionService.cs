@@ -14,6 +14,7 @@ namespace Toplearn.Core.Services
         #region Roles
         Role GetRole(int Id);
         List<int> GetUserRoles(Guid UserId);
+        List<Role> GetAllRolesIncPermissions();
         List<Role> GetAllRoles();
         bool AddRole(Guid UserId, int Role);
         Task<int> AddRoleAsync(Role role);

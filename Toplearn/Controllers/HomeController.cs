@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Http.Extensions;
 using System.Web;
 using Toplearn.Core.Services;
 using System.Linq;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Localization;
 
 namespace Toplearn.Web.Controllers
 {
@@ -57,75 +59,31 @@ namespace Toplearn.Web.Controllers
         {
             return View();
         }
-        public IActionResult Culture()
+        public IActionResult ChangeLanguage(string lang, string returnUrl = "/")
         {
-            return Ok(Request.Query["Culture"].ToString());
-        }
-        public IActionResult chengeAr()
-        {
-            var url = HttpContext.Request.GetEncodedUrl();
-            url = url.Replace("chengeAr", "");
-            var uriBuilder = new UriBuilder(url);
-            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-
-            if (string.IsNullOrEmpty(query["culture"]))
+            var supportedCultures = new[] { "fa", "ar", "en" };
+            if (!Array.Exists(supportedCultures, c => c == lang))
             {
-                query["culture"] = "ar";
-            }
-            else
-            {
-                query.Set("culture", "ar");
+                lang = "fa"; // مقدار پیش‌فرض
             }
 
-            uriBuilder.Query = query.ToString();
-            var newUrl = uriBuilder.ToString();
+            // تنظیم زبان در کوکی
+            Response.Cookies.Append(
+                "Culture",
+                lang,
+                new Microsoft.AspNetCore.Http.CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddYears(1),
+                    IsEssential = true // اطمینان از تنظیم کوکی در GDPR
+                });
 
-            return Redirect(newUrl);
+            var culture = new RequestCulture(lang);
+            HttpContext.Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(culture),
+                new Microsoft.AspNetCore.Http.CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
 
-        }
-        public IActionResult chengeEn()
-        {
-
-            var url = HttpContext.Request.GetEncodedUrl();
-            url = url.Replace("chengeEn", "");
-            var uriBuilder = new UriBuilder(url);
-            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-
-            if (string.IsNullOrEmpty(query["culture"]))
-            {
-                query["culture"] = "en";
-            }
-            else
-            {
-                query.Set("culture", "en");
-            }
-
-            uriBuilder.Query = query.ToString();
-            var newUrl = uriBuilder.ToString();
-
-            return Redirect(newUrl);
-        }
-        public IActionResult chengeFa()
-        {
-            var url = HttpContext.Request.GetEncodedUrl();
-            url = url.Replace("chengeFa", "");
-
-            var uriBuilder = new UriBuilder(url);
-            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-
-            if (string.IsNullOrEmpty(query["culture"]))
-            {
-                query["culture"] = "fa";
-            }
-            else
-            {
-                query.Set("culture", "fa");
-            }
-
-            uriBuilder.Query = query.ToString();
-            var newUrl = uriBuilder.ToString();
-
-            return Redirect(newUrl);
+            return LocalRedirect(returnUrl); // بازگشت به صفحه قبل
         }
 
         [HttpPost]

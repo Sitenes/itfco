@@ -66,12 +66,14 @@ namespace Toplearn.Web.Pages.Admin.ManageUsers
             {
                 Email = addUser.Email,
                 Password = PasswordHelper.EncodePasswordMd5(addUser.Password),
-                IsActive = true,
+                IsActive = addUser.IsActive,
                 Phone = addUser.Phone,
                 UserName = addUser.UserName,
                 UserId = System.Guid.NewGuid(),
                 Wallet = addUser.Wallet,
                 RegisterDate = System.DateTime.Now,
+                ShowMap = addUser.ShowMap,
+                
             };
 
 			#region Roles

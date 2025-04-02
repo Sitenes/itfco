@@ -54,10 +54,12 @@ namespace Toplearn
             services.Configure<RequestLocalizationOptions>(options =>
             {
                 var supportedCultures = new List<CultureInfo>
-                {
-            new CultureInfo("fa"),
-            new CultureInfo("ar")
-                };
+    {
+        new CultureInfo("fa"),
+        new CultureInfo("en"),
+        new CultureInfo("ar")
+    };
+
                 options.DefaultRequestCulture = new RequestCulture("fa");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;

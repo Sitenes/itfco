@@ -20,7 +20,8 @@ namespace Toplearn.Core.DTOs.UserVM
 		public DateTime Create { get; set; }
 		public long Wallet { get; set; }
 		public bool IsActive { get; set; }
-	}
+        public bool ShowMap { get; set; }
+    }
 	
 	public class UsersForAdminViewModel
 	{
@@ -33,7 +34,8 @@ namespace Toplearn.Core.DTOs.UserVM
 		public int CurrentPage { get; set; }
 		public int UserListCount { get; set; }
 		public int NumAllUser { get; set; }
-	}
+        public bool ShowMap { get; set; }
+    }
 	public class AddUserAdminViewModel
 	{
         [MaxLength(100, ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
@@ -65,7 +67,9 @@ namespace Toplearn.Core.DTOs.UserVM
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
         [Display(Name = "کیف پول")]
         public long Wallet { get; set; }
-
+        [Display(Name = "وضعیت")]
+        public bool IsActive { get; set; }
+        public bool ShowMap { get; set; }
     }
 
 	public class GetUserForEditViewModel
@@ -107,6 +111,7 @@ namespace Toplearn.Core.DTOs.UserVM
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
         [Display(Name = "کیف پول")]
         public long Wallet { get; set; }
+        public bool ShowMap { get; set; }
 
         public IFormFile NewAvatar { get; set; }
         public List<int> RolesId { get; set; }
