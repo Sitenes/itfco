@@ -414,5 +414,98 @@
 <data name="IgnoreIfNotRequested" xml:space="preserve">
   <value>إذا لم تطلب هذا، يمكنك تجاهل هذا البريد الإلكتروني.</value>
 </data>
+<data name="Title" xml:space="preserve">
+  <value>من نحن</value>
+</data>
+<data name="AboutUsTitle" xml:space="preserve">
+  <value>عن ا لنا</value>
+</data>
+<data name="CompanyName" xml:space="preserve">
+  <value>شركة ایده طرح فرزانگان</value>
+</data>
+<data name="CompanyDescription" xml:space="preserve">
+  <value>تأسست شركة ایده طرح فرزانگان في عام 2010 وتعمل في مجالات تصميم وتصنيع الآلات والهياكل الصناعية، بناء المباني، الطرق والنقل، المنشآت المدنية والتخطيط الحضري، قطع الغيار الصناعية، وكذلك الاستيراد والتصدير والمشاركة في المشاريع الحكومية والخاصة. وبالاعتماد على المعرفة الفنية والقوى العاملة ذات الخبرة، قامت بخطوات فعالة في تقدم صناعة البلاد.</value>
+</data>
+<data name="ViewProducts" xml:space="preserve">
+  <value>عرض المنتجات</value>
+</data>
+<data name="CustomerOpinionsTitle" xml:space="preserve">
+  <value>آراء العملاء</value>
+</data>
+<data name="CustomerOpinionsFloat" xml:space="preserve">
+  <value>الآراء</value>
+</data>
+<data name="Testimonial1" xml:space="preserve">
+  <value>خدمات ممتازة وفريق محترف! شركة ایده طرح فرزانگان هي الأفضل في تصميم وتصنيع الآلات الصناعية.</value>
+</data>
+<data name="Testimonial2" xml:space="preserve">
+  <value>تقدم هذه الشركة أفضل الخدمات في جميع المجالات المدنية والصناعية. دائمًا في الوقت المحدد وبجودة عالية.</value>
+</data>
+<data name="Testimonial3" xml:space="preserve">
+  <value>جودة العمل ودقة فريق هذه الشركة في كل مشروع يقومون به لا مثيل لها.</value>
+</data>
+<data name="CompanyEstablished" xml:space="preserve">
+  <value>تأسست شركة إيدي طرح فارزانغان في عام 1389 هجري شمسي وبدأت عملها في مجال تصميم وتصنيع الآلات والهياكل الصناعية - تصميم وتصنيع مصانع الطوب الفخاري والطوب الزخرفي - بناء المباني - الطرق والنقل - مختلف المنشآت والمعدات المدنية، التخطيط العمراني - تصنيع وتوريد أجزاء الآلات والهياكل الصناعية - المشاركة في مشاريع مدنية وتجارية واقتصادية وصناعية وإنتاجية - استيراد وتصدير جميع السلع التجارية القانونية - الحصول على ومنح التوكيلات من الشركات المحلية والدولية المعروفة - الحصول على القروض والائتمانات المصرفية - المشاركة في المناقصات والعقود والمزادات العامة والخاصة.</value>
+</data>
+<data name="Testimonials" xml:space="preserve">
+  <value>التوصيات</value>
+</data>
+<data name="CustomerTestimonials" xml:space="preserve">
+  <value>آراء العملاء</value>
+</data>
+<data name="Testimonial1" xml:space="preserve">
+  <value>خدمات ممتازة وفريق محترف! شركة ایده طرح فرزانگان هي الأفضل في مجال تصميم وتصنيع الآلات الصناعية. أنا راضٍ جدًا عن التعاون مع هذا الفريق.</value>
+</data>
+<data name="Testimonial2" xml:space="preserve">
+  <value>تجربتي مع شركة ایده طرح فرزانگان كانت إيجابية جدًا. تقدم هذه الشركة أفضل الخدمات في جميع المجالات العمرانية والصناعية. دائمًا في الوقت المحدد وبجودة عالية.</value>
+</data>
+<data name="Testimonial3" xml:space="preserve">
+  <value>أنا سعيد جدًا بالتعاون مع هذه الشركة. جودة العمل ودقة الفريق في كل مشروع يقومون به مميزة حقًا. أفضل اختيار لأي مشروع صناعي أو عمراني.</value>
+</data>
+<data name="Services" xml:space="preserve">
+  <value>الخدمات</value>
+</data>
+<data name="WhyChooseUs" xml:space="preserve">
+  <value>لماذا تختار شركة ایده طرح فرزانگان؟</value>
+</data>
+<data name="ProfessionalProduction" xml:space="preserve">
+  <value>إنتاج احترافي</value>
+</data>
+<data name="ProfessionalProductionDescBold" xml:space="preserve">
+  <value>منتجات بمعايير عالمية مدعومة بالمعرفة التقنية وفريق متخصص.</value>
+</data>
+<data name="ProfessionalProductionDesc" xml:space="preserve">
+  <value>نقوم بإنتاج منتجات دقيقة بمعايير عالمية لتلبية احتياجاتكم بأفضل شكل ممكن باستخدام فريق علمي ذو خبرة.</value>
+</data>
+<data name="UnmatchedQuality" xml:space="preserve">
+  <value>جودة لا مثيل لها</value>
+</data>
+<data name="UnmatchedQualityDescBold" xml:space="preserve">
+  <value>التحمل والثقة باستخدام أفضل المواد.</value>
+</data>
+<data name="UnmatchedQualityDesc" xml:space="preserve">
+  <value>الجودة مبدأ أساسي بالنسبة لنا. استخدام مواد خام عالية الجودة يجعل منتجاتنا متينة وموثوقة.</value>
+</data>
+<data name="ViewProducts" xml:space="preserve">
+  <value>عرض المنتجات</value>
+</data>
+<data name="DiverseProduction" xml:space="preserve">
+  <value>تنوع في الإنتاج</value>
+</data>
+<data name="DiverseProductionDescBold" xml:space="preserve">
+  <value>تلبية احتياجاتكم بدون قيود.</value>
+</data>
+<data name="DiverseProductionDesc" xml:space="preserve">
+  <value>نلتزم برضا العملاء. يتم تصميم وإنتاج مجموعة متنوعة من المنتجات لتناسب احتياجاتكم واختياركم بثقة.</value>
+</data>
+<data name="Engineering" xml:space="preserve">
+  <value>الهندسة</value>
+</data>
+<data name="EngineeringDescBold" xml:space="preserve">
+  <value>تجربة خالية من المتاعب مع التزام بالوقت.</value>
+</data>
+<data name="EngineeringDesc" xml:space="preserve">
+  <value>نضمن تسليم المنتجات بسرعة وفي الوقت المحدد من خلال الخبرة العالية والدقة. نحن نُقدّر وقتكم.</value>
+</data>
 
 </root>

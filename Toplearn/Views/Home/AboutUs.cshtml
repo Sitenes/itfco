@@ -1,10 +1,11 @@
 ﻿@using Toplearn.Core.Services
 @inject IUserService _UserServie
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model Toplearn.Core.DTOs.UserVM.EmailtxtViewModel
+@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+
 @{
-    ViewData["Title"] = "درباره ما";
+    ViewData["Title"] = Localizer["AboutUs"];
     Toplearn.DataLayer.Entities.User.User? _user = null;
     if (User.Identity?.IsAuthenticated == true)
     {
@@ -14,7 +15,6 @@
             _user = await _UserServie.GetUserAsync(_userId);
         }
     }
-
 }
 
 <section class="about-section" style="background-image: url(/images/aboutus/1.jpg);">
@@ -24,15 +24,14 @@
             <div class="image-column col-lg-6 col-md-12 col-sm-12 order-">
                 <div class="inner-column">
                     <div class="title-box wow fadeInLeft" data-wow-delay='1200ms'>
-                        <h2>درباره <br> ما</h2>
+                        <h2>@Localizer["AboutUs"]</h2>
                     </div>
                     <div class="image-box wow fadeInRight" data-wow-delay='600ms'>
-                        @* <figure class="alphabet-img"><img src="/images/Logo Name.jpg" alt="ایده طرح فرزانگان"></figure> *@
-                        <figure class="image"><img src="/images/aboutus/Logo Name.jpg" alt="ایده طرح فرزانگان"></figure>
+                        <figure class="image"><img src="/images/aboutus/Logo Name.jpg" alt="@Localizer["CompanyName"]"></figure>
                     </div>
                 </div>
                 <div class="inner-column" style="margin-top: 50px;">
-                    @if (_user != null && _user.ShowMap)
+                      @if (_user != null && _user.ShowMap)
                     {
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.4589170029935!2d51.83201411124869!3d32.70043108778636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fbc4f005725d1c5%3A0xb61ba2465c133717!2z2KLYrNix2YbZhdinINqv2YTYs9iq2KfZhtuM!5e0!3m2!1sen!2s!4v1734658830565!5m2!1sen!2s" width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
@@ -50,26 +49,26 @@
                 <div class="inner-column wow fadeInLeft">
                     <div class="content-box">
                         <div class="title">
-                            <h2>شرکت <strong>ایده طرح فرزانگان</strong></h2>
+                            <h2>@Localizer["CompanyName"]</h2>
                         </div>
                         <div class="text">
-                            شرکت ایده طرح فرزانگان در سال 1389 تاسیس گردید و در زمینه : طراحی و ساخت ماشین آلات وسازه های صنعتی – طراحی و ساخت ماشین آلات وکارخانجات آجرسفال و آجر نما - ساخت ساز ساختمان ها – راه وترابری – انواع تاسیسات و تجهیزات عمرانی ، شهر سازی – ساخت و عرضه قطعات ماشین آلات و سازه های صنعتی - مشارکت در طرح های عمرانی ، تجاری ، اقتصادی ، صنعتی ، تولیدی ، خرید و فروش – واردات و صادرات تمامی کالاهای مجاز بازرگانی – اخذ و اعطای نمایندگی شرکت های معتبر داخلی و خارجی – اخذ وام و اعتبارات بانکی – شرکت در مناقصات و پیمان ها و مزایده های دولتی و خصوصی فعالیت خودرا آغاز نموده است
-                            همچنین این شرکت با استعانت از خداوند متعال ، دانش فنی ، کادر تحصیل کرده و مجرب توانسته گام های بزرگی در زمینه به روزرسانی صنعت کشور بردارد .
+                            @Localizer["CompanyEstablished"]
                         </div>
-                        <div class="link-box"><a href="/Product" class="theme-btn btn-style-one">مشاهده محصولات</a></div>
+                        <div class="link-box"><a href="/Product" class="theme-btn btn-style-one">@Localizer["ViewProducts"]</a></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!--End About Section -->
+
+
 <!-- Testimonial Section Two-->
 <section class="testimonial-section-two">
     <div class="auto-container">
         <div class="sec-title">
-            <span class="float-text">نظرات</span>
-            <h2>نظرات مشتریان</h2>
+            <span class="float-text">@Localizer["Testimonials"]</span>
+            <h2>@Localizer["CustomerTestimonials"]</h2>
         </div>
 
         <div class="testimonial-carousel-two owl-carousel owl-theme">
@@ -78,10 +77,9 @@
                 <div class="inner-box">
                     <div class="info-box">
                         <div class="thumb"><img src="/images/resource/thumb-2.jpg" alt=""></div>
-                        <h5 class="name"> مهندس <strong>امین آقاکبیری</strong></h5>
+                        <h5 class="name">مهندس <strong>امین آقاکبیری</strong></h5>
                     </div>
-                    <div class="text">خدمات عالی و تیم حرفه‌ای! شرکت ایده طرح فرزانگان در زمینه طراحی و ساخت ماشین‌آلات صنعتی بهترین است. من از همکاری با این تیم بسیار راضی هستم.</div>
-
+                    <div class="text">@Localizer["Testimonial1"]</div>
                 </div>
             </div>
 
@@ -90,89 +88,42 @@
                 <div class="inner-box">
                     <div class="info-box">
                         <div class="thumb"><img src="/images/resource/thumb-3.jpg" alt=""></div>
-                        <h5 class="name">مهندس <strong>مهدی شمس</strong> </h5>
-
+                        <h5 class="name">مهندس <strong>مهدی شمس</strong></h5>
                     </div>
-                    <div class="text">تجربه همکاری با شرکت ایده طرح فرزانگان برای من بسیار مثبت بوده است. این شرکت در تمامی زمینه‌های عمرانی و صنعتی بهترین خدمات را ارائه می‌دهد. همیشه به موقع و با کیفیت بالا، کارها را انجام می‌دهند.</div>
-
+                    <div class="text">@Localizer["Testimonial2"]</div>
                 </div>
-            </div>
-            <div class="testimonial-block-two">
-                <div class="inner-box">
-                    <div class="info-box">
-                        <div class="thumb"><img src="/images/resource/thumb-4.jpg" alt=""></div>
-                        <h5 class="name">مهندس <strong> ضیایی</strong> </h5>
-
-                    </div>
-                    <div class="text">بسیار خوشحالم که با این شرکت همکاری کردم. کیفیت کار و دقت تیم این شرکت در هر پروژه‌ای که انجام می‌دهند، واقعا بی‌نظیر است. بهترین انتخاب برای هر نوع پروژه صنعتی یا عمرانی.</div>
-
-                </div>
-            </div>
-            @*  <!-- Testimonial block two -->
-            <div class="testimonial-block-two">
-            <div class="inner-box">
-            <div class="info-box">
-            <div class="thumb"><img src="images/resource/thumb-2.jpg" alt=""></div>
-            <h5 class="name">رها ایمانی</h5>
-            </div>
-            <div class="text">آیسان با تراشکاری بسیار حرفه ای ودقیقی که دارد باعث شده از وقتی با این شرکت اشنا شدم فقط با آیسان کار کنم</div>
-
-            </div>
             </div>
 
             <!-- Testimonial block two -->
             <div class="testimonial-block-two">
-            <div class="inner-box">
-            <div class="info-box">
-            <div class="thumb"><img src="images/resource/thumb-3.jpg" alt=""></div>
-            <h5 class="name">زهرا بهرامی</h5>
+                <div class="inner-box">
+                    <div class="info-box">
+                        <div class="thumb"><img src="/images/resource/thumb-4.jpg" alt=""></div>
+                        <h5 class="name">مهندس <strong>ضیایی</strong></h5>
+                    </div>
+                    <div class="text">@Localizer["Testimonial3"]</div>
+                </div>
             </div>
-            <div class="text">آیسان با تراشکاری بسیار حرفه ای ودقیقی که دارد باعث شده از وقتی با این شرکت اشنا شدم فقط با آیسان کار کنم</div>
-
-            </div>
-            </div> *@
         </div>
     </div>
 </section>
 <!--End Testimonial Section Two-->
-@* <!--Clients Section-->
-<section class="clients-section style-two">
-    <div class="auto-container">
-        <div class="sponsors-outer">
-            <!--Sponsors Carousel-->
-            <ul class="sponsors-carousel owl-carousel owl-theme">
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/5.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/5.png" alt=""></a></figure></li>
-            </ul>
-        </div>
-    </div>
-</section>
-<!--End Clients Section--> *@
+
 <!-- Process Section -->
 <section class="process-section" style="background-image: url(images/background/8.jpg);">
     <div class="auto-container">
         <div class="sec-title light">
-            <span class="float-text">خدمات</span>
-            <h2>چرا شرکت ایده طرح فرزانگان رو انتخاب کنید ؟</h2>
+            <span class="float-text">@Localizer["Services"]</span>
+            <h2>@Localizer["WhyChooseUs"]</h2>
         </div>
         <div class="row">
             <!-- Process Block -->
             <div class="process-block col-lg-3 col-md-6 col-sm-12">
                 <div class="inner-box">
                     <span class="count">01</span>
-                    <h4><a href="/product">تولید حرفه ای</a></h4>
-                    <div class="text font-weight-bold">محصولاتی در کلاس جهانی، با پشتوانه دانش فنی و تیم متخصص.</div>
-                    <div class="text">
-                        ما با بهره‌گیری از کادری مجرب و علمی، محصولاتی دقیق و استاندارد جهانی تولید می‌کنیم تا نیازهای شما به بهترین شکل برآورده شود.
-                    </div>
+                    <h4><a href="/product">@Localizer["ProfessionalProduction"]</a></h4>
+                    <div class="text font-weight-bold">@Localizer["ProfessionalProductionDescBold"]</div>
+                    <div class="text">@Localizer["ProfessionalProductionDesc"]</div>
                 </div>
             </div>
 
@@ -180,11 +131,10 @@
             <div class="process-block col-lg-3 col-md-6 col-sm-12">
                 <div class="inner-box">
                     <span class="count">02</span>
-                    <h4><a href="/product">کیفیت بی‌نظیر</a></h4>
-                    <div class="text font-weight-bold">دوام و اطمینان با استفاده از بهترین متریال.</div>
-                    <div class="text">
-                        کیفیت برای ما یک اصل است. استفاده از مواد اولیه درجه یک، محصولات ما را بادوام و قابل اعتماد ساخته است.
-                    </div> <div class="link-box"><a href="/product">مشاهده محصولات</a></div>
+                    <h4><a href="/product">@Localizer["UnmatchedQuality"]</a></h4>
+                    <div class="text font-weight-bold">@Localizer["UnmatchedQualityDescBold"]</div>
+                    <div class="text">@Localizer["UnmatchedQualityDesc"]</div>
+                    <div class="link-box"><a href="/product">@Localizer["ViewProducts"]</a></div>
                 </div>
             </div>
 
@@ -192,11 +142,9 @@
             <div class="process-block col-lg-3 col-md-6 col-sm-12">
                 <div class="inner-box">
                     <span class="count">03</span>
-                    <h4><a href="/product">تنوع در تولید</a></h4>
-                    <div class="text font-weight-bold">پاسخگویی به نیازهای شما، بدون محدودیت.</div>
-                    <div class="text">
-                        ما به رضایت مشتریان متعهدیم. انواع محصولات متناسب با نیاز شما طراحی و تولید می‌شود تا انتخابی آسان و مطمئن داشته باشید.
-                    </div>
+                    <h4><a href="/product">@Localizer["DiverseProduction"]</a></h4>
+                    <div class="text font-weight-bold">@Localizer["DiverseProductionDescBold"]</div>
+                    <div class="text">@Localizer["DiverseProductionDesc"]</div>
                 </div>
             </div>
 
@@ -204,16 +152,12 @@
             <div class="process-block col-lg-3 col-md-6 col-sm-12">
                 <div class="inner-box">
                     <span class="count">04</span>
-                    <h4><a href="/product">فنی مهندسی</a></h4>
-                    <div class="text font-weight-bold">تجربه‌ای بی‌دغدغه با تعهد به زمان‌بندی.</div>
-                    <div class="text">
-                        تجربه بالا و دقت، تحویل سریع و به‌موقع محصولات را تضمین می‌کند. ما زمان شما را ارزشمند می‌دانیم.
-                    </div>
+                    <h4><a href="/product">@Localizer["Engineering"]</a></h4>
+                    <div class="text font-weight-bold">@Localizer["EngineeringDescBold"]</div>
+                    <div class="text">@Localizer["EngineeringDesc"]</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!--End Process Section -->
-<!-- Team Section -->
-<!--End Team Section -->
+<!-- End Process Section -->

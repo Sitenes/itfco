@@ -423,9 +423,6 @@
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
-  <data name="ViewProducts" xml:space="preserve">
-    <value>View More</value>
-  </data>
   <data name="SiteName" xml:space="preserve">
   <value>Ideh Tarh Farzanegan | itfgod.com</value>
 </data>
@@ -441,4 +438,77 @@
 <data name="IgnoreIfNotRequested" xml:space="preserve">
   <value>If you did not make this request, you can ignore this email.</value>
 </data>
+<data name="AboutUs" xml:space="preserve">
+  <value>About Us</value>
+</data>
+<data name="CompanyName" xml:space="preserve">
+  <value>Ideh Tarh Farzangan</value>
+</data>
+<data name="CompanyEstablished" xml:space="preserve">
+  <value>Ideh Tarh Farzangan Company was founded in 2010 and is engaged in the design and manufacture of industrial machinery and structures – design and construction of brick factories – construction of buildings – road and transportation – various civil installations and equipment, urban planning – manufacturing and supplying machine parts and industrial structures – participation in civil, commercial, economic, industrial, and production projects – import and export of all legal commercial goods – granting and obtaining agency representation from reputable domestic and foreign companies – obtaining loans and bank credits – participating in public and private tenders and auctions.</value>
+</data>
+<data name="ViewProducts" xml:space="preserve">
+  <value>View Products</value>
+</data>
+<data name="Testimonials" xml:space="preserve">
+  <value>Testimonials</value>
+</data>
+<data name="CustomerTestimonials" xml:space="preserve">
+  <value>Customer Feedback</value>
+</data>
+<data name="Testimonial1" xml:space="preserve">
+  <value>Excellent services and a professional team! Ideh Tarh Farzanegan Company is the best in the field of designing and manufacturing industrial machinery. I am very satisfied with this collaboration.</value>
+</data>
+<data name="Testimonial2" xml:space="preserve">
+  <value>Working with Ideh Tarh Farzanegan Company has been a very positive experience for me. This company offers the best services in all civil and industrial fields. Always on time and with high quality.</value>
+</data>
+<data name="Testimonial3" xml:space="preserve">
+  <value>I am very happy to have worked with this company. The quality and precision of their team in every project they do is truly exceptional. The best choice for any type of industrial or construction project.</value>
+</data>
+<data name="Services" xml:space="preserve">
+  <value>Services</value>
+</data>
+<data name="WhyChooseUs" xml:space="preserve">
+  <value>Why choose Ideh Tarh Farzanegan?</value>
+</data>
+<data name="ProfessionalProduction" xml:space="preserve">
+  <value>Professional Production</value>
+</data>
+<data name="ProfessionalProductionDescBold" xml:space="preserve">
+  <value>World-class products backed by technical knowledge and a specialized team.</value>
+</data>
+<data name="ProfessionalProductionDesc" xml:space="preserve">
+  <value>With an experienced and scientific team, we produce precise and globally standardized products to meet your needs in the best way.</value>
+</data>
+<data name="UnmatchedQuality" xml:space="preserve">
+  <value>Unmatched Quality</value>
+</data>
+<data name="UnmatchedQualityDescBold" xml:space="preserve">
+  <value>Durability and reliability using the best materials.</value>
+</data>
+<data name="UnmatchedQualityDesc" xml:space="preserve">
+  <value>Quality is a principle for us. Using top-grade raw materials makes our products durable and reliable.</value>
+</data>
+<data name="ViewProducts" xml:space="preserve">
+  <value>View Products</value>
+</data>
+<data name="DiverseProduction" xml:space="preserve">
+  <value>Diverse Production</value>
+</data>
+<data name="DiverseProductionDescBold" xml:space="preserve">
+  <value>Meeting your needs without limitation.</value>
+</data>
+<data name="DiverseProductionDesc" xml:space="preserve">
+  <value>We are committed to customer satisfaction. A variety of products are designed and produced based on your needs for an easy and confident choice.</value>
+</data>
+<data name="Engineering" xml:space="preserve">
+  <value>Engineering</value>
+</data>
+<data name="EngineeringDescBold" xml:space="preserve">
+  <value>Stress-free experience with on-time delivery commitment.</value>
+</data>
+<data name="EngineeringDesc" xml:space="preserve">
+  <value>With high experience and precision, we guarantee fast and on-time product delivery. We value your time.</value>
+</data>
+
 </root>
