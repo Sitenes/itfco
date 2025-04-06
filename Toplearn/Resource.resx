@@ -459,4 +459,20 @@
   <data name="Category" xml:space="preserve">
     <value>دسته بندی</value>
   </data>
+  <data name="SiteName" xml:space="preserve">
+  <value>ایده طرح فرزانگان | itfgod.com</value>
+</data>
+<data name="UserGreeting" xml:space="preserve">
+  <value>عزیز !</value>
+</data>
+<data name="PasswordResetInstruction" xml:space="preserve">
+  <value>جهت تغییر رمز عبور حساب کاربری خود در ایده طرح فرزانگان روی لینک زیر کلیک کنید</value>
+</data>
+<data name="ClickToChangePassword" xml:space="preserve">
+  <value>برای تغییر رمز عبور اینجا کلیک کنید</value>
+</data>
+<data name="IgnoreIfNotRequested" xml:space="preserve">
+  <value>در صورتی که شما این درخواست را نکرده‌اید می‌توانید این ایمیل را نادیده بگیرید .</value>
+</data>
+
 </root>

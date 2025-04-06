@@ -426,4 +426,19 @@
   <data name="ViewProducts" xml:space="preserve">
     <value>View More</value>
   </data>
+  <data name="SiteName" xml:space="preserve">
+  <value>Ideh Tarh Farzanegan | itfgod.com</value>
+</data>
+<data name="UserGreeting" xml:space="preserve">
+  <value>Dear !</value>
+</data>
+<data name="PasswordResetInstruction" xml:space="preserve">
+  <value>To change the password of your account on Ideh Tarh Farzanegan, click the link below</value>
+</data>
+<data name="ClickToChangePassword" xml:space="preserve">
+  <value>Click here to change your password</value>
+</data>
+<data name="IgnoreIfNotRequested" xml:space="preserve">
+  <value>If you did not make this request, you can ignore this email.</value>
+</data>
 </root>

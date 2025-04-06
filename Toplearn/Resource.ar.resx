@@ -399,4 +399,20 @@
   <data name="Category" xml:space="preserve">
     <value>قائمة_الفئات</value>
   </data>
+  <data name="SiteName" xml:space="preserve">
+  <value>ایده طرح فرزانگان | itfgod.com</value>
+</data>
+<data name="UserGreeting" xml:space="preserve">
+  <value>العزيز!</value>
+</data>
+<data name="PasswordResetInstruction" xml:space="preserve">
+  <value>لتغيير كلمة مرور حسابك في ایده طرح فرزانگان، انقر على الرابط أدناه</value>
+</data>
+<data name="ClickToChangePassword" xml:space="preserve">
+  <value>انقر هنا لتغيير كلمة المرور</value>
+</data>
+<data name="IgnoreIfNotRequested" xml:space="preserve">
+  <value>إذا لم تطلب هذا، يمكنك تجاهل هذا البريد الإلكتروني.</value>
+</data>
+
 </root>
