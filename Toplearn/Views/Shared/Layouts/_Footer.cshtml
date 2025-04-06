@@ -1,7 +1,10 @@
-﻿@using Toplearn.Core.Services
+﻿@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+@using Toplearn.Core.Services
 @using Toplearn.Core.Services.Interfaces
 @inject IBlogService _blogService
 @inject IUserService _userService
+
 @{
     Toplearn.DataLayer.Entities.User.User? _user = null;
     if (User.Identity?.IsAuthenticated == true)
@@ -20,23 +23,18 @@
         <!--Widgets Section-->
         <div class="widgets-section">
             <div>
-                <!--Big Column-->
                 <div class="big-column">
                     <div class="row">
-                        <!--Footer Column-->
+                        <!-- Footer Column: About & Map -->
                         <div class="footer-column col-lg-4 col-md-6 col-sm-12">
                             <div class="footer-widget about-widget">
                                 <div class="footer-logo">
                                     <figure>
-                                        <a href="/"><img class="logo" src="/images/footer-logo.png" alt="شرکت ایده طرح فرزانگان"></a>
-                                        <a href="/" class="text">
-                                            شرکت ایده طرح فرزانگان
-                                        </a>
+                                        <a href="/"><img class="logo" src="/images/footer-logo.png" alt="@Localizer["CompanyName"]"></a>
+                                        <a href="/" class="text">@Localizer["CompanyName"]</a>
                                     </figure>
                                 </div>
                                 <div class="widget-content">
-                                    <div>
-                                    </div>
                                     <div>
                                         @if (_user != null && _user.ShowMap)
                                         {
@@ -51,21 +49,19 @@
                             </div>
                         </div>
 
-                        <!--Footer Column-->
+                        <!-- Footer Column: Latest Posts -->
                         @{
                             var blogs = await _blogService.SearchAsync(new Toplearn.Core.DTOs.TeacherVM.BlogFilter
-            {
-                PageNumber = 1,
-                PageSize = 2,
-            });
+                            {
+                                PageNumber = 1,
+                                PageSize = 2,
+                            });
                         }
                         @if (blogs.Any())
                         {
                             <div class="footer-column col-lg-4 col-md-6 col-sm-12">
                                 <div class="footer-widget recent-posts">
-                                    <h2 class="widget-title">اخرین مقالات</h2>
-
-                                    <!--Footer Column-->
+                                    <h2 class="widget-title">@Localizer["LatestPosts"]</h2>
                                     <div class="widget-content">
                                         @foreach (var blog in blogs)
                                         {
@@ -82,78 +78,53 @@
                                             </div>
                                         }
                                     </div>
-
                                 </div>
                             </div>
                         }
+
+                        <!-- Footer Column: Quick Links -->
                         <div class="footer-column col-lg-4 col-md-6 col-sm-12">
-                            <div class=" clearfix">
-                                <div class="footer-column">
-                                    <div class="footer-widget links-widget">
-                                        <h2 class="widget-title">لینک های دسترسی سریع</h2>
-                                        <div class="widget-content">
-                                            <ul class="list">
-                                                <li class="current"><a href="/">خانه</a></li>
-                                                <li><a href="/Product">محصولات</a></li>
-                                                <li><a href="/UserPanel">داشبورد کاربری</a></li>
-                                                <li><a href="/blog/BlogList">وبلاگ</a></li>
-                                                <li><a href="/Home/AboutUs">درباره ما</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                            <div class="footer-widget links-widget">
+                                <h2 class="widget-title">@Localizer["QuickLinks"]</h2>
+                                <div class="widget-content">
+                                    <ul class="list">
+                                        <li class="current"><a href="/">@Localizer["Home"]</a></li>
+                                        <li><a href="/Product">@Localizer["Products"]</a></li>
+                                        <li><a href="/UserPanel">@Localizer["UserDashboard"]</a></li>
+                                        <li><a href="/blog/BlogList">@Localizer["Blog"]</a></li>
+                                        <li><a href="/Home/AboutUs">@Localizer["AboutUs"]</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 
-    <!--Footer Bottom-->
+    <!-- Footer Bottom -->
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="inner-container clearfix">
                 <div class="social-links">
                     <ul class="social-icon-two">
+                        <li><a href="https://wa.me/+989939910301/?text=" class="contact-info" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+                        <li><a href="https://t.me/Mehdi87mg" class="contact-info" target="_blank"><i class="fa fa-telegram"></i></a></li>
+                        <li><a href="https://www.facebook.com/share/17r9qoRfvv/" class="contact-info" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+                        <li><a href="https://instagram.com/itfco7" class="contact-info" target="_blank"><i class="fa fa-instagram"></i></a></li>
                         <li>
-                            <a href="https://wa.me/+989939910301/?text=" class="contact-info" target="_blank">
-                                <i class="fa fa-whatsapp"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://t.me/Mehdi87mg" class="contact-info" target="_blank">
-                                <i class="fa fa-telegram"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.facebook.com/share/17r9qoRfvv/" class="contact-info" target="_blank">
-                                <i class="fa fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://instagram.com/itfco7" class="contact-info" target="_blank">
-                                <i class="fa fa-instagram"></i>
-                            </a>
-                        </li>
-                        <li>
-
-                            <a href="tel:+989133073417" class="contact-info"
-                               style="font-family:sans-serif,'Franklin Gothic Medium', 'Arial Narrow', Arial">
+                            <a href="tel:+989133073417" class="contact-info" style="font-family:sans-serif,'Franklin Gothic Medium', 'Arial Narrow', Arial">
                                 989133073417+ <i class="fa fa-volume-control-phone contact-info"></i>
                             </a>
                         </li>
                         <li>
-
-                            <a href="mailto:golastani@gmail.com" class="contact-info"> golastani@gmail.com <i class="fa fa-envelope contact-info"></i></a>
+                            <a href="mailto:golastani@gmail.com" class="contact-info">golastani@gmail.com <i class="fa fa-envelope contact-info"></i></a>
                         </li>
                     </ul>
                 </div>
-
                 <div class="copyright-text">
-                    <a href="https://sitenes.ir">طراحی شده توسط پارسه آذین مبین</a>
+                    <a href="https://sitenes.ir">@Localizer["DesignedBy"]</a>
                 </div>
             </div>
         </div>

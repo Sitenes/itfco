@@ -1,4 +1,6 @@
-﻿@using Toplearn.DataLayer.Entities.Courses
+﻿@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+@using Toplearn.DataLayer.Entities.Courses
 @model Course
 
 @{
@@ -32,7 +34,7 @@
                                                 <span class="fa fa-star"></span>
                                             </div>
                                             @* <a class="reviews" href="#">( @(Model.CommentCount) Customer Reviews )</a> *@
-                                            <div class="item-price">@(Model.Price.ToString("0,000")) تومان</div>
+                                            <div class="item-price">@(Model.Price.ToString("0,000")) @Localizer["Tooman"]</div>
                                         </div>
 
                                         <div class="text">@(Model.ShortDescription)</div>

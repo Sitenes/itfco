@@ -507,5 +507,34 @@
 <data name="EngineeringDesc" xml:space="preserve">
   <value>نضمن تسليم المنتجات بسرعة وفي الوقت المحدد من خلال الخبرة العالية والدقة. نحن نُقدّر وقتكم.</value>
 </data>
-
+<data name="LatestPosts" xml:space="preserve">
+    <value>أحدث المقالات</value>
+  </data>
+  <data name="QuickLinks" xml:space="preserve">
+    <value>روابط الوصول السريع</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>المنتجات</value>
+  </data>
+  <data name="UserDashboard" xml:space="preserve">
+    <value>لوحة المستخدم</value>
+  </data>
+  <data name="Blog" xml:space="preserve">
+    <value>المدونة</value>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>معلومات عنا</value>
+  </data>
+  <data name="DesignedBy" xml:space="preserve">
+    <value>تم التصميم بواسطة شركة بیتا زر اندیش پارس</value>
+  </data>
+    <data name="ProductsTitle" xml:space="preserve">
+    <value>المنتجات</value>
+  </data>
+        <data name="Tooman" xml:space="preserve">
+    <value>دلار</value>
+  </data>
 </root>

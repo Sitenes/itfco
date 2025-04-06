@@ -510,5 +510,34 @@
 <data name="EngineeringDesc" xml:space="preserve">
   <value>With high experience and precision, we guarantee fast and on-time product delivery. We value your time.</value>
 </data>
-
+ <data name="LatestPosts" xml:space="preserve">
+    <value>Latest Posts</value>
+  </data>
+  <data name="QuickLinks" xml:space="preserve">
+    <value>Quick Access Links</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="UserDashboard" xml:space="preserve">
+    <value>User Dashboard</value>
+  </data>
+  <data name="Blog" xml:space="preserve">
+    <value>Blog</value>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="DesignedBy" xml:space="preserve">
+    <value>Designed by Bita Zar Andish Pars Company</value>
+  </data>
+    <data name="ProductsTitle" xml:space="preserve">
+    <value>Products</value>
+  </data>
+        <data name="Tooman" xml:space="preserve">
+    <value>Dollar</value>
+  </data>
 </root>

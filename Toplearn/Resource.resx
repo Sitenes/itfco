@@ -567,5 +567,34 @@
 <data name="EngineeringDesc" xml:space="preserve">
   <value>تجربه بالا و دقت، تحویل سریع و به‌موقع محصولات را تضمین می‌کند. ما زمان شما را ارزشمند می‌دانیم.</value>
 </data>
-
+ <data name="LatestPosts" xml:space="preserve">
+    <value>اخرین مقالات</value>
+  </data>
+  <data name="QuickLinks" xml:space="preserve">
+    <value>لینک های دسترسی سریع</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>خانه</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>محصولات</value>
+  </data>
+  <data name="UserDashboard" xml:space="preserve">
+    <value>داشبورد کاربری</value>
+  </data>
+  <data name="Blog" xml:space="preserve">
+    <value>وبلاگ</value>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>درباره ما</value>
+  </data>
+  <data name="DesignedBy" xml:space="preserve">
+    <value>طراحی شده توسط شرکت بیتا زر اندیش پارس</value>
+  </data>
+    <data name="ProductsTitle" xml:space="preserve">
+    <value>محصولات</value>
+  </data>
+      <data name="Tooman" xml:space="preserve">
+    <value>تومان</value>
+  </data>
 </root>
