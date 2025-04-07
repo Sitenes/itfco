@@ -4,6 +4,7 @@
 @using Toplearn.DataLayer.Entities.Blogs
 @using Toplearn.Web
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+@using Microsoft.AspNetCore.Localization
 @inject IUserService _userService
 @{
     ViewData["Title"] = "خانه";
@@ -80,14 +81,13 @@
             @for (int i = 0; i < Categories?.Count; i++)
             {
                 var title = Categories[i].NamePersian;
-                switch (ViewData["Culture"] as string)
+                if (currentCulture.StartsWith("en"))
                 {
-                    case "en":
-                        title = Categories[i].NameEnglish;
-                        break;
-                    case "ar":
-                        title = Categories[i].NameArabic;
-                        break;
+                    title = Categories[i].NameEnglish;
+                }
+                else if (currentCulture.StartsWith("ar"))
+                {
+                    title = Categories[i].NameArabic;
                 }
                 <div class="service-block-two">
                     <div class="inner-box">
@@ -318,37 +318,40 @@
 </section> *@
 <!--End Clients Section-->
 <!-- News Section -->
-<section class="news-section alternate">
-    <div class="auto-container">
-        <div class="sec-title">
-            <span class="float-text">@Localizer["Blog"]</span>
-            <h2>@Localizer["LatestNewsAndArticles"]</h2>
-        </div>
-        <div class="row">
-            @foreach (var blog in ViewData["Blogs"] as List<Blog>)
-            {
-                <!-- News Block -->
-                <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><img src="/BlogRoot/Image/@(blog.Image)" alt=""></figure>
-                            <div class="overlay-box"><a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })"><i class="fa fa-link"></i></a></div>
-                        </div>
-                        <div class="caption-box">
-                            <div class="inner">
-                                <h3>
-                                    <a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">@(blog.Title)</a>
-                                </h3>
-                                <span>@blog.ShortDescription</span>
-                                <ul class="info">
-                                    <li style="direction: ltr;">@(blog.CreateDate.ToString("yyyy MMM dd"))</li>
-                                    <li><a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">@blog.UserCreator.UserName</a></li>
-                                </ul>
+@if ((ViewData["Blogs"] as List<Blog>).Count > 0){
+    <section class="news-section alternate">
+        <div class="auto-container">
+            <div class="sec-title">
+                <span class="float-text">@Localizer["Blog"]</span>
+                <h2>@Localizer["LatestNewsAndArticles"]</h2>
+            </div>
+            <div class="row">
+                @foreach (var blog in ViewData["Blogs"] as List<Blog>)
+                {
+                    <!-- News Block -->
+                    <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image"><img src="/BlogRoot/Image/@(blog.Image)" alt=""></figure>
+                                <div class="overlay-box"><a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })"><i class="fa fa-link"></i></a></div>
+                            </div>
+                            <div class="caption-box">
+                                <div class="inner">
+                                    <h3>
+                                        <a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">@(blog.Title)</a>
+                                    </h3>
+                                    <span>@blog.ShortDescription</span>
+                                    <ul class="info">
+                                        <li style="direction: ltr;">@(blog.CreateDate.ToString("yyyy MMM dd"))</li>
+                                        <li><a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">@blog.UserCreator.UserName</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    }

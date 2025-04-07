@@ -7,12 +7,15 @@
 @using Toplearn.Web
 @using Toplearn.Web.Controllers
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+@using Microsoft.AspNetCore.Localization
 @{
     var groups = await _courseService.GetParentCategories();
     var nameIdentifier = User.FindFirstValue(ClaimTypes.NameIdentifier);
     int courseCount = 0;
     if (nameIdentifier != null)
         courseCount = await _cartService.CountProductInCartAsync(Guid.Parse(nameIdentifier));
+    var requestCultureFeature = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCultureFeature?.RequestCulture.Culture.Name ?? "fa";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -114,13 +117,20 @@
                                             <a href="/product">@Localizer["Category"]</a>
                                             <ul class="category">
 
-                                                @Html.Raw(RenderCategory(groups))
+                                                @Html.Raw(RenderCategory(groups, currentCulture))
+
                                                 @functions {
-                                                    private string RenderCategory(List<CourseGroup> categories)
+                                                    private string RenderCategory(List<CourseGroup> categories, string currentCulture)
                                                     {
                                                         StringBuilder sb = new StringBuilder();
                                                         foreach (var category in categories)
                                                         {
+                                                            string title = category.NamePersian;
+                                                            if (currentCulture.StartsWith("en"))
+                                                                title = category.NameEnglish;
+                                                            else if (currentCulture.StartsWith("ar"))
+                                                                title = category.NameArabic;
+
                                                             if (category.SubGroups != null && category.SubGroups.Any())
                                                             {
                                                                 sb.Append("<li class=\"dropdown\">");
@@ -129,14 +139,17 @@
                                                             {
                                                                 sb.Append("<li>");
                                                             }
-                                                            sb.Append($"<a href=\"/product?GroupId={category.GroupId}\">{category.NamePersian}</a>");
+
+                                                            sb.Append($"<a href=\"/product?GroupId={category.GroupId}\">{title}</a>");
+
                                                             if (category.SubGroups != null && category.SubGroups.Any())
                                                             {
                                                                 sb.Append("<ul>");
-                                                                sb.Append($"<a href=\"/product?GroupId={category.GroupId}\">{category.NamePersian}</a>");
-                                                                sb.Append(RenderCategory(category.SubGroups));
+                                                                sb.Append($"<a href=\"/product?GroupId={category.GroupId}\">{title}</a>");
+                                                                sb.Append(RenderCategory(category.SubGroups, currentCulture));
                                                                 sb.Append("</ul>");
                                                             }
+
                                                             sb.Append("</li>");
                                                         }
                                                         return sb.ToString();

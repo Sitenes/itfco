@@ -1,5 +1,9 @@
-﻿@using Toplearn.DataLayer.Entities.Courses
-<!-- main manu -->
+﻿@using System.Globalization
+@using Toplearn.DataLayer.Entities.Courses
+@{
+    var currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+}
+<!-- main menu -->
 @model IEnumerable<CourseGroup>
 
 <div class="main-menu">
@@ -7,22 +11,40 @@
         <nav>
             <span class="responsive-sign"><i class="zmdi zmdi-menu"></i></span>
             <ul>
-                @foreach (var groupItem in Model.Where(n=>n.ParentId==null).ToList())
+                @foreach (var groupItem in Model.Where(n => n.ParentId == null).ToList())
                 {
-                    <li>
-                        <a href=""> @(groupItem.NamePersian)</a>
-                        <ul>
-                            @foreach (var subGroupItem in Model.Where(n=>n.ParentId == groupItem.GroupId).ToList())
-                            {
-                                <li><a href=""> @(subGroupItem.NamePersian) </a></li>
-                            }
+                    var groupTitle = groupItem.NamePersian;
+                    if (currentCulture == "en")
+                    {
+                        groupTitle = groupItem.NameEnglish;
+                    }
+                    else if (currentCulture == "ar")
+                    {
+                        groupTitle = groupItem.NameArabic;
+                    }
 
+                    <li>
+                        <a href="">@groupTitle</a>
+                        <ul>
+                            @foreach (var subGroupItem in Model.Where(n => n.ParentId == groupItem.GroupId).ToList())
+                            {
+                                var subGroupTitle = subGroupItem.NamePersian;
+                                if (currentCulture == "en")
+                                {
+                                    subGroupTitle = subGroupItem.NameEnglish;
+                                }
+                                else if (currentCulture == "ar")
+                                {
+                                    subGroupTitle = subGroupItem.NameArabic;
+                                }
+
+                                <li><a href="">@subGroupTitle</a></li>
+                            }
                         </ul>
                     </li>
                 }
-              
             </ul>
         </nav>
     </div>
 </div>
-<!-- /main manu -->
+<!-- /main menu -->

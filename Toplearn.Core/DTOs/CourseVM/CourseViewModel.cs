@@ -22,6 +22,8 @@ namespace Toplearn.Core.DTOs.CourseVM
 
         public long Price { get; set; }//ملغ دوره
 
+        public double PriceDollar { get; set; }//ملغ دوره
+
         public string TeacherName { get; set; }
     }
 

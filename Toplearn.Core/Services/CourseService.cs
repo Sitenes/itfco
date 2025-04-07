@@ -225,7 +225,8 @@ namespace Toplearn.Core.Services
                 Image = n.Image,
                 NumberOfStudents = n.NumberOfStudents,
                 Price = n.Price,
-                TeacherName = n.UserCreator?.UserName ?? ""
+                TeacherName = n.UserCreator?.UserName ?? "",
+                PriceDollar = n.PriceDollar
             }).ToList();
         }
 

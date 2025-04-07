@@ -2,9 +2,11 @@
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
 @using Toplearn.DataLayer.Entities.Courses
 @model Course
+@using System.Globalization
 
 @{
     ViewData["Title"] = $"محصول {Model.Title}";
+    var currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 }
 
 <div class="container">
@@ -38,7 +40,7 @@
                                                 <span class="fa fa-star"></span>
                                             </div>
                                             <div class="item-price">
-                                                @(Model.Price.ToString("0,000")) @Localizer["Tooman"]
+                                                @(currentCulture == "fa" ? Model.Price.ToString("0,000") : Model.PriceDollar.ToString("0,000")) @Localizer["Tooman"]
                                             </div>
                                         </div>
 
@@ -59,7 +61,6 @@
                                 </div>
                             </div>
                             <!--End Basic Details-->
-
                             <!--Product Info Tabs-->
                             <div class="product-info-tabs">
                                 <div class="prod-tabs tabs-box">

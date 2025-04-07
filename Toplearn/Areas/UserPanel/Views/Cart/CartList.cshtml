@@ -2,9 +2,12 @@
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
 @using Toplearn.DataLayer.Entities.Courses;
 @model List<Cart>
+@using System.Globalization
 
 @{
     ViewData["Title"] = @Localizer["OrderList"];
+
+    var currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 }
 <main>
     <div class="container">
@@ -44,7 +47,7 @@
                                                             <tr class="gradeA odd">
                                                                 <td>@rowNum</td>
                                                                 <td>@courseItem.Id</td>
-                                                                <td class="center ">@courseItem.CourseCarts?.Sum(x => x.Course?.Price)</td>
+                                                                <td class="center ">@courseItem.CourseCarts?.Sum(x => currentCulture == "fa" ? x.Course?.Price : x.Course?.PriceDollar))</td>
                                                                 <td class="center ">@courseItem.CourseCarts?.Count()</td>
                                                                 <td class="center ">
                                                                     @if (courseItem.IsPaid)

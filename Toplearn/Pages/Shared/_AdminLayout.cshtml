@@ -273,14 +273,14 @@
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.Management, _userId))
 						{
 							<li>
-								<a href="/Admin/Index"><i class="zmdi zmdi-dashboard"></i>پنل مدیریت</a>
+								<a href="/Admin/Index"><i class="zmdi zmdi-dashboard"></i><span>پنل مدیریت</span></a>
 							</li>
 						}
 
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.UserManagement, _userId))
 						{
 							<li>
-								<a href=""><i class="zmdi zmdi-account-circle"></i>مدیریت کاربران<span class="fa arrow"></span></a>
+								<a href=""><span><i class="zmdi zmdi-account-circle"></i>مدیریت کاربران</span><i class="fa arrow"></i></a>
 								<ul class="nav nav-second-level">
 									<li><a href="/Admin/ManageUser/UserList?currentPage=1">لیست کاربران</a></li>
 									@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddUser, _userId).Result)
@@ -294,7 +294,7 @@
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.RoleManagement, _userId))
 						{
 							<li>
-								<a href=""><i class="zmdi zmdi-lock"></i>مدیریت نقش‌ها<span class="fa arrow"></span></a>
+								<a href=""><span><i class="zmdi zmdi-lock"></i>مدیریت نقش‌ها</span><i class="fa arrow"></i></a>
 								<ul class="nav nav-second-level">
 									<li><a href="/Admin/ManageRoles/Index">لیست نقش‌ها</a></li>
 									@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddRole, _userId).Result)
@@ -308,7 +308,7 @@
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CourseManagement, _userId))
 						{
 							<li>
-								<a href=""><i class="zmdi zmdi-book"></i>محصولات<span class="fa arrow"></span></a>
+								<a href=""><span><i class="zmdi zmdi-book"></i>محصولات</span><i class="fa arrow"></i></a>
 								<ul class="nav nav-second-level">
 									<li><a href="/Admin/Courses/Index">لیست محصولات</a></li>
 									@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddCourse, _userId))
@@ -326,7 +326,7 @@
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CategoryManagement, _userId))
 						{
 							<li>
-								<a href=""><i class="zmdi zmdi-labels"></i>دسته‌بندی‌ها<span class="fa arrow"></span></a>
+								<a href=""><span><i class="zmdi zmdi-labels"></i>دسته‌بندی‌ها</span><i class="fa arrow"></i></a>
 								<ul class="nav nav-second-level">
 									<li><a href="/Admin/ManageCategories/Index">لیست دسته‌بندی‌ها</a></li>
 									@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddCategory, _userId))
@@ -340,7 +340,7 @@
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CartManagement, _userId))
 						{
 							<li>
-								<a href=""><i class="zmdi zmdi-shopping-cart"></i>سفارشات<span class="fa arrow"></span></a>
+								<a href=""><span><i class="zmdi zmdi-shopping-cart"></i>سفارشات</span><i class="fa arrow"></i></a>
 								<ul class="nav nav-second-level">
 									<li><a href="/Admin/Wallets/Index">لیست سفارشات</a></li>
 								</ul>
@@ -350,7 +350,7 @@
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.BlogManagement, _userId))
 						{
 							<li>
-								<a href=""><i class="zmdi zmdi-comment-alt-text"></i>وبلاگ<span class="fa arrow"></span></a>
+								<a href=""><span><i class="zmdi zmdi-comment-alt-text"></i>وبلاگ</span><i class="fa arrow"></i></a>
 								<ul class="nav nav-second-level">
 									<li><a href="/Admin/Blogs/BlogList">لیست مقالات</a></li>
 									@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddBlog, _userId))
@@ -364,12 +364,13 @@
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.Setting, _userId))
 						{
 							<li>
-								<a href="/Admin/Settings"><i class="zmdi zmdi-settings"></i>تنظیمات</a>
+								<a href="/Admin/Settings"><i class="zmdi zmdi-settings"></i><span>تنظیمات</span></a>
 							</li>
 						}
 					</ul>
 				</div>
 			</div>
+
 
 			<!-- /.navbar-static-side -->
 		</nav>

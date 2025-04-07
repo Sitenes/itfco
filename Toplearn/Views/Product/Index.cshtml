@@ -2,9 +2,10 @@
 @model IEnumerable<CourseListAdminViewModel>
 @using Toplearn.Web
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
-
+@using System.Globalization
 @{
     ViewData["Title"] = @Localizer["ProductsTitle"];
+    var currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 }
 
 <div class="container">
@@ -33,7 +34,7 @@
                                         </div>
                                         <div class="lower-content">
                                             <h3><a href="/product/@(product.CourseId)">@(product.CourseTitle)</a></h3>
-                                            <div class="price">@* <span class="discount">$15.00</span> *@ @(product.Price.ToString("#,###")) <span>@Localizer["Tooman"]</span></div>
+                                            <div class="price">@* <span class="discount">$15.00</span> *@ @(currentCulture == "fa" ? product.Price.ToString("0,000") : product.PriceDollar.ToString("0,000")) @Localizer["Tooman"] <span>@Localizer["Tooman"]</span></div>
                                             <div class="clearfix">
                                                 <div class="pull-left">
                                                     <a class="add-cart" href="/UserPanel/Cart?productId=@(product.CourseId)"><span class="fa fa-cart-plus"></span>@Localizer["AddToCart"]</a>

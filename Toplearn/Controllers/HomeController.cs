@@ -42,7 +42,7 @@ namespace Toplearn.Web.Controllers
                     ViewData["Logout"] = true;
                     break;
             }
-            ViewData["Culture"] = Request.Query["Culture"].ToString();
+            ViewData["Culture"] = Request.Cookies["Culture"] ?? "fa";
             ViewData["ProductCount"] = await _courseService.CountCourses();
             ViewData["Category"] = await _courseService.GetParentCourseGroups();
 
