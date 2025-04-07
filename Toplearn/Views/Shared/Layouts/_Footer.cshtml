@@ -38,11 +38,11 @@
                                     <div>
                                         @if (_user != null && _user.ShowMap)
                                         {
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.4589170029935!2d51.83201411124869!3d32.70043108778636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fbc4f005725d1c5%3A0xb61ba2465c133717!2z2KLYrNix2YbZhdinINqv2YTYs9iq2KfZhtuM!5e0!3m2!1sen!2s!4v1734658830565!5m2!1sen!2s" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.4589170029935!2d51.83201411124869!3d32.70043108778636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fbc4f005725d1c5%3A0xb61ba2465c133717!2z2KLYrNix2YbZhdinINqv2YTYs9iq2KfZhtuM!5e0!3m2!1sen!2s!4v1734658830565!5m2!1sen!2s" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                         }
                                         else
                                         {
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d188620.34312208623!2d51.835177380857715!3d32.66278909005366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fbc35fe8c326799%3A0x7ab57816ef5837f5!2z2KfYtdmB2YfYp9mG2Iwg2KfYs9iq2KfZhiDYp9i12YHZh9in2YbYjCDYp9uM2LHYp9mG!5e0!3m2!1sfa!2s!4v1738617191535!5m2!1sfa!2s" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d188620.34312208623!2d51.835177380857715!3d32.66278909005366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fbc35fe8c326799%3A0x7ab57816ef5837f5!2z2KfYtdmB2YfYp9mG2Iwg2KfYs9iq2KfZhiDYp9i12YHZh9in2YbYjCDYp9uM2LHYp9mG!5e0!3m2!1sfa!2s!4v1738617191535!5m2!1sfa!2s" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                         }
                                     </div>
                                 </div>
@@ -52,34 +52,34 @@
                         <!-- Footer Column: Latest Posts -->
                         @{
                             var blogs = await _blogService.SearchAsync(new Toplearn.Core.DTOs.TeacherVM.BlogFilter
-                            {
-                                PageNumber = 1,
-                                PageSize = 2,
-                            });
+            {
+                PageNumber = 1,
+                PageSize = 2,
+            });
                         }
                         @if (blogs.Any())
                         {
-                            <div class="footer-column col-lg-4 col-md-6 col-sm-12">
-                                <div class="footer-widget recent-posts">
-                                    <h2 class="widget-title">@Localizer["LatestPosts"]</h2>
-                                    <div class="widget-content">
+                                <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+                                    <div class="footer-widget recent-posts">
+                                        <h2 class="widget-title">@Localizer["LatestPosts"]</h2>
+                                        <div class="widget-content">
                                         @foreach (var blog in blogs)
                                         {
-                                            <div class="post">
-                                                <div class="thumb">
-                                                    <a href="/Blog/BlogDetail/@blog.Id">
-                                                        <img src="/BlogRoot/ThumbImage/@blog.Image" alt="@blog.Title">
-                                                    </a>
-                                                </div>
-                                                <h4><a href="/Blog/BlogDetail/@blog.Id">@blog.Title</a></h4>
-                                                <ul class="info">
-                                                    <li style="direction:ltr">@blog.CreateDate.ToString("yyyy MMM dd")</li>
-                                                </ul>
-                                            </div>
+                                                    <div class="post">
+                                                        <div class="thumb">
+                                                            <a href="/Blog/BlogDetail/@blog.Id">
+                                                                <img src="/BlogRoot/ThumbImage/@blog.Image" alt="@blog.Title">
+                                                            </a>
+                                                        </div>
+                                                        <h4><a href="/Blog/BlogDetail/@blog.Id">@blog.Title</a></h4>
+                                                        <ul class="info">
+                                                            <li style="direction:ltr">@blog.CreateDate.ToString("yyyy MMM dd")</li>
+                                                        </ul>
+                                                    </div>
                                         }
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         }
 
                         <!-- Footer Column: Quick Links -->

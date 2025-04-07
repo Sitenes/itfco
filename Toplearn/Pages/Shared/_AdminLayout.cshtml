@@ -18,6 +18,9 @@
 	<!-- SB Admin CSS - Include with every page -->
 	<link href="/AdminRoot/css/sb-admin.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+	<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+	<link rel="icon" href="/images/favicon.png" type="image/x-icon">
 	@RenderSection("Heads", false)
 </head>
 
@@ -258,141 +261,116 @@
 					<ul class="nav" id="side-menu">
 						<li class="sidebar-search">
 							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" placeholder="Search...">
+								<input type="text" class="form-control" placeholder="جستجو...">
 								<span class="input-group-btn">
 									<button class="btn btn-default" type="button">
-										<i class="fa fa-search"></i>
+										<i class="zmdi zmdi-search"></i>
 									</button>
 								</span>
 							</div>
-							<!-- /input-group -->
 						</li>
+
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.Management, _userId))
 						{
 							<li>
-								<a href="/Admin/Index"><i class="fa fa-dashboard fa-fw"></i>پنل مدیریت</a>
+								<a href="/Admin/Index"><i class="zmdi zmdi-dashboard"></i>پنل مدیریت</a>
 							</li>
 						}
+
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.UserManagement, _userId))
 						{
 							<li>
-								<a href=""><i class="fa fa-bar-chart-o fa-fw"></i>مدیریت کاربران<span class="fa arrow"></span></a>
+								<a href=""><i class="zmdi zmdi-account-circle"></i>مدیریت کاربران<span class="fa arrow"></span></a>
 								<ul class="nav nav-second-level">
-									<li>
-										<a href="/Admin/ManageUser/UserList?currentPage=1">لیست کاربران</a>
-									</li>
+									<li><a href="/Admin/ManageUser/UserList?currentPage=1">لیست کاربران</a></li>
 									@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddUser, _userId).Result)
 									{
-										<li>
-											<a href="/Admin/ManageUsers/AddUser">افزودن کاربر جدید</a>
-										</li>
+										<li><a href="/Admin/ManageUsers/AddUser">افزودن کاربر جدید</a></li>
 									}
 								</ul>
-								<!-- /.nav-second-level -->
 							</li>
 						}
+
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.RoleManagement, _userId))
 						{
 							<li>
-								<a href="/Admin/ManageRoles/Index"><i class="fa fa-bar-chart-o fa-fw"></i>نقش  ها<span class="fa arrow"></span></a>
-								<ul class="nav nav-third-level">
-									<li>
-										<a href="/Admin/ManageRoles/Index">لیست نقش ها</a>
-									</li>
+								<a href=""><i class="zmdi zmdi-lock"></i>مدیریت نقش‌ها<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li><a href="/Admin/ManageRoles/Index">لیست نقش‌ها</a></li>
 									@if (_permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddRole, _userId).Result)
 									{
-										<li>
-											<a href="/Admin/ManageRoles/Create">افزودن نقش جدید</a>
-										</li>
+										<li><a href="/Admin/ManageRoles/Create">افزودن نقش جدید</a></li>
 									}
 								</ul>
 							</li>
 						}
+
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CourseManagement, _userId))
 						{
 							<li>
-								<a href="/Admin/ManageRoles/Index"><i class="fa fa-bar-chart-o fa-fw"></i>محصولات<span class="fa arrow"></span></a>
-								<ul class="nav nav-third-level">
-									<li>
-										<a href="/Admin/Courses/Index">لیست محصولات</a>
-									</li>
+								<a href=""><i class="zmdi zmdi-book"></i>محصولات<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li><a href="/Admin/Courses/Index">لیست محصولات</a></li>
 									@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddCourse, _userId))
 									{
-										<li>
-											<a href="/Admin/Courses/Create">افزودن محصول جدید</a>
-										</li>
+										<li><a href="/Admin/Courses/Create">افزودن محصول جدید</a></li>
 									}
 									@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddCourse, _userId))
 									{
-										<li>
-											<a href="/Admin/Courses/Discount">کد تخفیف</a>
-										</li>
+										<li><a href="/Admin/Courses/Discount">کد تخفیف</a></li>
 									}
 								</ul>
 							</li>
 						}
+
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CategoryManagement, _userId))
 						{
 							<li>
-								<a href="/Admin/ManageRoles/Index"><i class="fa fa-bar-chart-o fa-fw"></i>دسته بندی ها<span class="fa arrow"></span></a>
-								<ul class="nav nav-third-level">
-									<li>
-										<a href="/Admin/ManageCategories/Index">لیست دسته بندی ها</a>
-									</li>
+								<a href=""><i class="zmdi zmdi-labels"></i>دسته‌بندی‌ها<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li><a href="/Admin/ManageCategories/Index">لیست دسته‌بندی‌ها</a></li>
 									@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddCategory, _userId))
 									{
-										<li>
-											<a href="/Admin/ManageCategories/Create">افزودن دسته بندی جدید</a>
-										</li>
+										<li><a href="/Admin/ManageCategories/Create">افزودن دسته‌بندی جدید</a></li>
 									}
 								</ul>
 							</li>
 						}
+
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.CartManagement, _userId))
 						{
 							<li>
-								<a href="/Admin/ManageRoles/Index"><i class="fa fa-bar-chart-o fa-fw"></i>سفارشات<span class="fa arrow"></span></a>
-								<ul class="nav nav-third-level">
-									<li>
-										<a href="/Admin/Wallets/Index">لیست سفارشات</a>
-									</li>
-									@* @if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddCategory, _userId))
-									{
-										<li>
-											<a href="/Admin/ManageCategories/Create">افزودن دسته بندی جدید</a>
-										</li>
-									} *@
+								<a href=""><i class="zmdi zmdi-shopping-cart"></i>سفارشات<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li><a href="/Admin/Wallets/Index">لیست سفارشات</a></li>
 								</ul>
 							</li>
 						}
+
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.BlogManagement, _userId))
 						{
 							<li>
-								<a href="/Admin/Blogs/BlogList"><i class="fa fa-bar-chart-o fa-fw"></i> وبلاگ <span class="fa arrow"></span></a>
-								<ul class="nav nav-third-level">
-									<li>
-										<a href="/Admin/Blogs/BlogList">لیست مقالات</a>
-									</li>
+								<a href=""><i class="zmdi zmdi-comment-alt-text"></i>وبلاگ<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li><a href="/Admin/Blogs/BlogList">لیست مقالات</a></li>
 									@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.AddBlog, _userId))
 									{
-										<li>
-											<a href="/Admin/Blogs/Edit">افزودن مقاله جدید</a>
-										</li>
+										<li><a href="/Admin/Blogs/Edit">افزودن مقاله جدید</a></li>
 									}
 								</ul>
 							</li>
 						}
+
 						@if (await _permission.CheckPermission(Toplearn.Core.AllEnums.PermissionEnum.Setting, _userId))
 						{
 							<li>
-								<a href="/Admin/Settings"><i class="fa fa-gear fa-fw"></i> تنظیمات </a>
+								<a href="/Admin/Settings"><i class="zmdi zmdi-settings"></i>تنظیمات</a>
 							</li>
 						}
 					</ul>
-					<!-- /#side-menu -->
 				</div>
-				<!-- /.sidebar-collapse -->
 			</div>
+
 			<!-- /.navbar-static-side -->
 		</nav>
 
