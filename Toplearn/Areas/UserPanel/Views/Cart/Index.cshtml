@@ -1,7 +1,10 @@
-﻿@model Toplearn.DataLayer.Entities.Courses.Cart
+﻿@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+
+@model Toplearn.DataLayer.Entities.Courses.Cart
 @using Toplearn.Core.Convertors
 @{
-    ViewData["Title"] = "سبد خرید ";
+    ViewData["Title"] = Localizer["Cart"];
 }
 
 <!--Cart Section-->
@@ -13,17 +16,18 @@
                 <table class="cart-table">
                     <thead class="cart-header">
                         <tr>
-                            <th>Preview</th>
-                            <th class="prod-column">product</th>
-                            <th class="price">Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
+                            <th>@Localizer["Preview"]</th>
+                            <th class="prod-column">@Localizer["Product"]</th>
+                            <th class="price">@Localizer["Price"]</th>
+                            <th>@Localizer["Quantity"]</th>
+                            <th>@Localizer["Total"]</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (Model.CourseCarts != null)
-                            @foreach (var product in Model.CourseCarts)
+                        {
+                            foreach (var product in Model.CourseCarts)
                             {
                                 <tr>
                                     <td class="prod-column">
@@ -38,29 +42,33 @@
                                     <td><a href="/api/Cart/RemoveProductByUser/@(product.CourseId)/@(Model.Id)" class="remove-btn"><span class="fa fa-2x fa-remove"></span></a></td>
                                 </tr>
                             }
+                        }
                     </tbody>
                 </table>
             </div>
-
-
         </div>
 
         <div class="row justify-content-between">
-            
             <div class="column pull-right col-lg-12 col-md-12 col-sm-12">
                 <!--Totals Table-->
                 <ul class="totals-table">
-                    <li><h3>Cart Totals</h3></li>
+                    <li><h3>@Localizer["CartTotals"]</h3></li>
                     @if (Model.CourseCarts != null)
                     {
-                        <li class="clearfix total"><span class="col">Total with out discount</span><span class="col price">@(Model.GetPrice(false).ToString("#,###")) تومان</span></li>
-                        <li class="clearfix total"><span class="col">Total</span><span class="col price">@(Model.GetPriceWithDiscount(false).ToString("#,###")) تومان</span></li>
+                        <li class="clearfix total">
+                            <span class="col">@Localizer["TotalWithoutDiscount"]</span>
+                            <span class="col price">@(Model.GetPrice(false).ToString("#,###")) @Localizer["Tooman"]</span>
+                        </li>
+                        <li class="clearfix total">
+                            <span class="col">@Localizer["TotalWithDiscount"]</span>
+                            <span class="col price">@(Model.GetPriceWithDiscount(false).ToString("#,###")) @Localizer["Tooman"]</span>
+                        </li>
                         <li class="text-right row">
-                            <div class=" col-md-6  col-lg-6 col-sm-12">
-                                <a href="/Userpanel/Cart/Checkout" class="theme-btn proceed-btn">Proceed to Checkout</a>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <a href="/Userpanel/Cart/Checkout" class="theme-btn proceed-btn">@Localizer["ProceedToCheckout"]</a>
                             </div>
-                            <div class=" col-md-6  col-lg-6 col-sm-12">
-                                <a href="/product" class="pull-left theme-btn proceed-btn">View other products</a>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <a href="/product" class="pull-left theme-btn proceed-btn">@Localizer["ViewOtherProducts"]</a>
                             </div>
                             <div class="clearfix col-sm-12" style="display:flex;justify-content:center;margin-top:30px;">
                                 <div class="">
@@ -68,31 +76,24 @@
                                         <form asp-action="ApplyCoupon" method="post">
                                             <input type="hidden" name="cartId" value="@Model.Id">
                                             <div class="form-group clearfix">
-                                                <input type="text" name="code" value="" placeholder="Coupon Code">
+                                                <input type="text" name="code" value="" placeholder="@Localizer["CouponCode"]">
                                                 @if (ViewData["codeSuccess"] as bool? == true)
                                                 {
-                                                    <h3 class="badge badge-success text-light">کد تخفیف با موفقیت اعمال شد !</h3>
+                                                    <h3 class="badge badge-success text-light">@Localizer["CouponAppliedSuccess"]</h3>
                                                 }
                                                 else if (ViewData["codeSuccess"] as bool? == false)
                                                 {
-                                                    <h3 class="badge badge-danger  text-light">کد تخفیف معتبر نمی باشد</h3>
+                                                    <h3 class="badge badge-danger text-light">@Localizer["CouponInvalid"]</h3>
                                                 }
                                             </div>
                                             <div class="form-group clearfix">
-                                                <button type="submit" class="theme-btn coupon-btn">Apply Coupon</button>
+                                                <button type="submit" class="theme-btn coupon-btn">@Localizer["ApplyCoupon"]</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-
-                                @*  <div class="pull-right">
-                            <button type="button" class="theme-btn cart-btn">update cart</button>
-                            </div> *@
                             </div>
-
                         </li>
-
-
                     }
                 </ul>
             </div>

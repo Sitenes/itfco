@@ -576,4 +576,61 @@
   <data name="WalletLabel" xml:space="preserve">
     <value>رصيد المحفظة</value>
   </data>
+  <data name="EditProfileTitle" xml:space="preserve">
+    <value>تعديل الملف الشخصي</value>
+  </data>
+  <data name="EditAccountHeader" xml:space="preserve">
+    <value>تعديل الحساب</value>
+  </data>
+  <data name="UserNamePlaceholder" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="EmailPlaceholder" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+  </data>
+  <data name="PhonePlaceholder" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="ProfilePicture" xml:space="preserve">
+    <value>صورة الملف الشخصي</value>
+  </data>
+  <data name="EditButton" xml:space="preserve">
+    <value>تحديث المعلومات</value>
+  </data>
+  <data name="ImageFormatAlert" xml:space="preserve">
+    <value>يمكنك فقط اختيار صور بصيغ .jpg .jpeg .gif .png!</value>
+  </data>
+  <data name="ChangePasswordTitle" xml:space="preserve">
+    <value>تغيير كلمة المرور</value>
+  </data>
+  <data name="ChangePasswordHeader" xml:space="preserve">
+    <value>تغيير كلمة مرور الحساب</value>
+  </data>
+  <data name="OldPasswordPlaceholder" xml:space="preserve">
+    <value>كلمة المرور الحالية</value>
+  </data>
+  <data name="NewPasswordPlaceholder" xml:space="preserve">
+    <value>كلمة المرور الجديدة</value>
+  </data>
+  <data name="RepeatPasswordPlaceholder" xml:space="preserve">
+    <value>تكرار كلمة المرور الجديدة</value>
+  </data>
+  <data name="SubmitChangesButton" xml:space="preserve">
+    <value>حفظ التغييرات</value>
+  </data>
+  <data name="Preview" xml:space="preserve"><value>معاينة</value></data>
+<data name="Product" xml:space="preserve"><value>المنتج</value></data>
+<data name="Price" xml:space="preserve"><value>السعر</value></data>
+<data name="Quantity" xml:space="preserve"><value>الكمية</value></data>
+<data name="Total" xml:space="preserve"><value>الإجمالي</value></data>
+<data name="CartTotals" xml:space="preserve"><value>إجمالي السلة</value></data>
+<data name="TotalWithoutDiscount" xml:space="preserve"><value>الإجمالي بدون خصم</value></data>
+<data name="TotalWithDiscount" xml:space="preserve"><value>الإجمالي النهائي</value></data>
+<data name="ProceedToCheckout" xml:space="preserve"><value>المتابعة إلى الدفع</value></data>
+<data name="ViewOtherProducts" xml:space="preserve"><value>عرض المنتجات الأخرى</value></data>
+<data name="CouponCode" xml:space="preserve"><value>رمز القسيمة</value></data>
+<data name="ApplyCoupon" xml:space="preserve"><value>تطبيق القسيمة</value></data>
+<data name="CouponAppliedSuccess" xml:space="preserve"><value>تم تطبيق القسيمة بنجاح!</value></data>
+<data name="CouponInvalid" xml:space="preserve"><value>رمز القسيمة غير صالح</value></data>
+
 </root>

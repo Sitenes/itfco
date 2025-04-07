@@ -640,5 +640,62 @@
   <data name="WalletLabel" xml:space="preserve">
     <value>موجودی کیف پول</value>
   </data>
+<data name="EditProfileTitle" xml:space="preserve">
+    <value>ویرایش پروفایل</value>
+  </data>
+  <data name="EditAccountHeader" xml:space="preserve">
+    <value>ویرایش حساب کاربری</value>
+  </data>
+  <data name="UserNamePlaceholder" xml:space="preserve">
+    <value>نام کاربری</value>
+  </data>
+  <data name="EmailPlaceholder" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="PhonePlaceholder" xml:space="preserve">
+    <value>شماره تلفن</value>
+  </data>
+  <data name="ProfilePicture" xml:space="preserve">
+    <value>عکس پروفایل</value>
+  </data>
+  <data name="EditButton" xml:space="preserve">
+    <value>ویرایش اطلاعات</value>
+  </data>
+  <data name="ImageFormatAlert" xml:space="preserve">
+    <value>شما فقط مجاز به انتخاب عکس با فرمت .jpg .jepg .gif .png هستید!</value>
+  </data>
+   <data name="ChangePasswordTitle" xml:space="preserve">
+    <value>تغییر رمز عبور</value>
+  </data>
+  <data name="ChangePasswordHeader" xml:space="preserve">
+    <value>تغییر رمز عبور حساب کاربری</value>
+  </data>
+  <data name="OldPasswordPlaceholder" xml:space="preserve">
+    <value>رمز عبور فعلی</value>
+  </data>
+  <data name="NewPasswordPlaceholder" xml:space="preserve">
+    <value>رمز عبور جدید</value>
+  </data>
+  <data name="RepeatPasswordPlaceholder" xml:space="preserve">
+    <value>تکرار رمز عبور جدید</value>
+  </data>
+  <data name="SubmitChangesButton" xml:space="preserve">
+    <value>ثبت تغییرات</value>
+  </data>
+<data name="Preview" xml:space="preserve"><value>پیش‌نمایش</value></data>
+<data name="Product" xml:space="preserve"><value>محصول</value></data>
+<data name="Price" xml:space="preserve"><value>قیمت</value></data>
+<data name="Quantity" xml:space="preserve"><value>تعداد</value></data>
+<data name="Total" xml:space="preserve"><value>جمع کل</value></data>
+<data name="CartTotals" xml:space="preserve"><value>مجموع سبد خرید</value></data>
+<data name="TotalWithoutDiscount" xml:space="preserve"><value>جمع بدون تخفیف</value></data>
+<data name="TotalWithDiscount" xml:space="preserve"><value>جمع نهایی</value></data>
+<data name="ProceedToCheckout" xml:space="preserve"><value>ادامه جهت پرداخت</value></data>
+<data name="ViewOtherProducts" xml:space="preserve"><value>مشاهده سایر محصولات</value></data>
+<data name="CouponCode" xml:space="preserve"><value>کد تخفیف</value></data>
+<data name="ApplyCoupon" xml:space="preserve"><value>ثبت کد تخفیف</value></data>
+<data name="CouponAppliedSuccess" xml:space="preserve"><value>کد تخفیف با موفقیت اعمال شد !</value></data>
+<data name="CouponInvalid" xml:space="preserve"><value>کد تخفیف معتبر نمی‌باشد</value></data>
+
 
 </root>

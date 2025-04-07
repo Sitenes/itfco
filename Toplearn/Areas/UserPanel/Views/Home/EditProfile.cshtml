@@ -1,9 +1,14 @@
-﻿@model EditProfileViewModel
+﻿@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+@model EditProfileViewModel
+
 @{
-    ViewData["Title"] = "ویرایش پروفایل";
+    ViewData["Title"] = @Localizer["EditProfileTitle"];
 }
-@if (ViewData["EmailChanged"] != null && (bool)ViewData["EmailChanged"] == true){
-    <partial name="Partials/_LoginAgainModalPartial" model="new EmailOnlyViewModel{Email = Model.Email}"/>
+
+@if (ViewData["EmailChanged"] != null && (bool)ViewData["EmailChanged"] == true)
+{
+    <partial name="Partials/_LoginAgainModalPartial" model="new EmailOnlyViewModel{Email = Model.Email}" />
     <script>
         $(document).ready(function () {
             setTimeout(function () { location.replace("/Logout"); }, 10000);
@@ -12,22 +17,13 @@
 }
 @if (ViewData["IsSucceed"] != null && (bool)ViewData["IsSucceed"] == true)
 {
-    <partial name="Partials/_ChangesAppliedModalPartial" model="new EmailOnlyViewModel{Email = Model.Email}"/>
+    <partial name="Partials/_ChangesAppliedModalPartial" model="new EmailOnlyViewModel{Email = Model.Email}" />
     <script>
         $(document).ready(function () {
             setTimeout(function () { location.replace("/UserPanel"); }, 6000);
         });
     </script>
 }
-@* <div class="container">
-    <nav aria-label="breadcrumb">
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">خانه </a></li>
-            <li class="breadcrumb-item active" aria-current="page"> پنل کاربری </li>
-        </ul>
-    </nav>
-</div> *@
-
 
 <main>
     <div class="container">
@@ -36,24 +32,23 @@
                 <partial name="SideBarPartial" model="@(new SideBarAvatarViewModel(){UserAvatar = Model.UserAvatar,UserName = Model.UserName})" />
                 <div class="col-md-9 col-sm-8 col-xs-12">
                     <section class="user-account-content">
-                        <header><h1> ویرایش حساب کاربری </h1></header>
+                        <header><h1>@Localizer["EditAccountHeader"]</h1></header>
                         <div class="inner form-layer">
                             <form action="Edit" method="Post" enctype="multipart/form-data">
-
                                 <div class="row">
 
                                     <div class="col-md-7 col-sm-8 col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon" id="username"><i class="zmdi zmdi-account"></i></span>
-                                            <input type="text" class="form-control" asp-for="UserName" placeholder="نام کاربری" aria-describedby="username">
+                                            <input type="text" class="form-control" asp-for="UserName" placeholder="@Localizer["UserNamePlaceholder"]" aria-describedby="username">
                                         </div>
                                         <span asp-validation-for="UserName" class="text-danger"></span>
                                     </div>
-                                    
+
                                     <div class="col-md-7 col-sm-8 col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon" id="email-address"><i class="zmdi zmdi-email"></i></span>
-                                            <input type="email" class="form-control" asp-for="Email" placeholder="ایمیل" aria-describedby="email-address">
+                                            <input type="email" class="form-control" asp-for="Email" placeholder="@Localizer["EmailPlaceholder"]" aria-describedby="email-address">
                                         </div>
                                         <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
@@ -61,7 +56,7 @@
                                     <div class="col-md-7 col-sm-8 col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon" id="phone"><i class="zmdi zmdi-phone"></i></span>
-                                            <input type="number" class="form-control" asp-for="Phone" placeholder="شماره تلفن" aria-describedby="phone-number">
+                                            <input type="number" class="form-control" asp-for="Phone" placeholder="@Localizer["PhonePlaceholder"]" aria-describedby="phone-number">
                                         </div>
                                         <span asp-validation-for="Phone" class="text-danger"></span>
                                     </div>
@@ -75,20 +70,17 @@
                                     <div class="col-md-7 col-sm-8 col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon" id="profile-avatar"><i class="zmdi zmdi-image"></i></span>
-                                            <input id="fileName" onchange="validateFileType()" accept=" .png, .jpg, .jpeg, .gif" asp-for="NewAvatar" class="form-control" >
+                                            <input id="fileName" onchange="validateFileType()" accept=".png, .jpg, .jpeg, .gif" asp-for="NewAvatar" class="form-control">
                                         </div>
                                         <span asp-validation-for="NewAvatar" class="text-danger"></span>
                                     </div>
 
-
-
-                                    <input type="hidden" class="form-control" asp-for="UserAvatar" placeholder="عکس پروفایل" aria-describedby="profile-avatar">
+                                    <input type="hidden" class="form-control" asp-for="UserAvatar" placeholder="@Localizer["ProfilePicture"]" aria-describedby="profile-avatar">
 
                                     <div class="col-md-7 col-sm-8 col-xs-12">
-                                        <button class="theme-btn btn-style-one"> ویرایش اطلاعات </button>
+                                        <button class="theme-btn btn-style-one">@Localizer["EditButton"]</button>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                     </section>
@@ -97,24 +89,17 @@
         </div>
     </div>
 </main>
+
 @section Scripts {
-    <script type="text/javascript">
-		function validateFileType() {
-			var fileName = document.getElementById("fileName").value;
-			var idxDot = fileName.lastIndexOf(".") + 1;
-			var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-			if (extFile == "jpg" || extFile == "jpeg" || extFile == "png"|| extFile == "gif") {
-
-				var src = URL.createObjectURL(event.target.files[0]);
-				var preview = document.getElementById("imgAvatar");
-				preview.src = src;
-				preview.style.display = "block";
-
-			} else {
-				alert("شما فقط مجاز به انتخاب عکس با فرمت .jpg .jepg .gif .png هستید!");
-				document.getElementById("fileName").value = "";
-			}
-		}
-	</script>
+    <script>
+        function validateFileType() {
+            var fileName = document.getElementById("fileName").value;
+            var idxDot = fileName.lastIndexOf(".") + 1;
+            var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+            if (["jpg", "jpeg", "gif", "png"].indexOf(extFile) === -1) {
+                alert('@Localizer["ImageFormatAlert"]');
+                document.getElementById("fileName").value = "";
+            }
+        }
+    </script>
 }
-	
