@@ -696,6 +696,234 @@
 <data name="ApplyCoupon" xml:space="preserve"><value>ثبت کد تخفیف</value></data>
 <data name="CouponAppliedSuccess" xml:space="preserve"><value>کد تخفیف با موفقیت اعمال شد !</value></data>
 <data name="CouponInvalid" xml:space="preserve"><value>کد تخفیف معتبر نمی‌باشد</value></data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>میز کار</value>
+  </data>
+  <data name="ViewAccount" xml:space="preserve">
+    <value>مشاهده حساب کابری</value>
+  </data>
+  <data name="EditAccount" xml:space="preserve">
+    <value>ویرایش حساب کابری</value>
+  </data>
+  <data name="Wallet" xml:space="preserve">
+    <value>کیف پول</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>تغییر رمز عبور</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>خروج از حساب کاربری</value>
+  </data>
+<data name="OrderList" xml:space="preserve">
+  <value>لیست سفارشات</value>
+</data>
+<data name="Row" xml:space="preserve">
+  <value>ردیف</value>
+</data>
+<data name="TrackingCode" xml:space="preserve">
+  <value>کد رهگیری</value>
+</data>
+<data name="TotalPrice" xml:space="preserve">
+  <value>مجموع قیمت</value>
+</data>
+<data name="ItemCount" xml:space="preserve">
+  <value>تعداد ایتم ها</value>
+</data>
+<data name="Status" xml:space="preserve">
+  <value>وضعیت</value>
+</data>
+<data name="Paid" xml:space="preserve">
+  <value>پرداخت شده</value>
+</data>
+<data name="NotPaid" xml:space="preserve">
+  <value>پرداخت نشده</value>
+</data>
+<data name="DeleteConfirmTitle" xml:space="preserve">
+  <value>آیا از حذف سبد خرید {0} اطمینان دارید ؟</value>
+</data>
+<data name="Cancel" xml:space="preserve">
+  <value>بیخیال</value>
+</data>
+<data name="Delete" xml:space="preserve">
+  <value>حذف</value>
+</data>
+<data name="Billing Details" xml:space="preserve">
+  <value>اطلاعات پرداخت</value>
+</data>
+<data name="First Name" xml:space="preserve">
+  <value>نام</value>
+</data>
+<data name="Last Name" xml:space="preserve">
+  <value>نام خانوادگی</value>
+</data>
+<data name="Company Name" xml:space="preserve">
+  <value>نام شرکت</value>
+</data>
+<data name="Email Address" xml:space="preserve">
+  <value>ایمیل</value>
+</data>
+<data name="Phone" xml:space="preserve">
+  <value>تلفن</value>
+</data>
+<data name="Country" xml:space="preserve">
+  <value>کشور</value>
+</data>
+<data name="Address" xml:space="preserve">
+  <value>آدرس</value>
+</data>
+<data name="Street address" xml:space="preserve">
+  <value>آدرس خیابان</value>
+</data>
+<data name="Apartment,suite,unit etc. (optional)" xml:space="preserve">
+  <value>آپارتمان، واحد، طبقه و غیره (اختیاری)</value>
+</data>
+<data name="Town/City" xml:space="preserve">
+  <value>شهر</value>
+</data>
+<data name="State / County" xml:space="preserve">
+  <value>استان / شهرستان</value>
+</data>
+<data name="Postcode/ ZIP" xml:space="preserve">
+  <value>کد پستی</value>
+</data>
+<data name="Extra Notes" xml:space="preserve">
+  <value>یادداشت‌های اضافی</value>
+</data>
+<data name="Place Order" xml:space="preserve">
+  <value>ثبت سفارش</value>
+</data>
+<data name="Preview" xml:space="preserve">
+  <value>پیش‌نمایش</value>
+</data>
+<data name="product" xml:space="preserve">
+  <value>محصول</value>
+</data>
+<data name="Price" xml:space="preserve">
+  <value>قیمت</value>
+</data>
+<data name="Quantity" xml:space="preserve">
+  <value>تعداد</value>
+</data>
+<data name="Total" xml:space="preserve">
+  <value>مجموع</value>
+</data>
+<data name="Cart Totals" xml:space="preserve">
+  <value>جمع سبد خرید</value>
+</data>
+<data name="Total with out discount" xml:space="preserve">
+  <value>جمع بدون تخفیف</value>
+</data>
+<data name="Total" xml:space="preserve">
+  <value>جمع نهایی</value>
+</data>
+<data name="شماره کارت بانک مسکن : 6280231536648826" xml:space="preserve">
+  <value>شماره کارت بانک مسکن : 6280231536648826</value>
+</data>
+<data name="شبا کارت : IR570140040000151100937771" xml:space="preserve">
+  <value>شبا کارت : IR570140040000151100937771</value>
+</data>
+  <data name="TitlePayment" xml:space="preserve">
+    <value>پرداخت</value>
+  </data>
+  <data name="PaymentDetails" xml:space="preserve">
+    <value>جزییات پرداخت</value>
+  </data>
+  <data name="PaymentSuccessTitle" xml:space="preserve">
+    <value>پرداخت با موفقیت انجام شد</value>
+  </data>
+  <data name="PaymentSuccessMessage" xml:space="preserve">
+    <value>{0} عزیز پرداخت شما دریافت شد و کیف پول شما با موفقیت شارژ شد . اکنون به راحتی می توانید محصولاتی سایت را خریداری نمایید .</value>
+  </data>
+  <data name="PaymentSuccessSummary" xml:space="preserve">
+    <value>{0} عزیز پرداخت شما به مبلغ {1} ریال با موفقیت انجام شد</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>قیمت</value>
+  </data>
+  <data name="TransactionRefId" xml:space="preserve">
+    <value>کد پیگیری تراکنش</value>
+  </data>
+  <data name="CartRefId" xml:space="preserve">
+    <value>کد پیگیری سبد خرید</value>
+  </data>
+  <data name="PaymentFailedTitle" xml:space="preserve">
+    <value>عملیات با شکست مواجه شد</value>
+  </data>
+  <data name="PaymentFailedMessage" xml:space="preserve">
+    <value>عملیات پرداخت با شکست مواجه شد لطفا پس از چند دقیقه مجددا تلاش فرمایید. در صورت کسر شدن وجه تا حداکثر ۷۲ ساعت به حساب شما بازگردانده می شود.</value>
+  </data>
+  <data name="ReturnToHome" xml:space="preserve">
+    <value>صفحه اصلی</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>جزییات</value>
+  </data>
+  <data name="PaymentFailedSummary" xml:space="preserve">
+    <value>{0} عزیز فرآیند پرداخت با شکست مواجه شد لطفا دقایقی دیگر مجددا تلاش نمایید</value>
+  </data>
+  <data name="PaymentFailedSupport" xml:space="preserve">
+    <value>درصورت کسر شدن وجه از حساب شما حداکثر تا ۷۲ ساعت بازگردانده می شود. درصورت بروز مشکل می توانید با پشتیبانی سایت تماس بگیرید.</value>
+  </data>
+<data name="WalletTitle" xml:space="preserve">
+    <value>کیف پول</value>
+</data>
+<data name="ChargeAmountLabel" xml:space="preserve">
+    <value>مبلغ شارژ (ریال)</value>
+</data>
+<data name="ChargeWalletButton" xml:space="preserve">
+    <value>شارژ کیف پول</value>
+</data>
+<data name="TransactionAmount" xml:space="preserve">
+    <value>مبلغ <sup class="text-muted h6">(ریال)</sup></value>
+</data>
+<data name="TransactionType" xml:space="preserve">
+    <value>نوع تراکنش</value>
+</data>
+<data name="TransactionDate" xml:space="preserve">
+    <value>تاریخ</value>
+</data>
+<data name="TransactionDescription" xml:space="preserve">
+    <value>شرح</value>
+</data>
+<data name="DepositTransaction" xml:space="preserve">
+    <value>واریز به حساب</value>
+</data>
+<data name="WithdrawalTransaction" xml:space="preserve">
+    <value>برداشت از حساب</value>
+</data>
+<data name="NoWalletTransactions" xml:space="preserve">
+    <value>هیچ تراکنشی در کیف پول موجود نیست</value>
+</data>
+<data name="PasswordChangeSuccessTitle" xml:space="preserve">
+    <value>ثبت تغییرات با موفقیت انجام شد</value>
+</data>
+<data name="PasswordChangeMessage" xml:space="preserve">
+    <value>کاربر عزیز رمز عبور شما با موفقیت تغییر و ثبت شد اکنون به راحتی می توانید با رمز عبور جدید خود وارد حسابتان بشوید</value>
+</data>
+<data name="LoginButton" xml:space="preserve">
+    <value>ورود</value>
+</data>
+<data name="SuccessChangesTitle" xml:space="preserve">
+    <value>تغییرات با موفقیت اعمال شد</value>
+</data>
+<data name="UserInfoChangedMessage" xml:space="preserve">
+    <value>کاربر عزیز اطلاعات شما با موفقیت تغییر و ثبت شد.</value>
+</data>
+<data name="HomeButton" xml:space="preserve">
+    <value>خانه</value>
+</data>
+<data name="UserPanelButton" xml:space="preserve">
+    <value>پنل کاربری</value>
+</data>
+<data name="OrderSuccessTitle" xml:space="preserve">
+    <value>ثبت سفارش</value>
+</data>
+<data name="OrderSuccessMessage" xml:space="preserve">
+    <value>عزیز سفارش شما با موفقیت ثبت شد</value>
+</data>
+<data name="UnderstoodButton" xml:space="preserve">
+    <value>متوجه شدم</value>
+</data>
 
 
 </root>

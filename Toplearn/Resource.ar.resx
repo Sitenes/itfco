@@ -632,5 +632,233 @@
 <data name="ApplyCoupon" xml:space="preserve"><value>تطبيق القسيمة</value></data>
 <data name="CouponAppliedSuccess" xml:space="preserve"><value>تم تطبيق القسيمة بنجاح!</value></data>
 <data name="CouponInvalid" xml:space="preserve"><value>رمز القسيمة غير صالح</value></data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>لوحة التحكم</value>
+  </data>
+  <data name="ViewAccount" xml:space="preserve">
+    <value>عرض الحساب</value>
+  </data>
+  <data name="EditAccount" xml:space="preserve">
+    <value>تعديل الحساب</value>
+  </data>
+  <data name="Wallet" xml:space="preserve">
+    <value>المحفظة</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>تغيير كلمة المرور</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>تسجيل الخروج</value>
+  </data>
+<data name="OrderList" xml:space="preserve">
+  <value>قائمة الطلبات</value>
+</data>
+<data name="Row" xml:space="preserve">
+  <value>الرقم</value>
+</data>
+<data name="TrackingCode" xml:space="preserve">
+  <value>رمز التتبع</value>
+</data>
+<data name="TotalPrice" xml:space="preserve">
+  <value>السعر الإجمالي</value>
+</data>
+<data name="ItemCount" xml:space="preserve">
+  <value>عدد العناصر</value>
+</data>
+<data name="Status" xml:space="preserve">
+  <value>الحالة</value>
+</data>
+<data name="Paid" xml:space="preserve">
+  <value>مدفوع</value>
+</data>
+<data name="NotPaid" xml:space="preserve">
+  <value>غير مدفوع</value>
+</data>
+<data name="DeleteConfirmTitle" xml:space="preserve">
+  <value>هل أنت متأكد من حذف سلة {0}؟</value>
+</data>
+<data name="Cancel" xml:space="preserve">
+  <value>إلغاء</value>
+</data>
+<data name="Delete" xml:space="preserve">
+  <value>حذف</value>
+</data>
+<data name="Billing Details" xml:space="preserve">
+  <value>تفاصيل الفاتورة</value>
+</data>
+<data name="First Name" xml:space="preserve">
+  <value>الاسم الأول</value>
+</data>
+<data name="Last Name" xml:space="preserve">
+  <value>اسم العائلة</value>
+</data>
+<data name="Company Name" xml:space="preserve">
+  <value>اسم الشركة</value>
+</data>
+<data name="Email Address" xml:space="preserve">
+  <value>البريد الإلكتروني</value>
+</data>
+<data name="Phone" xml:space="preserve">
+  <value>الهاتف</value>
+</data>
+<data name="Country" xml:space="preserve">
+  <value>الدولة</value>
+</data>
+<data name="Address" xml:space="preserve">
+  <value>العنوان</value>
+</data>
+<data name="Street address" xml:space="preserve">
+  <value>عنوان الشارع</value>
+</data>
+<data name="Apartment,suite,unit etc. (optional)" xml:space="preserve">
+  <value>شقة، جناح، وحدة... (اختياري)</value>
+</data>
+<data name="Town/City" xml:space="preserve">
+  <value>المدينة</value>
+</data>
+<data name="State / County" xml:space="preserve">
+  <value>الولاية / المقاطعة</value>
+</data>
+<data name="Postcode/ ZIP" xml:space="preserve">
+  <value>الرمز البريدي</value>
+</data>
+<data name="Extra Notes" xml:space="preserve">
+  <value>ملاحظات إضافية</value>
+</data>
+<data name="Place Order" xml:space="preserve">
+  <value>تأكيد الطلب</value>
+</data>
+<data name="Preview" xml:space="preserve">
+  <value>معاينة</value>
+</data>
+<data name="product" xml:space="preserve">
+  <value>المنتج</value>
+</data>
+<data name="Price" xml:space="preserve">
+  <value>السعر</value>
+</data>
+<data name="Quantity" xml:space="preserve">
+  <value>الكمية</value>
+</data>
+<data name="Total" xml:space="preserve">
+  <value>الإجمالي</value>
+</data>
+<data name="Cart Totals" xml:space="preserve">
+  <value>مجموع السلة</value>
+</data>
+<data name="Total with out discount" xml:space="preserve">
+  <value>المجموع بدون خصم</value>
+</data>
+<data name="Total" xml:space="preserve">
+  <value>المجموع النهائي</value>
+</data>
+<data name="شماره کارت بانک مسکن : 6280231536648826" xml:space="preserve">
+  <value>رقم بطاقة بنك مسكن: 6280231536648826</value>
+</data>
+<data name="شبا کارت : IR570140040000151100937771" xml:space="preserve">
+  <value>رقم الآيبان: IR570140040000151100937771</value>
+</data>
+  <data name="TitlePayment" xml:space="preserve">
+    <value>الدفع</value>
+  </data>
+  <data name="PaymentDetails" xml:space="preserve">
+    <value>تفاصيل الدفع</value>
+  </data>
+  <data name="PaymentSuccessTitle" xml:space="preserve">
+    <value>تم الدفع بنجاح</value>
+  </data>
+  <data name="PaymentSuccessMessage" xml:space="preserve">
+    <value>عزيزي {0}، تم استلام دفعتك وتم شحن محفظتك بنجاح. يمكنك الآن شراء المنتجات بسهولة من الموقع.</value>
+  </data>
+  <data name="PaymentSuccessSummary" xml:space="preserve">
+    <value>عزيزي {0}، تم الدفع بمبلغ {1} ريال بنجاح</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>السعر</value>
+  </data>
+  <data name="TransactionRefId" xml:space="preserve">
+    <value>رمز تتبع المعاملة</value>
+  </data>
+  <data name="CartRefId" xml:space="preserve">
+    <value>رمز تتبع سلة التسوق</value>
+  </data>
+  <data name="PaymentFailedTitle" xml:space="preserve">
+    <value>فشل العملية</value>
+  </data>
+  <data name="PaymentFailedMessage" xml:space="preserve">
+    <value>فشلت عملية الدفع، يرجى المحاولة بعد بضع دقائق. إذا تم خصم المبلغ، سيتم إرجاعه خلال 72 ساعة.</value>
+  </data>
+  <data name="ReturnToHome" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>تفاصيل</value>
+  </data>
+  <data name="PaymentFailedSummary" xml:space="preserve">
+    <value>عزيزي {0}، فشلت عملية الدفع، يرجى المحاولة مرة أخرى بعد دقائق.</value>
+  </data>
+  <data name="PaymentFailedSupport" xml:space="preserve">
+    <value>إذا تم خصم المبلغ من حسابك، سيتم إرجاعه خلال 72 ساعة. إذا واجهت أي مشكلة، يمكنك الاتصال بدعم الموقع.</value>
+  </data>
+<data name="WalletTitle" xml:space="preserve">
+    <value>المحفظة</value>
+</data>
+<data name="ChargeAmountLabel" xml:space="preserve">
+    <value>مبلغ الشحن (ريال)</value>
+</data>
+<data name="ChargeWalletButton" xml:space="preserve">
+    <value>شحن المحفظة</value>
+</data>
+<data name="TransactionAmount" xml:space="preserve">
+    <value>المبلغ <sup class="text-muted h6">(ريال)</sup></value>
+</data>
+<data name="TransactionType" xml:space="preserve">
+    <value>نوع المعاملة</value>
+</data>
+<data name="TransactionDate" xml:space="preserve">
+    <value>التاريخ</value>
+</data>
+<data name="TransactionDescription" xml:space="preserve">
+    <value>الوصف</value>
+</data>
+<data name="DepositTransaction" xml:space="preserve">
+    <value>إيداع في الحساب</value>
+</data>
+<data name="WithdrawalTransaction" xml:space="preserve">
+    <value>سحب من الحساب</value>
+</data>
+<data name="NoWalletTransactions" xml:space="preserve">
+    <value>لا توجد معاملات في المحفظة</value>
+</data>
+<data name="PasswordChangeSuccessTitle" xml:space="preserve">
+    <value>تم حفظ التغييرات بنجاح</value>
+</data>
+<data name="PasswordChangeMessage" xml:space="preserve">
+    <value>عزيزي المستخدم، تم تغيير كلمة المرور الخاصة بك وحفظها بنجاح. الآن يمكنك تسجيل الدخول بسهولة باستخدام كلمة المرور الجديدة.</value>
+</data>
+<data name="LoginButton" xml:space="preserve">
+    <value>دخول</value>
+</data>
+<data name="SuccessChangesTitle" xml:space="preserve">
+    <value>تم تطبيق التغييرات بنجاح</value>
+</data>
+<data name="UserInfoChangedMessage" xml:space="preserve">
+    <value>عزيزي المستخدم، تم تحديث معلوماتك وحفظها بنجاح.</value>
+</data>
+<data name="HomeButton" xml:space="preserve">
+    <value>الرئيسية</value>
+</data>
+<data name="UserPanelButton" xml:space="preserve">
+    <value>لوحة المستخدم</value>
+</data>
+<data name="OrderSuccessTitle" xml:space="preserve">
+    <value>تم تسجيل الطلب</value>
+</data>
+<data name="OrderSuccessMessage" xml:space="preserve">
+    <value>عزيزي ، تم تسجيل طلبك بنجاح</value>
+</data>
+<data name="UnderstoodButton" xml:space="preserve">
+    <value>فهمت</value>
+</data>
 
 </root>

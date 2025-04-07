@@ -1,7 +1,10 @@
-﻿@using Toplearn.DataLayer.Entities.Courses;
+﻿@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+@using Toplearn.DataLayer.Entities.Courses;
 @model List<Cart>
+
 @{
-    ViewData["Title"] = "لیست سفارشات";
+    ViewData["Title"] = @Localizer["OrderList"];
 }
 <main>
     <div class="container">
@@ -10,7 +13,7 @@
                 <partial name="SideBarPartial" />
                 <div class="col-md-9 col-sm-8 col-xs-12">
                     <section class="user-account-content">
-                        <header><h1> لیست سفارشات </h1></header>
+                        <header><h1>@Localizer["OrderList"]</h1></header>
                         <div class="inner">
                             <!--Cart Section-->
                             <section>
@@ -21,11 +24,11 @@
                                             <table class="cart-table">
                                                 <thead class="cart-header">
                                                     <tr>
-                                                        <th>ردیف</th>
-                                                        <th>کد رهگیری</th>
-                                                        <th>مجموع قیمت</th>
-                                                        <th>تعداد ایتم ها</th>
-                                                        <th>وضعیت</th>
+                                                        <th>@Localizer["Row"]</th>
+                                                        <th>@Localizer["TrackingCode"]</th>
+                                                        <th>@Localizer["TotalPrice"]</th>
+                                                        <th>@Localizer["ItemCount"]</th>
+                                                        <th>@Localizer["Status"]</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
@@ -34,34 +37,36 @@
                                                         int rowNum = 0;
                                                     }
                                                     @if (Model != null)
-                                                        @foreach (var courseItem in Model)
+                                                    {
+                                                        foreach (var courseItem in Model)
                                                         {
                                                             rowNum++;
-
                                                             <tr class="gradeA odd">
                                                                 <td>@rowNum</td>
                                                                 <td>@courseItem.Id</td>
                                                                 <td class="center ">@courseItem.CourseCarts?.Sum(x => x.Course?.Price)</td>
                                                                 <td class="center ">@courseItem.CourseCarts?.Count()</td>
-
                                                                 <td class="center ">
                                                                     @if (courseItem.IsPaid)
                                                                     {
-                                                                        <span class="badge alert-success"><i class="zmdi zmdi-check"></i> پرداخت شده </span>
+                                                                        <span class="badge alert-success">
+                                                                            <i class="zmdi zmdi-check"></i> @Localizer["Paid"]
+                                                                        </span>
                                                                     }
                                                                     else
                                                                     {
-                                                                        <span class="badge alert-warning"> <i class="zmdi zmdi-close"></i> پرداخت نشده </span>
+                                                                        <span class="badge alert-warning">
+                                                                            <i class="zmdi zmdi-close"></i> @Localizer["NotPaid"]
+                                                                        </span>
                                                                     }
                                                                 </td>
                                                                 <td class="center tooltip-demo">
                                                                     <a class="btn btn-outline-primary" href="/UserPanel/Cart?cartId=@courseItem.Id">
                                                                         <i class="fa fa-info"></i>
                                                                     </a>
-                                                                    <a class="btn btn-outline-danger " data-toggle="modal" data-target="#DeleteModal@(courseItem.Id)">
+                                                                    <a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteModal@(courseItem.Id)">
                                                                         <i class="fa fa-remove"></i>
                                                                     </a>
-
                                                                     <div class="modal fade" id="DeleteModal@(courseItem.Id)" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true" style="display: none;">
                                                                         <div class="modal-dialog">
                                                                             <div class="modal-content">
@@ -69,22 +74,26 @@
                                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                     </button>
-                                                                                    <h5 class="modal-title h2" id="exampleModalLabel">آیا از حذف سبد خرید @(courseItem.UserCreator?.UserName) اطمینان دارید ؟</h5>
+                                                                                    <h5 class="modal-title h2" id="exampleModalLabel">
+                                                                                        @Localizer["ConfirmDeleteCart"] @(courseItem.UserCreator?.UserName)
+                                                                                    </h5>
                                                                                 </div>
                                                                                 <div class="modal-footer">
-                                                                                    <button type="button" class="btn btn-default btn-outline" data-dismiss="modal" aria-label="Close">بیخیال</button>
-                                                                                    <a class="btn btn-danger" style="min-width:100px" href="/api/Cart/DeleteByUser/@(courseItem.Id)">حذف</a>
+                                                                                    <button type="button" class="btn btn-default btn-outline" data-dismiss="modal" aria-label="Close">
+                                                                                        @Localizer["Cancel"]
+                                                                                    </button>
+                                                                                    <a class="btn btn-danger" style="min-width:100px" href="/api/Cart/DeleteByUser/@(courseItem.Id)">
+                                                                                        @Localizer["Delete"]
+                                                                                    </a>
                                                                                 </div>
                                                                             </div>
-                                                                            <!-- /.modal-content -->
                                                                         </div>
-                                                                        <!-- /.modal-dialog -->
                                                                     </div>
-
                                                                 </td>
                                                             </tr>
-
                                                         }
+                                                    }
+
                                                     @*  @if (Model.CourseCarts != null)
                                                     @foreach (var product in Model.CourseCarts)
                                                     {

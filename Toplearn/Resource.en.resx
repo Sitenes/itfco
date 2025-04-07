@@ -635,5 +635,233 @@
 <data name="ApplyCoupon" xml:space="preserve"><value>Apply Coupon</value></data>
 <data name="CouponAppliedSuccess" xml:space="preserve"><value>Coupon applied successfully!</value></data>
 <data name="CouponInvalid" xml:space="preserve"><value>Invalid coupon code</value></data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="ViewAccount" xml:space="preserve">
+    <value>View Account</value>
+  </data>
+  <data name="EditAccount" xml:space="preserve">
+    <value>Edit Account</value>
+  </data>
+  <data name="Wallet" xml:space="preserve">
+    <value>Wallet</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+<data name="OrderList" xml:space="preserve">
+  <value>Order List</value>
+</data>
+<data name="Row" xml:space="preserve">
+  <value>Row</value>
+</data>
+<data name="TrackingCode" xml:space="preserve">
+  <value>Tracking Code</value>
+</data>
+<data name="TotalPrice" xml:space="preserve">
+  <value>Total Price</value>
+</data>
+<data name="ItemCount" xml:space="preserve">
+  <value>Item Count</value>
+</data>
+<data name="Status" xml:space="preserve">
+  <value>Status</value>
+</data>
+<data name="Paid" xml:space="preserve">
+  <value>Paid</value>
+</data>
+<data name="NotPaid" xml:space="preserve">
+  <value>Not Paid</value>
+</data>
+<data name="DeleteConfirmTitle" xml:space="preserve">
+  <value>Are you sure you want to delete {0}'s cart?</value>
+</data>
+<data name="Cancel" xml:space="preserve">
+  <value>Cancel</value>
+</data>
+<data name="Delete" xml:space="preserve">
+  <value>Delete</value>
+</data>
+<data name="Billing Details" xml:space="preserve">
+  <value>Billing Details</value>
+</data>
+<data name="First Name" xml:space="preserve">
+  <value>First Name</value>
+</data>
+<data name="Last Name" xml:space="preserve">
+  <value>Last Name</value>
+</data>
+<data name="Company Name" xml:space="preserve">
+  <value>Company Name</value>
+</data>
+<data name="Email Address" xml:space="preserve">
+  <value>Email Address</value>
+</data>
+<data name="Phone" xml:space="preserve">
+  <value>Phone</value>
+</data>
+<data name="Country" xml:space="preserve">
+  <value>Country</value>
+</data>
+<data name="Address" xml:space="preserve">
+  <value>Address</value>
+</data>
+<data name="Street address" xml:space="preserve">
+  <value>Street address</value>
+</data>
+<data name="Apartment,suite,unit etc. (optional)" xml:space="preserve">
+  <value>Apartment, suite, unit etc. (optional)</value>
+</data>
+<data name="Town/City" xml:space="preserve">
+  <value>Town/City</value>
+</data>
+<data name="State / County" xml:space="preserve">
+  <value>State / County</value>
+</data>
+<data name="Postcode/ ZIP" xml:space="preserve">
+  <value>Postcode/ ZIP</value>
+</data>
+<data name="Extra Notes" xml:space="preserve">
+  <value>Extra Notes</value>
+</data>
+<data name="Place Order" xml:space="preserve">
+  <value>Place Order</value>
+</data>
+<data name="Preview" xml:space="preserve">
+  <value>Preview</value>
+</data>
+<data name="product" xml:space="preserve">
+  <value>Product</value>
+</data>
+<data name="Price" xml:space="preserve">
+  <value>Price</value>
+</data>
+<data name="Quantity" xml:space="preserve">
+  <value>Quantity</value>
+</data>
+<data name="Total" xml:space="preserve">
+  <value>Total</value>
+</data>
+<data name="Cart Totals" xml:space="preserve">
+  <value>Cart Totals</value>
+</data>
+<data name="Total with out discount" xml:space="preserve">
+  <value>Total without discount</value>
+</data>
+<data name="Total" xml:space="preserve">
+  <value>Total</value>
+</data>
+<data name="شماره کارت بانک مسکن : 6280231536648826" xml:space="preserve">
+  <value>Bank Maskan Card Number: 6280231536648826</value>
+</data>
+<data name="شبا کارت : IR570140040000151100937771" xml:space="preserve">
+  <value>IBAN: IR570140040000151100937771</value>
+</data>
+  <data name="TitlePayment" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="PaymentDetails" xml:space="preserve">
+    <value>Payment Details</value>
+  </data>
+  <data name="PaymentSuccessTitle" xml:space="preserve">
+    <value>Payment Successful</value>
+  </data>
+  <data name="PaymentSuccessMessage" xml:space="preserve">
+    <value>Dear {0}, your payment was received and your wallet was successfully charged. You can now easily purchase site products.</value>
+  </data>
+  <data name="PaymentSuccessSummary" xml:space="preserve">
+    <value>Dear {0}, your payment of {1} Rials was successfully completed</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="TransactionRefId" xml:space="preserve">
+    <value>Transaction Tracking Code</value>
+  </data>
+  <data name="CartRefId" xml:space="preserve">
+    <value>Shopping Cart Tracking Code</value>
+  </data>
+  <data name="PaymentFailedTitle" xml:space="preserve">
+    <value>Transaction Failed</value>
+  </data>
+  <data name="PaymentFailedMessage" xml:space="preserve">
+    <value>The payment process failed. Please try again after a few minutes. If your money was deducted, it will be refunded within 72 hours.</value>
+  </data>
+  <data name="ReturnToHome" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="PaymentFailedSummary" xml:space="preserve">
+    <value>Dear {0}, the payment process failed. Please try again after a few minutes.</value>
+  </data>
+  <data name="PaymentFailedSupport" xml:space="preserve">
+    <value>If the amount was deducted from your account, it will be refunded within 72 hours. If you experience any problems, please contact website support.</value>
+  </data>
+<data name="WalletTitle" xml:space="preserve">
+    <value>Wallet</value>
+</data>
+<data name="ChargeAmountLabel" xml:space="preserve">
+    <value>Charge Amount (Rials)</value>
+</data>
+<data name="ChargeWalletButton" xml:space="preserve">
+    <value>Charge Wallet</value>
+</data>
+<data name="TransactionAmount" xml:space="preserve">
+    <value>Amount <sup class="text-muted h6">(Rials)</sup></value>
+</data>
+<data name="TransactionType" xml:space="preserve">
+    <value>Transaction Type</value>
+</data>
+<data name="TransactionDate" xml:space="preserve">
+    <value>Date</value>
+</data>
+<data name="TransactionDescription" xml:space="preserve">
+    <value>Description</value>
+</data>
+<data name="DepositTransaction" xml:space="preserve">
+    <value>Deposit to Account</value>
+</data>
+<data name="WithdrawalTransaction" xml:space="preserve">
+    <value>Withdrawal from Account</value>
+</data>
+<data name="NoWalletTransactions" xml:space="preserve">
+    <value>No transactions available in the wallet</value>
+</data>
+<data name="PasswordChangeSuccessTitle" xml:space="preserve">
+    <value>Changes have been successfully saved</value>
+</data>
+<data name="PasswordChangeMessage" xml:space="preserve">
+    <value>Dear User, your password has been successfully changed and saved. Now you can easily log in with your new password.</value>
+</data>
+<data name="LoginButton" xml:space="preserve">
+    <value>Login</value>
+</data>
+<data name="SuccessChangesTitle" xml:space="preserve">
+    <value>Changes have been successfully applied</value>
+</data>
+<data name="UserInfoChangedMessage" xml:space="preserve">
+    <value>Dear User, your information has been successfully updated and saved.</value>
+</data>
+<data name="HomeButton" xml:space="preserve">
+    <value>Home</value>
+</data>
+<data name="UserPanelButton" xml:space="preserve">
+    <value>User Panel</value>
+</data>
+<data name="OrderSuccessTitle" xml:space="preserve">
+    <value>Order Submitted</value>
+</data>
+<data name="OrderSuccessMessage" xml:space="preserve">
+    <value>Dear , your order has been successfully placed.</value>
+</data>
+<data name="UnderstoodButton" xml:space="preserve">
+    <value>Understood</value>
+</data>
 
 </root>

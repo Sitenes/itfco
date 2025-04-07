@@ -1,206 +1,143 @@
-﻿@using Toplearn.DataLayer.Entities.Courses;
-@using Toplearn.Core.Convertors;
+﻿@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
+@using Toplearn.DataLayer.Entities.Courses
+@using Toplearn.Core.Convertors
 @model Cart
+
 @{
-    ViewData["Title"] = "پرداخت";
+    ViewData["Title"] = Localizer["Billing Details"];
 }
+
 <form method="get" asp-action="Payment" asp-controller="Cart">
-    <!--Checkout Details-->
     <div class="checkout-form container">
         <div class="row clearfix">
-            <!--Column-->
             <div class="column col-lg-12 col-md-12 col-sm-12">
                 <div class="sec-title">
-                    <h3>Billing Details</h3>
+                    <h3>@Localizer["Billing Details"]</h3>
                 </div>
 
                 <div class="row clearfix">
-
-                    <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
-                        <div class="field-label">First Name <sup>*</sup></div>
+                        <div class="field-label">@Localizer["First Name"] <sup>*</sup></div>
                         <input type="text" required asp-for="FirstName" placeholder="">
                     </div>
 
-                    <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
-                        <div class="field-label">Last Name  <sup>*</sup></div>
+                        <div class="field-label">@Localizer["Last Name"] <sup>*</sup></div>
                         <input type="text" required asp-for="LastName" placeholder="">
                     </div>
 
-                    <!--Form Group-->
                     <div class="form-group col-md-12 col-sm-12">
-                        <div class="field-label">Company Name</div>
+                        <div class="field-label">@Localizer["Company Name"]</div>
                         <input type="text" asp-for="CompanyName" placeholder="">
                     </div>
 
-                    <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
-                        <div class="field-label">Email Address</div>
+                        <div class="field-label">@Localizer["Email Address"]</div>
                         <input type="text" asp-for="Email" placeholder="">
                     </div>
 
-                    <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
-                        <div class="field-label">Phone</div>
+                        <div class="field-label">@Localizer["Phone"]</div>
                         <input type="text" asp-for="Phone" placeholder="">
                     </div>
 
-                    <!--Form Group-->
                     <div class="form-group col-md-12 col-sm-12">
-                        <div class="field-label">Country</div>
+                        <div class="field-label">@Localizer["Country"]</div>
                         <input type="text" asp-for="Country" placeholder="">
                     </div>
 
-                    <!--Form Group-->
                     <div class="form-group col-md-12 col-sm-12">
-                        <div class="field-label">Address <sup>*</sup></div>
-                        <input type="text" required asp-for="Address" placeholder="Street address">
+                        <div class="field-label">@Localizer["Address"] <sup>*</sup></div>
+                        <input type="text" required asp-for="Address" placeholder="@Localizer["Street address"]">
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12">
-                        <input type="text" asp-for="AddressAdditional" placeholder="Apartment,suite,unit etc. (optional)">
+                        <input type="text" asp-for="AddressAdditional" placeholder="@Localizer["Apartment,suite,unit etc. (optional)"]">
                     </div>
 
-                    <!--Form Group-->
                     <div class="form-group col-md-12 col-sm-12">
-                        <div class="field-label">Town/City</div>
+                        <div class="field-label">@Localizer["Town/City"]</div>
                         <input type="text" asp-for="City" placeholder="">
                     </div>
 
-                    <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
-                        <div class="field-label">State / County</div>
+                        <div class="field-label">@Localizer["State / County"]</div>
                         <input type="text" asp-for="State" placeholder="">
                     </div>
 
-                    <!--Form Group-->
                     <div class="form-group col-md-6 col-sm-12">
-                        <div class="field-label">Postcode/ ZIP</div>
+                        <div class="field-label">@Localizer["Postcode/ ZIP"]</div>
                         <input type="text" asp-for="Postcode" placeholder="">
                     </div>
 
-                    <!--Form Group-->
                     <div class="form-group col-md-12 col-sm-12">
-                        <div class="field-label">Extra Notes</div>
+                        <div class="field-label">@Localizer["Extra Notes"]</div>
                         <input type="text" asp-for="Notes" placeholder="">
                     </div>
+
                     <h5 class="form-group col-md-12 col-sm-12">
-                        <span> شماره کارت بانک مسکن : 6280231536648826</span>
+                        <span>@Localizer["شماره کارت بانک مسکن : 6280231536648826"]</span>
                         <br />
                         <br />
-                        <span>
-                            شبا کارت :
-                            IR570140040000151100937771
-                        </span>
+                        <span>@Localizer["شبا کارت : IR570140040000151100937771"]</span>
                     </h5>
                 </div>
             </div>
         </div>
     </div>
-    <!--End Checkout Details-->
-    <!--Payment Box-->
+
     <div class="payment-box">
         <div class="upper-box">
-
-            @*         <!--Payment Options-->
-            <div class="payment-options">
-            <ul>
-            <li>
-            <div class="radio-option">
-            <input type="radio" name="payment-group" id="payment-2" checked>
-            <label for="payment-2"><strong>Direct Bank Transfer</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
-            </div>
-            </li>
-            <li>
-            <div class="radio-option">
-            <input type="radio" name="payment-group" id="payment-1">
-            <label for="payment-1"><strong>Check Payments</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
-            </div>
-            </li>
-
-            <li>
-            <div class="radio-option">
-            <input type="radio" name="payment-group" id="payment-3">
-            <label for="payment-3"><strong>Cash on Delivery</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
-            </div>
-            </li>
-            <li>
-            <div class="radio-option">
-            <input type="radio" name="payment-group" id="payment-4">
-            <label for="payment-4"><strong>PayPal</strong><span class="image"><img src="images/resource/paypal.jpg" alt="" /></span></label>
-            <a href="#" class="what-paypall">What is PayPal?</a>
-            </div>
-            </li>
-            </ul>
-            </div>
-            </div> *@
-
             <div class="lower-box text-right container" style="margin-top:0px">
-                <button type="submit" class="theme-btn btn-style-one">Place Order</button>
+                <button type="submit" class="theme-btn btn-style-one">@Localizer["Place Order"]</button>
             </div>
         </div>
-       
     </div>
-    <!--End Payment Box-->
 </form>
 
-
-<!--Cart Section-->
 <section>
     <div class="auto-container">
-        <!--Cart Outer-->
         <div class="cart-outer">
             <div class="table-outer">
                 <table class="cart-table">
                     <thead class="cart-header">
                         <tr>
-                            <th>Preview</th>
-                            <th class="prod-column">product</th>
-                            <th class="price">Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
+                            <th>@Localizer["Preview"]</th>
+                            <th class="prod-column">@Localizer["product"]</th>
+                            <th class="price">@Localizer["Price"]</th>
+                            <th>@Localizer["Quantity"]</th>
+                            <th>@Localizer["Total"]</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (Model.CourseCarts != null)
-                            @foreach (var product in Model.CourseCarts)
+                        {
+                            foreach (var product in Model.CourseCarts)
                             {
                                 <tr>
                                     <td class="prod-column">
                                         <div class="column-box">
-                                            <figure class="prod-thumb"><a href="/product/@(product.CourseId)"><img src="/CourseRoot/Image/@(product.Course.Image)" alt="@(product.Course.Title)"></a></figure>
+                                            <figure class="prod-thumb">
+                                                <a href="/product/@(product.CourseId)">
+                                                    <img src="/CourseRoot/Image/@(product.Course.Image)" alt="@(product.Course.Title)">
+                                                </a>
+                                            </figure>
                                         </div>
                                     </td>
                                     <td><h4 class="prod-title">@(product.Course.Title)</h4></td>
                                     <td class="sub-total">@(product.Course.Price)</td>
-                                    <td class="qty"><div class="item-quantity"><input disabled class="quantity-spinner" type="text" value="@(product.Count)" name="quantity"></div></td>
+                                    <td class="qty">
+                                        <div class="item-quantity">
+                                            <input disabled class="quantity-spinner" type="text" value="@(product.Count)" name="quantity">
+                                        </div>
+                                    </td>
                                     <td class="total">@(product.Course.Price)</td>
                                 </tr>
                             }
+                        }
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-</section>
-<!--End Cart Section-->
-
-<section class="cart-section">
-    <div class="auto-container">
-
-        <div class="row justify-content-between">
-
-            <div class="column pull-right col-lg-12 col-md-12 col-sm-12">
-                <!--Totals Table-->
-                <ul class="totals-table">
-                    <li><h3>Cart Totals</h3></li>
-                    @if (Model.CourseCarts != null)
-                    {
-                        <li class="clearfix total"><span class="col">Total with out discount</span><span class="col price">@(Model.GetPrice(false).ToString("#,###")) تومان</span></li>
-                        <li class="clearfix total"><span class="col">Total</span><span class="col price">@(Model.GetPriceWithDiscount(false).ToString("#,###")) تومان</span></li>
-                    }
-                </ul>
             </div>
         </div>
     </div>
