@@ -860,5 +860,20 @@
 <data name="UnderstoodButton" xml:space="preserve">
     <value>فهمت</value>
 </data>
+<data name="ChangesAppliedSuccessfullyTitle" xml:space="preserve">
+    <value>تم تطبيق التغييرات بنجاح</value>
+</data>
+<data name="DearUserMessage" xml:space="preserve">
+    <value>عزيزي المستخدم</value>
+</data>
+<data name="InformationUpdatedMessage" xml:space="preserve">
+    <value>تم تحديث معلوماتك وحفظها بنجاح. للاستمرار، يجب أولاً التحقق من البريد الإلكتروني الجديد المدخل، ثم تسجيل الدخول إلى حسابك من قسم تسجيل الدخول.</value>
+</data>
+<data name="EmailLinkMessage" xml:space="preserve">
+    <value>يرجى التحقق من بريدك الإلكتروني @(Model.Email) والنقر على رابط التفعيل.</value>
+</data>
+<data name="LoginButton" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+</data>
 
 </root>

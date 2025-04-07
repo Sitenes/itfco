@@ -924,6 +924,21 @@
 <data name="UnderstoodButton" xml:space="preserve">
     <value>متوجه شدم</value>
 </data>
+<data name="ChangesAppliedSuccessfullyTitle" xml:space="preserve">
+    <value>تغییرات با موفقیت اعمال شد</value>
+</data>
+<data name="DearUserMessage" xml:space="preserve">
+    <value>کاربر عزیز</value>
+</data>
+<data name="InformationUpdatedMessage" xml:space="preserve">
+    <value>اطلاعات شما با موفقیت تغییر و ثبت شد جهت ادامه ابتدا باید ایمیل جدید وارد شده را تایید و سپس از قسمت ورود وارد حساب کاربری خود شوید.</value>
+</data>
+<data name="EmailLinkMessage" xml:space="preserve">
+    <value>لطفا وارد ایمیل @(Model.Email) شوید و روی لینک فعالسازی کلیک کنید.</value>
+</data>
+<data name="LoginButton" xml:space="preserve">
+    <value>ورود</value>
+</data>
 
 
 </root>

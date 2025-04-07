@@ -863,5 +863,20 @@
 <data name="UnderstoodButton" xml:space="preserve">
     <value>Understood</value>
 </data>
+<data name="ChangesAppliedSuccessfullyTitle" xml:space="preserve">
+    <value>Changes applied successfully</value>
+</data>
+<data name="DearUserMessage" xml:space="preserve">
+    <value>Dear user</value>
+</data>
+<data name="InformationUpdatedMessage" xml:space="preserve">
+    <value>Your information has been successfully updated and saved. To proceed, you must first verify the new email entered and then log in to your account from the login section.</value>
+</data>
+<data name="EmailLinkMessage" xml:space="preserve">
+    <value>Please check your email @(Model.Email) and click on the activation link.</value>
+</data>
+<data name="LoginButton" xml:space="preserve">
+    <value>Login</value>
+</data>
 
 </root>
