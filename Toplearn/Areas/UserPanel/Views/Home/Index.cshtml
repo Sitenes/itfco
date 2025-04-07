@@ -1,17 +1,12 @@
-﻿@model UserPanelViewModel
+﻿@using Toplearn.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer 
+@model UserPanelViewModel
 @using System.Security.Claims
 @using Toplearn.Core.Convertors
+
 @{
-    ViewData["Title"] = "پنل کاربری "+Model.UserName;
+    ViewData["Title"] = @Localizer["UserPanelTitle"] + " " + Model.UserName;
 }
-@* <div class="container">
-    <nav aria-label="breadcrumb">
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">خانه </a></li>
-            <li class="breadcrumb-item active" aria-current="page"> پنل کاربری </li>
-        </ul>
-    </nav>
-</div> *@
 
 <main>
     <div class="container">
@@ -20,16 +15,35 @@
                 <partial name="SideBarPartial" model="@(new SideBarAvatarViewModel(){UserAvatar = Model.UserAvatar,UserName = Model.UserName})"/>
                 <div class="col-md-9 col-sm-8 col-xs-12">
                     <section class="user-account-content">
-                        <header><h1> داشبورد </h1></header>
+                        <header><h1>@Localizer["UserPanelDashboard"]</h1></header>
                         <div class="inner">
                             <div class="account-information">
-                                <h3> اطلاعات کاربری </h3>
+                                <h3>@Localizer["UserPanelInfo"]</h3>
                                 <ul>
-                                    <li> <i class="zmdi zmdi-assignment-account"></i> نام کاربری : @(Model.UserName)  <strong id="UserName"></strong> </li>
-                                    <li> <i class="zmdi zmdi-email"></i> ایمیل : <strong id="UserEmail"></strong> @(Model.Email)  </li>
-                                    <li> <i class="zmdi zmdi-calendar-check"></i> تاریخ عضویت : @(Model.RegisterDate.ToShamsi()) </li>
-                                    <li> <i class="zmdi zmdi-smartphone-android"></i> شماره تماس : <strong id="Phone"></strong> @(Model.Phone)  </li>
-                                    <li> <i class="zmdi zmdi-balance-wallet"></i> موجودی کیف پول : <strong id="Wallet"></strong> @(Model.Wallet)  </li>
+                                    <li> 
+                                        <i class="zmdi zmdi-assignment-account"></i> 
+                                        @Localizer["UserNameLabel"] : @(Model.UserName)  
+                                        <strong id="UserName"></strong> 
+                                    </li>
+                                    <li> 
+                                        <i class="zmdi zmdi-email"></i> 
+                                        @Localizer["EmailLabel"] : 
+                                        <strong id="UserEmail"></strong> @(Model.Email)  
+                                    </li>
+                                    <li> 
+                                        <i class="zmdi zmdi-calendar-check"></i> 
+                                        @Localizer["RegisterDateLabel"] : @(Model.RegisterDate.ToShamsi()) 
+                                    </li>
+                                    <li> 
+                                        <i class="zmdi zmdi-smartphone-android"></i> 
+                                        @Localizer["PhoneLabel"] : 
+                                        <strong id="Phone"></strong> @(Model.Phone)  
+                                    </li>
+                                    <li> 
+                                        <i class="zmdi zmdi-balance-wallet"></i> 
+                                        @Localizer["WalletLabel"] : 
+                                        <strong id="Wallet"></strong> @(Model.Wallet)  
+                                    </li>
                                 </ul>
                             </div>
                         </div>

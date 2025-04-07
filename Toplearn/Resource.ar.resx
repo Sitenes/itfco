@@ -537,4 +537,43 @@
         <data name="Tooman" xml:space="preserve">
     <value>دلار</value>
   </data>
+<data name="AddToCart" xml:space="preserve">
+  <value>أضف إلى السلة</value>
+</data>
+<data name="Count" xml:space="preserve">
+  <value>الكمية :</value>
+</data>
+<data name="Description" xml:space="preserve">
+  <value>الوصف</value>
+</data>
+<data name="Video" xml:space="preserve">
+  <value>فيديو</value>
+</data>
+<data name="ProductVideo" xml:space="preserve">
+  <value>فيديو المنتج</value>
+</data>
+  <data name="UserPanelTitle" xml:space="preserve">
+    <value>لوحة المستخدم</value>
+  </data>
+  <data name="UserPanelDashboard" xml:space="preserve">
+    <value>لوحة التحكم</value>
+  </data>
+  <data name="UserPanelInfo" xml:space="preserve">
+    <value>معلومات المستخدم</value>
+  </data>
+  <data name="UserNameLabel" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+  </data>
+  <data name="RegisterDateLabel" xml:space="preserve">
+    <value>تاريخ التسجيل</value>
+  </data>
+  <data name="PhoneLabel" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="WalletLabel" xml:space="preserve">
+    <value>رصيد المحفظة</value>
+  </data>
 </root>

@@ -7,7 +7,6 @@
     ViewData["Title"] = $"محصول {Model.Title}";
 }
 
-
 <div class="container">
     <div class="sidebar-page-container">
         <div class="auto-container">
@@ -17,11 +16,16 @@
                 <div class="content-side col-xl-9 col-lg-8 col-md-12">
                     <div class="shop-single">
                         <div class="product-details">
+
                             <!--Basic Details-->
                             <div class="basic-details">
                                 <div class="row clearfix">
                                     <div class="image-column col-md-6 col-sm-12">
-                                        <figure class="image-box"><a href="/CourseRoot/Image/@(Model.Image)" class="lightbox-image" title="Image Caption Here"><img src="/CourseRoot/Image/@(Model.Image)" alt="@(Model.Title)"></a></figure>
+                                        <figure class="image-box">
+                                            <a href="/CourseRoot/Image/@(Model.Image)" class="lightbox-image" title="Image Caption Here">
+                                                <img src="/CourseRoot/Image/@(Model.Image)" alt="@(Model.Title)">
+                                            </a>
+                                        </figure>
                                     </div>
                                     <div class="info-column col-md-6 col-sm-12">
                                         <div class="details-header">
@@ -33,77 +37,70 @@
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
                                             </div>
-                                            @* <a class="reviews" href="#">( @(Model.CommentCount) Customer Reviews )</a> *@
-                                            <div class="item-price">@(Model.Price.ToString("0,000")) @Localizer["Tooman"]</div>
+                                            <div class="item-price">
+                                                @(Model.Price.ToString("0,000")) @Localizer["Tooman"]
+                                            </div>
                                         </div>
 
                                         <div class="text">@(Model.ShortDescription)</div>
+
                                         <div class="other-options clearfix">
                                             <form asp-controller="UserPanel" asp-action="Cart" asp-route-productId="@(Model.CourseId)">
-                                                <div class="item-quantity"><input class="quantity-spinner form-control" type="text" value="1" name="Count"></div>
-                                                <button type="submit" class="theme-btn btn-style-one add-to-cart">افزودن به سبد</button>
-                                                تعداد :
+                                                <div class="item-quantity">
+                                                    <input class="quantity-spinner form-control" type="text" value="1" name="Count">
+                                                </div>
+                                                <button type="submit" class="theme-btn btn-style-one add-to-cart">
+                                                    @Localizer["AddToCart"]
+                                                </button>
+                                                @Localizer["Count"]
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--End Basic Details-->
 
-
-                            <!--Basic Details-->
                             <!--Product Info Tabs-->
                             <div class="product-info-tabs">
-                                <!--Product Tabs-->
                                 <div class="prod-tabs tabs-box">
 
                                     <!--Tab Btns-->
                                     <ul class="tab-btns tab-buttons clearfix">
-                                        <li data-tab="#prod-details" class="tab-btn active-btn">توضیحات</li>
+                                        <li data-tab="#prod-details" class="tab-btn active-btn">@Localizer["Description"]</li>
                                         @if (!string.IsNullOrWhiteSpace(Model.DemoFileName))
                                         {
-                                            <li data-tab="#prod-video" class="tab-btn">ویدئو</li>
+                                            <li data-tab="#prod-video" class="tab-btn">@Localizer["Video"]</li>
                                         }
-                                        @* <li data-tab="#prod-reviews" class="tab-btn active-btn">Review (3)</li> *@
                                     </ul>
 
                                     <!--Tabs Container-->
                                     <div class="tabs-content">
 
-                                        <!--Tab-->
+                                        <!--Tab Description-->
                                         <div class="tab active-tab" id="prod-details">
                                             <div class="content">
                                                 @Html.Raw(Model.Description)
                                             </div>
                                         </div>
-                                        <!--Tab-->
+
+                                        <!--Tab Video-->
                                         @if (!string.IsNullOrWhiteSpace(Model.DemoFileName))
                                         {
                                             <div class="tab" id="prod-video">
-                                                <h2 class="title">ویدئو محصول</h2>
+                                                <h2 class="title">@Localizer["ProductVideo"]</h2>
 
-                                                <!-- Video Section -->
                                                 <section class="video-section style-two">
                                                     <div class="outer-box">
                                                         <div class="auto-container">
                                                             <div class="row">
-                                                                @*                                                 <div class="content-column col-lg-6 col-md-12 col-sm-12">
-                                                            <div class="inner-column">
-                                                            <div class="sec-title">
-                                                            <span class="float-text">تماشا کنید</span>
-                                                            <h2>درباره خدمات آیسان تک</h2>
-                                                            </div>
-                                                            <span class="title">اهداف و استراتژی ها</span>
-                                                            <div class="text">عقد تفاهم نامه ها و موافقت نامه های همکاری با با شرکت های معتبر بین المللی اروپایی ارتقا سطح قابلیت های سازمانی و نیروی انسانی ایجاد نظام ارزیابی میزان رضایت مشتریان تکمیل سبد کالاهای مورد نیاز صنعت مطابق با استاندارهای جهانی افزایش توان رقابتی ازطریق مطالعه نقات قوت و ضعف رقبا تقویت و توسه همکاری با شرکت های معتبر داخلی و خارجی در راستای ارتقا توانمندی های مرتبط جهت حضور در پروژه های مختلف و تامین مواد و تجهیزات مورد نیاز</div>
-                                                            </div>
-                                                            </div>
-                                                            *@
-                                                                <!-- Video Column -->
                                                                 <div class="video-column col-lg-12 col-md-12 col-sm-12">
                                                                     <div class="inner-column">
                                                                         <div class="video-box">
                                                                             <figure class="image">
                                                                                 <img src="/CourseRoot/Image/@(Model.Image)" alt="@(Model.Title)">
-                                                                                <a href="/CourseRoot/Demo/@(Model.DemoFileName)" class="link" data-fancybox="gallery" data-caption=""><span class="icon fa fa-play"></span></a>
+                                                                                <a href="/CourseRoot/Demo/@(Model.DemoFileName)" class="link" data-fancybox="gallery" data-caption="">
+                                                                                    <span class="icon fa fa-play"></span>
+                                                                                </a>
                                                                             </figure>
                                                                         </div>
                                                                     </div>
@@ -112,123 +109,20 @@
                                                         </div>
                                                     </div>
                                                 </section>
-                                                <!--End Video Section -->
-
                                             </div>
                                         }
-                                        <!--Tab-->
-                                        <div class="tab" id="prod-reviews">
-                                            <h2 class="title">3 Reviews For Patient Ninja</h2>
-                                            <!--Reviews Container-->
-                                            <div class="comments-area style-two">
-                                                <!--Comment Box-->
-                                                <div class="comment-box">
-                                                    <div class="comment">
-                                                        <div class="author-thumb"><img src="/images/resource/author-6.jpg" alt=""></div>
-                                                        <div class="comment-inner">
-                                                            <div class="comment-info clearfix">James Koster <span>June 7’2013:</span></div>
-                                                            <div class="rating">
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star light"></span>
-                                                            </div>
-                                                            <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!--Comment Box-->
-                                                <div class="comment-box reply-comment">
-                                                    <div class="comment">
-                                                        <div class="author-thumb"><img src="/images/resource/author-7.jpg" alt=""></div>
-                                                        <div class="comment-inner">
-                                                            <div class="comment-info clearfix">Cobus Besten <span>June 7’2013:</span></div>
-                                                            <div class="rating">
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
-                                                            </div>
-                                                            <div class="text">Lorem Ipsum is simply dummy text of the printing </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!--Comment Box-->
-                                                <div class="comment-box">
-                                                    <div class="comment">
-                                                        <div class="author-thumb"><img src="/images/resource/author-8.jpg" alt=""></div>
-                                                        <div class="comment-inner">
-                                                            <div class="comment-info clearfix">Magnus <span>June 7’2013:</span></div>
-                                                            <div class="rating">
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
-                                                            </div>
-                                                            <div class="text">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Comment Form -->
-                                            <div class="shop-comment-form">
-                                                <h2>Add A REVIEW</h2>
-                                                <div class="mail-text"><span class="theme_color">Your email address will not be published.</span> Required fields are marked*</div>
-                                                <div class="rating-box">
-                                                    <div class="text"> Your Rating:</div>
-                                                    <div class="rating">
-                                                        <a href="#"><span class="fa fa-star"></span></a>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <a href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
-                                                        <a href="#"></a>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <a href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <a href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <a href="#"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></a>
-                                                    </div>
-                                                </div>
-                                                <form method="post" action="contact.html">
-                                                    <div class="form-group">
-                                                        <label>Your Review*</label>
-                                                        <textarea name="message" placeholder=""></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Name</label>
-                                                        <input type="text" name="username" placeholder="" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Email</label>
-                                                        <input type="text" name="number" placeholder="" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button class="theme-btn btn-style-one" type="submit" name="submit-form">SUBMIT</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <!--End Product Info Tabs-->
+
                         </div>
                     </div>
                 </div>
 
-
                 <!--Sidebar Side-->
                 <partial name="Partials/_ProductFilterModalPartial" model="@ViewData["Categories"]" />
+
             </div>
         </div>
     </div>

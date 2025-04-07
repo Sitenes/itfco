@@ -540,4 +540,43 @@
         <data name="Tooman" xml:space="preserve">
     <value>Dollar</value>
   </data>
+<data name="AddToCart" xml:space="preserve">
+  <value>Add to Cart</value>
+</data>
+<data name="Count" xml:space="preserve">
+  <value>Count :</value>
+</data>
+<data name="Description" xml:space="preserve">
+  <value>Description</value>
+</data>
+<data name="Video" xml:space="preserve">
+  <value>Video</value>
+</data>
+<data name="ProductVideo" xml:space="preserve">
+  <value>Product Video</value>
+</data>
+  <data name="UserPanelTitle" xml:space="preserve">
+    <value>User Panel</value>
+  </data>
+  <data name="UserPanelDashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="UserPanelInfo" xml:space="preserve">
+    <value>User Information</value>
+  </data>
+  <data name="UserNameLabel" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="RegisterDateLabel" xml:space="preserve">
+    <value>Register Date</value>
+  </data>
+  <data name="PhoneLabel" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="WalletLabel" xml:space="preserve">
+    <value>Wallet Balance</value>
+  </data>
 </root>

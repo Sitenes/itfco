@@ -597,4 +597,48 @@
       <data name="Tooman" xml:space="preserve">
     <value>تومان</value>
   </data>
+  <data name="Tooman" xml:space="preserve">
+  <value>تومان</value>
+</data>
+<data name="AddToCart" xml:space="preserve">
+  <value>افزودن به سبد</value>
+</data>
+<data name="Count" xml:space="preserve">
+  <value>تعداد :</value>
+</data>
+<data name="Description" xml:space="preserve">
+  <value>توضیحات</value>
+</data>
+<data name="Video" xml:space="preserve">
+  <value>ویدئو</value>
+</data>
+<data name="ProductVideo" xml:space="preserve">
+  <value>ویدئو محصول</value>
+</data>
+
+  <data name="UserPanelTitle" xml:space="preserve">
+    <value>پنل کاربری</value>
+  </data>
+  <data name="UserPanelDashboard" xml:space="preserve">
+    <value>داشبورد</value>
+  </data>
+  <data name="UserPanelInfo" xml:space="preserve">
+    <value>اطلاعات کاربری</value>
+  </data>
+  <data name="UserNameLabel" xml:space="preserve">
+    <value>نام کاربری</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="RegisterDateLabel" xml:space="preserve">
+    <value>تاریخ عضویت</value>
+  </data>
+  <data name="PhoneLabel" xml:space="preserve">
+    <value>شماره تماس</value>
+  </data>
+  <data name="WalletLabel" xml:space="preserve">
+    <value>موجودی کیف پول</value>
+  </data>
+
 </root>

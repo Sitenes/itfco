@@ -21,10 +21,16 @@
         <!--Blog Category Widget-->
         <div class="sidebar-widget sidebar-blog-category">
             <div class="sidebar-title">
-                <h3>Categories</h3>
+                <h3>@Localizer["Categories"]</h3>
                 <div class="separater"></div>
             </div>
             <ul class="cat-list">
+                <li class="clearfix">
+                    <a href="/product">
+                        مشاهده همه <span></span>
+
+                    </a>
+                </li>
                 @foreach (var category in Model)
                 {
                     <li class="clearfix">
