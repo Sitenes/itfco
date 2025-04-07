@@ -9,6 +9,8 @@
     ViewData["Title"] = "خانه";
     var Categories = ViewData["Category"] as List<CategoryDto>;
     var setting = await _userService.GetSettingAsync();
+    var requestCultureFeature = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCultureFeature?.RequestCulture.Culture.Name ?? "fa"; // زبان پیش‌فرض
 }
 @if (ViewData["Login"] != null && (bool)ViewData["Login"] == true)
 {
@@ -26,17 +28,15 @@
 
         @for (int i = 0; i < Categories?.Count; i++)
         {
-                var title = Categories[i].NamePersian;
-                switch (ViewData["Culture"] as string)
-                {
-                    case "en":
-                        title = Categories[i].NameEnglish;
-                        break;
-                    case "ar":
-                        title = Categories[i].NameArabic;
-                        break;
-                }
-
+            var title = Categories[i].NamePersian;
+            if (currentCulture.StartsWith("en"))
+            {
+                title = Categories[i].NameEnglish;
+            }
+            else if (currentCulture.StartsWith("ar"))
+            {
+                title = Categories[i].NameArabic;
+            }
 
             <div class="slide-item" style="background-image: url('/CourseRoot/Image/@Categories[i].Image');">
                 <div class="auto-container">
@@ -341,7 +341,7 @@
                                 </h3>
                                 <span>@blog.ShortDescription</span>
                                 <ul class="info">
-                                    <li style="direction: ltr;" >@(blog.CreateDate.ToString("yyyy MMM dd"))</li>
+                                    <li style="direction: ltr;">@(blog.CreateDate.ToString("yyyy MMM dd"))</li>
                                     <li><a href="@Url.Action("BlogDetail", "Blog", new { id = blog.Id })">@blog.UserCreator.UserName</a></li>
                                 </ul>
                             </div>

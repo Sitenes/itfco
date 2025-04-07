@@ -59,6 +59,7 @@ namespace Toplearn.Web.Areas.UserPanel.Controllers
         [HttpPost]
         public async Task<IActionResult> ApplyCoupon(string code,int cartId)
         {
+            code = code.Trim().Replace("\n","").Replace("\t", "").Replace("\r", "");
             var user = _userService.GetUser(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
             if (user == null)
                 return Redirect($"/login?ReturnUrl=/UserPanel/Cart/Index");
