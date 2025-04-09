@@ -24,7 +24,7 @@ namespace Toplearn.Web.Controllers
         private readonly IStringLocalizer<Resource> _localizer;
         private readonly IBlogService _blogService;
 
-        public HomeController(ICourseService courseService, IStringLocalizer<Resource> localizer,IBlogService blogService)
+        public HomeController(ICourseService courseService, IStringLocalizer<Resource> localizer, IBlogService blogService)
         {
             _courseService = courseService;
             _localizer = localizer;
@@ -42,7 +42,7 @@ namespace Toplearn.Web.Controllers
                     ViewData["Logout"] = true;
                     break;
             }
-            ViewData["Culture"] = Request.Cookies["Culture"] ?? "fa";
+            var lang = Request.Cookies["Culture"] ?? "fa";
             ViewData["ProductCount"] = await _courseService.CountCourses();
             ViewData["Category"] = await _courseService.GetParentCourseGroups();
 
@@ -51,9 +51,9 @@ namespace Toplearn.Web.Controllers
                 PageNumber = 1,
                 PageSize = 4,
             });
-           
+            IEnumerable<CourseListAdminViewModel> products = await _courseService.GetCoursesList(new CourseFilterAdminViewModel { Language = lang, CurrentPage = 1, CoursesCount = 6, });
             ViewData["Blogs"] = blogs;
-            return View();
+            return View(products);
         }
         public IActionResult AboutUs()
         {

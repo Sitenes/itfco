@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Toplearn.DataLayer.Context;
 
 namespace Toplearn.Web.Migrations
 {
     [DbContext(typeof(ToplearnContext))]
-    partial class ToplearnContextModelSnapshot : ModelSnapshot
+    [Migration("20250409061427_AddMultiLanguageCourse")]
+    partial class AddMultiLanguageCourse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,8 +158,8 @@ namespace Toplearn.Web.Migrations
                     b.Property<int>("NumberOfStudents")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<long>("Price")
+                        .HasColumnType("bigint");
 
                     b.Property<double>("PriceDollar")
                         .HasColumnType("float");

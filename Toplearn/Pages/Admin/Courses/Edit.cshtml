@@ -10,6 +10,7 @@
 
 <div class="row">
     <form method="post" enctype="multipart/form-data">
+        <input asp-for="Course.CourseId" type="hidden">
         <input asp-for="Course.DemoFileName" type="hidden">
         <input asp-for="Course.Image" type="hidden">
         <input asp-for="Course.UserCreatorId" type="hidden">
@@ -23,52 +24,78 @@
                     <div class="container client-page">
                         <div class="form-group">
                             <div class="row">
-
-                                <div class="col-md-6 input-group" style="margin:20px auto">
+                                <div class="col-md-4 input-group" style="margin:20px auto">
                                     <span class="input-group-addon">
-                                        <i class="zmdi zmdi-card"></i>
+                                        <i class="zmdi zmdi-card"></i> فارسی
                                     </span>
-                                    <input asp-for="Course.CourseId" type="hidden">
-                                    <input asp-for="Course.Title" class="form-control" placeholder="عنوان محصول">
-                                    <span asp-validation-for="Course.Title" class="text-danger"></span>
+                                    <input asp-for="Course.TitlePersian" class="form-control" placeholder="عنوان فارسی محصول">
+                                    <span asp-validation-for="Course.TitlePersian" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-4 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-card"></i> انگلیسی
+                                    </span>
+                                    <input asp-for="Course.TitleEnglish" class="form-control" placeholder="عنوان انگلیسی محصول">
+                                    <span asp-validation-for="Course.TitleEnglish" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-4 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-card"></i> عربی
+                                    </span>
+                                    <input asp-for="Course.TitleArabic" class="form-control" placeholder="عنوان عربی محصول">
+                                    <span asp-validation-for="Course.TitleArabic" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-12 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-file-text"></i> فارسی
+                                    </span>
+                                    <textarea asp-for="Course.ShortDescriptionPersian" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" class="form-control" placeholder=" توضیحات مختصر فارسی"></textarea>
+                                    <span asp-validation-for="Course.ShortDescriptionPersian" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-12 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-file-text"></i> انگلیسی
+                                    </span>
+                                    <textarea asp-for="Course.ShortDescriptionEnglish" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" class="form-control" placeholder="توضیحات مختصر انگلیسی"></textarea>
+                                    <span asp-validation-for="Course.ShortDescriptionEnglish" class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-12 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-file-text"></i> عربی
+                                    </span>
+                                    <textarea asp-for="Course.ShortDescriptionArabic" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" class="form-control" placeholder="توضیحات مختصر عربی"></textarea>
+                                    <span asp-validation-for="Course.ShortDescriptionArabic" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-12 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-file-text"></i> فارسی
+                                    </span>
+                                    <textarea id="mainGroupPersian" asp-for="Course.DescriptionPersian" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
+                                    <span asp-validation-for="Course.DescriptionPersian" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-12 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-file-text"></i> انگلیسی
+                                    </span>
+                                    <textarea id="mainGroupEnglish" asp-for="Course.DescriptionEnglish" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
+                                    <span asp-validation-for="Course.DescriptionEnglish" class="text-danger"></span>
                                 </div>
 
 
                                 <div class="col-sm-12 input-group" style="margin:20px auto">
                                     <span class="input-group-addon">
-                                        <i class="zmdi zmdi-file-text"></i>
+                                        <i class="zmdi zmdi-file-text"></i> عربی
                                     </span>
-                                    <textarea asp-for="Course.ShortDescription" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" class="form-control" placeholder="توضیحات مختصر"></textarea>
-                                    <span asp-validation-for="Course.ShortDescription" class="text-danger"></span>
+                                    <textarea id="mainGroupArabic" asp-for="Course.DescriptionArabic" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
+                                    <span asp-validation-for="Course.DescriptionArabic" class="text-danger"></span>
                                 </div>
 
-                                @* @if (ViewData["Teachers"] != null)
-                                {
-                                <div class="col-md-6 input-group" style="margin:20px auto">
-                                <span class="input-group-addon">
-                                <i class="zmdi zmdi-account"></i>
-                                <label>مدرس</label>
-                                </span>
-
-                                <div class="form-group" id="subGroup">
-                                <select class="form-control" asp-for="Course.TeacherId">
-                                @foreach (var groupItem in (ViewData["Teachers"] as List<TeacherForCourseViewModel>))
-                                {
-                                <option value="@(groupItem.TeacherId)">
-                                @(groupItem.TeacherName)
-                                </option>
-                                }
-                                </select>
-                                </div>
-                                </div>
-                                } *@
-                                <div class="col-sm-12 input-group" style="margin:20px auto">
-                                    <span class="input-group-addon">
-                                        <i class="zmdi zmdi-file-text"></i>
-                                    </span>
-                                    <textarea id="mainGroup" asp-for="Course.Description" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
-                                    <span asp-validation-for="Course.Description" class="text-danger"></span>
-                                </div>
 
                                 <div class="col-md-6 input-group" style="margin:20px auto">
                                     <span class="input-group-addon">
@@ -145,7 +172,7 @@
                                     <span class="input-group-addon">
                                         <i class="zmdi zmdi-money"></i> دلار
                                     </span>
-                                    <input asp-for="Course.PriceDollar" min="0" max="9223372036854775807"
+                                    <input asp-for="Course.PriceDollar" step="0.01" min="0" max="9223372036854775807"
                                            oninput="if(this.value.length > 19) this.value = this.value.slice(0, 19);" class="form-control" placeholder="مبلغ محصول">
                                     <span asp-validation-for="Course.PriceDollar" class="text-danger"></span>
                                 </div>

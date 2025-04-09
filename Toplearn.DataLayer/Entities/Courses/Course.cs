@@ -16,8 +16,17 @@ namespace Toplearn.DataLayer.Entities.Courses
         [MaxLength(200, ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
         [Display(Name = "عنوان محصول")]
-        public string Title { get; set; }//عنوان محصول
+        public string TitlePersian { get; set; }//عنوان محصول
 
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
+        [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
+        [Display(Name = "عنوان محصول")]
+        public string TitleEnglish { get; set; }//عنوان محصول
+
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند از {1} کاراکتر بیشتر باشد")]
+        [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
+        [Display(Name = "عنوان محصول")]
+        public string TitleArabic { get; set; }//عنوان محصول
 
         [Column(TypeName = "varchar(50)")]
         public string Image { get; set; }//عکس محصول
@@ -26,16 +35,26 @@ namespace Toplearn.DataLayer.Entities.Courses
         public string DemoFileName { get; set; }
 
 		[Display(Name = "توضیحات مختصر محصول")]
-		public string ShortDescription { get; set; }//توضیحات کامل محصول        
+		public string ShortDescriptionPersian { get; set; }//توضیحات کامل محصول        
+
+        [Display(Name = "توضیحات مختصر محصول")]
+        public string ShortDescriptionArabic { get; set; }//توضیحات کامل محصول        
+
+        [Display(Name = "توضیحات مختصر محصول")]
+        public string ShortDescriptionEnglish { get; set; }//توضیحات کامل محصول        
 
 
-		[Display(Name = "توضیحات کامل محصول")]
-        public string Description { get; set; }//توضیحات کامل محصول        
+        [Display(Name = "توضیحات کامل محصول")]
+        public string DescriptionPersian { get; set; }//توضیحات کامل محصول        
+        [Display(Name = "توضیحات کامل محصول")]
+        public string DescriptionEnglish { get; set; }//توضیحات کامل محصول   
+        [Display(Name = "توضیحات کامل محصول")]
+        public string DescriptionArabic { get; set; }//توضیحات کامل محصول   
 
         public int NumberOfStudents { get; set; }//تعداد دانجو هایی که در این محصول ثبت نام کرده اند
 
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
-        public long Price { get; set; }//ملغ محصول
+        public double Price { get; set; }//ملغ محصول
 
         [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
         public double PriceDollar { get; set; }//ملغ محصول

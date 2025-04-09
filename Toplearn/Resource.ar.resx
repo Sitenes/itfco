@@ -675,7 +675,7 @@
   <value>غير مدفوع</value>
 </data>
 <data name="DeleteConfirmTitle" xml:space="preserve">
-  <value>هل أنت متأكد من حذف سلة {0}؟</value>
+  <value>هل أنت متأكد من حذف سلة ؟</value>
 </data>
 <data name="Cancel" xml:space="preserve">
   <value>إلغاء</value>
@@ -768,10 +768,10 @@
     <value>تم الدفع بنجاح</value>
   </data>
   <data name="PaymentSuccessMessage" xml:space="preserve">
-    <value>عزيزي {0}، تم استلام دفعتك وتم شحن محفظتك بنجاح. يمكنك الآن شراء المنتجات بسهولة من الموقع.</value>
+    <value>عزيزي ، تم استلام دفعتك وتم شحن محفظتك بنجاح. يمكنك الآن شراء المنتجات بسهولة من الموقع.</value>
   </data>
   <data name="PaymentSuccessSummary" xml:space="preserve">
-    <value>عزيزي {0}، تم الدفع بمبلغ {1} ريال بنجاح</value>
+    <value>عزيزي ، تم الدفع بنجاح</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>السعر</value>
@@ -795,7 +795,7 @@
     <value>تفاصيل</value>
   </data>
   <data name="PaymentFailedSummary" xml:space="preserve">
-    <value>عزيزي {0}، فشلت عملية الدفع، يرجى المحاولة مرة أخرى بعد دقائق.</value>
+    <value>عزيزي ، فشلت عملية الدفع، يرجى المحاولة مرة أخرى بعد دقائق.</value>
   </data>
   <data name="PaymentFailedSupport" xml:space="preserve">
     <value>إذا تم خصم المبلغ من حسابك، سيتم إرجاعه خلال 72 ساعة. إذا واجهت أي مشكلة، يمكنك الاتصال بدعم الموقع.</value>
@@ -810,7 +810,7 @@
     <value>شحن المحفظة</value>
 </data>
 <data name="TransactionAmount" xml:space="preserve">
-    <value>المبلغ <sup class="text-muted h6">(ريال)</sup></value>
+    <value>المبلغ (ريال)</value>
 </data>
 <data name="TransactionType" xml:space="preserve">
     <value>نوع المعاملة</value>
@@ -870,7 +870,7 @@
     <value>تم تحديث معلوماتك وحفظها بنجاح. للاستمرار، يجب أولاً التحقق من البريد الإلكتروني الجديد المدخل، ثم تسجيل الدخول إلى حسابك من قسم تسجيل الدخول.</value>
 </data>
 <data name="EmailLinkMessage" xml:space="preserve">
-    <value>يرجى التحقق من بريدك الإلكتروني @(Model.Email) والنقر على رابط التفعيل.</value>
+    <value>يرجى التحقق من بريدك الإلكتروني  والنقر على رابط التفعيل.</value>
 </data>
 <data name="LoginButton" xml:space="preserve">
     <value>تسجيل الدخول</value>

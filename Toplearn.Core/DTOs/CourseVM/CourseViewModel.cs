@@ -20,10 +20,7 @@ namespace Toplearn.Core.DTOs.CourseVM
 
         public int NumberOfStudents { get; set; }//تعداد دانجو هایی که در این دوره ثبت نام کرده اند
 
-        public long Price { get; set; }//ملغ دوره
-
-        public double PriceDollar { get; set; }//ملغ دوره
-
+        public double Price { get; set; }//ملغ دوره
         public string TeacherName { get; set; }
     }
 
@@ -33,7 +30,7 @@ namespace Toplearn.Core.DTOs.CourseVM
         public int Id { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
-        public long Price { get; set; }
+        public double Price { get; set; }
         public TimeSpan Time { get; set; }
     }
 
@@ -49,6 +46,7 @@ namespace Toplearn.Core.DTOs.CourseVM
     }
     public class CourseFilterAdminViewModel
     {
+        public string Language { get; set; } = "fa";
         public string Title { get; set; }
         public string Description { get; set; }//توضیحات کامل دوره        
 
@@ -83,10 +81,10 @@ namespace Toplearn.Core.DTOs.CourseVM
         public string NamePersian { get; set; }
         public string NameEnglish { get; set; }
         public string NameArabic { get; set; }
-		public string Image { get; set; }
-		public IFormFile ImageFile { get; set; }
-		public int? ParentId { get; set; }
-		public CourseGroup Parent { get; set; }
+        public string Image { get; set; }
+        public IFormFile ImageFile { get; set; }
+        public int? ParentId { get; set; }
+        public CourseGroup Parent { get; set; }
         public List<CourseGroup> Childs { get; set; }
     }
     public class CategoryListDto
@@ -97,16 +95,16 @@ namespace Toplearn.Core.DTOs.CourseVM
         public List<CategoryListDto> SubCategories { get; set; }
     }
     public class CategoryInputDto
-	{
-		public int Id { get; set; }
+    {
+        public int Id { get; set; }
 
-		public string NamePersian { get; set; }
-		public string NameEnglish { get; set; }
-		public string NameArabic { get; set; }
+        public string NamePersian { get; set; }
+        public string NameEnglish { get; set; }
+        public string NameArabic { get; set; }
 
-		public int ParentId { get; set; }
-	}
-	public class HomePageViewModel
+        public int ParentId { get; set; }
+    }
+    public class HomePageViewModel
     {
         public IEnumerable<CourseItemListViewModel> Courses { get; set; }
     }

@@ -43,7 +43,7 @@ namespace Toplearn.Web.Pages.Admin.Courses
             ViewData["Teachers"] = _courseService.GetTeachersName();
             ViewData["Statuses"] = _courseService.GetStatuses();
             ViewData["Levels"] = _courseService.GetLevels();
-
+            ModelState.Remove(nameof(Course) + "." + nameof(Course.PriceDollar));
             if (!ModelState.IsValid)
                 return Page();
 

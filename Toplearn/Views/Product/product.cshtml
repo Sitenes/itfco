@@ -5,7 +5,7 @@
 @using System.Globalization
 
 @{
-    ViewData["Title"] = $"محصول {Model.Title}";
+    ViewData["Title"] = $"محصول {Model.TitlePersian}";
     var currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 }
 
@@ -25,13 +25,13 @@
                                     <div class="image-column col-md-6 col-sm-12">
                                         <figure class="image-box">
                                             <a href="/CourseRoot/Image/@(Model.Image)" class="lightbox-image" title="Image Caption Here">
-                                                <img src="/CourseRoot/Image/@(Model.Image)" alt="@(Model.Title)">
+                                                <img src="/CourseRoot/Image/@(Model.Image)" alt="@(Model.TitlePersian)">
                                             </a>
                                         </figure>
                                     </div>
                                     <div class="info-column col-md-6 col-sm-12">
                                         <div class="details-header">
-                                            <h4>@(Model.Title)</h4>
+                                            <h4>@(currentCulture == "fa" ? Model.TitlePersian : currentCulture == "en" ? Model.TitleEnglish : Model.TitleArabic)</h4>
                                             <div class="rating">
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
@@ -44,7 +44,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="text">@(Model.ShortDescription)</div>
+                                        <div class="text">@(currentCulture == "fa" ? Model.ShortDescriptionPersian : currentCulture == "en" ? Model.ShortDescriptionEnglish : Model.ShortDescriptionArabic)</div>
 
                                         <div class="other-options clearfix">
                                             <form asp-controller="UserPanel" asp-action="Cart" asp-route-productId="@(Model.CourseId)">
@@ -80,7 +80,7 @@
                                         <!--Tab Description-->
                                         <div class="tab active-tab" id="prod-details">
                                             <div class="content">
-                                                @Html.Raw(Model.Description)
+                                                @Html.Raw(currentCulture == "fa" ? Model.DescriptionPersian : currentCulture == "en" ? Model.DescriptionEnglish : Model.DescriptionArabic)
                                             </div>
                                         </div>
 
@@ -98,7 +98,7 @@
                                                                     <div class="inner-column">
                                                                         <div class="video-box">
                                                                             <figure class="image">
-                                                                                <img src="/CourseRoot/Image/@(Model.Image)" alt="@(Model.Title)">
+                                                                                <img src="/CourseRoot/Image/@(Model.Image)" alt="@(Model.TitlePersian)">
                                                                                 <a href="/CourseRoot/Demo/@(Model.DemoFileName)" class="link" data-fancybox="gallery" data-caption="">
                                                                                     <span class="icon fa fa-play"></span>
                                                                                 </a>

@@ -615,7 +615,6 @@
 <data name="ProductVideo" xml:space="preserve">
   <value>ویدئو محصول</value>
 </data>
-
   <data name="UserPanelTitle" xml:space="preserve">
     <value>پنل کاربری</value>
   </data>
@@ -739,7 +738,7 @@
   <value>پرداخت نشده</value>
 </data>
 <data name="DeleteConfirmTitle" xml:space="preserve">
-  <value>آیا از حذف سبد خرید {0} اطمینان دارید ؟</value>
+  <value>آیا از حذف سبد خرید  اطمینان دارید ؟</value>
 </data>
 <data name="Cancel" xml:space="preserve">
   <value>بیخیال</value>
@@ -832,10 +831,10 @@
     <value>پرداخت با موفقیت انجام شد</value>
   </data>
   <data name="PaymentSuccessMessage" xml:space="preserve">
-    <value>{0} عزیز پرداخت شما دریافت شد و کیف پول شما با موفقیت شارژ شد . اکنون به راحتی می توانید محصولاتی سایت را خریداری نمایید .</value>
+    <value> عزیز پرداخت شما دریافت شد و کیف پول شما با موفقیت شارژ شد . اکنون به راحتی می توانید محصولاتی سایت را خریداری نمایید .</value>
   </data>
   <data name="PaymentSuccessSummary" xml:space="preserve">
-    <value>{0} عزیز پرداخت شما به مبلغ {1} ریال با موفقیت انجام شد</value>
+    <value> عزیز پرداخت شما با موفقیت انجام شد</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>قیمت</value>
@@ -859,7 +858,7 @@
     <value>جزییات</value>
   </data>
   <data name="PaymentFailedSummary" xml:space="preserve">
-    <value>{0} عزیز فرآیند پرداخت با شکست مواجه شد لطفا دقایقی دیگر مجددا تلاش نمایید</value>
+    <value> عزیز فرآیند پرداخت با شکست مواجه شد لطفا دقایقی دیگر مجددا تلاش نمایید</value>
   </data>
   <data name="PaymentFailedSupport" xml:space="preserve">
     <value>درصورت کسر شدن وجه از حساب شما حداکثر تا ۷۲ ساعت بازگردانده می شود. درصورت بروز مشکل می توانید با پشتیبانی سایت تماس بگیرید.</value>
@@ -874,7 +873,7 @@
     <value>شارژ کیف پول</value>
 </data>
 <data name="TransactionAmount" xml:space="preserve">
-    <value>مبلغ <sup class="text-muted h6">(ریال)</sup></value>
+    <value>مبلغ (ریال)</value>
 </data>
 <data name="TransactionType" xml:space="preserve">
     <value>نوع تراکنش</value>
@@ -934,7 +933,7 @@
     <value>اطلاعات شما با موفقیت تغییر و ثبت شد جهت ادامه ابتدا باید ایمیل جدید وارد شده را تایید و سپس از قسمت ورود وارد حساب کاربری خود شوید.</value>
 </data>
 <data name="EmailLinkMessage" xml:space="preserve">
-    <value>لطفا وارد ایمیل @(Model.Email) شوید و روی لینک فعالسازی کلیک کنید.</value>
+    <value>لطفا وارد ایمیل  شوید و روی لینک فعالسازی کلیک کنید.</value>
 </data>
 <data name="LoginButton" xml:space="preserve">
     <value>ورود</value>

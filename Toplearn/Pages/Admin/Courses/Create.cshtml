@@ -5,78 +5,108 @@
 @using Toplearn.DataLayer.Entities.Courses
 @model Toplearn.Web.Pages.Admin.Courses.CreateModel
 @{
-	ViewData["Title"] =  "افزودن محصول";
+    ViewData["Title"] = "افزودن محصول";
 }
 
 <div class="row">
-	<form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data">
 
-		<div class="col-md-8">
+        <div class="col-md-8">
 
-			<div class="panel panel-primary">
-				<div class="panel-heading h3">
-					افزودن محصول جدید
-				</div>
-				<div class="panel-body">
-					<div class="container client-page">
-						<div class="form-group">
-							<div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading h3">
+                    افزودن محصول جدید
+                </div>
+                <div class="panel-body">
+                    <div class="container client-page">
+                        <div class="form-group">
+                            <div class="row">
 
-								<div class="col-md-6 input-group" style="margin:20px auto">
-									<span class="input-group-addon">
-										<i class="zmdi zmdi-card"></i>
-									</span>
-									<input asp-for="Course.Title" class="form-control" placeholder="عنوان محصول">
-									<span asp-validation-for="Course.Title" class="text-danger"></span>
-								</div>
+                                <div class="col-md-4 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-card"></i> فارسی
+                                    </span>
+                                    <input asp-for="Course.TitlePersian" class="form-control" placeholder="عنوان فارسی محصول">
+                                    <span asp-validation-for="Course.TitlePersian" class="text-danger"></span>
+                                </div>
 
-								
-								<div class="col-sm-12 input-group" style="margin:20px auto">
-									<span class="input-group-addon">
-										<i class="zmdi zmdi-file-text"></i>
-									</span>
-									<textarea asp-for="Course.ShortDescription" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" class="form-control" placeholder="توضیحات مختصر"></textarea>
-									<span asp-validation-for="Course.ShortDescription" class="text-danger"></span>
-								</div>
+                                <div class="col-md-4 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-card"></i> انگلیسی
+                                    </span>
+                                    <input asp-for="Course.TitleEnglish" class="form-control" placeholder="عنوان انگلیسی محصول">
+                                    <span asp-validation-for="Course.TitleEnglish" class="text-danger"></span>
+                                </div>
 
-								@* @if (ViewData["Teachers"] != null)
-								{
-									<div class="col-md-6 input-group" style="margin:20px auto">
-										<span class="input-group-addon">
-											<i class="zmdi zmdi-account"></i>
-											<label>مدرس</label>
-										</span>
-										
-										<div class="form-group" id="subGroup">
-											<select class="form-control" asp-for="Course.TeacherId">
-												@foreach (var groupItem in (ViewData["Teachers"] as List<TeacherForCourseViewModel>))
-												{
-													<option value="@(groupItem.TeacherId)">
-														@(groupItem.TeacherName)
-													</option>
-												}
-											</select>
-										</div>
-									</div>
-								} *@
-								<div class="col-sm-12 input-group" style="margin:20px auto">
-									<span class="input-group-addon">
-										<i class="zmdi zmdi-file-text"></i>
-									</span>
-									<textarea id="mainGroup" asp-for="Course.Description" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
-									<span asp-validation-for="Course.Description" class="text-danger"></span>
-								</div>
+                                <div class="col-md-4 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-card"></i> عربی
+                                    </span>
+                                    <input asp-for="Course.TitleArabic" class="form-control" placeholder="عنوان عربی محصول">
+                                    <span asp-validation-for="Course.TitleArabic" class="text-danger"></span>
+                                </div>
 
-								<div class="col-md-6 input-group" style="margin:20px auto">
-									<span class="input-group-addon">
-										<i class="zmdi zmdi-movie"></i>
-										<label>فیلم دمو</label>
-									</span>
-									<input type="file" id="demofile" name="DemoFile" accept=".avi,.flv,.mov,.wmv,.mkv,.mp4"
-										   class="form-control" />
-								</div>
+                                <div class="col-sm-12 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-file-text"></i> فارسی
+                                    </span>
+                                    <textarea asp-for="Course.ShortDescriptionPersian" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" class="form-control" placeholder=" توضیحات مختصر فارسی"></textarea>
+                                    <span asp-validation-for="Course.ShortDescriptionPersian" class="text-danger"></span>
+                                </div>
 
-@* 
+
+
+                                <div class="col-sm-12 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-file-text"></i> انگلیسی
+                                    </span>
+                                    <textarea asp-for="Course.ShortDescriptionEnglish" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" class="form-control" placeholder="توضیحات مختصر انگلیسی"></textarea>
+                                    <span asp-validation-for="Course.ShortDescriptionEnglish" class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-12 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-file-text"></i> عربی
+                                    </span>
+                                    <textarea asp-for="Course.ShortDescriptionArabic" style="resize:vertical;max-height:200px;min-height:30px;height:33px;" class="form-control" placeholder="توضیحات مختصر عربی"></textarea>
+                                    <span asp-validation-for="Course.ShortDescriptionArabic" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-12 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-file-text"></i> فارسی
+                                    </span>
+                                    <textarea id="mainGroupPersian" asp-for="Course.DescriptionPersian" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
+                                    <span asp-validation-for="Course.DescriptionPersian" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-12 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-file-text"></i> انگلیسی
+                                    </span>
+                                    <textarea id="mainGroupEnglish" asp-for="Course.DescriptionEnglish" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
+                                    <span asp-validation-for="Course.DescriptionEnglish" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="col-sm-12 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-file-text"></i> عربی
+                                    </span>
+                                    <textarea id="mainGroupArabic" asp-for="Course.DescriptionArabic" style="max-height:500px;min-height:33px;resize:vertical;" class="form-control" placeholder="توضیحات محصول"></textarea>
+                                    <span asp-validation-for="Course.DescriptionArabic" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="col-md-6 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-movie"></i>
+                                        <label>فیلم دمو</label>
+                                    </span>
+                                    <input type="file" id="demofile" name="DemoFile" accept=".avi,.flv,.mov,.wmv,.mkv,.mp4"
+                                           class="form-control" />
+                                </div>
+
+                                @* 
 								@if (ViewData["Statuses"] != null)
 								{
 									<div class="col-md-6 input-group" style="margin:20px auto">
@@ -117,139 +147,149 @@
 										</div>
 									</div>
 								} *@
-										
-								<div class="col-md-6" style="margin:20px auto">
-								<div class="input-group" >
-									<span class="input-group-addon">
-										<i class="zmdi zmdi-card"></i>
-									</span>
-										<textarea asp-for="Course.Tags" style="resize:vertical;max-height:100px;min-height:30px;height:33px;" class="form-control" placeholder="تگ های محصول"></textarea>
-									<span asp-validation-for="Course.Tags" class="text-danger"></span>
-								</div>
-									<small class="help-block text-muted">تگ ها را با - جدا نمایید</small>
-								</div>
 
-								<div class="col-md-6 input-group" style="margin:20px auto">
-									<span class="input-group-addon">
-										<i class="zmdi zmdi-money"></i> تومان
-									</span>
-									<input asp-for="Course.Price" min="0" max="9223372036854775807"
-										   oninput="if(this.value.length > 19) this.value = this.value.slice(0, 19);" class="form-control" placeholder="مبلغ محصول">
-									<span asp-validation-for="Course.Price" class="text-danger"></span>
-								</div>
+                                <div class="col-md-6" style="margin:20px auto">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="zmdi zmdi-card"></i>
+                                        </span>
+                                        <textarea asp-for="Course.Tags" style="resize:vertical;max-height:100px;min-height:30px;height:33px;" class="form-control" placeholder="تگ های محصول"></textarea>
+                                        <span asp-validation-for="Course.Tags" class="text-danger"></span>
+                                    </div>
+                                    <small class="help-block text-muted">تگ ها را با - جدا نمایید</small>
+                                </div>
 
-								<div class="col-md-6 input-group" style="margin:20px auto">
-									<span class="input-group-addon">
-										<i class="zmdi zmdi-money"></i> دلار
-									</span>
-									<input asp-for="Course.PriceDollar" min="0" max="9223372036854775807"
-										   oninput="if(this.value.length > 19) this.value = this.value.slice(0, 19);" class="form-control" placeholder="مبلغ محصول">
-									<span asp-validation-for="Course.PriceDollar" class="text-danger"></span>
-								</div>
+                                <div class="col-md-6 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-money"></i> تومان
+                                    </span>
+                                    <input asp-for="Course.Price" min="0" max="9223372036854775807"
+                                           oninput="if(this.value.length > 19) this.value = this.value.slice(0, 19);" class="form-control" placeholder="مبلغ محصول">
+                                    <span asp-validation-for="Course.Price" class="text-danger"></span>
+                                </div>
 
-							</div>
-							<div class="col-md-4">
-								<button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-plus-circle"></i> <strong> افزودن محصول </strong> </button>
-							</div>
-						</div>
+                                <div class="col-md-6 input-group" style="margin:20px auto">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-money"></i> دلار
+                                    </span>
+                                    <input type="number" step="0.01" asp-for="Course.PriceDollar" min="0" max="9223372036854775807"
+                                           oninput="if(this.value.length > 19) this.value = this.value.slice(0, 19);" class="form-control" placeholder="مبلغ محصول">
+                                    <span asp-validation-for="Course.PriceDollar" class="text-danger"></span>
+                                </div>
 
-					</div>
-				</div>
-			</div>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="form-control btn btn-success btn-block"><i class="zmdi zmdi-plus-circle"></i> <strong> افزودن محصول </strong> </button>
+                            </div>
+                        </div>
 
-		</div>
+                    </div>
+                </div>
+            </div>
 
-		<div class="col-md-4">
-			<div class="container client-page">
+        </div>
 
-				<div class="panel panel-default">
-					<div class="panel-heading h3 text-center">
-						عکس اصلی محصول
-					</div>
-					<div class="panel-body">
-						<div class="container client-page">
-							<div class="form-group">
-								<div class="form-group">
+        <div class="col-md-4">
+            <div class="container client-page">
 
-									<div class="thumbnail">
-										<img id="imgAvatar" src="/CourseRoot/Image/Default.jpg" />
-									</div>
-									<input type="file" id="fileName" name="ImageFile" accept=".jpg,.jpeg,.png,.gif" onchange="validateFileType()" class="form-control" />
-								</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading h3 text-center">
+                        عکس اصلی محصول
+                    </div>
+                    <div class="panel-body">
+                        <div class="container client-page">
+                            <div class="form-group">
+                                <div class="form-group">
 
-							</div>
-						</div>
+                                    <div class="thumbnail">
+                                        <img id="imgAvatar" src="/CourseRoot/Image/Default.jpg" />
+                                    </div>
+                                    <input type="file" id="fileName" name="ImageFile" accept=".jpg,.jpeg,.png,.gif" onchange="validateFileType()" class="form-control" />
+                                </div>
 
-					</div>
-				</div>
-			</div>
-		</div>
+                            </div>
+                        </div>
 
-		<div class="col-md-4">
-			<div class="container client-page">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-				<div class="panel panel-default">
-					<div class="panel-heading h3 text-center">
-						دسته بندی
-					</div>
-					<div class="panel-body">
-						<div class="container client-page">
-							<div class="form-group">
+        <div class="col-md-4">
+            <div class="container client-page">
 
-								<div class="form-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading h3 text-center">
+                        دسته بندی
+                    </div>
+                    <div class="panel-body">
+                        <div class="container client-page">
+                            <div class="form-group">
 
-									@if (ViewData["Groups"] != null)
-									{
-										<ul>
-											@foreach (var groupItem in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == null))
-											{
-												<li>
-													<div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem.GroupId)"> @(groupItem.NamePersian)</label></div>
-												</li>
-												<ul>
-													@foreach (var groupItem2 in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == groupItem.GroupId))
-													{
-														<li>
-															<div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem2.GroupId)"> @(groupItem2.NamePersian)</label></div>
-														</li>
-														<ul>
-															@foreach (var groupItem3 in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == groupItem2.GroupId))
-															{
-																<li>
-																	<div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem3.GroupId)"> @(groupItem3.NamePersian)</label></div>
-																</li>
-																<ul>
-																	@foreach (var groupItem4 in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == groupItem3.GroupId))
-																	{
-																		<li>
-																			<div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem4.GroupId)"> @(groupItem4.NamePersian)</label></div>
-																		</li>
-																	}
-																</ul>
-															}
-														</ul>
-													}
-												</ul>
-											}
-										</ul>
-									}
-								</div>
-							</div>
-						</div>
+                                <div class="form-group">
 
-					</div>
-				</div>
-			</div>
-		</div>
+                                    @if (ViewData["Groups"] != null)
+                                    {
+                                        <ul>
+                                            @foreach (var groupItem in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == null))
+                                            {
+                                                <li>
+                                                    <div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem.GroupId)"> @(groupItem.NamePersian)</label></div>
+                                                </li>
+                                                <ul>
+                                                    @foreach (var groupItem2 in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == groupItem.GroupId))
+                                                    {
+                                                        <li>
+                                                            <div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem2.GroupId)"> @(groupItem2.NamePersian)</label></div>
+                                                        </li>
+                                                        <ul>
+                                                            @foreach (var groupItem3 in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == groupItem2.GroupId))
+                                                            {
+                                                                <li>
+                                                                    <div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem3.GroupId)"> @(groupItem3.NamePersian)</label></div>
+                                                                </li>
+                                                                <ul>
+                                                                    @foreach (var groupItem4 in (ViewData["Groups"] as List<CourseGroup>).Where(n => n.ParentId == groupItem3.GroupId))
+                                                                    {
+                                                                        <li>
+                                                                            <div class="radio"><label><input asp-for="Course.GroupId" type="radio" value="@(groupItem4.GroupId)"> @(groupItem4.NamePersian)</label></div>
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            }
+                                                        </ul>
+                                                    }
+                                                </ul>
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                        </div>
 
-		
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	</form>
+
+
+    </form>
 </div>
 @section Scripts
 {
-	<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
-	<script>
-		CKEDITOR.replace('mainGroup', { customConfig: '/js/Config.js' });
-	</script>
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('mainGroupPersian', { customConfig: '/js/Config.js' });
+        CKEDITOR.replace('mainGroupEnglish', { customConfig: '/js/Config.js' });
+        CKEDITOR.replace('mainGroupArabic', { customConfig: '/js/Config.js' });
+    </script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function () {
+            var input = document.querySelector('[name="Course.PriceDollar"]');
+            if (input) {
+                input.value = parseFloat(input.value).toString(); // اطمینان از نقطه‌ای بودن
+            }
+        });
+    </script>
 }

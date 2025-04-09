@@ -678,7 +678,7 @@
   <value>Not Paid</value>
 </data>
 <data name="DeleteConfirmTitle" xml:space="preserve">
-  <value>Are you sure you want to delete {0}'s cart?</value>
+  <value>Are you sure you want to delete 's cart?</value>
 </data>
 <data name="Cancel" xml:space="preserve">
   <value>Cancel</value>
@@ -771,10 +771,10 @@
     <value>Payment Successful</value>
   </data>
   <data name="PaymentSuccessMessage" xml:space="preserve">
-    <value>Dear {0}, your payment was received and your wallet was successfully charged. You can now easily purchase site products.</value>
+    <value>Dear , your payment was received and your wallet was successfully charged. You can now easily purchase site products.</value>
   </data>
   <data name="PaymentSuccessSummary" xml:space="preserve">
-    <value>Dear {0}, your payment of {1} Rials was successfully completed</value>
+    <value>Dear , your payment was successfully completed</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
@@ -798,7 +798,7 @@
     <value>Details</value>
   </data>
   <data name="PaymentFailedSummary" xml:space="preserve">
-    <value>Dear {0}, the payment process failed. Please try again after a few minutes.</value>
+    <value>Dear , the payment process failed. Please try again after a few minutes.</value>
   </data>
   <data name="PaymentFailedSupport" xml:space="preserve">
     <value>If the amount was deducted from your account, it will be refunded within 72 hours. If you experience any problems, please contact website support.</value>
@@ -813,7 +813,7 @@
     <value>Charge Wallet</value>
 </data>
 <data name="TransactionAmount" xml:space="preserve">
-    <value>Amount <sup class="text-muted h6">(Rials)</sup></value>
+    <value>Amount (Rials)</value>
 </data>
 <data name="TransactionType" xml:space="preserve">
     <value>Transaction Type</value>
@@ -873,7 +873,7 @@
     <value>Your information has been successfully updated and saved. To proceed, you must first verify the new email entered and then log in to your account from the login section.</value>
 </data>
 <data name="EmailLinkMessage" xml:space="preserve">
-    <value>Please check your email @(Model.Email) and click on the activation link.</value>
+    <value>Please check your email  and click on the activation link.</value>
 </data>
 <data name="LoginButton" xml:space="preserve">
     <value>Login</value>

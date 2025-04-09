@@ -28,8 +28,8 @@ namespace Toplearn.Core.Services
             if (course.RegistrationDate == DateTime.MinValue)
                 course.RegistrationDate = DateTime.Now;
 
-            if (course.Description == null)
-                course.Description = "";
+            if (course.DescriptionPersian == null)
+                course.DescriptionPersian = "";
 
             if (course.GroupId == 0 && course.SubGroupId != 0)
                 await SetGroup(course);
@@ -147,7 +147,7 @@ namespace Toplearn.Core.Services
             return await _context.Courses.Include(n => n.UserCreator).Select(n => new CourseListAdminViewModel()
             {
                 CourseId = n.CourseId,
-                CourseTitle = n.Title,
+                CourseTitle = n.TitlePersian,
                 Image = n.Image,
                 NumberOfStudents = n.NumberOfStudents,
                 Price = n.Price,
@@ -164,7 +164,7 @@ namespace Toplearn.Core.Services
             }
             if (!string.IsNullOrWhiteSpace(Filter.Description))
             {
-                Courses = Courses.Where(n => n.Description.Contains(Filter.Description));
+                Courses = Courses.Where(n => n.DescriptionPersian.Contains(Filter.Description));
             }
 
             if (Filter.GroupId != 0)
@@ -209,11 +209,11 @@ namespace Toplearn.Core.Services
 
             if (!string.IsNullOrWhiteSpace(Filter.Title))
             {
-                Courses = Courses.Where(n => n.Title.Contains(Filter.Title));
+                Courses = Courses.Where(n => n.TitlePersian.Contains(Filter.Title));
             }
             Filter.CoursesCount = Courses.Count();
-			Courses = Courses.OrderByDescending(x=>x.RegistrationDate);
-			if (Filter.CurrentPage != 0)
+            Courses = Courses.OrderByDescending(x => x.RegistrationDate);
+            if (Filter.CurrentPage != 0)
                 Courses = Courses.Skip((Filter.CurrentPage - 1) * Filter.ItemPerPage);
             if (Filter.ItemPerPage != 0)
                 Courses = Courses.Take(Filter.ItemPerPage);
@@ -221,12 +221,11 @@ namespace Toplearn.Core.Services
             return Courses.Select(n => new CourseListAdminViewModel()
             {
                 CourseId = n.CourseId,
-                CourseTitle = n.Title,
+                CourseTitle = Filter.Language == "fa" ? n.TitlePersian : Filter.Language == "en" ? n.TitleEnglish : n.TitleArabic,
                 Image = n.Image,
                 NumberOfStudents = n.NumberOfStudents,
-                Price = n.Price,
+                Price = Filter.Language == "fa" ? n.Price : n.PriceDollar,
                 TeacherName = n.UserCreator?.UserName ?? "",
-                PriceDollar = n.PriceDollar
             }).ToList();
         }
 
@@ -265,7 +264,7 @@ namespace Toplearn.Core.Services
                         titleWordTrim.Replace("و", "");
                     if (!string.IsNullOrWhiteSpace(titleWordTrim))
                     {
-                        coursesTitleFilterd.AddRange(coursesList.Where(n => n.Title.Contains(titleWord)));
+                        coursesTitleFilterd.AddRange(coursesList.Where(n => n.TitlePersian.Contains(titleWord)));
                     }
                 }
                 courses = coursesTitleFilterd;
@@ -301,7 +300,7 @@ namespace Toplearn.Core.Services
                 Image = n.Image,
                 Price = n.Price,
                 Time = new TimeSpan(n.CourseEpisode.Sum(m => m.EpisodeTime.Ticks)),
-                Title = n.Title
+                Title = n.TitlePersian
             });
 
         }

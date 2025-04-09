@@ -142,7 +142,8 @@ namespace Toplearn
                 new CultureInfo("en")
             };
 
-			var localizationOptions = new RequestLocalizationOptions
+
+            var localizationOptions = new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture("fa"), // زبان پیش‌فرض
                 SupportedCultures = supportedCultures,

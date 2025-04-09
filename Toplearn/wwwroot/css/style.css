@@ -5055,7 +5055,7 @@ header-style-seven {
 
 .specialize-section {
     position: relative;
-    padding: 100px 0;
+    /*padding: 100px 0;*/
 }
 
     .specialize-section .sec-title {
@@ -13914,7 +13914,7 @@ header-style-seven {
     border-radius: 100px;
     cursor: pointer;
     transition: .6s;
-}
+}S
 
 #divaa3:hover > #btnc3 {
     top: 190px;
@@ -13925,7 +13925,7 @@ header-style-seven {
 
 .header-lower {
     position: absolute;
-    top: 43px;
+    top: 42px;
 }
 
 .modal-dialog {

@@ -5,6 +5,7 @@
 @using Toplearn.Web
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Resource> Localizer
 @using Microsoft.AspNetCore.Localization
+@model List<CourseListAdminViewModel>
 @inject IUserService _userService
 @{
     ViewData["Title"] = "خانه";
@@ -70,6 +71,40 @@
     //     new { ImageUrl = "/images/main-slider/clothing 2.jpg", Title = Localizer["Fashion and Modeling"], ServiceLink = "/userpanel", DetailLink = "/userpanel" }
     // };
 }
+
+<section class="specialize-section bottom-zero">
+    <div class="auto-container">
+        <div class="sec-title">
+            <h2>@Localizer["ProductsTitle"]</h2>
+        </div>
+
+        <div class="services-carousel-two owl-carousel owl-carousel1 owl-theme">
+            @for (int i = 0; i < Model?.Count; i++)
+            {
+                var title = Model[i].CourseTitle;
+                <div class="service-block-two">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image">
+                                <a href="/product/@Model[i].CourseId">
+                                    <img src="/CourseRoot/Image/@Model[i].Image" alt="">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="caption-box">
+                            <h3><a href="/product/@Model[i].CourseId">@title</a></h3>
+                            <div class="link-box">
+                                <a href="/product/@Model[i].CourseId">
+                                    @* @Localizer["ViewProducts"] <i class="fa fa-angle-double-left"></i> *@
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
 
 <section class="specialize-section bottom-zero">
     <div class="auto-container">

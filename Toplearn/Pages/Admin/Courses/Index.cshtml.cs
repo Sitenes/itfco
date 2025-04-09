@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -23,7 +24,7 @@ namespace Toplearn.Web.Pages.Admin.Courses
         {
             _courseService = courseService;
         }
-        public void OnGetAsync(bool? IsSucceed)
+        public async Task OnGetAsync(bool? IsSucceed)
         {
             if(IsSucceed!=null)
                 ViewData["IsSucceed"] = IsSucceed;
@@ -31,7 +32,7 @@ namespace Toplearn.Web.Pages.Admin.Courses
             Filters.ItemPerPage = 10;
             ItemPerPage = 10;
             Filters.CurrentPage = 1;
-            Courses = _courseService.GetCoursesList(Filters).Result as List<CourseListAdminViewModel>;
+            Courses = (await _courseService.GetCoursesList(Filters)).ToList();
             Courses?.ForEach(x => x.Image = string.IsNullOrEmpty(x.Image) ? "Default.jpg" : x.Image);
 
 		}
@@ -39,7 +40,7 @@ namespace Toplearn.Web.Pages.Admin.Courses
         {
             Filters.ItemPerPage = ItemPerPage;
             Filters.CurrentPage = currentPage;
-            Courses = await _courseService.GetCoursesList(Filters) as List<CourseListAdminViewModel>;
+            Courses = (await _courseService.GetCoursesList(Filters)).ToList();
             return Page();
         }
     }
