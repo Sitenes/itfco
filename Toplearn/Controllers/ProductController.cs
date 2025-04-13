@@ -24,7 +24,7 @@ namespace Toplearn.Web.Controllers
         public async Task<IActionResult> Index(CourseFilterAdminViewModel input)
         {
             var lang = Request.Cookies["Culture"] ?? "fa";
-
+            input.Language = lang;
             var products = await _courseService.GetCoursesList(input);
             var parents = await _courseService.GetParentCourseGroups();
 
@@ -83,7 +83,7 @@ namespace Toplearn.Web.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var product = await _courseService.GetCourse(id);
-
+            
             var lang = Request.Cookies["Culture"] ?? "fa";
             var parents = (await _courseService.GetParentCourseGroups());
 

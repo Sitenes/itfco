@@ -40,7 +40,7 @@
                                                 <span class="fa fa-star"></span>
                                             </div>
                                             <div class="item-price">
-                                                @(currentCulture == "fa" ? Model.Price.ToString("0,000") : Model.PriceDollar.ToString("0,000")) @Localizer["Tooman"]
+                                                @(currentCulture == "fa" ? Model.Price.ToString("N3") : Model.PriceDollar.ToString("N3")) @Localizer["Tooman"]
                                             </div>
                                         </div>
 
